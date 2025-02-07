@@ -13,11 +13,15 @@ public class DiffParser : MonoBehaviour
     private string _namePrefix = "+  m_Name:";
     private string _pathToDiff = "saved_diff.txt";
 
+
+    private int _lengthOfFileID = 9;
+
     private void Start()
     {
         // Debug.Log(ExtractDiffObjs(_pathToDiff));
         gameObject = GetGameObjectFromFileID(198659496);
         Debug.Log(gameObject.name);
+        gameObject.SetActive(false);
     }
 
     private static GameObject GetGameObjectFromFileID(long fileID) // also called local identifier
@@ -46,24 +50,24 @@ public class DiffParser : MonoBehaviour
         return null;
     }
     
-
-    /*private GameObject GetObjByFileID()
+   
+    private List<string> ExtractDiffObjIDs(string path)
     {
-        PropertyInfo inspectorModeInfo =
-            typeof(SerializedObject).GetProperty("inspectorMode", BindingFlags.NonPublic | BindingFlags.Instance);
-  
+        if (!File.Exists(path))
+            Debug.LogError($"Cant find file {path}");
         
-        SerializedObject serializedObject = new SerializedObject(go);
-        inspectorModeInfo.SetValue(serializedObject, InspectorMode.Debug, null);
+        string[] linesWhereDiffStarts = File.ReadLines(path).Where(line => line.StartsWith("+---")).ToArray();
 
-        SerializedProperty localIdProp =
-            serializedObject.FindProperty("m_LocalIdentfierInFile");   //note the misspelling!
-  
-        int localId = localIdProp.intValue;
+        List<string> diffObjIDs = new();
 
-    }*/
+        foreach (var line in linesWhereDiffStarts)
+        {
+           diffObjIDs.Add(line.Remove(0, line.Length - _lengthOfFileID)); 
+        }
 
-    private string[] ExtractDiffObjs(string path)
+        return diffObjIDs;
+    }
+    private string[] ExtractDiffObjsNames(string path)
     {
         if (!File.Exists(path))
             Debug.LogError($"Cant find file {path}");
