@@ -10,13 +10,13 @@ using UnityEngine;
 public class DiffParser : MonoBehaviour
 {
     public GameObject gameObject;
-    private string _namePrefix = "+  m_Name:";
-    private string _gameObjectPrefix = "+--- !u!1";
+    private const string NamePrefix = "+  m_Name:";
+    private const string GameObjectPrefix = "+--- !u!1";
 
     private string _pathToDiff = "saved_diff.txt";
 
 
-    private int _lengthOfFileID = 9;
+    private const int LengthOfFileID = 9;
 
     private void Start()
     {
@@ -70,13 +70,13 @@ public class DiffParser : MonoBehaviour
         if (!File.Exists(path))
             Debug.LogError($"Cant find file {path}");
 
-        string[] linesWhereDiffStarts = File.ReadLines(path).Where(line => line.StartsWith(_gameObjectPrefix)).ToArray();
+        string[] linesWhereDiffStarts = File.ReadLines(path).Where(line => line.StartsWith(GameObjectPrefix)).ToArray();
 
         List<long> diffObjIDs = new();
 
         foreach (var line in linesWhereDiffStarts)
         {
-            diffObjIDs.Add(long.Parse(line.Remove(0, line.Length - _lengthOfFileID)));
+            diffObjIDs.Add(long.Parse(line.Remove(0, line.Length - LengthOfFileID)));
         }
 
         return diffObjIDs;
@@ -103,8 +103,8 @@ public class DiffParser : MonoBehaviour
         List<string> filteredNames = new();
         foreach (var line in linesWhereDiffStarts)
         {
-            if (line.StartsWith(_namePrefix))
-                filteredNames.Add(line.Remove(0, _namePrefix.Length));
+            if (line.StartsWith(NamePrefix))
+                filteredNames.Add(line.Remove(0, NamePrefix.Length));
             else
                 Debug.LogWarning($"no name prefix in {line}");
         }
