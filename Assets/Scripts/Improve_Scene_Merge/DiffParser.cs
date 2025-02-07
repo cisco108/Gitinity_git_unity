@@ -18,10 +18,22 @@ public class DiffParser : MonoBehaviour
 
     private void Start()
     {
-        // Debug.Log(ExtractDiffObjs(_pathToDiff));
-        gameObject = GetGameObjectFromFileID(198659496);
-        Debug.Log(gameObject.name);
-        gameObject.SetActive(false);
+        var diffObjs = GetDiffGameObjectsInScene(GetDiffObjIDs(_pathToDiff));
+        foreach (var go in diffObjs)
+        {
+            go.SetActive(false);
+        }
+    }
+
+    private List<GameObject> GetDiffGameObjectsInScene(List<long> fileIDs)
+    {
+        List<GameObject> diffGameObjects = new();
+        foreach (var fileID in fileIDs)
+        {
+            diffGameObjects.Add(GetGameObjectFromFileID(fileID));
+        }
+
+        return diffGameObjects;
     }
 
     private static GameObject GetGameObjectFromFileID(long fileID) // also called local identifier
@@ -46,27 +58,28 @@ public class DiffParser : MonoBehaviour
             }
         }
 
-        Debug.LogError($"Not found");
+        Debug.LogError($"{fileID}: corresponding object in scene found");
         return null;
     }
-    
-   
-    private List<string> ExtractDiffObjIDs(string path)
+
+
+    private List<long> GetDiffObjIDs(string path)
     {
         if (!File.Exists(path))
             Debug.LogError($"Cant find file {path}");
-        
+
         string[] linesWhereDiffStarts = File.ReadLines(path).Where(line => line.StartsWith("+---")).ToArray();
 
-        List<string> diffObjIDs = new();
+        List<long> diffObjIDs = new();
 
         foreach (var line in linesWhereDiffStarts)
         {
-           diffObjIDs.Add(line.Remove(0, line.Length - _lengthOfFileID)); 
+            diffObjIDs.Add(long.Parse(line.Remove(0, line.Length - _lengthOfFileID)));
         }
 
         return diffObjIDs;
     }
+
     private string[] ExtractDiffObjsNames(string path)
     {
         if (!File.Exists(path))
