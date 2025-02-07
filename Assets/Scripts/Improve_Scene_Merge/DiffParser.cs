@@ -11,7 +11,7 @@ public class DiffParser : MonoBehaviour
 {
     public GameObject gameObject;
     private const string NamePrefix = "+  m_Name:";
-    private const string GameObjectPrefix = "+--- !u!1";
+    private const string GameObjectPrefix = "+--- !u!1 ";
 
     private string _pathToDiff = "saved_diff.txt";
 
@@ -71,12 +71,18 @@ public class DiffParser : MonoBehaviour
             Debug.LogError($"Cant find file {path}");
 
         string[] linesWhereDiffStarts = File.ReadLines(path).Where(line => line.StartsWith(GameObjectPrefix)).ToArray();
-
         List<long> diffObjIDs = new();
 
         foreach (var line in linesWhereDiffStarts)
         {
-            diffObjIDs.Add(long.Parse(line.Remove(0, line.Length - LengthOfFileID)));
+            int index = line.IndexOf('&');
+            if (index != -1)
+            {
+                string afterAmpersand = line.Substring(index + 1);
+                diffObjIDs.Add(long.Parse(afterAmpersand));
+                /*Debug.Log($"Original line: {line}");
+                Debug.Log($"After '&': {afterAmpersand}");*/
+            }
         }
 
         return diffObjIDs;
