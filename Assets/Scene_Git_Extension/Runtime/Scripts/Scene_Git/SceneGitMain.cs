@@ -6,11 +6,16 @@ public class SceneGitMain
 {
     public GitDiffReader diffReader = new DiffGameObjectExtractor();
     public PrefabSaver saver = new PrefabSaver();
-
+    public TerminalInterface terminalInterface = new ();
 
     public void SaveSingleObject(GameObject go)
     {
         saver.CreatePrefab(go);
+    }
+
+    public void GetDiff()
+    {
+        terminalInterface.Main();
     }
 
     public void SaveDiffObjectsAsPrefab(IList<GameObject> diffGaObjects)

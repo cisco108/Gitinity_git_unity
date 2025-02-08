@@ -7,10 +7,10 @@ public class TempSGUI : MonoBehaviour
     public IList<GameObject> diffObjects;
 
     public GameObject go;
-    [Button("Save single")]
-    private void Save()
+    [Button("Get Diff .sh")]
+    private void GetDiff()
     {
-        main.SaveSingleObject(go);
+        main.GetDiff();
     }
 
     [Button("Get Diff Objects")]
