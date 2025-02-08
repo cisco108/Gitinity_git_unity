@@ -6,8 +6,6 @@ using UnityEngine;
 
 public class DiffGameObjectExtractor : GitDiffReader
 {
-    public GameObject gameObject;
-    private const string NamePrefix = "+  m_Name:";
     private const string FileAGameObjectPrefix = "+--- !u!1 ";
     private const string FileBGameObjectPrefix = "---- !u!1 ";
     private string _pathToDiff = "saved_diff.txt";
@@ -21,7 +19,11 @@ public class DiffGameObjectExtractor : GitDiffReader
             diffGameObjects.Add(GetGameObjectFromFileID(fileID));
         }
 
-        return diffGameObjects;
+        if (!(diffGameObjects.Count > 0))
+            return diffGameObjects;
+
+        Debug.LogWarning($"{diffGameObjects} has count {diffGameObjects.Count}");
+        return null;
     }
 
     //https://www.reddit.com/r/unity/comments/q2jw1u/how_to_find_an_object_in_a_scene_using_its/
@@ -72,7 +74,11 @@ public class DiffGameObjectExtractor : GitDiffReader
             }
         }
 
-        return diffObjIDs;
+        if (diffObjIDs.Count != 0)
+            return diffObjIDs;
+        
+        Debug.LogWarning($"GetDiffObjIDs() {diffObjIDs} count is {diffObjIDs.Count}");
+        return null;
     }
 
     public IList<GameObject> GetDiffObjects()
