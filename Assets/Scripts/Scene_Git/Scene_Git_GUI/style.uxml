@@ -6,7 +6,7 @@
     xsi:noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd"
 >
     <Style src="project://database/Assets/Scripts/Improve_Scene_Merge/SceneMerge_GUI/style.uss?fileID=7433441132597879392&amp;guid=d765c45c38b71684dbe6e68a9ec43528&amp;type=3#style" />
-	<engine:Label text="Hello World! From UXML" />
-	<engine:Label class="custom-label" text="Hello World! With Style" />
+	<engine:Label text="The first draft of: " />
+	<engine:Label class="custom-label" text="Scene Git Extension" />
 
 </engine:UXML>

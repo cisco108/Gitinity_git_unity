@@ -1,30 +1,39 @@
+using System;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class SceneGitGUI : EditorWindow
 {
-    [SerializeField]
-    private VisualTreeAsset m_VisualTreeAsset = default;
+    public static event Action OnStartIt; 
+    [SerializeField] private VisualTreeAsset m_VisualTreeAsset = default;
 
-    [MenuItem("Window/UI Toolkit/SceneMergeGUI")]
+    [MenuItem("Window/UI Toolkit/SceneGitGUI")]
     public static void ShowExample()
     {
         SceneGitGUI wnd = GetWindow<SceneGitGUI>();
-        wnd.titleContent = new GUIContent("SceneMergeGUI");
+        wnd.titleContent = new GUIContent("SceneGitGUI");
     }
 
     public void CreateGUI()
     {
-        // Each editor window contains a root VisualElement object
         VisualElement root = rootVisualElement;
-
-        // VisualElements objects can contain other VisualElement following a tree hierarchy.
-        VisualElement label = new Label("Hello World! From C#");
-        root.Add(label);
-
-        // Instantiate UXML
         VisualElement labelFromUXML = m_VisualTreeAsset.Instantiate();
         root.Add(labelFromUXML);
+        
+        Button button = new Button(() => OnStartIt.Invoke())
+        {
+            text = "Start it",
+            style =
+            {
+                width = 120,
+                height = 30,
+                marginLeft = 10,
+                marginTop = 10,
+                alignSelf = Align.FlexStart
+            }
+        };
+        root.Add(button);
+
     }
 }

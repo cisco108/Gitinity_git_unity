@@ -1,4 +1,13 @@
-﻿public class SceneGitMain
+﻿using System;
+using UnityEngine;
+using UnityEngine.Serialization;
+
+[CreateAssetMenu(fileName = "Scene Git", menuName = "SceneGitMain", order = 0)]
+public class SceneGitMain : ScriptableObject
 {
-    private GitDiffReader _diffReader = new DiffGameObjectExtractor();
+    public SceneGitUI sceneGitUI;
+    private void OnValidate()
+    {
+        Debug.Log($"OnValidate {this}");
+    }
 }
