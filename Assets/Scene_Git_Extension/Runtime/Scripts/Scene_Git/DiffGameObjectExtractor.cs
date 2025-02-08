@@ -77,7 +77,7 @@ public class DiffGameObjectExtractor : GitDiffReader
         if (diffObjIDs.Count != 0)
             return diffObjIDs;
         
-        Debug.LogWarning($"GetDiffObjIDs() {diffObjIDs} count is {diffObjIDs.Count}");
+        Debug.LogWarning($"GetDiffObjIDs() diffObjIDs count {diffObjIDs.Count}");
         return null;
     }
 
