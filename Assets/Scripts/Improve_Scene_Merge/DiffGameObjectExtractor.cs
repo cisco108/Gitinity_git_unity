@@ -4,22 +4,14 @@ using System.Linq;
 using System.Reflection;
 using UnityEngine;
 
-public class DiffGameObjectExtractor : MonoBehaviour
+public class DiffGameObjectExtractor : GitDiffReader
 {
     public GameObject gameObject;
     private const string NamePrefix = "+  m_Name:";
-    private const string GameObjectPrefix = "+--- !u!1 ";
+    private const string FileAGameObjectPrefix = "+--- !u!1 ";
+    private const string FileBGameObjectPrefix = "---- !u!1 ";
     private string _pathToDiff = "saved_diff.txt";
 
-
-    private void Start()
-    {
-        var diffObjs = GetDiffGameObjectsInScene(GetDiffObjIDs(_pathToDiff));
-        foreach (var go in diffObjs)
-        {
-            go.SetActive(false);
-        }
-    }
 
     private List<GameObject> GetDiffGameObjectsInScene(List<long> fileIDs)
     {
@@ -60,12 +52,12 @@ public class DiffGameObjectExtractor : MonoBehaviour
     }
 
 
-    private List<long> GetDiffObjIDs(string path)
+    private List<long> GetDiffObjIDs(string path, string prefix)
     {
         if (!File.Exists(path))
             Debug.LogError($"Cant find file {path}");
 
-        string[] linesWhereDiffStarts = File.ReadLines(path).Where(line => line.StartsWith(GameObjectPrefix)).ToArray();
+        string[] linesWhereDiffStarts = File.ReadLines(path).Where(line => line.StartsWith(prefix)).ToArray();
         List<long> diffObjIDs = new();
 
         foreach (var line in linesWhereDiffStarts)
@@ -83,4 +75,8 @@ public class DiffGameObjectExtractor : MonoBehaviour
         return diffObjIDs;
     }
 
+    public IList<GameObject> GetDiffObjects()
+    {
+        return GetDiffGameObjectsInScene(GetDiffObjIDs(_pathToDiff, FileAGameObjectPrefix));
+    }
 }
