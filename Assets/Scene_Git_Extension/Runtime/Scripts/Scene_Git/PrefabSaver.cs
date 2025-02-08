@@ -2,14 +2,14 @@
 using UnityEngine;
 using UnityEditor;
 
-[InitializeOnLoad]
 public class PrefabSaver
 {
+    // https://docs.unity3d.com/6000.0/Documentation/ScriptReference/PrefabUtility.SaveAsPrefabAsset.html
     public void CreatePrefab(GameObject gameObject)
     {
         if (!Directory.Exists("Assets/DiffObjects_as_Prefabs"))
-            AssetDatabase.CreateFolder("Assets", "Prefabs");
-        string localPath = "Assets/Prefabs/" + gameObject.name + ".prefab";
+            AssetDatabase.CreateFolder("Assets", "DiffObjects_as_Prefabs");
+        string localPath = "Assets/DiffObjects_as_Prefabs/" + gameObject.name + ".prefab";
 
         // Make sure the file name is unique, in case an existing Prefab has the same name.
         localPath = AssetDatabase.GenerateUniqueAssetPath(localPath);
