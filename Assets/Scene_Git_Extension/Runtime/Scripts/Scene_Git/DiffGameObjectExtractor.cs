@@ -19,7 +19,7 @@ public class DiffGameObjectExtractor : GitDiffReader
             diffGameObjects.Add(GetGameObjectFromFileID(fileID));
         }
 
-        if (!(diffGameObjects.Count > 0))
+        if (diffGameObjects.Count > 0)
             return diffGameObjects;
 
         Debug.LogWarning($"{diffGameObjects} has count {diffGameObjects.Count}");
