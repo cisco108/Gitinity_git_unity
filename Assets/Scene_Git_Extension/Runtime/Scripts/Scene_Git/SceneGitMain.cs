@@ -35,10 +35,13 @@ public static class SceneGitMain
 
     public static void WriteRelevantDiffToTxt(string targetBranch, string sourceBranch)
     {
-        // Debug.Log($"tagrget branch: {targetBranch} \n source branch: {sourceBranch}");
+        string revPraseCommand = _commandBuilder.GetRevParse(sourceBranch);
+        string revParseResult = _terminal.ExecuteResultToVar(revPraseCommand);
+        Debug.Log($"rev-parse {sourceBranch}: {revParseResult}");
+        
+       
+        
         _terminal.ExecuteResultToTxt("Hello friends");
-        var s = _terminal.ExecuteResultToVar(GitCommands.log_oneline);
-        Debug.Log(s);
     }
 
     public static void SaveDiffObjectsAsPrefab(IList<GameObject> diffGaObjects)

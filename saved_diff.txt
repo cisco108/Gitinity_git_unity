@@ -378,3 +378,33 @@ fef4232 clean up
 05c6250 deleted temp gui
 5acae6d connected SceneGitMain to new gui window
 8cae4b4 added simple gui
+b2603df temp txt gets deleted
+359a3aa implemented bash to string
+2cd1e88 started gitbash output to string
+6ed730e style upgrade on docu
+f235684 updated documentation
+925527c text fields for target and source branch
+39eda65 added gui field for branch name, changes gui event signature to string
+fef4232 clean up
+05c6250 deleted temp gui
+5acae6d connected SceneGitMain to new gui window
+b2603df temp txt gets deleted
+359a3aa implemented bash to string
+2cd1e88 started gitbash output to string
+6ed730e style upgrade on docu
+f235684 updated documentation
+925527c text fields for target and source branch
+39eda65 added gui field for branch name, changes gui event signature to string
+fef4232 clean up
+05c6250 deleted temp gui
+5acae6d connected SceneGitMain to new gui window
+b2603df temp txt gets deleted
+359a3aa implemented bash to string
+2cd1e88 started gitbash output to string
+6ed730e style upgrade on docu
+f235684 updated documentation
+925527c text fields for target and source branch
+39eda65 added gui field for branch name, changes gui event signature to string
+fef4232 clean up
+05c6250 deleted temp gui
+5acae6d connected SceneGitMain to new gui window
