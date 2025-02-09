@@ -39,8 +39,10 @@ public class GitBashInterface : ITerminalInterface
 
             string outputPath = Path.Combine(Directory.GetCurrentDirectory(), $"\\{outputFileNameWithType}");
             
-            if(File.Exists(outputPath))
-                File.Delete(outputPath);
+            if (File.Exists(SavedDiff))
+            {
+                File.Delete(SavedDiff);
+            }
             
             gitProcess.StartInfo.Arguments = $"-c \"{command} >> {outputPath}\"";
 
