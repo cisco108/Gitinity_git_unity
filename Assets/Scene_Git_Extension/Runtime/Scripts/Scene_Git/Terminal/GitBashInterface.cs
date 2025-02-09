@@ -23,6 +23,10 @@ public class GitBashInterface : ITerminalInterface
         BashToTxt(command, TempFile);
         string result = TxtToString(TempFile);
         File.Delete(TempFile);
+        if (result == string.Empty)
+        {
+            Debug.LogError($"Result is empty. Possible wrong branch name");
+        }
         return result;
     }
 
@@ -63,7 +67,7 @@ public class GitBashInterface : ITerminalInterface
             Debug.LogError($"Cant find file {path}");
 
         string s = File.ReadAllText(path);
-        Debug.Log($"Extracted string: {s}");
+        // Debug.Log($"Extracted string: {s}");
         return s;
     }
 }

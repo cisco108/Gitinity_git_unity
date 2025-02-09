@@ -39,8 +39,11 @@ public static class SceneGitMain
         Debug.Log("command " + revParseCommand);
         string revParseResult = _terminal.ExecuteResultToVar(revParseCommand);
         Debug.Log($"rev-parse {sourceBranch}: {revParseResult}");
-        
-       
+
+        string mergeBaseCommand = _commandBuilder.GetMergeBase(targetBranch, sourceBranch);
+        Debug.Log("Merge Base command: " + mergeBaseCommand);
+        string mergeBaseResult = _terminal.ExecuteResultToVar(mergeBaseCommand);
+        Debug.Log($"Merge Base RESULT: {mergeBaseResult}");
         
         _terminal.ExecuteResultToTxt("Hello friends");
     }
