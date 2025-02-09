@@ -1,0 +1,1894 @@
+diff --git a/Assets/DiffObjects_as_Prefabs/Capsule (1) 1.prefab b/Assets/DiffObjects_as_Prefabs/Capsule (1) 1.prefab
+new file mode 100644
+index 0000000..9d39113
+--- /dev/null
++++ b/Assets/DiffObjects_as_Prefabs/Capsule (1) 1.prefab	
+@@ -0,0 +1,112 @@
++%YAML 1.1
++%TAG !u! tag:unity3d.com,2011:
++--- !u!1 &4441220667638105090
++GameObject:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  serializedVersion: 6
++  m_Component:
++  - component: {fileID: 5180183419426060341}
++  - component: {fileID: 7267583730525895976}
++  - component: {fileID: 1401851032835482077}
++  - component: {fileID: 8208118946555340185}
++  m_Layer: 0
++  m_Name: Capsule (1) 1
++  m_TagString: Untagged
++  m_Icon: {fileID: 0}
++  m_NavMeshLayer: 0
++  m_StaticEditorFlags: 0
++  m_IsActive: 1
++--- !u!4 &5180183419426060341
++Transform:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_GameObject: {fileID: 4441220667638105090}
++  serializedVersion: 2
++  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
++  m_LocalPosition: {x: 4.85, y: 0, z: 0}
++  m_LocalScale: {x: 1, y: 1, z: 1}
++  m_ConstrainProportionsScale: 0
++  m_Children: []
++  m_Father: {fileID: 0}
++  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
++--- !u!33 &7267583730525895976
++MeshFilter:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_GameObject: {fileID: 4441220667638105090}
++  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
++--- !u!23 &1401851032835482077
++MeshRenderer:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_GameObject: {fileID: 4441220667638105090}
++  m_Enabled: 1
++  m_CastShadows: 1
++  m_ReceiveShadows: 1
++  m_DynamicOccludee: 1
++  m_StaticShadowCaster: 0
++  m_MotionVectors: 1
++  m_LightProbeUsage: 1
++  m_ReflectionProbeUsage: 1
++  m_RayTracingMode: 2
++  m_RayTraceProcedural: 0
++  m_RayTracingAccelStructBuildFlagsOverride: 0
++  m_RayTracingAccelStructBuildFlags: 1
++  m_SmallMeshCulling: 1
++  m_RenderingLayerMask: 1
++  m_RendererPriority: 0
++  m_Materials:
++  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
++  m_StaticBatchInfo:
++    firstSubMesh: 0
++    subMeshCount: 0
++  m_StaticBatchRoot: {fileID: 0}
++  m_ProbeAnchor: {fileID: 0}
++  m_LightProbeVolumeOverride: {fileID: 0}
++  m_ScaleInLightmap: 1
++  m_ReceiveGI: 1
++  m_PreserveUVs: 0
++  m_IgnoreNormalsForChartDetection: 0
++  m_ImportantGI: 0
++  m_StitchLightmapSeams: 1
++  m_SelectedEditorRenderState: 3
++  m_MinimumChartSize: 4
++  m_AutoUVMaxDistance: 0.5
++  m_AutoUVMaxAngle: 89
++  m_LightmapParameters: {fileID: 0}
++  m_SortingLayerID: 0
++  m_SortingLayer: 0
++  m_SortingOrder: 0
++  m_AdditionalVertexStreams: {fileID: 0}
++--- !u!136 &8208118946555340185
++CapsuleCollider:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_GameObject: {fileID: 4441220667638105090}
++  m_Material: {fileID: 0}
++  m_IncludeLayers:
++    serializedVersion: 2
++    m_Bits: 0
++  m_ExcludeLayers:
++    serializedVersion: 2
++    m_Bits: 0
++  m_LayerOverridePriority: 0
++  m_IsTrigger: 0
++  m_ProvidesContacts: 0
++  m_Enabled: 1
++  serializedVersion: 2
++  m_Radius: 0.5
++  m_Height: 2
++  m_Direction: 1
++  m_Center: {x: 0, y: 0, z: 0}
+diff --git a/Assets/DiffObjects_as_Prefabs/Capsule (1) 1.prefab.meta b/Assets/DiffObjects_as_Prefabs/Capsule (1) 1.prefab.meta
+new file mode 100644
+index 0000000..99ab5c5
+--- /dev/null
++++ b/Assets/DiffObjects_as_Prefabs/Capsule (1) 1.prefab.meta	
+@@ -0,0 +1,7 @@
++fileFormatVersion: 2
++guid: 4e2f208e0c060044ab3611924b517590
++PrefabImporter:
++  externalObjects: {}
++  userData: 
++  assetBundleName: 
++  assetBundleVariant: 
+diff --git a/Assets/DiffObjects_as_Prefabs/Capsule (1) 2.prefab b/Assets/DiffObjects_as_Prefabs/Capsule (1) 2.prefab
+new file mode 100644
+index 0000000..eedd3e3
+--- /dev/null
++++ b/Assets/DiffObjects_as_Prefabs/Capsule (1) 2.prefab	
+@@ -0,0 +1,112 @@
++%YAML 1.1
++%TAG !u! tag:unity3d.com,2011:
++--- !u!1 &2474178176742432846
++GameObject:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  serializedVersion: 6
++  m_Component:
++  - component: {fileID: 9016293004059390314}
++  - component: {fileID: 1393630032475077333}
++  - component: {fileID: 492183924273262842}
++  - component: {fileID: 5247539875241243371}
++  m_Layer: 0
++  m_Name: Capsule (1) 2
++  m_TagString: Untagged
++  m_Icon: {fileID: 0}
++  m_NavMeshLayer: 0
++  m_StaticEditorFlags: 0
++  m_IsActive: 1
++--- !u!4 &9016293004059390314
++Transform:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_GameObject: {fileID: 2474178176742432846}
++  serializedVersion: 2
++  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
++  m_LocalPosition: {x: 4.85, y: 0, z: 0}
++  m_LocalScale: {x: 1, y: 1, z: 1}
++  m_ConstrainProportionsScale: 0
++  m_Children: []
++  m_Father: {fileID: 0}
++  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
++--- !u!33 &1393630032475077333
++MeshFilter:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_GameObject: {fileID: 2474178176742432846}
++  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
++--- !u!23 &492183924273262842
++MeshRenderer:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_GameObject: {fileID: 2474178176742432846}
++  m_Enabled: 1
++  m_CastShadows: 1
++  m_ReceiveShadows: 1
++  m_DynamicOccludee: 1
++  m_StaticShadowCaster: 0
++  m_MotionVectors: 1
++  m_LightProbeUsage: 1
++  m_ReflectionProbeUsage: 1
++  m_RayTracingMode: 2
++  m_RayTraceProcedural: 0
++  m_RayTracingAccelStructBuildFlagsOverride: 0
++  m_RayTracingAccelStructBuildFlags: 1
++  m_SmallMeshCulling: 1
++  m_RenderingLayerMask: 1
++  m_RendererPriority: 0
++  m_Materials:
++  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
++  m_StaticBatchInfo:
++    firstSubMesh: 0
++    subMeshCount: 0
++  m_StaticBatchRoot: {fileID: 0}
++  m_ProbeAnchor: {fileID: 0}
++  m_LightProbeVolumeOverride: {fileID: 0}
++  m_ScaleInLightmap: 1
++  m_ReceiveGI: 1
++  m_PreserveUVs: 0
++  m_IgnoreNormalsForChartDetection: 0
++  m_ImportantGI: 0
++  m_StitchLightmapSeams: 1
++  m_SelectedEditorRenderState: 3
++  m_MinimumChartSize: 4
++  m_AutoUVMaxDistance: 0.5
++  m_AutoUVMaxAngle: 89
++  m_LightmapParameters: {fileID: 0}
++  m_SortingLayerID: 0
++  m_SortingLayer: 0
++  m_SortingOrder: 0
++  m_AdditionalVertexStreams: {fileID: 0}
++--- !u!136 &5247539875241243371
++CapsuleCollider:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_GameObject: {fileID: 2474178176742432846}
++  m_Material: {fileID: 0}
++  m_IncludeLayers:
++    serializedVersion: 2
++    m_Bits: 0
++  m_ExcludeLayers:
++    serializedVersion: 2
++    m_Bits: 0
++  m_LayerOverridePriority: 0
++  m_IsTrigger: 0
++  m_ProvidesContacts: 0
++  m_Enabled: 1
++  serializedVersion: 2
++  m_Radius: 0.5
++  m_Height: 2
++  m_Direction: 1
++  m_Center: {x: 0, y: 0, z: 0}
+diff --git a/Assets/DiffObjects_as_Prefabs/Capsule (1) 2.prefab.meta b/Assets/DiffObjects_as_Prefabs/Capsule (1) 2.prefab.meta
+new file mode 100644
+index 0000000..7b9c316
+--- /dev/null
++++ b/Assets/DiffObjects_as_Prefabs/Capsule (1) 2.prefab.meta	
+@@ -0,0 +1,7 @@
++fileFormatVersion: 2
++guid: ca555bfbbc8fa654a972fea333c2b03a
++PrefabImporter:
++  externalObjects: {}
++  userData: 
++  assetBundleName: 
++  assetBundleVariant: 
+diff --git a/Assets/DiffObjects_as_Prefabs/Capsule (1).prefab b/Assets/DiffObjects_as_Prefabs/Capsule (1).prefab
+index 0adeb2d..6be7e19 100644
+--- a/Assets/DiffObjects_as_Prefabs/Capsule (1).prefab	
++++ b/Assets/DiffObjects_as_Prefabs/Capsule (1).prefab	
+@@ -1,6 +1,6 @@
+ %YAML 1.1
+ %TAG !u! tag:unity3d.com,2011:
+---- !u!1 &3243640122381303216
++--- !u!1 &7969594232948298626
+ GameObject:
+   m_ObjectHideFlags: 0
+   m_CorrespondingSourceObject: {fileID: 0}
+@@ -8,10 +8,10 @@ GameObject:
+   m_PrefabAsset: {fileID: 0}
+   serializedVersion: 6
+   m_Component:
+-  - component: {fileID: 55361582522621371}
+-  - component: {fileID: 6055581205440469065}
+-  - component: {fileID: 7446160129535218043}
+-  - component: {fileID: 3204277436875549005}
++  - component: {fileID: 6223910973437988382}
++  - component: {fileID: 6785458399437536434}
++  - component: {fileID: 607397730836761513}
++  - component: {fileID: 1699646348903099061}
+   m_Layer: 0
+   m_Name: Capsule (1)
+   m_TagString: Untagged
+@@ -19,13 +19,13 @@ GameObject:
+   m_NavMeshLayer: 0
+   m_StaticEditorFlags: 0
+   m_IsActive: 1
+---- !u!4 &55361582522621371
++--- !u!4 &6223910973437988382
+ Transform:
+   m_ObjectHideFlags: 0
+   m_CorrespondingSourceObject: {fileID: 0}
+   m_PrefabInstance: {fileID: 0}
+   m_PrefabAsset: {fileID: 0}
+-  m_GameObject: {fileID: 3243640122381303216}
++  m_GameObject: {fileID: 7969594232948298626}
+   serializedVersion: 2
+   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+   m_LocalPosition: {x: 4.85, y: 0, z: 0}
+@@ -34,21 +34,21 @@ Transform:
+   m_Children: []
+   m_Father: {fileID: 0}
+   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+---- !u!33 &6055581205440469065
++--- !u!33 &6785458399437536434
+ MeshFilter:
+   m_ObjectHideFlags: 0
+   m_CorrespondingSourceObject: {fileID: 0}
+   m_PrefabInstance: {fileID: 0}
+   m_PrefabAsset: {fileID: 0}
+-  m_GameObject: {fileID: 3243640122381303216}
++  m_GameObject: {fileID: 7969594232948298626}
+   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+---- !u!23 &7446160129535218043
++--- !u!23 &607397730836761513
+ MeshRenderer:
+   m_ObjectHideFlags: 0
+   m_CorrespondingSourceObject: {fileID: 0}
+   m_PrefabInstance: {fileID: 0}
+   m_PrefabAsset: {fileID: 0}
+-  m_GameObject: {fileID: 3243640122381303216}
++  m_GameObject: {fileID: 7969594232948298626}
+   m_Enabled: 1
+   m_CastShadows: 1
+   m_ReceiveShadows: 1
+@@ -87,13 +87,13 @@ MeshRenderer:
+   m_SortingLayer: 0
+   m_SortingOrder: 0
+   m_AdditionalVertexStreams: {fileID: 0}
+---- !u!136 &3204277436875549005
++--- !u!136 &1699646348903099061
+ CapsuleCollider:
+   m_ObjectHideFlags: 0
+   m_CorrespondingSourceObject: {fileID: 0}
+   m_PrefabInstance: {fileID: 0}
+   m_PrefabAsset: {fileID: 0}
+-  m_GameObject: {fileID: 3243640122381303216}
++  m_GameObject: {fileID: 7969594232948298626}
+   m_Material: {fileID: 0}
+   m_IncludeLayers:
+     serializedVersion: 2
+diff --git a/Assets/DiffObjects_as_Prefabs/Plane (1) 1.prefab b/Assets/DiffObjects_as_Prefabs/Plane (1) 1.prefab
+new file mode 100644
+index 0000000..a29e073
+--- /dev/null
++++ b/Assets/DiffObjects_as_Prefabs/Plane (1) 1.prefab	
+@@ -0,0 +1,111 @@
++%YAML 1.1
++%TAG !u! tag:unity3d.com,2011:
++--- !u!1 &3733784453602388995
++GameObject:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  serializedVersion: 6
++  m_Component:
++  - component: {fileID: 2435606519230415860}
++  - component: {fileID: 3763306471016425851}
++  - component: {fileID: 2360426831500134717}
++  - component: {fileID: 145750050408786156}
++  m_Layer: 0
++  m_Name: Plane (1) 1
++  m_TagString: Untagged
++  m_Icon: {fileID: 0}
++  m_NavMeshLayer: 0
++  m_StaticEditorFlags: 0
++  m_IsActive: 1
++--- !u!4 &2435606519230415860
++Transform:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_GameObject: {fileID: 3733784453602388995}
++  serializedVersion: 2
++  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
++  m_LocalPosition: {x: 0, y: -4.89, z: 0}
++  m_LocalScale: {x: 1, y: 1, z: 1}
++  m_ConstrainProportionsScale: 0
++  m_Children: []
++  m_Father: {fileID: 0}
++  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
++--- !u!33 &3763306471016425851
++MeshFilter:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_GameObject: {fileID: 3733784453602388995}
++  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
++--- !u!23 &2360426831500134717
++MeshRenderer:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_GameObject: {fileID: 3733784453602388995}
++  m_Enabled: 1
++  m_CastShadows: 1
++  m_ReceiveShadows: 1
++  m_DynamicOccludee: 1
++  m_StaticShadowCaster: 0
++  m_MotionVectors: 1
++  m_LightProbeUsage: 1
++  m_ReflectionProbeUsage: 1
++  m_RayTracingMode: 2
++  m_RayTraceProcedural: 0
++  m_RayTracingAccelStructBuildFlagsOverride: 0
++  m_RayTracingAccelStructBuildFlags: 1
++  m_SmallMeshCulling: 1
++  m_RenderingLayerMask: 1
++  m_RendererPriority: 0
++  m_Materials:
++  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
++  m_StaticBatchInfo:
++    firstSubMesh: 0
++    subMeshCount: 0
++  m_StaticBatchRoot: {fileID: 0}
++  m_ProbeAnchor: {fileID: 0}
++  m_LightProbeVolumeOverride: {fileID: 0}
++  m_ScaleInLightmap: 1
++  m_ReceiveGI: 1
++  m_PreserveUVs: 0
++  m_IgnoreNormalsForChartDetection: 0
++  m_ImportantGI: 0
++  m_StitchLightmapSeams: 1
++  m_SelectedEditorRenderState: 3
++  m_MinimumChartSize: 4
++  m_AutoUVMaxDistance: 0.5
++  m_AutoUVMaxAngle: 89
++  m_LightmapParameters: {fileID: 0}
++  m_SortingLayerID: 0
++  m_SortingLayer: 0
++  m_SortingOrder: 0
++  m_AdditionalVertexStreams: {fileID: 0}
++--- !u!64 &145750050408786156
++MeshCollider:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_GameObject: {fileID: 3733784453602388995}
++  m_Material: {fileID: 0}
++  m_IncludeLayers:
++    serializedVersion: 2
++    m_Bits: 0
++  m_ExcludeLayers:
++    serializedVersion: 2
++    m_Bits: 0
++  m_LayerOverridePriority: 0
++  m_IsTrigger: 0
++  m_ProvidesContacts: 0
++  m_Enabled: 1
++  serializedVersion: 5
++  m_Convex: 0
++  m_CookingOptions: 30
++  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+diff --git a/Assets/DiffObjects_as_Prefabs/Plane (1) 1.prefab.meta b/Assets/DiffObjects_as_Prefabs/Plane (1) 1.prefab.meta
+new file mode 100644
+index 0000000..22e8784
+--- /dev/null
++++ b/Assets/DiffObjects_as_Prefabs/Plane (1) 1.prefab.meta	
+@@ -0,0 +1,7 @@
++fileFormatVersion: 2
++guid: 4e118fa3a19d2a14390011a7059eb038
++PrefabImporter:
++  externalObjects: {}
++  userData: 
++  assetBundleName: 
++  assetBundleVariant: 
+diff --git a/Assets/DiffObjects_as_Prefabs/Plane (1) 2.prefab b/Assets/DiffObjects_as_Prefabs/Plane (1) 2.prefab
+new file mode 100644
+index 0000000..c795efa
+--- /dev/null
++++ b/Assets/DiffObjects_as_Prefabs/Plane (1) 2.prefab	
+@@ -0,0 +1,111 @@
++%YAML 1.1
++%TAG !u! tag:unity3d.com,2011:
++--- !u!1 &7111189859890043340
++GameObject:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  serializedVersion: 6
++  m_Component:
++  - component: {fileID: 7572083592770904779}
++  - component: {fileID: 6256324360309984180}
++  - component: {fileID: 8448461054200211655}
++  - component: {fileID: 7146901873760446809}
++  m_Layer: 0
++  m_Name: Plane (1) 2
++  m_TagString: Untagged
++  m_Icon: {fileID: 0}
++  m_NavMeshLayer: 0
++  m_StaticEditorFlags: 0
++  m_IsActive: 1
++--- !u!4 &7572083592770904779
++Transform:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_GameObject: {fileID: 7111189859890043340}
++  serializedVersion: 2
++  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
++  m_LocalPosition: {x: 0, y: -4.89, z: 0}
++  m_LocalScale: {x: 1, y: 1, z: 1}
++  m_ConstrainProportionsScale: 0
++  m_Children: []
++  m_Father: {fileID: 0}
++  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
++--- !u!33 &6256324360309984180
++MeshFilter:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_GameObject: {fileID: 7111189859890043340}
++  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
++--- !u!23 &8448461054200211655
++MeshRenderer:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_GameObject: {fileID: 7111189859890043340}
++  m_Enabled: 1
++  m_CastShadows: 1
++  m_ReceiveShadows: 1
++  m_DynamicOccludee: 1
++  m_StaticShadowCaster: 0
++  m_MotionVectors: 1
++  m_LightProbeUsage: 1
++  m_ReflectionProbeUsage: 1
++  m_RayTracingMode: 2
++  m_RayTraceProcedural: 0
++  m_RayTracingAccelStructBuildFlagsOverride: 0
++  m_RayTracingAccelStructBuildFlags: 1
++  m_SmallMeshCulling: 1
++  m_RenderingLayerMask: 1
++  m_RendererPriority: 0
++  m_Materials:
++  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
++  m_StaticBatchInfo:
++    firstSubMesh: 0
++    subMeshCount: 0
++  m_StaticBatchRoot: {fileID: 0}
++  m_ProbeAnchor: {fileID: 0}
++  m_LightProbeVolumeOverride: {fileID: 0}
++  m_ScaleInLightmap: 1
++  m_ReceiveGI: 1
++  m_PreserveUVs: 0
++  m_IgnoreNormalsForChartDetection: 0
++  m_ImportantGI: 0
++  m_StitchLightmapSeams: 1
++  m_SelectedEditorRenderState: 3
++  m_MinimumChartSize: 4
++  m_AutoUVMaxDistance: 0.5
++  m_AutoUVMaxAngle: 89
++  m_LightmapParameters: {fileID: 0}
++  m_SortingLayerID: 0
++  m_SortingLayer: 0
++  m_SortingOrder: 0
++  m_AdditionalVertexStreams: {fileID: 0}
++--- !u!64 &7146901873760446809
++MeshCollider:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_GameObject: {fileID: 7111189859890043340}
++  m_Material: {fileID: 0}
++  m_IncludeLayers:
++    serializedVersion: 2
++    m_Bits: 0
++  m_ExcludeLayers:
++    serializedVersion: 2
++    m_Bits: 0
++  m_LayerOverridePriority: 0
++  m_IsTrigger: 0
++  m_ProvidesContacts: 0
++  m_Enabled: 1
++  serializedVersion: 5
++  m_Convex: 0
++  m_CookingOptions: 30
++  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+diff --git a/Assets/DiffObjects_as_Prefabs/Plane (1) 2.prefab.meta b/Assets/DiffObjects_as_Prefabs/Plane (1) 2.prefab.meta
+new file mode 100644
+index 0000000..437b8da
+--- /dev/null
++++ b/Assets/DiffObjects_as_Prefabs/Plane (1) 2.prefab.meta	
+@@ -0,0 +1,7 @@
++fileFormatVersion: 2
++guid: 09e31919bbd894448b9e7c92abc89d3d
++PrefabImporter:
++  externalObjects: {}
++  userData: 
++  assetBundleName: 
++  assetBundleVariant: 
+diff --git a/Assets/DiffObjects_as_Prefabs/Plane (1).prefab b/Assets/DiffObjects_as_Prefabs/Plane (1).prefab
+index f8e4fd6..5508b11 100644
+--- a/Assets/DiffObjects_as_Prefabs/Plane (1).prefab	
++++ b/Assets/DiffObjects_as_Prefabs/Plane (1).prefab	
+@@ -1,6 +1,6 @@
+ %YAML 1.1
+ %TAG !u! tag:unity3d.com,2011:
+---- !u!1 &4998027264730979016
++--- !u!1 &101976119937725242
+ GameObject:
+   m_ObjectHideFlags: 0
+   m_CorrespondingSourceObject: {fileID: 0}
+@@ -8,10 +8,10 @@ GameObject:
+   m_PrefabAsset: {fileID: 0}
+   serializedVersion: 6
+   m_Component:
+-  - component: {fileID: 2265195314922281922}
+-  - component: {fileID: 960813796027278326}
+-  - component: {fileID: 7797256709135085989}
+-  - component: {fileID: 8362227885567482640}
++  - component: {fileID: 80001009925117930}
++  - component: {fileID: 8155700882752212865}
++  - component: {fileID: 1906719661974351565}
++  - component: {fileID: 3271590256199115051}
+   m_Layer: 0
+   m_Name: Plane (1)
+   m_TagString: Untagged
+@@ -19,13 +19,13 @@ GameObject:
+   m_NavMeshLayer: 0
+   m_StaticEditorFlags: 0
+   m_IsActive: 1
+---- !u!4 &2265195314922281922
++--- !u!4 &80001009925117930
+ Transform:
+   m_ObjectHideFlags: 0
+   m_CorrespondingSourceObject: {fileID: 0}
+   m_PrefabInstance: {fileID: 0}
+   m_PrefabAsset: {fileID: 0}
+-  m_GameObject: {fileID: 4998027264730979016}
++  m_GameObject: {fileID: 101976119937725242}
+   serializedVersion: 2
+   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+   m_LocalPosition: {x: 0, y: -4.89, z: 0}
+@@ -34,21 +34,21 @@ Transform:
+   m_Children: []
+   m_Father: {fileID: 0}
+   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+---- !u!33 &960813796027278326
++--- !u!33 &8155700882752212865
+ MeshFilter:
+   m_ObjectHideFlags: 0
+   m_CorrespondingSourceObject: {fileID: 0}
+   m_PrefabInstance: {fileID: 0}
+   m_PrefabAsset: {fileID: 0}
+-  m_GameObject: {fileID: 4998027264730979016}
++  m_GameObject: {fileID: 101976119937725242}
+   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+---- !u!23 &7797256709135085989
++--- !u!23 &1906719661974351565
+ MeshRenderer:
+   m_ObjectHideFlags: 0
+   m_CorrespondingSourceObject: {fileID: 0}
+   m_PrefabInstance: {fileID: 0}
+   m_PrefabAsset: {fileID: 0}
+-  m_GameObject: {fileID: 4998027264730979016}
++  m_GameObject: {fileID: 101976119937725242}
+   m_Enabled: 1
+   m_CastShadows: 1
+   m_ReceiveShadows: 1
+@@ -87,13 +87,13 @@ MeshRenderer:
+   m_SortingLayer: 0
+   m_SortingOrder: 0
+   m_AdditionalVertexStreams: {fileID: 0}
+---- !u!64 &8362227885567482640
++--- !u!64 &3271590256199115051
+ MeshCollider:
+   m_ObjectHideFlags: 0
+   m_CorrespondingSourceObject: {fileID: 0}
+   m_PrefabInstance: {fileID: 0}
+   m_PrefabAsset: {fileID: 0}
+-  m_GameObject: {fileID: 4998027264730979016}
++  m_GameObject: {fileID: 101976119937725242}
+   m_Material: {fileID: 0}
+   m_IncludeLayers:
+     serializedVersion: 2
+diff --git a/Assets/DiffObjects_as_Prefabs/Sphere 1.prefab b/Assets/DiffObjects_as_Prefabs/Sphere 1.prefab
+new file mode 100644
+index 0000000..aa509ce
+--- /dev/null
++++ b/Assets/DiffObjects_as_Prefabs/Sphere 1.prefab	
+@@ -0,0 +1,110 @@
++%YAML 1.1
++%TAG !u! tag:unity3d.com,2011:
++--- !u!1 &2535402030590869455
++GameObject:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  serializedVersion: 6
++  m_Component:
++  - component: {fileID: 1761652177862288824}
++  - component: {fileID: 2901180009593216856}
++  - component: {fileID: 8075496842671832456}
++  - component: {fileID: 302824298632194201}
++  m_Layer: 0
++  m_Name: Sphere 1
++  m_TagString: Untagged
++  m_Icon: {fileID: 0}
++  m_NavMeshLayer: 0
++  m_StaticEditorFlags: 0
++  m_IsActive: 1
++--- !u!4 &1761652177862288824
++Transform:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_GameObject: {fileID: 2535402030590869455}
++  serializedVersion: 2
++  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
++  m_LocalPosition: {x: 0, y: 0, z: 4.91}
++  m_LocalScale: {x: 1, y: 1, z: 1}
++  m_ConstrainProportionsScale: 0
++  m_Children: []
++  m_Father: {fileID: 0}
++  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
++--- !u!33 &2901180009593216856
++MeshFilter:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_GameObject: {fileID: 2535402030590869455}
++  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
++--- !u!23 &8075496842671832456
++MeshRenderer:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_GameObject: {fileID: 2535402030590869455}
++  m_Enabled: 1
++  m_CastShadows: 1
++  m_ReceiveShadows: 1
++  m_DynamicOccludee: 1
++  m_StaticShadowCaster: 0
++  m_MotionVectors: 1
++  m_LightProbeUsage: 1
++  m_ReflectionProbeUsage: 1
++  m_RayTracingMode: 2
++  m_RayTraceProcedural: 0
++  m_RayTracingAccelStructBuildFlagsOverride: 0
++  m_RayTracingAccelStructBuildFlags: 1
++  m_SmallMeshCulling: 1
++  m_RenderingLayerMask: 1
++  m_RendererPriority: 0
++  m_Materials:
++  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
++  m_StaticBatchInfo:
++    firstSubMesh: 0
++    subMeshCount: 0
++  m_StaticBatchRoot: {fileID: 0}
++  m_ProbeAnchor: {fileID: 0}
++  m_LightProbeVolumeOverride: {fileID: 0}
++  m_ScaleInLightmap: 1
++  m_ReceiveGI: 1
++  m_PreserveUVs: 0
++  m_IgnoreNormalsForChartDetection: 0
++  m_ImportantGI: 0
++  m_StitchLightmapSeams: 1
++  m_SelectedEditorRenderState: 3
++  m_MinimumChartSize: 4
++  m_AutoUVMaxDistance: 0.5
++  m_AutoUVMaxAngle: 89
++  m_LightmapParameters: {fileID: 0}
++  m_SortingLayerID: 0
++  m_SortingLayer: 0
++  m_SortingOrder: 0
++  m_AdditionalVertexStreams: {fileID: 0}
++--- !u!135 &302824298632194201
++SphereCollider:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_GameObject: {fileID: 2535402030590869455}
++  m_Material: {fileID: 0}
++  m_IncludeLayers:
++    serializedVersion: 2
++    m_Bits: 0
++  m_ExcludeLayers:
++    serializedVersion: 2
++    m_Bits: 0
++  m_LayerOverridePriority: 0
++  m_IsTrigger: 0
++  m_ProvidesContacts: 0
++  m_Enabled: 1
++  serializedVersion: 3
++  m_Radius: 0.5
++  m_Center: {x: 0, y: 0, z: 0}
+diff --git a/Assets/DiffObjects_as_Prefabs/Sphere 1.prefab.meta b/Assets/DiffObjects_as_Prefabs/Sphere 1.prefab.meta
+new file mode 100644
+index 0000000..201d06d
+--- /dev/null
++++ b/Assets/DiffObjects_as_Prefabs/Sphere 1.prefab.meta	
+@@ -0,0 +1,7 @@
++fileFormatVersion: 2
++guid: 4e41e2e29bd18d645859991904bba769
++PrefabImporter:
++  externalObjects: {}
++  userData: 
++  assetBundleName: 
++  assetBundleVariant: 
+diff --git a/Assets/DiffObjects_as_Prefabs/Sphere 2.prefab b/Assets/DiffObjects_as_Prefabs/Sphere 2.prefab
+new file mode 100644
+index 0000000..28728a9
+--- /dev/null
++++ b/Assets/DiffObjects_as_Prefabs/Sphere 2.prefab	
+@@ -0,0 +1,110 @@
++%YAML 1.1
++%TAG !u! tag:unity3d.com,2011:
++--- !u!1 &7248633162622048368
++GameObject:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  serializedVersion: 6
++  m_Component:
++  - component: {fileID: 5306924025436227908}
++  - component: {fileID: 912329129484046591}
++  - component: {fileID: 1673819709639763810}
++  - component: {fileID: 2177595605561856058}
++  m_Layer: 0
++  m_Name: Sphere 2
++  m_TagString: Untagged
++  m_Icon: {fileID: 0}
++  m_NavMeshLayer: 0
++  m_StaticEditorFlags: 0
++  m_IsActive: 1
++--- !u!4 &5306924025436227908
++Transform:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_GameObject: {fileID: 7248633162622048368}
++  serializedVersion: 2
++  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
++  m_LocalPosition: {x: 0, y: 0, z: 4.91}
++  m_LocalScale: {x: 1, y: 1, z: 1}
++  m_ConstrainProportionsScale: 0
++  m_Children: []
++  m_Father: {fileID: 0}
++  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
++--- !u!33 &912329129484046591
++MeshFilter:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_GameObject: {fileID: 7248633162622048368}
++  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
++--- !u!23 &1673819709639763810
++MeshRenderer:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_GameObject: {fileID: 7248633162622048368}
++  m_Enabled: 1
++  m_CastShadows: 1
++  m_ReceiveShadows: 1
++  m_DynamicOccludee: 1
++  m_StaticShadowCaster: 0
++  m_MotionVectors: 1
++  m_LightProbeUsage: 1
++  m_ReflectionProbeUsage: 1
++  m_RayTracingMode: 2
++  m_RayTraceProcedural: 0
++  m_RayTracingAccelStructBuildFlagsOverride: 0
++  m_RayTracingAccelStructBuildFlags: 1
++  m_SmallMeshCulling: 1
++  m_RenderingLayerMask: 1
++  m_RendererPriority: 0
++  m_Materials:
++  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
++  m_StaticBatchInfo:
++    firstSubMesh: 0
++    subMeshCount: 0
++  m_StaticBatchRoot: {fileID: 0}
++  m_ProbeAnchor: {fileID: 0}
++  m_LightProbeVolumeOverride: {fileID: 0}
++  m_ScaleInLightmap: 1
++  m_ReceiveGI: 1
++  m_PreserveUVs: 0
++  m_IgnoreNormalsForChartDetection: 0
++  m_ImportantGI: 0
++  m_StitchLightmapSeams: 1
++  m_SelectedEditorRenderState: 3
++  m_MinimumChartSize: 4
++  m_AutoUVMaxDistance: 0.5
++  m_AutoUVMaxAngle: 89
++  m_LightmapParameters: {fileID: 0}
++  m_SortingLayerID: 0
++  m_SortingLayer: 0
++  m_SortingOrder: 0
++  m_AdditionalVertexStreams: {fileID: 0}
++--- !u!135 &2177595605561856058
++SphereCollider:
++  m_ObjectHideFlags: 0
++  m_CorrespondingSourceObject: {fileID: 0}
++  m_PrefabInstance: {fileID: 0}
++  m_PrefabAsset: {fileID: 0}
++  m_GameObject: {fileID: 7248633162622048368}
++  m_Material: {fileID: 0}
++  m_IncludeLayers:
++    serializedVersion: 2
++    m_Bits: 0
++  m_ExcludeLayers:
++    serializedVersion: 2
++    m_Bits: 0
++  m_LayerOverridePriority: 0
++  m_IsTrigger: 0
++  m_ProvidesContacts: 0
++  m_Enabled: 1
++  serializedVersion: 3
++  m_Radius: 0.5
++  m_Center: {x: 0, y: 0, z: 0}
+diff --git a/Assets/DiffObjects_as_Prefabs/Sphere 2.prefab.meta b/Assets/DiffObjects_as_Prefabs/Sphere 2.prefab.meta
+new file mode 100644
+index 0000000..26609aa
+--- /dev/null
++++ b/Assets/DiffObjects_as_Prefabs/Sphere 2.prefab.meta	
+@@ -0,0 +1,7 @@
++fileFormatVersion: 2
++guid: 1c0e48656eb532640b16f2c5efcd5812
++PrefabImporter:
++  externalObjects: {}
++  userData: 
++  assetBundleName: 
++  assetBundleVariant: 
+diff --git a/Assets/DiffObjects_as_Prefabs/Sphere.prefab b/Assets/DiffObjects_as_Prefabs/Sphere.prefab
+index 681c67f..4c1cbdd 100644
+--- a/Assets/DiffObjects_as_Prefabs/Sphere.prefab
++++ b/Assets/DiffObjects_as_Prefabs/Sphere.prefab
+@@ -1,6 +1,6 @@
+ %YAML 1.1
+ %TAG !u! tag:unity3d.com,2011:
+---- !u!1 &4409824216968582104
++--- !u!1 &3821190891331081525
+ GameObject:
+   m_ObjectHideFlags: 0
+   m_CorrespondingSourceObject: {fileID: 0}
+@@ -8,10 +8,10 @@ GameObject:
+   m_PrefabAsset: {fileID: 0}
+   serializedVersion: 6
+   m_Component:
+-  - component: {fileID: 5080117416039806212}
+-  - component: {fileID: 8931944331144684990}
+-  - component: {fileID: 8406152066222556800}
+-  - component: {fileID: 7320224149277928589}
++  - component: {fileID: 6160102050145144400}
++  - component: {fileID: 5099814237739076887}
++  - component: {fileID: 4722977331173132468}
++  - component: {fileID: 940610192962572607}
+   m_Layer: 0
+   m_Name: Sphere
+   m_TagString: Untagged
+@@ -19,13 +19,13 @@ GameObject:
+   m_NavMeshLayer: 0
+   m_StaticEditorFlags: 0
+   m_IsActive: 1
+---- !u!4 &5080117416039806212
++--- !u!4 &6160102050145144400
+ Transform:
+   m_ObjectHideFlags: 0
+   m_CorrespondingSourceObject: {fileID: 0}
+   m_PrefabInstance: {fileID: 0}
+   m_PrefabAsset: {fileID: 0}
+-  m_GameObject: {fileID: 4409824216968582104}
++  m_GameObject: {fileID: 3821190891331081525}
+   serializedVersion: 2
+   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+   m_LocalPosition: {x: 0, y: 0, z: 4.91}
+@@ -34,21 +34,21 @@ Transform:
+   m_Children: []
+   m_Father: {fileID: 0}
+   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+---- !u!33 &8931944331144684990
++--- !u!33 &5099814237739076887
+ MeshFilter:
+   m_ObjectHideFlags: 0
+   m_CorrespondingSourceObject: {fileID: 0}
+   m_PrefabInstance: {fileID: 0}
+   m_PrefabAsset: {fileID: 0}
+-  m_GameObject: {fileID: 4409824216968582104}
++  m_GameObject: {fileID: 3821190891331081525}
+   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+---- !u!23 &8406152066222556800
++--- !u!23 &4722977331173132468
+ MeshRenderer:
+   m_ObjectHideFlags: 0
+   m_CorrespondingSourceObject: {fileID: 0}
+   m_PrefabInstance: {fileID: 0}
+   m_PrefabAsset: {fileID: 0}
+-  m_GameObject: {fileID: 4409824216968582104}
++  m_GameObject: {fileID: 3821190891331081525}
+   m_Enabled: 1
+   m_CastShadows: 1
+   m_ReceiveShadows: 1
+@@ -87,13 +87,13 @@ MeshRenderer:
+   m_SortingLayer: 0
+   m_SortingOrder: 0
+   m_AdditionalVertexStreams: {fileID: 0}
+---- !u!135 &7320224149277928589
++--- !u!135 &940610192962572607
+ SphereCollider:
+   m_ObjectHideFlags: 0
+   m_CorrespondingSourceObject: {fileID: 0}
+   m_PrefabInstance: {fileID: 0}
+   m_PrefabAsset: {fileID: 0}
+-  m_GameObject: {fileID: 4409824216968582104}
++  m_GameObject: {fileID: 3821190891331081525}
+   m_Material: {fileID: 0}
+   m_IncludeLayers:
+     serializedVersion: 2
+diff --git a/Assets/Scene_Git_Extension/Documentation.md b/Assets/Scene_Git_Extension/Documentation.md
+index 6573201..f50548e 100644
+--- a/Assets/Scene_Git_Extension/Documentation.md
++++ b/Assets/Scene_Git_Extension/Documentation.md
+@@ -1,14 +1,36 @@
+-﻿# Unity Scene g(i/e)t Extension
++﻿# Unity Scene Git Extension
+ 
++## Interfaces
+ 
+-### interface GitDiffReader
+-- returns a IList of GameObjects in the scene that differ
++### <span style="color: #90EE90;">IGitDiffReader</span>
++- Returns an `IList` of `GameObjects` in the scene that differ
+ 
+-### class DiffGameObjectExtractor : GitDiffReader
+-- takes in a git diff as txt
+-- extracts relevant info -> diff GameObjects
+-- finds them in the scene
++### <span style="color: #90EE90;">ITerminalInterface</span>
++- Executes given commands
+ 
+-### class PrefabSaver
+-- takes in IList<GameObjects> of objects in scene 
+-- saves them as prefab to asset folder
++### <span style="color: #90EE90;">ICommandBuilder</span>
++- Builds and returns a command from arguments
++
++## Classes
++
++### DiffGameObjectExtractor : <span style="color: #90EE90;">IGitDiffReader</span>
++- Takes in a git diff as text
++- Extracts relevant info → diff `GameObjects`
++- Finds them in the scene
++
++### PrefabSaver
++- Takes in `IList<GameObjects>` of objects in scene
++- Saves them as prefabs to asset folder
++
++### GitBashInterface : <span style="color: #90EE90;">ITerminalInterface</span>
++- Target: git-bash.exe
++
++### GitCommands
++- Holds all used commands
++
++### GitBashCommandBuilder : <span style="color: #90EE90;">ICommandBuilder</span>
++- Target: Git Bash
++
++### SceneGitGUI
++- Takes in strings for target and source branch
++- Fires events from buttons
+diff --git a/Assets/Scene_Git_Extension/Runtime/Scripts/Scene_Git/DiffGameObjectExtractor.cs b/Assets/Scene_Git_Extension/Runtime/Scripts/Scene_Git/DiffGameObjectExtractor.cs
+index 158a518..127ce27 100644
+--- a/Assets/Scene_Git_Extension/Runtime/Scripts/Scene_Git/DiffGameObjectExtractor.cs
++++ b/Assets/Scene_Git_Extension/Runtime/Scripts/Scene_Git/DiffGameObjectExtractor.cs
+@@ -4,10 +4,11 @@
+ using System.Reflection;
+ using UnityEngine;
+ 
+-public class DiffGameObjectExtractor : GitDiffReader
++public class DiffGameObjectExtractor : IGitDiffReader
+ {
++    //TODO: think of naming here
+     private const string FileAGameObjectPrefix = "+--- !u!1 ";
+-    private const string FileBGameObjectPrefix = "---- !u!1 ";
++    // private const string FileBGameObjectPrefix = "---- !u!1 ";
+     private string _pathToDiff = "saved_diff.txt";
+ 
+ 
+diff --git a/Assets/Scene_Git_Extension/Runtime/Scripts/Scene_Git/GitDiffReader.cs b/Assets/Scene_Git_Extension/Runtime/Scripts/Scene_Git/IGitDiffReader.cs
+similarity index 76%
+rename from Assets/Scene_Git_Extension/Runtime/Scripts/Scene_Git/GitDiffReader.cs
+rename to Assets/Scene_Git_Extension/Runtime/Scripts/Scene_Git/IGitDiffReader.cs
+index c4720f4..9530159 100644
+--- a/Assets/Scene_Git_Extension/Runtime/Scripts/Scene_Git/GitDiffReader.cs
++++ b/Assets/Scene_Git_Extension/Runtime/Scripts/Scene_Git/IGitDiffReader.cs
+@@ -1,7 +1,7 @@
+ ﻿using System.Collections.Generic;
+ using UnityEngine;
+ 
+-public interface GitDiffReader
++public interface IGitDiffReader
+ {
+    public IList<GameObject> GetDiffObjects();
+ 
+diff --git a/Assets/Scene_Git_Extension/Runtime/Scripts/Scene_Git/GitDiffReader.cs.meta b/Assets/Scene_Git_Extension/Runtime/Scripts/Scene_Git/IGitDiffReader.cs.meta
+similarity index 100%
+rename from Assets/Scene_Git_Extension/Runtime/Scripts/Scene_Git/GitDiffReader.cs.meta
+rename to Assets/Scene_Git_Extension/Runtime/Scripts/Scene_Git/IGitDiffReader.cs.meta
+diff --git a/Assets/Scene_Git_Extension/Runtime/Scripts/Scene_Git/SceneGitMain.cs b/Assets/Scene_Git_Extension/Runtime/Scripts/Scene_Git/SceneGitMain.cs
+index 0989850..2a49480 100644
+--- a/Assets/Scene_Git_Extension/Runtime/Scripts/Scene_Git/SceneGitMain.cs
++++ b/Assets/Scene_Git_Extension/Runtime/Scripts/Scene_Git/SceneGitMain.cs
+@@ -6,20 +6,22 @@
+ [InitializeOnLoad]
+ public static class SceneGitMain
+ {
+-    private static GitDiffReader _diffReader;
++    private static IGitDiffReader _diffReader;
+     private static PrefabSaver _saver;
+     private static ITerminalInterface _terminal;
++    private static ICommandBuilder _commandBuilder;
+     static SceneGitMain()
+     {
+         _diffReader = new DiffGameObjectExtractor();
+         _saver = new PrefabSaver();
+         _terminal = new GitBashInterface();
++        _commandBuilder = new GitBashCommandBuilder();
+ 
+         SceneGitGUI.OnStartSceneGet += StartSceneGet;
+-        SceneGitGUI.OnGetDiffFromSh += GetDiff;
++        SceneGitGUI.OnGetDiffFromSh += WriteRelevantDiffToTxt;
+     }
+ 
+-    private static void StartSceneGet()
++    private static void StartSceneGet(string arg)
+     {
+        SaveDiffObjectsAsPrefab(_diffReader.GetDiffObjects()); 
+     }
+@@ -31,9 +33,22 @@ public static void SaveSingleObject(GameObject go)
+         _saver.CreatePrefab(go);
+     }
+ 
+-    public static void GetDiff()
++    public static void WriteRelevantDiffToTxt(string targetBranch, string sourceBranch)
+     {
+-        _terminal.Execute();
++        string mergeBaseCommand = _commandBuilder.GetMergeBase(targetBranch, sourceBranch);
++        Debug.Log("Merge Base command: " + mergeBaseCommand);
++        string mergeBaseResult = _terminal.ExecuteResultToVar(mergeBaseCommand);
++        Debug.Log($"Merge Base RESULT: {mergeBaseResult}");
++        
++        string revParseCommand = _commandBuilder.GetRevParse(sourceBranch);
++        Debug.Log("command " + revParseCommand);
++        string revParseResult = _terminal.ExecuteResultToVar(revParseCommand);
++        Debug.Log($"rev-parse {sourceBranch}: {revParseResult}");
++
++
++        string diffCommand = _commandBuilder.GetDiff(mergeBaseResult, revParseResult);
++        Debug.Log(diffCommand);
++        _terminal.ExecuteResultToTxt(diffCommand);
+     }
+ 
+     public static void SaveDiffObjectsAsPrefab(IList<GameObject> diffGaObjects)
+diff --git a/Assets/Scene_Git_Extension/Runtime/Scripts/Scene_Git/Scene_Git_GUI/SceneGitGUI.cs b/Assets/Scene_Git_Extension/Runtime/Scripts/Scene_Git/Scene_Git_GUI/SceneGitGUI.cs
+index 2aac717..8db8cc5 100644
+--- a/Assets/Scene_Git_Extension/Runtime/Scripts/Scene_Git/Scene_Git_GUI/SceneGitGUI.cs
++++ b/Assets/Scene_Git_Extension/Runtime/Scripts/Scene_Git/Scene_Git_GUI/SceneGitGUI.cs
+@@ -8,16 +8,22 @@ public class SceneGitGUI : EditorWindow
+     [MenuItem("Window/SceneGet_GUI")]
+     private static void Init() => GetWindow<SceneGitGUI>(true, "SceneGet");
+ 
+-    public static event Action OnStartSceneGet;
+-    public static event Action OnGetDiffFromSh;
++    public static event Action<string> OnStartSceneGet;
++    public static event Action<string,string> OnGetDiffFromSh;
++    private string _sourceBranch = string.Empty;
++    private string _targetBranch = string.Empty;
+ 
+     private void OnGUI()
+     {
++        _targetBranch = EditorGUILayout.TextField(new GUIContent("target branch"), _targetBranch);
++        _sourceBranch = EditorGUILayout.TextField(new GUIContent("source branch"), _sourceBranch);
++
++
+         if (GUILayout.Button("Get Scene content back"))
+         {
+             FireStartSceneGet();
+         }
+-    
++
+         if (GUILayout.Button("Get Diff from shell"))
+         {
+             FireGetDiff();
+@@ -26,25 +32,23 @@ private void OnGUI()
+ 
+     private void FireGetDiff()
+     {
+-        OnGetDiffFromSh.Invoke();
++        if (_sourceBranch == string.Empty)
++        {
++            Debug.LogError("Branch name can not be empty!");
++            return;
++        }
++
++        OnGetDiffFromSh.Invoke(_targetBranch, _sourceBranch);
+     }
+ 
+     private void FireStartSceneGet()
+     {
+-        OnStartSceneGet.Invoke();
+-    }
+-
+-
+-    /*void OnEnable()
+-          => AssemblyReloadEvents.afterAssemblyReload += OnAfterAssemblyReload;
+-
+-    void OnDisable()
+-      => AssemblyReloadEvents.afterAssemblyReload -= OnAfterAssemblyReload;
++        if (_sourceBranch == string.Empty || _targetBranch == string.Empty)
++        {
++            Debug.LogError("Branch name can not be empty!");
++            return;
++        }
+ 
+-    void OnAfterAssemblyReload()
+-    {
+-        if (!System.IO.File.Exists("Assets/ChatGPTCodeTemporary.cs")) return;
+-        EditorApplication.ExecuteMenuItem("Edit/Do Task");
+-        AssetDatabase.DeleteAsset("Assets/ChatGPTCodeTemporary.cs");
+-    }*/
++        OnStartSceneGet.Invoke(_sourceBranch);
++    }
+ }
+\ No newline at end of file
+diff --git a/Assets/Scene_Git_Extension/Runtime/Scripts/Scene_Git/Terminal/GitBashCommandBuilder.cs b/Assets/Scene_Git_Extension/Runtime/Scripts/Scene_Git/Terminal/GitBashCommandBuilder.cs
+new file mode 100644
+index 0000000..538c1b8
+--- /dev/null
++++ b/Assets/Scene_Git_Extension/Runtime/Scripts/Scene_Git/Terminal/GitBashCommandBuilder.cs
+@@ -0,0 +1,22 @@
++﻿using System;
++using UnityEngine;
++
++public class GitBashCommandBuilder : ICommandBuilder
++{
++    public string GetMergeBase(string targetBranch, string sourceBranch)
++    {
++        //space after command set in initialization
++        return GitCommands.merge_base + targetBranch + " " + sourceBranch;
++    }
++
++    public string GetRevParse(string branch)
++    {
++        //space after command set in initialization
++        return GitCommands.rev_parse + branch;
++    }
++
++    public string GetDiff(string mergeBase, string revParse)
++    {
++        return GitCommands.diff + mergeBase + revParse;
++    }
++}
+\ No newline at end of file
+diff --git a/Assets/Scene_Git_Extension/Runtime/Scripts/Scene_Git/Terminal/GitBashCommandBuilder.cs.meta b/Assets/Scene_Git_Extension/Runtime/Scripts/Scene_Git/Terminal/GitBashCommandBuilder.cs.meta
+new file mode 100644
+index 0000000..f137b7b
+--- /dev/null
++++ b/Assets/Scene_Git_Extension/Runtime/Scripts/Scene_Git/Terminal/GitBashCommandBuilder.cs.meta
+@@ -0,0 +1,3 @@
++﻿fileFormatVersion: 2
++guid: 7bb618f4d60e44df91db574f992db110
++timeCreated: 1739102049
+\ No newline at end of file
+diff --git a/Assets/Scene_Git_Extension/Runtime/Scripts/Scene_Git/Terminal/GitBashInterface.cs b/Assets/Scene_Git_Extension/Runtime/Scripts/Scene_Git/Terminal/GitBashInterface.cs
+index b00d7cb..2941309 100644
+--- a/Assets/Scene_Git_Extension/Runtime/Scripts/Scene_Git/Terminal/GitBashInterface.cs
++++ b/Assets/Scene_Git_Extension/Runtime/Scripts/Scene_Git/Terminal/GitBashInterface.cs
+@@ -6,78 +6,69 @@
+ public class GitBashInterface : ITerminalInterface
+ {
+     private const string PathToBashExe = @"C:\Program Files\Git\git-bash.exe";
++    private const string TempFile = "temp_commit_hash.txt";
++    private const string SavedDiff = "saved_diff.txt";
+ 
+     // private const string PathToBashExe = @"C:\Program Files\Git\bin\git.exe";
+-    private const string PathToSh =
+-        "Assets/Scene_Git_Extension/Runtime/Scripts/Scene_Git/Terminal/ShellScripts/get_diff.sh";
++    // private const string PathToSh =
++    // "Assets/Scene_Git_Extension/Runtime/Scripts/Scene_Git/Terminal/ShellScripts/get_diff.sh";
+ 
+-    public void Execute()
++    public void ExecuteResultToTxt(string command)
+     {
+-        BashToTxt(GitCommands.logOneLine, "helloBash.txt");
+-        // ExecBashScript();
++        BashToTxt(command, SavedDiff);
+     }
+ 
+-    private void ExecBashScript()
++    public string ExecuteResultToVar(string command)
+     {
+-        using Process gitProcess = new Process();
+-        gitProcess.StartInfo.FileName = PathToBashExe;
+-        gitProcess.StartInfo.WorkingDirectory = Directory.GetCurrentDirectory();
+-
+-        // string outputPath = Path.Combine(Directory.GetCurrentDirectory(), $"\\{outputFileNameWithType}");
+-        gitProcess.StartInfo.Arguments = $"-c \"{PathToSh}\"";
+-
+-        gitProcess.StartInfo.UseShellExecute = false;
+-        gitProcess.StartInfo.RedirectStandardOutput = true;
+-        gitProcess.StartInfo.RedirectStandardError = true;
+-        gitProcess.StartInfo.CreateNoWindow = true;
+-
+-        gitProcess.Start();
+-
+-        string output = gitProcess.StandardOutput.ReadToEnd();
+-        string error = gitProcess.StandardError.ReadToEnd();
+-
+-        gitProcess.WaitForExit();
+-
+-        if (!string.IsNullOrEmpty(output))
++        BashToTxt(command, TempFile);
++        string result = TxtToString(TempFile);
++        File.Delete(TempFile);
++        if (result == string.Empty)
+         {
+-            Debug.Log($"Git Bash Output: {output}");
++            Debug.LogError($"Result is empty. Possible wrong branch names");
+         }
+ 
+-        if (!string.IsNullOrEmpty(error))
+-        {
+-            Debug.LogError($"Git Bash Error: {error}");
+-        }
++        return result;
+     }
+ 
++
+     private void BashToTxt(string command, string outputFileNameWithType)
+     {
+-        using Process gitProcess = new Process();
+-        gitProcess.StartInfo.FileName = PathToBashExe;
+-        gitProcess.StartInfo.WorkingDirectory = Directory.GetCurrentDirectory();
+-
+-        string outputPath = Path.Combine(Directory.GetCurrentDirectory(), $"\\{outputFileNameWithType}");
+-        gitProcess.StartInfo.Arguments = $"-c \"{command} >> {outputPath}\"";
++        try
++        {
++            using Process gitProcess = new Process();
++            gitProcess.StartInfo.FileName = PathToBashExe;
++            gitProcess.StartInfo.WorkingDirectory = Directory.GetCurrentDirectory();
+ 
+-        gitProcess.StartInfo.UseShellExecute = false;
+-        gitProcess.StartInfo.RedirectStandardOutput = true;
+-        gitProcess.StartInfo.RedirectStandardError = true;
+-        gitProcess.StartInfo.CreateNoWindow = true;
++            string outputPath = Path.Combine(Directory.GetCurrentDirectory(), $"\\{outputFileNameWithType}");
++            gitProcess.StartInfo.Arguments = $"-c \"{command} >> {outputPath}\"";
+ 
+-        gitProcess.Start();
++            gitProcess.StartInfo.UseShellExecute = false;
++            gitProcess.StartInfo.RedirectStandardOutput = true;
++            gitProcess.StartInfo.RedirectStandardError = true;
++            gitProcess.StartInfo.CreateNoWindow = true;
+ 
+-        string output = gitProcess.StandardOutput.ReadToEnd();
+-        string error = gitProcess.StandardError.ReadToEnd();
++            gitProcess.Start();
+ 
+-        gitProcess.WaitForExit();
++            string output = gitProcess.StandardOutput.ReadToEnd();
++            string error = gitProcess.StandardError.ReadToEnd();
+ 
+-        if (!string.IsNullOrEmpty(output))
+-        {
+-            Debug.Log($"Git Bash Output: {output}");
++            gitProcess.WaitForExit();
+         }
+-
+-        if (!string.IsNullOrEmpty(error))
++        catch (Exception e)
+         {
+-            Debug.LogError($"Git Bash Error: {error}");
++            Debug.LogError($"Error from bash: {e}");
++            throw;
+         }
+     }
++
++    private string TxtToString(string path)
++    {
++        if (!File.Exists(path))
++            Debug.LogError($"Cant find file {path}");
++
++        string s = File.ReadAllText(path);
++        // Debug.Log($"Extracted string: {s}");
++        return s;
++    }
+ }
+\ No newline at end of file
+diff --git a/Assets/Scene_Git_Extension/Runtime/Scripts/Scene_Git/Terminal/GitCommands.cs b/Assets/Scene_Git_Extension/Runtime/Scripts/Scene_Git/Terminal/GitCommands.cs
+index 19b75ef..04b6798 100644
+--- a/Assets/Scene_Git_Extension/Runtime/Scripts/Scene_Git/Terminal/GitCommands.cs
++++ b/Assets/Scene_Git_Extension/Runtime/Scripts/Scene_Git/Terminal/GitCommands.cs
+@@ -2,11 +2,10 @@
+ 
+ public static class GitCommands
+ {
+-    public static string logOneLine = "git log --oneline";
+-    public static string echoHello = "echo hello";
++    public static string log_oneline = "git log --oneline -n 10";
++    public static string echo_hello = "echo hello";
++    public static string merge_base= "git merge-base ";
++    public static string rev_parse = "git rev-parse ";
++    public static string diff = "git diff ";
+ 
+-    public static string CommandBuilde(string command, string commitHash)
+-    {
+-        return String.Join(command," ", commitHash);
+-    }
+ }
+\ No newline at end of file
+diff --git a/Assets/Scene_Git_Extension/Runtime/Scripts/Scene_Git/Terminal/ICommandBuilder.cs b/Assets/Scene_Git_Extension/Runtime/Scripts/Scene_Git/Terminal/ICommandBuilder.cs
+new file mode 100644
+index 0000000..1adb3fc
+--- /dev/null
++++ b/Assets/Scene_Git_Extension/Runtime/Scripts/Scene_Git/Terminal/ICommandBuilder.cs
+@@ -0,0 +1,7 @@
++﻿public interface ICommandBuilder
++{
++    public string GetMergeBase(string targetBranch, string sourceBranch);
++    public string GetRevParse(string branch);
++
++    public string GetDiff(string mergeBase, string revParse);
++}
+\ No newline at end of file
+diff --git a/Assets/Scene_Git_Extension/Runtime/Scripts/Scene_Git/Terminal/ICommandBuilder.cs.meta b/Assets/Scene_Git_Extension/Runtime/Scripts/Scene_Git/Terminal/ICommandBuilder.cs.meta
+new file mode 100644
+index 0000000..0a99c68
+--- /dev/null
++++ b/Assets/Scene_Git_Extension/Runtime/Scripts/Scene_Git/Terminal/ICommandBuilder.cs.meta
+@@ -0,0 +1,3 @@
++﻿fileFormatVersion: 2
++guid: b8f0220055c548d3a8f29dfd2648a5fb
++timeCreated: 1739101680
+\ No newline at end of file
+diff --git a/Assets/Scene_Git_Extension/Runtime/Scripts/Scene_Git/Terminal/ITerminalInterface.cs b/Assets/Scene_Git_Extension/Runtime/Scripts/Scene_Git/Terminal/ITerminalInterface.cs
+index 04a3c31..cd0393d 100644
+--- a/Assets/Scene_Git_Extension/Runtime/Scripts/Scene_Git/Terminal/ITerminalInterface.cs
++++ b/Assets/Scene_Git_Extension/Runtime/Scripts/Scene_Git/Terminal/ITerminalInterface.cs
+@@ -1,4 +1,16 @@
+ ﻿public interface ITerminalInterface
+ {
+-    public void Execute();
++    /// <summary>
++    /// File location specified in implementation.
++    /// Same location also accessed when reading diff from IGitDiffReader. 
++    /// </summary>
++    /// <param name="command"></param>
++    public void ExecuteResultToTxt(string command);
++
++    /// <summary>
++    /// Writes it to txt first, then extracts string.
++    /// </summary>
++    /// <param name="command"></param>
++    /// <returns></returns>
++    public string ExecuteResultToVar(string command);
+ }
+\ No newline at end of file
+diff --git a/helloBash.txt b/helloBash.txt
+deleted file mode 100644
+index cdecbf5..0000000
+--- a/helloBash.txt
++++ /dev/null
+@@ -1,39 +0,0 @@
+-8cae4b4 added simple gui
+-1de3508 tried to get sh script running, posponed
+-daa40a2 made GitCommand class
+-2f4f969 made BashToTxt() with parameters
+-f2716bd echo write to txt triggered from unity working
+-5a56ea1 git bash returns something
+-37e8d32 started reconstructing the state of 07:48 where it worked
+-74e4c6a added .sh as parameter not working yet
+-c9bd3db started GitBash interface, the exe gets executed
+-3f67cb8 made ITerminalInterface
+-d53b5ba started documentation
+-3a7b455 started terminal interface
+-1599983 fixed prefab save path
+-ace3ba9 successfully created prefabs from diff objects in scene
+-208d8c3 TEST addes objects to scene
+-538ae91 added prefab saver
+-558a370 addes hierachy button and color
+-7e22616 set up the folders and files for packaging
+-4c0f812 addded some warning logs
+-f8781cc made temp mono ui
+-be21222 continued in gui
+-7c5ccb3 renamed project, creates editor window
+-7c450bf cleanup, added interface for diff readers
+-eabd7d8 del object from scene for testing
+-e25f9cb clean up
+-0a52f55 able to access all game objects from diff in scene
+-72b11dd deleted all saved diffs
+-257f4c0 made some vars const
+-d8ff19d modified scene file for testing
+-8d01191 base scene file for testing
+-e61da58 fixed
+-a9bfcce diff object reference to scene done, but also accesses other +--- lines
+-1238a9b got reference to diff object in scene
+-b0b5dc0 added function from reddit to find gameObject by file id
+-7a831a9 created list with names of objects in diff
+-8bfbbdf read and filter diff object from scene yaml
+-cf9749c got saved diff to class
+-c7c0278 added cube to sample scene
+-833e864 batman
+diff --git a/saved_diff.txt b/saved_diff.txt
+index db24472..e69de29 100644
+--- a/saved_diff.txt
++++ b/saved_diff.txt
+@@ -1,360 +0,0 @@
+-diff --git a/Assets/Scenes/SampleScene.unity b/Assets/Scenes/SampleScene.unity
+-index 18cc817..f97d3fa 100644
+---- a/Assets/Scenes/SampleScene.unity
+-+++ b/Assets/Scenes/SampleScene.unity
+-@@ -327,6 +327,7 @@ MonoBehaviour:
+-   m_Script: {fileID: 11500000, guid: 43c93c35526e4ebdad57f8d6bc648d1b, type: 3}
+-   m_Name: 
+-   m_EditorClassIdentifier: 
+-+  go: {fileID: 0}
+- --- !u!1 &330585543
+- GameObject:
+-   m_ObjectHideFlags: 0
+-@@ -695,6 +696,116 @@ Transform:
+-   m_Children: []
+-   m_Father: {fileID: 0}
+-   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+-+--- !u!1 &704792004
+-+GameObject:
+-+  m_ObjectHideFlags: 0
+-+  m_CorrespondingSourceObject: {fileID: 0}
+-+  m_PrefabInstance: {fileID: 0}
+-+  m_PrefabAsset: {fileID: 0}
+-+  serializedVersion: 6
+-+  m_Component:
+-+  - component: {fileID: 704792008}
+-+  - component: {fileID: 704792007}
+-+  - component: {fileID: 704792006}
+-+  - component: {fileID: 704792005}
+-+  m_Layer: 0
+-+  m_Name: Capsule (1)
+-+  m_TagString: Untagged
+-+  m_Icon: {fileID: 0}
+-+  m_NavMeshLayer: 0
+-+  m_StaticEditorFlags: 0
+-+  m_IsActive: 1
+-+--- !u!136 &704792005
+-+CapsuleCollider:
+-+  m_ObjectHideFlags: 0
+-+  m_CorrespondingSourceObject: {fileID: 0}
+-+  m_PrefabInstance: {fileID: 0}
+-+  m_PrefabAsset: {fileID: 0}
+-+  m_GameObject: {fileID: 704792004}
+-+  m_Material: {fileID: 0}
+-+  m_IncludeLayers:
+-+    serializedVersion: 2
+-+    m_Bits: 0
+-+  m_ExcludeLayers:
+-+    serializedVersion: 2
+-+    m_Bits: 0
+-+  m_LayerOverridePriority: 0
+-+  m_IsTrigger: 0
+-+  m_ProvidesContacts: 0
+-+  m_Enabled: 1
+-+  serializedVersion: 2
+-+  m_Radius: 0.5
+-+  m_Height: 2
+-+  m_Direction: 1
+-+  m_Center: {x: 0, y: 0, z: 0}
+-+--- !u!23 &704792006
+-+MeshRenderer:
+-+  m_ObjectHideFlags: 0
+-+  m_CorrespondingSourceObject: {fileID: 0}
+-+  m_PrefabInstance: {fileID: 0}
+-+  m_PrefabAsset: {fileID: 0}
+-+  m_GameObject: {fileID: 704792004}
+-+  m_Enabled: 1
+-+  m_CastShadows: 1
+-+  m_ReceiveShadows: 1
+-+  m_DynamicOccludee: 1
+-+  m_StaticShadowCaster: 0
+-+  m_MotionVectors: 1
+-+  m_LightProbeUsage: 1
+-+  m_ReflectionProbeUsage: 1
+-+  m_RayTracingMode: 2
+-+  m_RayTraceProcedural: 0
+-+  m_RayTracingAccelStructBuildFlagsOverride: 0
+-+  m_RayTracingAccelStructBuildFlags: 1
+-+  m_SmallMeshCulling: 1
+-+  m_RenderingLayerMask: 1
+-+  m_RendererPriority: 0
+-+  m_Materials:
+-+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+-+  m_StaticBatchInfo:
+-+    firstSubMesh: 0
+-+    subMeshCount: 0
+-+  m_StaticBatchRoot: {fileID: 0}
+-+  m_ProbeAnchor: {fileID: 0}
+-+  m_LightProbeVolumeOverride: {fileID: 0}
+-+  m_ScaleInLightmap: 1
+-+  m_ReceiveGI: 1
+-+  m_PreserveUVs: 0
+-+  m_IgnoreNormalsForChartDetection: 0
+-+  m_ImportantGI: 0
+-+  m_StitchLightmapSeams: 1
+-+  m_SelectedEditorRenderState: 3
+-+  m_MinimumChartSize: 4
+-+  m_AutoUVMaxDistance: 0.5
+-+  m_AutoUVMaxAngle: 89
+-+  m_LightmapParameters: {fileID: 0}
+-+  m_SortingLayerID: 0
+-+  m_SortingLayer: 0
+-+  m_SortingOrder: 0
+-+  m_AdditionalVertexStreams: {fileID: 0}
+-+--- !u!33 &704792007
+-+MeshFilter:
+-+  m_ObjectHideFlags: 0
+-+  m_CorrespondingSourceObject: {fileID: 0}
+-+  m_PrefabInstance: {fileID: 0}
+-+  m_PrefabAsset: {fileID: 0}
+-+  m_GameObject: {fileID: 704792004}
+-+  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+-+--- !u!4 &704792008
+-+Transform:
+-+  m_ObjectHideFlags: 0
+-+  m_CorrespondingSourceObject: {fileID: 0}
+-+  m_PrefabInstance: {fileID: 0}
+-+  m_PrefabAsset: {fileID: 0}
+-+  m_GameObject: {fileID: 704792004}
+-+  serializedVersion: 2
+-+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+-+  m_LocalPosition: {x: 4.85, y: 0, z: 0}
+-+  m_LocalScale: {x: 1, y: 1, z: 1}
+-+  m_ConstrainProportionsScale: 0
+-+  m_Children: []
+-+  m_Father: {fileID: 0}
+-+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+- --- !u!1 &832575517
+- GameObject:
+-   m_ObjectHideFlags: 0
+-@@ -744,6 +855,223 @@ Transform:
+-   m_Children: []
+-   m_Father: {fileID: 0}
+-   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+-+--- !u!1 &888107591
+-+GameObject:
+-+  m_ObjectHideFlags: 0
+-+  m_CorrespondingSourceObject: {fileID: 0}
+-+  m_PrefabInstance: {fileID: 0}
+-+  m_PrefabAsset: {fileID: 0}
+-+  serializedVersion: 6
+-+  m_Component:
+-+  - component: {fileID: 888107595}
+-+  - component: {fileID: 888107594}
+-+  - component: {fileID: 888107593}
+-+  - component: {fileID: 888107592}
+-+  m_Layer: 0
+-+  m_Name: Plane (1)
+-+  m_TagString: Untagged
+-+  m_Icon: {fileID: 0}
+-+  m_NavMeshLayer: 0
+-+  m_StaticEditorFlags: 0
+-+  m_IsActive: 1
+-+--- !u!64 &888107592
+-+MeshCollider:
+-+  m_ObjectHideFlags: 0
+-+  m_CorrespondingSourceObject: {fileID: 0}
+-+  m_PrefabInstance: {fileID: 0}
+-+  m_PrefabAsset: {fileID: 0}
+-+  m_GameObject: {fileID: 888107591}
+-+  m_Material: {fileID: 0}
+-+  m_IncludeLayers:
+-+    serializedVersion: 2
+-+    m_Bits: 0
+-+  m_ExcludeLayers:
+-+    serializedVersion: 2
+-+    m_Bits: 0
+-+  m_LayerOverridePriority: 0
+-+  m_IsTrigger: 0
+-+  m_ProvidesContacts: 0
+-+  m_Enabled: 1
+-+  serializedVersion: 5
+-+  m_Convex: 0
+-+  m_CookingOptions: 30
+-+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+-+--- !u!23 &888107593
+-+MeshRenderer:
+-+  m_ObjectHideFlags: 0
+-+  m_CorrespondingSourceObject: {fileID: 0}
+-+  m_PrefabInstance: {fileID: 0}
+-+  m_PrefabAsset: {fileID: 0}
+-+  m_GameObject: {fileID: 888107591}
+-+  m_Enabled: 1
+-+  m_CastShadows: 1
+-+  m_ReceiveShadows: 1
+-+  m_DynamicOccludee: 1
+-+  m_StaticShadowCaster: 0
+-+  m_MotionVectors: 1
+-+  m_LightProbeUsage: 1
+-+  m_ReflectionProbeUsage: 1
+-+  m_RayTracingMode: 2
+-+  m_RayTraceProcedural: 0
+-+  m_RayTracingAccelStructBuildFlagsOverride: 0
+-+  m_RayTracingAccelStructBuildFlags: 1
+-+  m_SmallMeshCulling: 1
+-+  m_RenderingLayerMask: 1
+-+  m_RendererPriority: 0
+-+  m_Materials:
+-+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+-+  m_StaticBatchInfo:
+-+    firstSubMesh: 0
+-+    subMeshCount: 0
+-+  m_StaticBatchRoot: {fileID: 0}
+-+  m_ProbeAnchor: {fileID: 0}
+-+  m_LightProbeVolumeOverride: {fileID: 0}
+-+  m_ScaleInLightmap: 1
+-+  m_ReceiveGI: 1
+-+  m_PreserveUVs: 0
+-+  m_IgnoreNormalsForChartDetection: 0
+-+  m_ImportantGI: 0
+-+  m_StitchLightmapSeams: 1
+-+  m_SelectedEditorRenderState: 3
+-+  m_MinimumChartSize: 4
+-+  m_AutoUVMaxDistance: 0.5
+-+  m_AutoUVMaxAngle: 89
+-+  m_LightmapParameters: {fileID: 0}
+-+  m_SortingLayerID: 0
+-+  m_SortingLayer: 0
+-+  m_SortingOrder: 0
+-+  m_AdditionalVertexStreams: {fileID: 0}
+-+--- !u!33 &888107594
+-+MeshFilter:
+-+  m_ObjectHideFlags: 0
+-+  m_CorrespondingSourceObject: {fileID: 0}
+-+  m_PrefabInstance: {fileID: 0}
+-+  m_PrefabAsset: {fileID: 0}
+-+  m_GameObject: {fileID: 888107591}
+-+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+-+--- !u!4 &888107595
+-+Transform:
+-+  m_ObjectHideFlags: 0
+-+  m_CorrespondingSourceObject: {fileID: 0}
+-+  m_PrefabInstance: {fileID: 0}
+-+  m_PrefabAsset: {fileID: 0}
+-+  m_GameObject: {fileID: 888107591}
+-+  serializedVersion: 2
+-+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+-+  m_LocalPosition: {x: 0, y: -4.89, z: 0}
+-+  m_LocalScale: {x: 1, y: 1, z: 1}
+-+  m_ConstrainProportionsScale: 0
+-+  m_Children: []
+-+  m_Father: {fileID: 0}
+-+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+-+--- !u!1 &1836829931
+-+GameObject:
+-+  m_ObjectHideFlags: 0
+-+  m_CorrespondingSourceObject: {fileID: 0}
+-+  m_PrefabInstance: {fileID: 0}
+-+  m_PrefabAsset: {fileID: 0}
+-+  serializedVersion: 6
+-+  m_Component:
+-+  - component: {fileID: 1836829935}
+-+  - component: {fileID: 1836829934}
+-+  - component: {fileID: 1836829933}
+-+  - component: {fileID: 1836829932}
+-+  m_Layer: 0
+-+  m_Name: Sphere
+-+  m_TagString: Untagged
+-+  m_Icon: {fileID: 0}
+-+  m_NavMeshLayer: 0
+-+  m_StaticEditorFlags: 0
+-+  m_IsActive: 1
+-+--- !u!135 &1836829932
+-+SphereCollider:
+-+  m_ObjectHideFlags: 0
+-+  m_CorrespondingSourceObject: {fileID: 0}
+-+  m_PrefabInstance: {fileID: 0}
+-+  m_PrefabAsset: {fileID: 0}
+-+  m_GameObject: {fileID: 1836829931}
+-+  m_Material: {fileID: 0}
+-+  m_IncludeLayers:
+-+    serializedVersion: 2
+-+    m_Bits: 0
+-+  m_ExcludeLayers:
+-+    serializedVersion: 2
+-+    m_Bits: 0
+-+  m_LayerOverridePriority: 0
+-+  m_IsTrigger: 0
+-+  m_ProvidesContacts: 0
+-+  m_Enabled: 1
+-+  serializedVersion: 3
+-+  m_Radius: 0.5
+-+  m_Center: {x: 0, y: 0, z: 0}
+-+--- !u!23 &1836829933
+-+MeshRenderer:
+-+  m_ObjectHideFlags: 0
+-+  m_CorrespondingSourceObject: {fileID: 0}
+-+  m_PrefabInstance: {fileID: 0}
+-+  m_PrefabAsset: {fileID: 0}
+-+  m_GameObject: {fileID: 1836829931}
+-+  m_Enabled: 1
+-+  m_CastShadows: 1
+-+  m_ReceiveShadows: 1
+-+  m_DynamicOccludee: 1
+-+  m_StaticShadowCaster: 0
+-+  m_MotionVectors: 1
+-+  m_LightProbeUsage: 1
+-+  m_ReflectionProbeUsage: 1
+-+  m_RayTracingMode: 2
+-+  m_RayTraceProcedural: 0
+-+  m_RayTracingAccelStructBuildFlagsOverride: 0
+-+  m_RayTracingAccelStructBuildFlags: 1
+-+  m_SmallMeshCulling: 1
+-+  m_RenderingLayerMask: 1
+-+  m_RendererPriority: 0
+-+  m_Materials:
+-+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+-+  m_StaticBatchInfo:
+-+    firstSubMesh: 0
+-+    subMeshCount: 0
+-+  m_StaticBatchRoot: {fileID: 0}
+-+  m_ProbeAnchor: {fileID: 0}
+-+  m_LightProbeVolumeOverride: {fileID: 0}
+-+  m_ScaleInLightmap: 1
+-+  m_ReceiveGI: 1
+-+  m_PreserveUVs: 0
+-+  m_IgnoreNormalsForChartDetection: 0
+-+  m_ImportantGI: 0
+-+  m_StitchLightmapSeams: 1
+-+  m_SelectedEditorRenderState: 3
+-+  m_MinimumChartSize: 4
+-+  m_AutoUVMaxDistance: 0.5
+-+  m_AutoUVMaxAngle: 89
+-+  m_LightmapParameters: {fileID: 0}
+-+  m_SortingLayerID: 0
+-+  m_SortingLayer: 0
+-+  m_SortingOrder: 0
+-+  m_AdditionalVertexStreams: {fileID: 0}
+-+--- !u!33 &1836829934
+-+MeshFilter:
+-+  m_ObjectHideFlags: 0
+-+  m_CorrespondingSourceObject: {fileID: 0}
+-+  m_PrefabInstance: {fileID: 0}
+-+  m_PrefabAsset: {fileID: 0}
+-+  m_GameObject: {fileID: 1836829931}
+-+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+-+--- !u!4 &1836829935
+-+Transform:
+-+  m_ObjectHideFlags: 0
+-+  m_CorrespondingSourceObject: {fileID: 0}
+-+  m_PrefabInstance: {fileID: 0}
+-+  m_PrefabAsset: {fileID: 0}
+-+  m_GameObject: {fileID: 1836829931}
+-+  serializedVersion: 2
+-+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+-+  m_LocalPosition: {x: 0, y: 0, z: 4.91}
+-+  m_LocalScale: {x: 1, y: 1, z: 1}
+-+  m_ConstrainProportionsScale: 0
+-+  m_Children: []
+-+  m_Father: {fileID: 0}
+-+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+- --- !u!1 &2005866583
+- GameObject:
+-   m_ObjectHideFlags: 0
+-@@ -863,3 +1191,6 @@ SceneRoots:
+-   - {fileID: 2005866587}
+-   - {fileID: 497256509}
+-   - {fileID: 79402826}
+-+  - {fileID: 1836829935}
+-+  - {fileID: 704792008}
+-+  - {fileID: 888107595}

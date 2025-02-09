@@ -9,9 +9,6 @@ public class GitBashInterface : ITerminalInterface
     private const string TempFile = "temp_commit_hash.txt";
     private const string SavedDiff = "saved_diff.txt";
 
-    // private const string PathToBashExe = @"C:\Program Files\Git\bin\git.exe";
-    // private const string PathToSh =
-    // "Assets/Scene_Git_Extension/Runtime/Scripts/Scene_Git/Terminal/ShellScripts/get_diff.sh";
 
     public void ExecuteResultToTxt(string command)
     {
@@ -43,6 +40,7 @@ public class GitBashInterface : ITerminalInterface
             string outputPath = Path.Combine(Directory.GetCurrentDirectory(), $"\\{outputFileNameWithType}");
             gitProcess.StartInfo.Arguments = $"-c \"{command} >> {outputPath}\"";
 
+            Debug.Log(gitProcess.StartInfo.Arguments);
             gitProcess.StartInfo.UseShellExecute = false;
             gitProcess.StartInfo.RedirectStandardOutput = true;
             gitProcess.StartInfo.RedirectStandardError = true;

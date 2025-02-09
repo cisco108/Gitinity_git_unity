@@ -17,6 +17,8 @@ public class GitBashCommandBuilder : ICommandBuilder
 
     public string GetDiff(string mergeBase, string revParse)
     {
-        return GitCommands.diff + mergeBase + revParse;
+        mergeBase = mergeBase.Remove(mergeBase.Length - 28, 28);
+        revParse = revParse.Remove(revParse.Length - 28, 28);
+        return GitCommands.diff + mergeBase + " " + revParse + " ";
     }
 }

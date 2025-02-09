@@ -36,14 +36,10 @@ public static class SceneGitMain
     public static void WriteRelevantDiffToTxt(string targetBranch, string sourceBranch)
     {
         string mergeBaseCommand = _commandBuilder.GetMergeBase(targetBranch, sourceBranch);
-        Debug.Log("Merge Base command: " + mergeBaseCommand);
         string mergeBaseResult = _terminal.ExecuteResultToVar(mergeBaseCommand);
-        Debug.Log($"Merge Base RESULT: {mergeBaseResult}");
         
         string revParseCommand = _commandBuilder.GetRevParse(sourceBranch);
-        Debug.Log("command " + revParseCommand);
         string revParseResult = _terminal.ExecuteResultToVar(revParseCommand);
-        Debug.Log($"rev-parse {sourceBranch}: {revParseResult}");
 
 
         string diffCommand = _commandBuilder.GetDiff(mergeBaseResult, revParseResult);
