@@ -21,7 +21,7 @@ public class GitBashInterface : ITerminalInterface
                 gitProcess.StartInfo.FileName = PathToBashExe;
                 
                 string outputPath = Path.Combine(Directory.GetCurrentDirectory(), "hello.txt");
-                gitProcess.StartInfo.Arguments = $"-c \"echo >> {outputPath}\"";
+                gitProcess.StartInfo.Arguments = $"-c \"echo hello u >> {outputPath}\"";
 
                 
                 // gitProcess.StartInfo.Arguments = $"-c \"{PathToSh}\"";
