@@ -6,6 +6,7 @@ using Debug = UnityEngine.Debug;
 public class GitBashInterface : ITerminalInterface
 {
     private const string PathToBashExe = @"C:\Program Files\Git\git-bash.exe";
+    private const string TempFile = "temp_commit_hash.txt";  
 
     // private const string PathToBashExe = @"C:\Program Files\Git\bin\git.exe";
     // private const string PathToSh =
@@ -19,8 +20,9 @@ public class GitBashInterface : ITerminalInterface
 
     public string ExecuteResultToVar(string command)
     {
-        BashToTxt(command, "temp_commit_hash.txt");
-        string result = TxtToString("temp_commit_hash.txt");
+        BashToTxt(command, TempFile);
+        string result = TxtToString(TempFile);
+        File.Delete(TempFile);
         return result;
     }
 
