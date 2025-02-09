@@ -6,8 +6,8 @@ using Debug = UnityEngine.Debug;
 
 public class GitBashInterface : ITerminalInterface
 {
-    // private const string PathToBashExe = @"C:\Program Files\Git\git-bash.exe";
-    private const string PathToBashExe = @"C:\Program Files\Git\bin\git.exe";
+    private const string PathToBashExe = @"C:\Program Files\Git\git-bash.exe";
+    // private const string PathToBashExe = @"C:\Program Files\Git\bin\git.exe";
 
     private const string PathToSh =
         "Assets/Scene_Git_Extension/Runtime/Scripts/Scene_Git/Terminal/ShellScripts/get_diff.sh";
@@ -19,7 +19,8 @@ public class GitBashInterface : ITerminalInterface
             using (Process gitProcess = new Process())
             {
                 gitProcess.StartInfo.FileName = PathToBashExe;
-                
+                gitProcess.StartInfo.WorkingDirectory = Directory.GetCurrentDirectory(); 
+
                 string outputPath = Path.Combine(Directory.GetCurrentDirectory(), "hello.txt");
                 gitProcess.StartInfo.Arguments = $"-c \"echo hello u >> {outputPath}\"";
 
