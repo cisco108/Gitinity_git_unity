@@ -1,28 +1,46 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
-public class SceneGitMain
+[InitializeOnLoad]
+public static class SceneGitMain
 {
-    public GitDiffReader diffReader = new DiffGameObjectExtractor();
-    public PrefabSaver saver = new PrefabSaver();
-    public ITerminalInterface terminal = new GitBashInterface();
-
-    public void SaveSingleObject(GameObject go)
+    private static GitDiffReader _diffReader;
+    private static PrefabSaver _saver;
+    private static ITerminalInterface _terminal;
+    static SceneGitMain()
     {
-        saver.CreatePrefab(go);
+        _diffReader = new DiffGameObjectExtractor();
+        _saver = new PrefabSaver();
+        _terminal = new GitBashInterface();
+
+        SceneGitGUI.OnStartSceneGet += StartSceneGet;
+        SceneGitGUI.OnGetDiffFromSh += GetDiff;
     }
 
-    public void GetDiff()
+    private static void StartSceneGet()
     {
-        terminal.Execute();
+       SaveDiffObjectsAsPrefab(_diffReader.GetDiffObjects()); 
+    }
+    
+
+
+    public static void SaveSingleObject(GameObject go)
+    {
+        _saver.CreatePrefab(go);
     }
 
-    public void SaveDiffObjectsAsPrefab(IList<GameObject> diffGaObjects)
+    public static void GetDiff()
+    {
+        _terminal.Execute();
+    }
+
+    public static void SaveDiffObjectsAsPrefab(IList<GameObject> diffGaObjects)
     {
         foreach (var go in diffGaObjects)
         {
-            saver.CreatePrefab(go);
+            _saver.CreatePrefab(go);
         }
     }
 }

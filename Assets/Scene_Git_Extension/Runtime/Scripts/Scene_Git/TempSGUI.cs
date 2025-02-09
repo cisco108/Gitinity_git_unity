@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class TempSGUI : MonoBehaviour
 {
-    public SceneGitMain main = new();
+    /*public SceneGitMain main = new();
     public IList<GameObject> diffObjects;
 
     public GameObject go;
@@ -24,5 +24,5 @@ public class TempSGUI : MonoBehaviour
         }
         
         main.SaveDiffObjectsAsPrefab(diffObjects);
-    }
+    }*/
 }

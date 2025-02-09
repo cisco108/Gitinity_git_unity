@@ -8,7 +8,8 @@ public class SceneGitGUI : EditorWindow
     [MenuItem("Window/SceneGet_GUI")]
     private static void Init() => GetWindow<SceneGitGUI>(true, "SceneGet");
 
-    public event Action OnStartSceneGet;
+    public static event Action OnStartSceneGet;
+    public static event Action OnGetDiffFromSh;
 
     private void OnGUI()
     {
@@ -16,6 +17,16 @@ public class SceneGitGUI : EditorWindow
         {
             FireStartSceneGet();
         }
+    
+        if (GUILayout.Button("Get Diff from shell"))
+        {
+            FireGetDiff();
+        }
+    }
+
+    private void FireGetDiff()
+    {
+        OnGetDiffFromSh.Invoke();
     }
 
     private void FireStartSceneGet()
