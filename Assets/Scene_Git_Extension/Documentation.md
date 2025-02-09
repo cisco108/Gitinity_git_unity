@@ -1,33 +1,36 @@
-﻿# Unity Scene g(i/e)t Extension
+﻿# Unity Scene Git Extension
 
+## Interfaces
 
-### interface IGitDiffReader
-- returns a IList of GameObjects in the scene that differ
+### <span style="color: #90EE90;">IGitDiffReader</span>
+- Returns an `IList` of `GameObjects` in the scene that differ
 
-### class DiffGameObjectExtractor : IGitDiffReader
-- takes in a git diff as txt
-- extracts relevant info -> diff GameObjects
-- finds them in the scene
+### <span style="color: #90EE90;">ITerminalInterface</span>
+- Executes given commands
 
-### class PrefabSaver
-- takes in IList<GameObjects> of objects in scene 
-- saves them as prefab to asset folder
+### <span style="color: #90EE90;">ICommandBuilder</span>
+- Builds and returns a command from arguments
 
-### interface ITerminalInterface
-- executes given commands
+## Classes
 
-### class GitBashInterface : ITerminalInterface
-- target to git-bash.exe
- 
-### class GitCommands
-- holds all used commands
+### DiffGameObjectExtractor : <span style="color: #90EE90;">IGitDiffReader</span>
+- Takes in a git diff as text
+- Extracts relevant info → diff `GameObjects`
+- Finds them in the scene
 
-### interface ICommandBuilder
-- builds and returns a command from arguments
+### PrefabSaver
+- Takes in `IList<GameObjects>` of objects in scene
+- Saves them as prefabs to asset folder
 
-### class GitBashCommandBuilder : ICommandBuilder
-- target git bash
+### GitBashInterface : <span style="color: #90EE90;">ITerminalInterface</span>
+- Target: git-bash.exe
 
-### class SceneGitGUI
-- takes in strings for target and source branch
-- fires events from buttons
+### GitCommands
+- Holds all used commands
+
+### GitBashCommandBuilder : <span style="color: #90EE90;">ICommandBuilder</span>
+- Target: Git Bash
+
+### SceneGitGUI
+- Takes in strings for target and source branch
+- Fires events from buttons
