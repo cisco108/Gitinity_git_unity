@@ -19,7 +19,7 @@ public static class SceneGitMain
         SceneGitGUI.OnGetDiffFromSh += GetDiff;
     }
 
-    private static void StartSceneGet()
+    private static void StartSceneGet(string arg)
     {
        SaveDiffObjectsAsPrefab(_diffReader.GetDiffObjects()); 
     }
@@ -31,7 +31,7 @@ public static class SceneGitMain
         _saver.CreatePrefab(go);
     }
 
-    public static void GetDiff()
+    public static void GetDiff(string arg)
     {
         _terminal.Execute();
     }

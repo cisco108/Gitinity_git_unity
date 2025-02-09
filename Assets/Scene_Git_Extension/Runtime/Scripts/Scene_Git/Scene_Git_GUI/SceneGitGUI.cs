@@ -8,16 +8,20 @@ public class SceneGitGUI : EditorWindow
     [MenuItem("Window/SceneGet_GUI")]
     private static void Init() => GetWindow<SceneGitGUI>(true, "SceneGet");
 
-    public static event Action OnStartSceneGet;
-    public static event Action OnGetDiffFromSh;
+    public static event Action<string> OnStartSceneGet;
+    public static event Action<string> OnGetDiffFromSh;
+    private string _branchName = string.Empty;
 
     private void OnGUI()
     {
+        _branchName = EditorGUILayout.TextField(new GUIContent("merged branch"), _branchName);
+
+
         if (GUILayout.Button("Get Scene content back"))
         {
             FireStartSceneGet();
         }
-    
+
         if (GUILayout.Button("Get Diff from shell"))
         {
             FireGetDiff();
@@ -26,25 +30,23 @@ public class SceneGitGUI : EditorWindow
 
     private void FireGetDiff()
     {
-        OnGetDiffFromSh.Invoke();
+        if (_branchName == string.Empty)
+        {
+            Debug.LogError("Branch name can not be empty!");
+            return;
+        }
+
+        OnGetDiffFromSh.Invoke(_branchName);
     }
 
     private void FireStartSceneGet()
     {
-        OnStartSceneGet.Invoke();
+        if (_branchName == string.Empty)
+        {
+            Debug.LogError("Branch name can not be empty!");
+            return;
+        }
+
+        OnStartSceneGet.Invoke(_branchName);
     }
-
-
-    /*void OnEnable()
-          => AssemblyReloadEvents.afterAssemblyReload += OnAfterAssemblyReload;
-
-    void OnDisable()
-      => AssemblyReloadEvents.afterAssemblyReload -= OnAfterAssemblyReload;
-
-    void OnAfterAssemblyReload()
-    {
-        if (!System.IO.File.Exists("Assets/ChatGPTCodeTemporary.cs")) return;
-        EditorApplication.ExecuteMenuItem("Edit/Do Task");
-        AssetDatabase.DeleteAsset("Assets/ChatGPTCodeTemporary.cs");
-    }*/
 }
