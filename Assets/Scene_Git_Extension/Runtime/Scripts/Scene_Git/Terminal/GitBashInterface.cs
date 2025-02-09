@@ -11,12 +11,48 @@ public class GitBashInterface : ITerminalInterface
     // private const string PathToSh =
         // "Assets/Scene_Git_Extension/Runtime/Scripts/Scene_Git/Terminal/ShellScripts/get_diff.sh";
 
-    public void Execute(string branchName)
+    public void ExecuteResultToTxt(string branchName)
     {
+        BashToVar(GitCommands.log_oneline);
         BashToTxt(GitCommands.log_oneline, "helloBash.txt");
         // ExecBashScript();
     }
 
+    public string ExecuteResultToVar(string command)
+    {
+        return "sers";
+    }
+    private void BashToVar(string command)
+    {
+        using Process gitProcess = new Process();
+        gitProcess.StartInfo.FileName = PathToBashExe;
+        gitProcess.StartInfo.WorkingDirectory = Directory.GetCurrentDirectory();
+
+        // string outputPath = Path.Combine(Directory.GetCurrentDirectory(), $"\\{outputFileNameWithType}");
+        gitProcess.StartInfo.Arguments = $"-c \"{command}\"";
+
+        gitProcess.StartInfo.UseShellExecute = false;
+        gitProcess.StartInfo.RedirectStandardOutput = true;
+        gitProcess.StartInfo.RedirectStandardError = true;
+        gitProcess.StartInfo.CreateNoWindow = true;
+
+        gitProcess.Start();
+
+        string output = gitProcess.StandardOutput.ReadToEnd();
+        string error = gitProcess.StandardError.ReadToEnd();
+
+        gitProcess.WaitForExit();
+
+        if (!string.IsNullOrEmpty(output))
+        {
+            Debug.Log($"Git Bash Output: {output}");
+        }
+
+        if (!string.IsNullOrEmpty(error))
+        {
+            Debug.LogError($"Git Bash Error: {error}");
+        }
+    }
 
     private void BashToTxt(string command, string outputFileNameWithType)
     {

@@ -18,7 +18,7 @@ public static class SceneGitMain
         _commandBuilder = new GitBashCommandBuilder();
 
         SceneGitGUI.OnStartSceneGet += StartSceneGet;
-        SceneGitGUI.OnGetDiffFromSh += GetDiff;
+        SceneGitGUI.OnGetDiffFromSh += WriteRelevantDiffToTxt;
     }
 
     private static void StartSceneGet(string arg)
@@ -33,10 +33,10 @@ public static class SceneGitMain
         _saver.CreatePrefab(go);
     }
 
-    public static void GetDiff(string targetBranch, string sourceBranch)
+    public static void WriteRelevantDiffToTxt(string targetBranch, string sourceBranch)
     {
         Debug.Log($"target branch: {targetBranch} \n source branch: {sourceBranch}");
-        _terminal.Execute(targetBranch);
+        _terminal.ExecuteResultToTxt("Hello friends");
     }
 
     public static void SaveDiffObjectsAsPrefab(IList<GameObject> diffGaObjects)
