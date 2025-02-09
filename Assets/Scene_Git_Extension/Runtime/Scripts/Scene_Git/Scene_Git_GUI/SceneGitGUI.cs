@@ -5,35 +5,35 @@ using UnityEngine.UIElements;
 
 public class SceneGitGUI : EditorWindow
 {
-    public static event Action OnStartIt; 
-    [SerializeField] private VisualTreeAsset m_VisualTreeAsset = default;
+    [MenuItem("Window/SceneGet_GUI")]
+    private static void Init() => GetWindow<SceneGitGUI>(true, "SceneGet");
 
-    [MenuItem("Window/UI Toolkit/SceneGitGUI")]
-    public static void ShowExample()
-    {
-        SceneGitGUI wnd = GetWindow<SceneGitGUI>();
-        wnd.titleContent = new GUIContent("SceneGitGUI");
-    }
+    public event Action OnStartSceneGet;
 
-    public void CreateGUI()
+    private void OnGUI()
     {
-        VisualElement root = rootVisualElement;
-        VisualElement labelFromUXML = m_VisualTreeAsset.Instantiate();
-        root.Add(labelFromUXML);
-        
-        Button button = new Button(() => OnStartIt.Invoke())
+        if (GUILayout.Button("Get Scene content back"))
         {
-            text = "Start it",
-            style =
-            {
-                width = 120,
-                height = 30,
-                marginLeft = 10,
-                marginTop = 10,
-                alignSelf = Align.FlexStart
-            }
-        };
-        root.Add(button);
-
+            FireStartSceneGet();
+        }
     }
+
+    private void FireStartSceneGet()
+    {
+        OnStartSceneGet.Invoke();
+    }
+
+
+    /*void OnEnable()
+          => AssemblyReloadEvents.afterAssemblyReload += OnAfterAssemblyReload;
+
+    void OnDisable()
+      => AssemblyReloadEvents.afterAssemblyReload -= OnAfterAssemblyReload;
+
+    void OnAfterAssemblyReload()
+    {
+        if (!System.IO.File.Exists("Assets/ChatGPTCodeTemporary.cs")) return;
+        EditorApplication.ExecuteMenuItem("Edit/Do Task");
+        AssetDatabase.DeleteAsset("Assets/ChatGPTCodeTemporary.cs");
+    }*/
 }

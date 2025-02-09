@@ -13,7 +13,7 @@ public class GitBashInterface : ITerminalInterface
 
     public void Execute()
     {
-        // BashToTxt(GitCommands.logOneLine, "helloBash.txt");
+        BashToTxt(GitCommands.logOneLine, "helloBash.txt");
         // ExecBashScript();
     }
 
