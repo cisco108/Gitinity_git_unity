@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using UnityEngine;
 
-public class DiffGameObjectExtractor : GitDiffReader
+public class DiffGameObjectExtractor : IGitDiffReader
 {
     private const string FileAGameObjectPrefix = "+--- !u!1 ";
     private const string FileBGameObjectPrefix = "---- !u!1 ";

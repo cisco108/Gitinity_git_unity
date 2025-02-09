@@ -6,14 +6,16 @@ using UnityEngine;
 [InitializeOnLoad]
 public static class SceneGitMain
 {
-    private static GitDiffReader _diffReader;
+    private static IGitDiffReader _diffReader;
     private static PrefabSaver _saver;
     private static ITerminalInterface _terminal;
+    private static ICommandBuilder _commandBuilder;
     static SceneGitMain()
     {
         _diffReader = new DiffGameObjectExtractor();
         _saver = new PrefabSaver();
         _terminal = new GitBashInterface();
+        _commandBuilder = new GitBashCommandBuilder();
 
         SceneGitGUI.OnStartSceneGet += StartSceneGet;
         SceneGitGUI.OnGetDiffFromSh += GetDiff;
