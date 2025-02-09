@@ -14,17 +14,61 @@ public class GitBashInterface : ITerminalInterface
 
     public void Execute()
     {
+        BashToTxt("git status", "helloBash.txt");
+    }
+
+    private void BashToTxt(string command, string outputFileNameWithType)
+    {
+        try
+        {
+            using Process gitProcess = new Process();
+            gitProcess.StartInfo.FileName = PathToBashExe;
+            gitProcess.StartInfo.WorkingDirectory = Directory.GetCurrentDirectory();
+
+            string outputPath = Path.Combine(Directory.GetCurrentDirectory(), $"\\{outputFileNameWithType}");
+            gitProcess.StartInfo.Arguments = $"-c \"{command} >> {outputPath}\"";
+
+            gitProcess.StartInfo.UseShellExecute = false;
+            gitProcess.StartInfo.RedirectStandardOutput = true;
+            gitProcess.StartInfo.RedirectStandardError = true;
+            gitProcess.StartInfo.CreateNoWindow = true;
+
+            gitProcess.Start();
+
+            string output = gitProcess.StandardOutput.ReadToEnd();
+            string error = gitProcess.StandardError.ReadToEnd();
+
+            gitProcess.WaitForExit();
+
+            if (!string.IsNullOrEmpty(output))
+            {
+                Debug.Log($"Git Bash Output: {output}");
+            }
+
+            if (!string.IsNullOrEmpty(error))
+            {
+                Debug.LogError($"Git Bash Error: {error}");
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Error: {e}");
+        }
+    }
+
+    private void EchoToTxt()
+    {
         try
         {
             using (Process gitProcess = new Process())
             {
                 gitProcess.StartInfo.FileName = PathToBashExe;
-                gitProcess.StartInfo.WorkingDirectory = Directory.GetCurrentDirectory(); 
+                gitProcess.StartInfo.WorkingDirectory = Directory.GetCurrentDirectory();
 
-                string outputPath = Path.Combine(Directory.GetCurrentDirectory(), "hello.txt");
-                gitProcess.StartInfo.Arguments = $"-c \"echo hello u >> {outputPath}\"";
+                string outputPath = Path.Combine(Directory.GetCurrentDirectory(), "\\hello.txt");
+                gitProcess.StartInfo.Arguments = $"-c \"echo hello u new >> {outputPath}\"";
 
-                
+
                 // gitProcess.StartInfo.Arguments = $"-c \"{PathToSh}\"";
                 gitProcess.StartInfo.UseShellExecute = false;
                 gitProcess.StartInfo.RedirectStandardOutput = true;
@@ -46,7 +90,7 @@ public class GitBashInterface : ITerminalInterface
                 if (!string.IsNullOrEmpty(error))
                 {
                     Debug.LogError($"Git Bash Error: {error}");
-                } 
+                }
             }
         }
         catch (Exception e)
