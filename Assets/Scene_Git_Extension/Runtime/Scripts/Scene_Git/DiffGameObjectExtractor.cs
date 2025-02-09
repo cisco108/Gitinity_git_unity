@@ -6,8 +6,9 @@ using UnityEngine;
 
 public class DiffGameObjectExtractor : IGitDiffReader
 {
+    //TODO: think of naming here
     private const string FileAGameObjectPrefix = "+--- !u!1 ";
-    private const string FileBGameObjectPrefix = "---- !u!1 ";
+    // private const string FileBGameObjectPrefix = "---- !u!1 ";
     private string _pathToDiff = "saved_diff.txt";
 
 
