@@ -6,13 +6,13 @@ public class HierarchyColor
 {
     static HierarchyColor()
     {
-        EditorApplication.hierarchyWindowItemOnGUI += OnHierarchyGUI;
+        // EditorApplication.hierarchyWindowItemOnGUI += OnHierarchyGUI;
     }
 
     static void OnHierarchyGUI(int instanceID, Rect selectionRect)
     {
         GameObject obj = EditorUtility.InstanceIDToObject(instanceID) as GameObject;
-        if (obj != null && obj.GetComponent<TempSGUI>())
+        if (obj != null && obj.GetComponent<Collider>())
         {
             // Change background color
             EditorGUI.DrawRect(selectionRect, Color.grey);

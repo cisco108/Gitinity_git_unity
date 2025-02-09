@@ -6,13 +6,13 @@ public class HierarchyIcon
 {
     static HierarchyIcon()
     {
-        EditorApplication.hierarchyWindowItemOnGUI += OnHierarchyGUI;
+        // EditorApplication.hierarchyWindowItemOnGUI += OnHierarchyGUI;
     }
 
     static void OnHierarchyGUI(int instanceID, Rect selectionRect)
     {
         GameObject obj = EditorUtility.InstanceIDToObject(instanceID) as GameObject;
-        if (obj != null && obj.GetComponent<TempSGUI>())
+        if (obj != null && obj.GetComponent<Collider>())
         {
             Rect buttonRect = new Rect(selectionRect.x + selectionRect.width - 50, selectionRect.y, 50, 16);
 
