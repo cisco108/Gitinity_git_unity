@@ -35,8 +35,9 @@ public static class SceneGitMain
 
     public static void WriteRelevantDiffToTxt(string targetBranch, string sourceBranch)
     {
-        string revPraseCommand = _commandBuilder.GetRevParse(sourceBranch);
-        string revParseResult = _terminal.ExecuteResultToVar(revPraseCommand);
+        string revParseCommand = _commandBuilder.GetRevParse(sourceBranch);
+        Debug.Log("command " + revParseCommand);
+        string revParseResult = _terminal.ExecuteResultToVar(revParseCommand);
         Debug.Log($"rev-parse {sourceBranch}: {revParseResult}");
         
        
