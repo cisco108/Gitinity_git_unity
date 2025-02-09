@@ -38,6 +38,10 @@ public class GitBashInterface : ITerminalInterface
             gitProcess.StartInfo.WorkingDirectory = Directory.GetCurrentDirectory();
 
             string outputPath = Path.Combine(Directory.GetCurrentDirectory(), $"\\{outputFileNameWithType}");
+            
+            if(File.Exists(outputPath))
+                File.Delete(outputPath);
+            
             gitProcess.StartInfo.Arguments = $"-c \"{command} >> {outputPath}\"";
 
             Debug.Log(gitProcess.StartInfo.Arguments);
