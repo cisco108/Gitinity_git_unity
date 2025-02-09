@@ -14,4 +14,9 @@ public class GitBashCommandBuilder : ICommandBuilder
         //space after command set in initialization
         return GitCommands.rev_parse + branch;
     }
+
+    public string GetDiff(string mergeBase, string revParse)
+    {
+        return GitCommands.diff + mergeBase + revParse;
+    }
 }

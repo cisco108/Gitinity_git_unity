@@ -2,7 +2,7 @@
 {
     /// <summary>
     /// File location specified in implementation.
-    /// Same location also accessed when reading diff from IDiffReader. 
+    /// Same location also accessed when reading diff from IGitDiffReader. 
     /// </summary>
     /// <param name="command"></param>
     public void ExecuteResultToTxt(string command);

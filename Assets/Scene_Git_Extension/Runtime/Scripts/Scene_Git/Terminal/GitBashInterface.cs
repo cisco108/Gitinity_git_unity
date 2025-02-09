@@ -6,16 +6,16 @@ using Debug = UnityEngine.Debug;
 public class GitBashInterface : ITerminalInterface
 {
     private const string PathToBashExe = @"C:\Program Files\Git\git-bash.exe";
-    private const string TempFile = "temp_commit_hash.txt";  
+    private const string TempFile = "temp_commit_hash.txt";
+    private const string SavedDiff = "saved_diff.txt";
 
     // private const string PathToBashExe = @"C:\Program Files\Git\bin\git.exe";
     // private const string PathToSh =
     // "Assets/Scene_Git_Extension/Runtime/Scripts/Scene_Git/Terminal/ShellScripts/get_diff.sh";
 
-    public void ExecuteResultToTxt(string branchName)
+    public void ExecuteResultToTxt(string command)
     {
-        BashToTxt(GitCommands.log_oneline, "saved_diff.txt");
-        // ExecBashScript();
+        BashToTxt(command, SavedDiff);
     }
 
     public string ExecuteResultToVar(string command)
@@ -25,8 +25,9 @@ public class GitBashInterface : ITerminalInterface
         File.Delete(TempFile);
         if (result == string.Empty)
         {
-            Debug.LogError($"Result is empty. Possible wrong branch name");
+            Debug.LogError($"Result is empty. Possible wrong branch names");
         }
+
         return result;
     }
 

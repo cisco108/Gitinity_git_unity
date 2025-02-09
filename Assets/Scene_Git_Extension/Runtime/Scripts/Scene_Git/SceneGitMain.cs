@@ -35,17 +35,20 @@ public static class SceneGitMain
 
     public static void WriteRelevantDiffToTxt(string targetBranch, string sourceBranch)
     {
-        string revParseCommand = _commandBuilder.GetRevParse(sourceBranch);
-        Debug.Log("command " + revParseCommand);
-        string revParseResult = _terminal.ExecuteResultToVar(revParseCommand);
-        Debug.Log($"rev-parse {sourceBranch}: {revParseResult}");
-
         string mergeBaseCommand = _commandBuilder.GetMergeBase(targetBranch, sourceBranch);
         Debug.Log("Merge Base command: " + mergeBaseCommand);
         string mergeBaseResult = _terminal.ExecuteResultToVar(mergeBaseCommand);
         Debug.Log($"Merge Base RESULT: {mergeBaseResult}");
         
-        _terminal.ExecuteResultToTxt("Hello friends");
+        string revParseCommand = _commandBuilder.GetRevParse(sourceBranch);
+        Debug.Log("command " + revParseCommand);
+        string revParseResult = _terminal.ExecuteResultToVar(revParseCommand);
+        Debug.Log($"rev-parse {sourceBranch}: {revParseResult}");
+
+
+        string diffCommand = _commandBuilder.GetDiff(mergeBaseResult, revParseResult);
+        Debug.Log(diffCommand);
+        _terminal.ExecuteResultToTxt(diffCommand);
     }
 
     public static void SaveDiffObjectsAsPrefab(IList<GameObject> diffGaObjects)

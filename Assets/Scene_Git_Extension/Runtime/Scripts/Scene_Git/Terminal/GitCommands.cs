@@ -6,5 +6,6 @@ public static class GitCommands
     public static string echo_hello = "echo hello";
     public static string merge_base= "git merge-base ";
     public static string rev_parse = "git rev-parse ";
+    public static string diff = "git diff ";
 
 }
