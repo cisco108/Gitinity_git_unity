@@ -9,12 +9,14 @@ public class SceneGitGUI : EditorWindow
     private static void Init() => GetWindow<SceneGitGUI>(true, "SceneGet");
 
     public static event Action<string> OnStartSceneGet;
-    public static event Action<string> OnGetDiffFromSh;
-    private string _branchName = string.Empty;
+    public static event Action<string,string> OnGetDiffFromSh;
+    private string _sourceBranch = string.Empty;
+    private string _targetBranch = string.Empty;
 
     private void OnGUI()
     {
-        _branchName = EditorGUILayout.TextField(new GUIContent("merged branch"), _branchName);
+        _targetBranch = EditorGUILayout.TextField(new GUIContent("target branch"), _targetBranch);
+        _sourceBranch = EditorGUILayout.TextField(new GUIContent("source branch"), _sourceBranch);
 
 
         if (GUILayout.Button("Get Scene content back"))
@@ -30,23 +32,23 @@ public class SceneGitGUI : EditorWindow
 
     private void FireGetDiff()
     {
-        if (_branchName == string.Empty)
+        if (_sourceBranch == string.Empty)
         {
             Debug.LogError("Branch name can not be empty!");
             return;
         }
 
-        OnGetDiffFromSh.Invoke(_branchName);
+        OnGetDiffFromSh.Invoke(_targetBranch, _sourceBranch);
     }
 
     private void FireStartSceneGet()
     {
-        if (_branchName == string.Empty)
+        if (_sourceBranch == string.Empty || _targetBranch == string.Empty)
         {
             Debug.LogError("Branch name can not be empty!");
             return;
         }
 
-        OnStartSceneGet.Invoke(_branchName);
+        OnStartSceneGet.Invoke(_sourceBranch);
     }
 }

@@ -2,10 +2,12 @@
 
 public static class GitCommands
 {
-    public static string logOneLine = "git log --oneline";
-    public static string echoHello = "echo hello";
+    public static string log_oneline = "git log --oneline";
+    public static string echo_hello = "echo hello";
+    public static string merge_base= "git merge-base";
+    public static string rev_parse = "git rev_parse";
 
-    public static string CommandBuilde(string command, string commitHash)
+    public static string CommandBuilder(string command, string commitHash)
     {
         return String.Join(command," ", commitHash);
     }

@@ -1,4 +1,4 @@
 ﻿public interface ITerminalInterface
 {
-    public void Execute();
+    public void Execute(string branchName);
 }

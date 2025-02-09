@@ -31,9 +31,10 @@ public static class SceneGitMain
         _saver.CreatePrefab(go);
     }
 
-    public static void GetDiff(string arg)
+    public static void GetDiff(string targetBranch, string sourceBranch)
     {
-        _terminal.Execute();
+        Debug.Log($"target branch: {targetBranch} \n source branch: {sourceBranch}");
+        _terminal.Execute(targetBranch);
     }
 
     public static void SaveDiffObjectsAsPrefab(IList<GameObject> diffGaObjects)
