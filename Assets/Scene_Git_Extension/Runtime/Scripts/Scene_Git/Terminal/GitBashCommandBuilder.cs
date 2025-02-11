@@ -31,6 +31,7 @@ public class GitBashCommandBuilder : ICommandBuilder
 
     public string GetCommit(string contentPath)
     {
+        //TODO: include .meta file
         return GitCommands.add + contentPath
                                + "&& " + GitCommands.commit_m
                                + $" \' added {contentPath} on {DateTime.Now} \'";
