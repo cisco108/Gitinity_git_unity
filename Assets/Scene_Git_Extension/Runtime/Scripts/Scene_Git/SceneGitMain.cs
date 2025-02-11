@@ -32,11 +32,15 @@ public static class SceneGitMain
 
     private static void PseudoMerge(string targetBranch, string sourceBranch)
     {
+        string commitCommand = _commandBuilder.GetCommit(FilePaths.diffPrefabsDirectory);
+       _terminal.ExecuteBasicCommand(commitCommand); 
+        
+        string switchCommand = _commandBuilder.GetSwitch(targetBranch);
+        _terminal.ExecuteBasicCommand(switchCommand);
+        
         string mergeCommand = _commandBuilder.GetCommit(FilePaths.diffPrefabsDirectory);
         _terminal.ExecuteBasicCommand(mergeCommand);
 
-        string switchCommand = _commandBuilder.GetSwitch(targetBranch);
-        _terminal.ExecuteBasicCommand(switchCommand);
     }
 
     private static void WriteRelevantDiffToTxt(string targetBranch, string sourceBranch)
