@@ -36,4 +36,20 @@ public class GitBashCommandBuilder : ICommandBuilder
                                + "&& " + GitCommands.commit_m
                                + $" \' added {contentPath} on {DateTime.Now} \'";
     }
+
+    public string GetSwitch(string branch)
+    {
+        return GitCommands.g_switch + branch;
+    }
+
+    /// <summary>
+    /// Merges using the -Xours strategy
+    /// Uses the --no-edit flag (default commit message)
+    /// </summary>
+    /// <param name="sourceBranch"></param>
+    /// <returns></returns>
+    public string GetMergeXours(string sourceBranch)
+    {
+        return GitCommands.merge_Xours + sourceBranch + GitCommands.flag_no_edit;
+    }
 }

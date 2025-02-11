@@ -11,4 +11,7 @@
     /// <param name="contentPath">file/directory</param>
     /// <returns></returns>
     public string GetCommit(string contentPath);
+
+    public string GetSwitch(string branch);
+    public string GetMergeXours(string sourceBranch);
 }

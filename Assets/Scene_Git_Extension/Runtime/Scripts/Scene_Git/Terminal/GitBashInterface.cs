@@ -28,10 +28,11 @@ public class GitBashInterface : ITerminalInterface
         return result;
     }
 
-    public void ExecuteCommit(string command)
+    public void ExecuteBasicCommand(string command)
     {
         Bash(command);
     }
+
 
     public void ExecudePsuedoMerge(string command)
     {

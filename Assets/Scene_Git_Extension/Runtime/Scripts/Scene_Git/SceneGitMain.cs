@@ -26,14 +26,17 @@ public static class SceneGitMain
     {
         WriteRelevantDiffToTxt(targetBranch, sourceBranch);
         SaveDiffObjectsAsPrefab(_diffReader.GetDiffObjects());
-        PseudoMerge();
+        PseudoMerge(targetBranch, sourceBranch);
     }
 
 
-    private static void PseudoMerge()
+    private static void PseudoMerge(string targetBranch, string sourceBranch)
     {
         string mergeCommand = _commandBuilder.GetCommit(FilePaths.diffPrefabsDirectory);
-        _terminal.ExecuteCommit(mergeCommand);
+        _terminal.ExecuteBasicCommand(mergeCommand);
+
+        string switchCommand = _commandBuilder.GetSwitch(targetBranch);
+        _terminal.ExecuteBasicCommand(switchCommand);
     }
 
     private static void WriteRelevantDiffToTxt(string targetBranch, string sourceBranch)
