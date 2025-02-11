@@ -17,8 +17,14 @@ public static class SceneGitMain
         _terminal = new GitBashInterface();
         _commandBuilder = new GitBashCommandBuilder();
 
-        SceneGitGUI.OnStartSceneGet += StartSceneGet;
-        SceneGitGUI.OnGetDiffFromSh += WriteRelevantDiffToTxt;
+        SceneGitGUI.OnStartSceneGet += Main;
+        // SceneGitGUI.OnGetDiffFromSh += WriteRelevantDiffToTxt;
+    }
+
+    private static void Main(string targetBranch, string sourceBranch)
+    {
+
+        WriteRelevantDiffToTxt(targetBranch, sourceBranch);
     }
 
     private static void StartSceneGet(string arg)

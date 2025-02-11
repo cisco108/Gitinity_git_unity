@@ -8,7 +8,7 @@ public class SceneGitGUI : EditorWindow
     [MenuItem("Window/SceneGet_GUI")]
     private static void Init() => GetWindow<SceneGitGUI>(true, "SceneGet");
 
-    public static event Action<string> OnStartSceneGet;
+    public static event Action<string, string> OnStartSceneGet;
     public static event Action<string,string> OnGetDiffFromSh;
     private string _sourceBranch = string.Empty;
     private string _targetBranch = string.Empty;
@@ -49,6 +49,6 @@ public class SceneGitGUI : EditorWindow
             return;
         }
 
-        OnStartSceneGet.Invoke(_sourceBranch);
+        OnStartSceneGet.Invoke(_targetBranch, _sourceBranch);
     }
 }
