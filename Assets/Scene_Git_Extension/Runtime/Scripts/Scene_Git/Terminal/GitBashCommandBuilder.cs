@@ -32,7 +32,6 @@ public class GitBashCommandBuilder : ICommandBuilder
     public string GetCommit(string contentPath)
     {
         return GitCommands.add + contentPath
-                               + "&& " + contentPath + ".meta"
                                + "&& " + GitCommands.commit_m
                                + $" \' added {contentPath} on {DateTime.Now} \'";
     }
