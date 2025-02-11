@@ -38,7 +38,7 @@ public static class SceneGitMain
         string switchCommand = _commandBuilder.GetSwitch(targetBranch);
         _terminal.ExecuteBasicCommand(switchCommand);
         
-        string mergeCommand = _commandBuilder.GetCommit(FilePaths.diffPrefabsDirectory);
+        string mergeCommand = _commandBuilder.GetMergeXours(FilePaths.diffPrefabsDirectory);
         _terminal.ExecuteBasicCommand(mergeCommand);
 
     }
