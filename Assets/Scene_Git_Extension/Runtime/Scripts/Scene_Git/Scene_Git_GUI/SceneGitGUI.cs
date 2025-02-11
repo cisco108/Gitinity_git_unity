@@ -19,15 +19,15 @@ public class SceneGitGUI : EditorWindow
         _sourceBranch = EditorGUILayout.TextField(new GUIContent("source branch"), _sourceBranch);
 
 
-        if (GUILayout.Button("Get Scene content back"))
+        if (GUILayout.Button("START"))
         {
             FireStartSceneGet();
         }
 
-        if (GUILayout.Button("Get Diff from shell"))
+        /*if (GUILayout.Button("Get Diff from shell"))
         {
             FireGetDiff();
-        }
+        }*/
     }
 
     private void FireGetDiff()

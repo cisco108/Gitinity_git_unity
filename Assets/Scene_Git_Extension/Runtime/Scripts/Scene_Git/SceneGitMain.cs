@@ -33,7 +33,7 @@ public static class SceneGitMain
     private static void PseudoMerge()
     {
         string mergeCommand = _commandBuilder.GetCommit(FilePaths.diffPrefabsDirectory);
-
+        _terminal.ExecuteCommit(mergeCommand);
     }
 
     private static void WriteRelevantDiffToTxt(string targetBranch, string sourceBranch)
