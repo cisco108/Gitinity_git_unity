@@ -50,6 +50,6 @@ public class GitBashCommandBuilder : ICommandBuilder
     /// <returns></returns>
     public string GetMergeXours(string sourceBranch)
     {
-        return GitCommands.merge_Xours + sourceBranch + GitCommands.flag_no_edit;
+        return GitCommands.merge_Xours + sourceBranch + GitFlags.no_edit;
     }
 }

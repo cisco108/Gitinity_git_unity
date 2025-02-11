@@ -15,8 +15,12 @@ public static class GitCommands
     public static string commit_m = "git commit -m ";
     public static string diff = "git diff ";
     
-    //Flags
-    //TODO add SPACE before flag
-    public static string flag_no_edit = " --no-edit";
 
+}
+
+public static class GitFlags
+{
+    //TODO add SPACE before flag
+    public static string no_edit = " --no-edit";
+    
 }
