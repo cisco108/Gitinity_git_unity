@@ -8,6 +8,7 @@ public class DiffGameObjectExtractor : IGitDiffReader
 {
     //TODO: think of naming here
     private const string FileAGameObjectPrefix = "+--- !u!1 ";
+
     // private const string FileBGameObjectPrefix = "---- !u!1 ";
     private string _pathToDiff = "saved_diff.txt";
 
@@ -58,7 +59,10 @@ public class DiffGameObjectExtractor : IGitDiffReader
     private List<long> GetDiffObjIDs(string path, string prefix)
     {
         if (!File.Exists(path))
+        {
             Debug.LogError($"Cant find file {path}");
+            return null;
+        }
 
         string[] linesWhereDiffStarts = File.ReadLines(path).Where(line => line.StartsWith(prefix)).ToArray();
         List<long> diffObjIDs = new();
@@ -75,9 +79,11 @@ public class DiffGameObjectExtractor : IGitDiffReader
             }
         }
 
+        File.Delete(path);
+
         if (diffObjIDs.Count != 0)
             return diffObjIDs;
-        
+
         Debug.LogWarning($"GetDiffObjIDs() diffObjIDs count {diffObjIDs.Count}");
         return null;
     }
