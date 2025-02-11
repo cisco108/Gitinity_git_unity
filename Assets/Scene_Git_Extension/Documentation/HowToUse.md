@@ -17,30 +17,17 @@
 ## 5. Open Window → SceneGet_GUI
 ![Alt text](Images/8.png)
 
-## 6. Type in branch names then
-## press 'Get Diff From Shell', then 'Get Scene Content back'
+## 6. Type in branch names and press 'Start'
 ![Alt text](Images/9.png)
 
-## 7. Prefabs are created in 'Assets/DiffObjects_as_prefabs'
+## 7. Automatic switch to <span style="color: #FF0000;">master</span>
 ![Alt text](Images/10.png)
 
-## 8. Commit them
+## 8. Drag and drop prefabs from Assets/DiffObjects_as_Prefabs
 ![Alt text](Images/11.png)
 
-## 9. Try to merge <span style="color: #0000FF;">feature</span> in <span style="color: #FF0000;">master</span>
+## 9. Result in commits:
 ![Alt text](Images/12.png)
 
-## 10. Checkout the scene file from <span style="color: #FF0000;">master</span>
-![Alt text](Images/13.png)
 
-## 11. Commit it
-![Alt text](Images/14.png)
-![Alt text](Images/15.png)
-
-## 12. On <span style="color: #FF0000;">master</span> drag and drop prefabs to scene 
-![Alt text](Images/17.png)
-
-## 13. Save scene and commit 
-![Alt text](Images/18.png)
-![Alt text](Images/19.png)
 
