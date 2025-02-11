@@ -4,4 +4,5 @@
     public string GetRevParse(string branch);
 
     public string GetDiff(string mergeBase, string revParse);
+    public string GetCommit(string contentPath);
 }

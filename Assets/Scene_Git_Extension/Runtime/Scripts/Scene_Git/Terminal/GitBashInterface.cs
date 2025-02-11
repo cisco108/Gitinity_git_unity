@@ -28,6 +28,43 @@ public class GitBashInterface : ITerminalInterface
         return result;
     }
 
+    public void ExecuteCommit(string command)
+    {
+        Bash(command);
+    }
+
+    public void ExecudePsuedoMerge(string command)
+    {
+        throw new NotImplementedException();
+    }
+
+
+    private void Bash(string command)
+    {
+        try
+        {
+            using Process gitProcess = new Process();
+            gitProcess.StartInfo.FileName = PathToBashExe;
+            gitProcess.StartInfo.WorkingDirectory = Directory.GetCurrentDirectory();
+
+
+            gitProcess.StartInfo.Arguments = $"-c \"{command}\"";
+
+            Debug.Log(gitProcess.StartInfo.Arguments);
+            gitProcess.StartInfo.UseShellExecute = false;
+            gitProcess.StartInfo.RedirectStandardOutput = true;
+            gitProcess.StartInfo.RedirectStandardError = true;
+            gitProcess.StartInfo.CreateNoWindow = true;
+
+            gitProcess.Start();
+            gitProcess.WaitForExit();
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Error from bash: {e}");
+            throw;
+        }
+    }
 
     private void BashToTxt(string command, string outputFileNameWithType)
     {
@@ -38,12 +75,12 @@ public class GitBashInterface : ITerminalInterface
             gitProcess.StartInfo.WorkingDirectory = Directory.GetCurrentDirectory();
 
             string outputPath = Path.Combine(Directory.GetCurrentDirectory(), $"\\{outputFileNameWithType}");
-            
+
             if (File.Exists(SavedDiff))
             {
                 File.Delete(SavedDiff);
             }
-            
+
             gitProcess.StartInfo.Arguments = $"-c \"{command} >> {outputPath}\"";
 
             Debug.Log(gitProcess.StartInfo.Arguments);

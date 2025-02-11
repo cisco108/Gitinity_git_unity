@@ -10,6 +10,7 @@ public static class SceneGitMain
     private static PrefabSaver _saver;
     private static ITerminalInterface _terminal;
     private static ICommandBuilder _commandBuilder;
+
     static SceneGitMain()
     {
         _diffReader = new DiffGameObjectExtractor();
@@ -23,27 +24,23 @@ public static class SceneGitMain
 
     private static void Main(string targetBranch, string sourceBranch)
     {
-
         WriteRelevantDiffToTxt(targetBranch, sourceBranch);
+        SaveDiffObjectsAsPrefab(_diffReader.GetDiffObjects());
+        PseudoMerge();
     }
 
-    private static void StartSceneGet(string arg)
+
+    private static void PseudoMerge()
     {
-       SaveDiffObjectsAsPrefab(_diffReader.GetDiffObjects()); 
-    }
-    
+        string mergeCommand = _commandBuilder.GetCommit(FilePaths.diffPrefabsDirectory);
 
-
-    public static void SaveSingleObject(GameObject go)
-    {
-        _saver.CreatePrefab(go);
     }
 
-    public static void WriteRelevantDiffToTxt(string targetBranch, string sourceBranch)
+    private static void WriteRelevantDiffToTxt(string targetBranch, string sourceBranch)
     {
         string mergeBaseCommand = _commandBuilder.GetMergeBase(targetBranch, sourceBranch);
         string mergeBaseResult = _terminal.ExecuteResultToVar(mergeBaseCommand);
-        
+
         string revParseCommand = _commandBuilder.GetRevParse(sourceBranch);
         string revParseResult = _terminal.ExecuteResultToVar(revParseCommand);
 
@@ -53,7 +50,7 @@ public static class SceneGitMain
         _terminal.ExecuteResultToTxt(diffCommand);
     }
 
-    public static void SaveDiffObjectsAsPrefab(IList<GameObject> diffGaObjects)
+    private static void SaveDiffObjectsAsPrefab(IList<GameObject> diffGaObjects)
     {
         foreach (var go in diffGaObjects)
         {

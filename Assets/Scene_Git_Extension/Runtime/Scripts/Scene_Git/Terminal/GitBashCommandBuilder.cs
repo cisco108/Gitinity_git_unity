@@ -28,4 +28,10 @@ public class GitBashCommandBuilder : ICommandBuilder
         revParse = revParse.Remove(revParse.Length - 28, 28);
         return GitCommands.diff + mergeBase + " " + revParse + " Assets/Scenes";
     }
+
+    public string GetCommit(string contentPath)
+    {
+        return GitCommands.add + contentPath + "&& " + GitCommands.commit_m 
+               + $" \' added {contentPath} on {DateTime.Now} \'"; 
+    }
 }

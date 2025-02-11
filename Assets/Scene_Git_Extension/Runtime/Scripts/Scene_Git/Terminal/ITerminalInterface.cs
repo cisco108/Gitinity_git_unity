@@ -13,4 +13,7 @@
     /// <param name="command"></param>
     /// <returns></returns>
     public string ExecuteResultToVar(string command);
+    public void ExecuteCommit(string command);
+    
+    public void ExecudePsuedoMerge(string command);
 }
