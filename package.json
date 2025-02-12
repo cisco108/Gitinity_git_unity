@@ -1,0 +1,29 @@
+{
+  "version": "0.2.0",
+  "displayName": "250206_improve_scene_merge",
+  "description": "",
+  "unity": "6000.0",
+  "unityRelease": "34f1",
+  "documentationUrl": "https://",
+  "changelogUrl": "https://",
+  "licensesUrl": "",
+  "keywords": [
+    "Unity Package"
+  ],
+  "samples": [
+    {
+      "displayName": "Sample",
+      "description": "This is a sample.",
+      "path": "Samples~/Sample"
+    }
+  ],
+  "author": {
+    "name": "DefaultCompany",
+    "email": "author@mail.com",
+    "url": "https://",
+    "UseSettingsCompanyNameAsName": true
+  },
+  "name": "com.defaultcompany.250206_improve_scene_merge",
+  "dependencies": {},
+  "hideFlags": 0
+}
