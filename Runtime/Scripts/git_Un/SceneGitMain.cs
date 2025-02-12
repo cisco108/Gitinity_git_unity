@@ -10,6 +10,7 @@ public static class SceneGitMain
     private static PrefabSaver _saver;
     private static ITerminalInterface _terminal;
     private static ICommandBuilder _commandBuilder;
+    private static LogSystem _logSystem;
 
     static SceneGitMain()
     {
@@ -17,9 +18,9 @@ public static class SceneGitMain
         _saver = new PrefabSaver();
         _terminal = new GitBashInterface();
         _commandBuilder = new GitBashCommandBuilder();
+        _logSystem = new LogSystem();
 
         SceneGitGUI.OnStartSceneGet += Main;
-        // SceneGitGUI.OnGetDiffFromSh += WriteRelevantDiffToTxt;
     }
 
     private static void Main(string targetBranch, string sourceBranch)
@@ -33,14 +34,15 @@ public static class SceneGitMain
     private static void PseudoMerge(string targetBranch, string sourceBranch)
     {
         string commitCommand = _commandBuilder.GetCommit(FilePaths.diffPrefabsDirectory);
-       _terminal.ExecuteBasicCommand(commitCommand); 
-        
+        _terminal.ExecuteBasicCommand(commitCommand);
+
         string switchCommand = _commandBuilder.GetSwitch(targetBranch);
         _terminal.ExecuteBasicCommand(switchCommand);
-        
+
         string mergeCommand = _commandBuilder.GetMergeXours(sourceBranch);
         _terminal.ExecuteBasicCommand(mergeCommand);
 
+        _logSystem.WriteLog(new string[] { commitCommand, switchCommand, mergeCommand });
     }
 
     private static void WriteRelevantDiffToTxt(string targetBranch, string sourceBranch)
@@ -53,8 +55,9 @@ public static class SceneGitMain
 
 
         string diffCommand = _commandBuilder.GetDiff(mergeBaseResult, revParseResult);
-        Debug.Log(diffCommand);
         _terminal.ExecuteResultToTxt(diffCommand);
+        
+        _logSystem.WriteLog(new string[] {mergeBaseCommand, mergeBaseResult, revParseCommand, revParseResult, diffCommand});
     }
 
     private static void SaveDiffObjectsAsPrefab(IList<GameObject> diffGaObjects)
