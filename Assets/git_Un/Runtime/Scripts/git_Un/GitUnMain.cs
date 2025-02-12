@@ -4,21 +4,21 @@ using UnityEditor;
 using UnityEngine;
 
 [InitializeOnLoad]
-public static class SceneGitMain
+public static class GitUnMain
 {
     private static IGitDiffReader _diffReader;
     private static PrefabSaver _saver;
     private static ITerminalInterface _terminal;
     private static ICommandBuilder _commandBuilder;
 
-    static SceneGitMain()
+    static GitUnMain()
     {
         _diffReader = new DiffGameObjectExtractor();
         _saver = new PrefabSaver();
         _terminal = new GitBashInterface();
         _commandBuilder = new GitBashCommandBuilder();
 
-        SceneGitGUI.OnStartSceneGet += Main;
+        GitUnGUI.OnStartSceneGet += Main;
     }
 
     private static void Main(string targetBranch, string sourceBranch)
