@@ -1,9 +1,12 @@
+using System.IO;
+
 public class FileLocking
 {
     private ITerminalInterface _terminal;
     private ICommandBuilder _commandBuilder;
-    private const string subTreeBranchName = "file-locking-protocol";
+    private const string subtreeBranchName = "file-locking-protocol";
 
+    private string pathToLockFile = FilePaths.lockingProtocolDirectory + FilePaths.lockedProtocolFile;
     public FileLocking(ITerminalInterface terminal, ICommandBuilder commandBuilder)
     {
         _terminal = terminal;
@@ -21,10 +24,24 @@ public class FileLocking
             _commandBuilder.GetTouch(FilePaths.lockingProtocolDirectory, FilePaths.lockedProtocolFile);
         _terminal.ExecuteBasicCommand(touchCommand);
 
+
+        string commitCommand = _commandBuilder.GetCommit(FilePaths.lockingProtocolDirectory);
+        _terminal.ExecuteBasicCommand(commitCommand);
+        
         string subtreeCommand =
-            _commandBuilder.GetSubtreeSplitNewBranch(FilePaths.lockingProtocolDirectory, subTreeBranchName);
+            _commandBuilder.GetSubtreeSplitNewBranch(FilePaths.lockingProtocolDirectory, subtreeBranchName);
         _terminal.ExecuteBasicCommand(subtreeCommand);
 
-        LogSystem.WriteLog(new[] { mkdirCommand, touchCommand, subtreeCommand });
+        LogSystem.WriteLog(new[] { mkdirCommand, touchCommand, commitCommand, subtreeCommand });
+    }
+
+    public void LockFile(string fileToLock)
+    {
+        string switchCommand = _commandBuilder.GetSwitch(subtreeBranchName);
+        
+        File.AppendAllLines(pathToLockFile, new[] { fileToLock });
+        
+        string commitCommand = _commandBuilder.GetCommit(" .");
+        _terminal.ExecuteBasicCommand(commitCommand);
     }
 }
