@@ -52,4 +52,19 @@ public class GitBashCommandBuilder : ICommandBuilder
     {
         return GitCommands.merge_Xours + sourceBranch + GitFlags.no_edit;
     }
+
+    public string GetMkdir(string path)
+    {
+        return BashCommands.mkdir + path;
+    }
+
+    public string GetTouch(string path, string fileNameWithType)
+    {
+        return BashCommands.touch + path;
+    }
+
+    public string GetSubtreeSplitNewBranch(string prefix, string newBranchName)
+    {
+        return GitCommands.subtree_split_prefix + prefix + GitFlags.branch + newBranchName;
+    }
 }

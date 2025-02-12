@@ -14,4 +14,8 @@
 
     public string GetSwitch(string branch);
     public string GetMergeXours(string sourceBranch);
+
+    public string GetMkdir(string path);
+    public string GetTouch(string path, string fileNameWithType);
+    public string GetSubtreeSplitNewBranch(string prefix, string newBranchName);
 }
