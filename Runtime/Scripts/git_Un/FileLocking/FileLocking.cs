@@ -7,6 +7,7 @@ public class FileLocking
     private const string subtreeBranchName = "file-locking-protocol";
 
     private string pathToLockFile = FilePaths.lockingProtocolDirectory + FilePaths.lockedProtocolFile;
+
     public FileLocking(ITerminalInterface terminal, ICommandBuilder commandBuilder)
     {
         _terminal = terminal;
@@ -27,7 +28,7 @@ public class FileLocking
 
         string commitCommand = _commandBuilder.GetCommit(FilePaths.lockingProtocolDirectory);
         _terminal.ExecuteBasicCommand(commitCommand);
-        
+
         string subtreeCommand =
             _commandBuilder.GetSubtreeSplitNewBranch(FilePaths.lockingProtocolDirectory, subtreeBranchName);
         _terminal.ExecuteBasicCommand(subtreeCommand);
@@ -38,10 +39,20 @@ public class FileLocking
     public void LockFile(string fileToLock)
     {
         string switchCommand = _commandBuilder.GetSwitch(subtreeBranchName);
-        
+        _terminal.ExecuteBasicCommand(switchCommand);
+
         File.AppendAllLines(pathToLockFile, new[] { fileToLock });
-        
+
         string commitCommand = _commandBuilder.GetCommit(" .");
         _terminal.ExecuteBasicCommand(commitCommand);
+
+        //TODO:  make modular
+        string switchBackCommand = _commandBuilder.GetSwitch("master");
+        _terminal.ExecuteBasicCommand(switchBackCommand);
+
+        string pushCommand = _commandBuilder.GetPush(subtreeBranchName);
+        _terminal.ExecuteBasicCommand(pushCommand);
+
+        LogSystem.WriteLog(new[] { switchCommand, commitCommand, switchBackCommand, pushCommand });
     }
 }
