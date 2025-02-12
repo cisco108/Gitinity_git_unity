@@ -14,13 +14,21 @@ public static class GitCommands
     public static string add= "git add ";
     public static string commit_m = "git commit -m ";
     public static string diff = "git diff ";
-    
+    public static string subtree_split_prefix = "git subtree split ---prefix="; //no space intentional
+
 
 }
 
 public static class GitFlags
 {
-    //TODO add SPACE before flag
-    public static string no_edit = " --no-edit";
+    //TODO add SPACE before and after flag
+    public static string no_edit = " --no-edit ";
+    public static string branch= " --branch "; 
     
+}
+
+public static class BashCommands
+{
+    public static string touch = "touch ";
+    public static string mkdir = "mkdir ";
 }
