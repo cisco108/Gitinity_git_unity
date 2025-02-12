@@ -9,11 +9,12 @@ public class GitUnGUI : EditorWindow
 
     public static event Action<string, string> OnStartSceneGet;
     public static event Action<string> OnLockFile;
-    public static event Action<string,string> OnGetDiffFromSh;
+    public static event Action<string, string> OnGetDiffFromSh;
     private string _sourceBranch = string.Empty;
     private string _targetBranch = string.Empty;
 
     private string _fileToLock = string.Empty;
+
     private void OnGUI()
     {
         _targetBranch = EditorGUILayout.TextField(new GUIContent("target branch"), _targetBranch);
