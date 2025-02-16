@@ -12,8 +12,6 @@ public class FileLocking
     {
         _terminal = terminal;
         _commandBuilder = commandBuilder;
-
-        SetupFileLockingSystemSubtree();
     }
 
     private void SetupFileLockingSystemSubtree()
@@ -38,6 +36,7 @@ public class FileLocking
 
     public void LockFile(string fileToLock)
     {
+        SetupFileLockingSystemSubtree();
         string switchCommand = _commandBuilder.GetSwitch(subtreeBranchName);
         _terminal.ExecuteBasicCommand(switchCommand);
 
