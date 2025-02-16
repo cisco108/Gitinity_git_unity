@@ -33,7 +33,7 @@ public class GitBashCommandBuilder : ICommandBuilder
     {
         //TODO: include .meta file
         return GitCommands.add + contentPath
-                               + "&& " + GitCommands.commit_m
+                               + " && " + GitCommands.commit_m
                                + $" \' added {contentPath} on {DateTime.Now} \'";
     }
 
