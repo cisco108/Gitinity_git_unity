@@ -1,0 +1,29 @@
+{
+  "version": "0.2.1",
+  "displayName": "git_Un",
+  "description": "",
+  "unity": "6000.0",
+  "unityRelease": "34f1",
+  "documentationUrl": "https://",
+  "changelogUrl": "https://",
+  "licensesUrl": "",
+  "keywords": [
+    "Unity Package"
+  ],
+  "samples": [
+    {
+      "displayName": "Sample",
+      "description": "This is a sample.",
+      "path": "Samples~/Sample"
+    }
+  ],
+  "author": {
+    "name": "newhere_tools",
+    "email": "author@mail.com",
+    "url": "https://",
+    "UseSettingsCompanyNameAsName": true
+  },
+  "name": "com.newhere_tools.git_un",
+  "dependencies": {},
+  "hideFlags": 0
+}
