@@ -37,6 +37,11 @@ public class GitBashCommandBuilder : ICommandBuilder
                                + $" \' added {contentPath} on {DateTime.Now} \'";
     }
 
+    public string GetPush(string branchName)
+    {
+        return GitCommands.push + branchName;
+    }
+
     public string GetSwitch(string branch)
     {
         return GitCommands.g_switch + branch;
@@ -51,5 +56,20 @@ public class GitBashCommandBuilder : ICommandBuilder
     public string GetMergeXours(string sourceBranch)
     {
         return GitCommands.merge_Xours + sourceBranch + GitFlags.no_edit;
+    }
+
+    public string GetMkdir(string path)
+    {
+        return BashCommands.mkdir + path;
+    }
+
+    public string GetTouch(string path, string fileNameWithType)
+    {
+        return BashCommands.touch + path + fileNameWithType;
+    }
+
+    public string GetSubtreeSplitNewBranch(string prefix, string newBranchName)
+    {
+        return GitCommands.subtree_split_prefix + prefix + GitFlags.branch + newBranchName;
     }
 }

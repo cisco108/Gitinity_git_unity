@@ -1,8 +1,8 @@
 using System;
 using System.IO;
-public class LogSystem
+public static class LogSystem
 {
-    public void WriteLog(string[] logMessages)
+    public static void WriteLog(string[] logMessages)
     {
         // Write the timestamp as the first line
         File.AppendAllLines(FilePaths.logsFile, new[] {DateTime.Now.ToString() });

@@ -1,17 +1,19 @@
 using System;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.UIElements;
 
-public class SceneGitGUI : EditorWindow
+public class GitUnGUI : EditorWindow
 {
-    [MenuItem("Window/SceneGet_GUI")]
-    private static void Init() => GetWindow<SceneGitGUI>(true, "SceneGet");
+    [MenuItem("Window/git_Un_GUI")]
+    private static void Init() => GetWindow<GitUnGUI>(true, "git_Un_GUI");
 
     public static event Action<string, string> OnStartSceneGet;
-    public static event Action<string,string> OnGetDiffFromSh;
+    public static event Action<string> OnLockFile;
+    public static event Action<string, string> OnGetDiffFromSh;
     private string _sourceBranch = string.Empty;
     private string _targetBranch = string.Empty;
+
+    private string _fileToLock = string.Empty;
 
     private void OnGUI()
     {
@@ -24,21 +26,22 @@ public class SceneGitGUI : EditorWindow
             FireStartSceneGet();
         }
 
-        /*if (GUILayout.Button("Get Diff from shell"))
+        _fileToLock = EditorGUILayout.TextField(new GUIContent("File to Lock"), _fileToLock);
+        if (GUILayout.Button("Lock File"))
         {
-            FireGetDiff();
-        }*/
+            FireLockFile();
+        }
     }
 
-    private void FireGetDiff()
+    private void FireLockFile()
     {
-        if (_sourceBranch == string.Empty)
+        if (_fileToLock == string.Empty)
         {
-            Debug.LogError("Branch name can not be empty!");
+            Debug.LogError("File can not be empty!");
             return;
         }
 
-        OnGetDiffFromSh.Invoke(_targetBranch, _sourceBranch);
+        OnLockFile.Invoke(_fileToLock);
     }
 
     private void FireStartSceneGet()
