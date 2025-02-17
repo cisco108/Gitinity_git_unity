@@ -8,12 +8,12 @@ public class GitUnGUI : EditorWindow
     private static void Init() => GetWindow<GitUnGUI>(true, "git_Un_GUI");
 
     public static event Action<string, string> OnStartSceneGet;
-    public static event Action<string> OnLockFile;
+    // public static event Action<string> OnLockFile;
     public static event Action<string, string> OnGetDiffFromSh;
     private string _sourceBranch = string.Empty;
     private string _targetBranch = string.Empty;
 
-    private string _fileToLock = string.Empty;
+    // private string _fileToLock = string.Empty;
 
     private void OnGUI()
     {
@@ -26,14 +26,14 @@ public class GitUnGUI : EditorWindow
             FireStartSceneGet();
         }
 
-        _fileToLock = EditorGUILayout.TextField(new GUIContent("File to Lock"), _fileToLock);
+        /*_fileToLock = EditorGUILayout.TextField(new GUIContent("File to Lock"), _fileToLock);
         if (GUILayout.Button("Lock File"))
         {
             FireLockFile();
-        }
+        }*/
     }
 
-    private void FireLockFile()
+    /*private void FireLockFile()
     {
         if (_fileToLock == string.Empty)
         {
@@ -42,7 +42,7 @@ public class GitUnGUI : EditorWindow
         }
 
         OnLockFile.Invoke(_fileToLock);
-    }
+    }*/
 
     private void FireStartSceneGet()
     {
