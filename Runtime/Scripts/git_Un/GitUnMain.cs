@@ -43,7 +43,7 @@ public static class GitUnMain
 
     private static void PseudoMerge(string targetBranch, string sourceBranch)
     {
-        string commitCommand = _commandBuilder.GetCommit(FilePaths.diffPrefabsDirectory);
+        string commitCommand = _commandBuilder.GetCommit(GlobalRefs.filePaths.diffPrefabsDirectory);
         _terminal.ExecuteBasicCommand(commitCommand);
 
         string switchCommand = _commandBuilder.GetSwitch(targetBranch);

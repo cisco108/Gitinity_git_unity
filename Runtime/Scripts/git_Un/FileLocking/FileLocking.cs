@@ -6,7 +6,7 @@ public class FileLocking
     private ICommandBuilder _commandBuilder;
     private const string subtreeBranchName = "file-locking-protocol";
 
-    private string pathToLockFile = FilePaths.lockingProtocolDirectory + FilePaths.lockedProtocolFile;
+    private string pathToLockFile = GlobalRefs.filePaths.lockingProtocolDirectory + GlobalRefs.filePaths.lockedProtocolFile;
 
     public FileLocking(ITerminalInterface terminal, ICommandBuilder commandBuilder)
     {
@@ -16,19 +16,19 @@ public class FileLocking
 
     private void SetupFileLockingSystemSubtree()
     {
-        string mkdirCommand = _commandBuilder.GetMkdir(FilePaths.lockingProtocolDirectory);
+        string mkdirCommand = _commandBuilder.GetMkdir(GlobalRefs.filePaths.lockingProtocolDirectory);
         _terminal.ExecuteBasicCommand(mkdirCommand);
 
         string touchCommand =
-            _commandBuilder.GetTouch(FilePaths.lockingProtocolDirectory, FilePaths.lockedProtocolFile);
+            _commandBuilder.GetTouch(GlobalRefs.filePaths.lockingProtocolDirectory,GlobalRefs.filePaths.lockedProtocolFile);
         _terminal.ExecuteBasicCommand(touchCommand);
 
 
-        string commitCommand = _commandBuilder.GetCommit(FilePaths.lockingProtocolDirectory);
+        string commitCommand = _commandBuilder.GetCommit(GlobalRefs.filePaths.lockingProtocolDirectory);
         _terminal.ExecuteBasicCommand(commitCommand);
 
         string subtreeCommand =
-            _commandBuilder.GetSubtreeSplitNewBranch(FilePaths.lockingProtocolDirectory, subtreeBranchName);
+            _commandBuilder.GetSubtreeSplitNewBranch(GlobalRefs.filePaths.lockingProtocolDirectory, subtreeBranchName);
         _terminal.ExecuteBasicCommand(subtreeCommand);
 
         LogSystem.WriteLog(new[] { mkdirCommand, touchCommand, commitCommand, subtreeCommand });
