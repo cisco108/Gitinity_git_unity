@@ -8,34 +8,45 @@ public class GitUnGUI : EditorWindow
     private static void Init() => GetWindow<GitUnGUI>(true, "git_Un_GUI");
 
     public static event Action<string, string> OnStartSceneGet;
+    public static event Action InitGitDataObject;
+
+    public static event Action<string[]> OnGetBranches;
 
     // public static event Action<string> OnLockFile;
-    public static event Action<string, string> OnGetDiffFromSh;
+    // public static event Action<string, string> OnGetDiffFromSh;
     private string _sourceBranch = string.Empty;
     private string _targetBranch = string.Empty;
     private int _targetSelection = 0;
     private int _sourceSelection = 0;
 
-    private string[] branchNames = new[] { "master", "feature", "dev-this" };
+    private static GitDataObject _dataObject;
+
+    private string[] _branchNames;
+
     // private string _fileToLock = string.Empty;
+    private int foo = 0;
 
     private void OnGUI()
     {
-        _targetSelection = EditorGUILayout.Popup(new GUIContent("target branch"), _targetSelection, branchNames);
-        _sourceSelection = EditorGUILayout.Popup(new GUIContent("source branch"), _sourceSelection, branchNames);
+        if (_dataObject == null)
+        {
+            foo++;
+            Debug.Log(foo);
+            InitGitDataObject.Invoke();
+            _branchNames = _dataObject.BranchNames;
+        }
 
-        _targetBranch = branchNames[_targetSelection];
-        _sourceBranch = branchNames[_sourceSelection];
-        
-        Debug.Log($"target: {_targetBranch}");
-        Debug.Log($"source: {_sourceBranch}");
-        
+        _targetSelection = EditorGUILayout.Popup(new GUIContent("target branch"), _targetSelection, _branchNames);
+        _sourceSelection = EditorGUILayout.Popup(new GUIContent("source branch"), _sourceSelection, _branchNames);
+
+        _targetBranch = _branchNames[_targetSelection];
+        _sourceBranch = _branchNames[_sourceSelection];
+
+
         if (GUILayout.Button("START"))
         {
             FireStartSceneGet();
         }
-
-
 
 
         /*_fileToLock = EditorGUILayout.TextField(new GUIContent("File to Lock"), _fileToLock);
@@ -65,5 +76,16 @@ public class GitUnGUI : EditorWindow
         }
 
         OnStartSceneGet.Invoke(_targetBranch, _sourceBranch);
+    }
+
+    public static void InitGitDataObj(string[] branchNames)
+    {
+        _dataObject = new GitDataObject(branchNames);
+    }
+
+    private void OnDestroy()
+    {
+        _dataObject = null;
+        Debug.Log($"OnDestroy");
     }
 }
