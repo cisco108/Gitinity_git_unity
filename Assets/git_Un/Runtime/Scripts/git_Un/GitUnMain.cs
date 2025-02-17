@@ -22,7 +22,13 @@ public static class GitUnMain
         // _fileLocking = new FileLocking(_terminal, _commandBuilder);
         
         GitUnGUI.OnStartSceneGet += Main;
+        GitUnGUI.InitGitDataObject += GetGitData;
         // GitUnGUI.OnLockFile += _fileLocking.LockFile;
+    }
+
+    private static void GetGitData()
+    {
+        GitUnGUI.InitGitDataObj(new []{"hello", "from", "main"});
     }
 
     private static void Main(string targetBranch, string sourceBranch)
