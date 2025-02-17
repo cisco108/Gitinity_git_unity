@@ -33,7 +33,7 @@ public class GitBashInterface : ITerminalInterface
     {
         switch (command)
         {
-            case "git branch":
+            case "git branch ":
                 var s = ExecuteResultToString(command);
                 string[] result = s.Split('\n')
                     .Select(b => b.Trim('*', ' '))
@@ -41,7 +41,7 @@ public class GitBashInterface : ITerminalInterface
                 return result;
             
             default:
-                Debug.LogError($"Only implemented for 'branch' command. Please add implementation for other");
+                Debug.LogError($"Only implemented for 'git branchSPACE' command. Please add implementation for other");
                 return null;
         }
     }
@@ -122,7 +122,7 @@ public class GitBashInterface : ITerminalInterface
             Debug.LogError($"Cant find file {path}");
 
         string s = File.ReadAllText(path);
-        Debug.Log($"Extracted string: {s}");
+        // Debug.Log($"Extracted string: {s}");
         return s;
     }
 }
