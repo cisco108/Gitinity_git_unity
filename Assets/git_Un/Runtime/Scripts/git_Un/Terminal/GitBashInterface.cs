@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using Debug = UnityEngine.Debug;
 
 public class GitBashInterface : ITerminalInterface
@@ -15,7 +16,7 @@ public class GitBashInterface : ITerminalInterface
         BashToTxt(command, SavedDiff);
     }
 
-    public string ExecuteResultToVar(string command)
+    public string ExecuteResultToString(string command)
     {
         BashToTxt(command, TempFile);
         string result = TxtToString(TempFile);
@@ -28,15 +29,26 @@ public class GitBashInterface : ITerminalInterface
         return result;
     }
 
+    public string[] ExecuteResultToStringArr(string command)
+    {
+        switch (command)
+        {
+            case "git branch":
+                var s = ExecuteResultToString(command);
+                string[] result = s.Split('\n')
+                    .Select(b => b.Trim('*', ' '))
+                    .ToArray();
+                return result;
+            
+            default:
+                Debug.LogError($"Only implemented for 'branch' command. Please add implementation for other");
+                return null;
+        }
+    }
+
     public void ExecuteBasicCommand(string command)
     {
         Bash(command);
-    }
-
-
-    public void ExecudePsuedoMerge(string command)
-    {
-        throw new NotImplementedException();
     }
 
 
@@ -84,7 +96,7 @@ public class GitBashInterface : ITerminalInterface
 
             gitProcess.StartInfo.Arguments = $"-c \"{command} >> {outputPath}\"";
 
-            Debug.Log(gitProcess.StartInfo.Arguments);
+            // Debug.Log(gitProcess.StartInfo.Arguments);
             gitProcess.StartInfo.UseShellExecute = false;
             gitProcess.StartInfo.RedirectStandardOutput = true;
             gitProcess.StartInfo.RedirectStandardError = true;
@@ -110,7 +122,7 @@ public class GitBashInterface : ITerminalInterface
             Debug.LogError($"Cant find file {path}");
 
         string s = File.ReadAllText(path);
-        // Debug.Log($"Extracted string: {s}");
+        Debug.Log($"Extracted string: {s}");
         return s;
     }
 }

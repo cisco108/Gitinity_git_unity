@@ -12,12 +12,12 @@
     /// </summary>
     /// <param name="command"></param>
     /// <returns></returns>
-    public string ExecuteResultToVar(string command);
+    public string ExecuteResultToString(string command);
+    public string[] ExecuteResultToStringArr(string command);
     /// <summary>
     /// Use it when you just want to do a command where you not want to get anything back.
     /// </summary>
     /// <param name="command"></param>
     public void ExecuteBasicCommand(string command);
     
-    public void ExecudePsuedoMerge(string command);
 }

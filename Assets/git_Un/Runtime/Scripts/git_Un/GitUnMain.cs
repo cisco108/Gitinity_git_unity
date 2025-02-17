@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -28,7 +29,8 @@ public static class GitUnMain
 
     private static void GetGitData()
     {
-        GitUnGUI.InitGitDataObj(new []{"hello", "from", "main"});
+        var branches = _terminal.ExecuteResultToStringArr(GitCommands.branch);
+        GitUnGUI.InitGitDataObj(branches);
     }
 
     private static void Main(string targetBranch, string sourceBranch)
@@ -56,10 +58,10 @@ public static class GitUnMain
     private static void WriteRelevantDiffToTxt(string targetBranch, string sourceBranch)
     {
         string mergeBaseCommand = _commandBuilder.GetMergeBase(targetBranch, sourceBranch);
-        string mergeBaseResult = _terminal.ExecuteResultToVar(mergeBaseCommand);
+        string mergeBaseResult = _terminal.ExecuteResultToString(mergeBaseCommand);
 
         string revParseCommand = _commandBuilder.GetRevParse(sourceBranch);
-        string revParseResult = _terminal.ExecuteResultToVar(revParseCommand);
+        string revParseResult = _terminal.ExecuteResultToString(revParseCommand);
 
 
         string diffCommand = _commandBuilder.GetDiff(mergeBaseResult, revParseResult);
