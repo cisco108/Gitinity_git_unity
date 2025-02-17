@@ -1,8 +1,7 @@
-using System;
 using UnityEditor;
 using UnityEngine;
 
-public enum Path
+public enum CustomPath
 {
     BashExe,
 }
@@ -17,11 +16,11 @@ public static class GlobalRefs
         filePaths = new FilePaths();
     }
 
-    public static void UpdateCustomPaths(Path pathToUpdate, string newPath)
+    public static void UpdateCustomPaths(CustomPath pathToUpdate, string newPath)
     {
         switch (pathToUpdate)
         {
-            case Path.BashExe:
+            case CustomPath.BashExe:
                 filePaths.gitBashExe = newPath;
                 break;
             default:
