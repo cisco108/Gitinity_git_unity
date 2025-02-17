@@ -1,8 +1,9 @@
 //TODO: think of '/' and '\'
-public static class FilePaths
+public class FilePaths
 {
-    public static string logsFile = "logs.txt";
-    public static string lockedProtocolFile = "locked_files.txt";
-    public static string diffPrefabsDirectory = "Assets/DiffObjects_as_Prefabs/";
-    public static string lockingProtocolDirectory = "LockingProtocol/"; 
+    public string logsFile = "logs.txt";
+    public string lockedProtocolFile = "locked_files.txt";
+    public string diffPrefabsDirectory = "Assets/DiffObjects_as_Prefabs/";
+    public string lockingProtocolDirectory = "LockingProtocol/"; 
+    public string gitBashExe =  @"C:\Program Files\Git\git-bash.exe";
 }

@@ -6,7 +6,7 @@ using Debug = UnityEngine.Debug;
 
 public class GitBashInterface : ITerminalInterface
 {
-    private const string PathToBashExe = @"C:\Program Files\Git\git-bash.exe";
+    // private const string PathToBashExe = @"C:\Program Files\Git\git-bash.exe";
     private const string TempFile = "temp_commit_hash.txt";
     private const string SavedDiff = "saved_diff.txt";
 
@@ -57,7 +57,7 @@ public class GitBashInterface : ITerminalInterface
         try
         {
             using Process gitProcess = new Process();
-            gitProcess.StartInfo.FileName = PathToBashExe;
+            gitProcess.StartInfo.FileName = GlobalRefs.filePaths.gitBashExe;
             gitProcess.StartInfo.WorkingDirectory = Directory.GetCurrentDirectory();
 
 
@@ -84,7 +84,7 @@ public class GitBashInterface : ITerminalInterface
         try
         {
             using Process gitProcess = new Process();
-            gitProcess.StartInfo.FileName = PathToBashExe;
+            gitProcess.StartInfo.FileName = GlobalRefs.filePaths.gitBashExe;
             gitProcess.StartInfo.WorkingDirectory = Directory.GetCurrentDirectory();
 
             string outputPath = Path.Combine(Directory.GetCurrentDirectory(), $"\\{outputFileNameWithType}");
