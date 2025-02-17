@@ -8,23 +8,35 @@ public class GitUnGUI : EditorWindow
     private static void Init() => GetWindow<GitUnGUI>(true, "git_Un_GUI");
 
     public static event Action<string, string> OnStartSceneGet;
+
     // public static event Action<string> OnLockFile;
     public static event Action<string, string> OnGetDiffFromSh;
     private string _sourceBranch = string.Empty;
     private string _targetBranch = string.Empty;
+    private int _targetSelection = 0;
+    private int _sourceSelection = 0;
 
+    private string[] branchNames = new[] { "master", "feature", "dev-this" };
     // private string _fileToLock = string.Empty;
 
     private void OnGUI()
     {
-        _targetBranch = EditorGUILayout.TextField(new GUIContent("target branch"), _targetBranch);
-        _sourceBranch = EditorGUILayout.TextField(new GUIContent("source branch"), _sourceBranch);
+        _targetSelection = EditorGUILayout.Popup(new GUIContent("target branch"), _targetSelection, branchNames);
+        _sourceSelection = EditorGUILayout.Popup(new GUIContent("source branch"), _sourceSelection, branchNames);
 
-
+        _targetBranch = branchNames[_targetSelection];
+        _sourceBranch = branchNames[_sourceSelection];
+        
+        Debug.Log($"target: {_targetBranch}");
+        Debug.Log($"source: {_sourceBranch}");
+        
         if (GUILayout.Button("START"))
         {
             FireStartSceneGet();
         }
+
+
+
 
         /*_fileToLock = EditorGUILayout.TextField(new GUIContent("File to Lock"), _fileToLock);
         if (GUILayout.Button("Lock File"))
