@@ -10,7 +10,11 @@ public class PrefabSaver
     {
         if (!Directory.Exists(filePaths.DiffPrefabsDirectory))
         {
-            AssetDatabase.CreateFolder(filePaths.diffPrefabsParentDirectory, filePaths.diffPrefabsDirName);
+            string pD = filePaths.diffPrefabsParentDirectory;
+            pD = pD.Trim('/');
+            string dN = filePaths.diffPrefabsDirName;
+            dN = dN.Trim('/');
+            AssetDatabase.CreateFolder(pD, dN);
         }
 
         string localPath = filePaths.DiffPrefabsDirectory + gameObject.name + ".prefab";
