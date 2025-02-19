@@ -4,12 +4,16 @@ using UnityEditor;
 
 public class PrefabSaver
 {
+    private UserConfig filePaths = GlobalRefs.filePaths; 
     // https://docs.unity3d.com/6000.0/Documentation/ScriptReference/PrefabUtility.SaveAsPrefabAsset.html
     public void CreatePrefab(GameObject gameObject)
     {
-        if (!Directory.Exists("Assets/DiffObjects_as_Prefabs"))
-            AssetDatabase.CreateFolder("Assets", "DiffObjects_as_Prefabs");
-        string localPath = "Assets/DiffObjects_as_Prefabs/" + gameObject.name + ".prefab";
+        if (!Directory.Exists(filePaths.DiffPrefabsDirectory))
+        {
+            AssetDatabase.CreateFolder(filePaths.diffPrefabsParentDirectory, filePaths.diffPrefabsDirName);
+        }
+
+        string localPath = GlobalRefs.filePaths.DiffPrefabsDirectory + gameObject.name + ".prefab";
 
         // Make sure the file name is unique, in case an existing Prefab has the same name.
         localPath = AssetDatabase.GenerateUniqueAssetPath(localPath);
@@ -17,7 +21,7 @@ public class PrefabSaver
         // Create the new Prefab and log whether Prefab was saved successfully.
         bool prefabSuccess;
         PrefabUtility.SaveAsPrefabAsset(gameObject, localPath, out prefabSuccess);
-        if (prefabSuccess == true)
+        if (prefabSuccess)
             Debug.Log("Prefab was saved successfully");
         else
             Debug.Log("Prefab failed to save" + prefabSuccess);

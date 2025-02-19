@@ -6,7 +6,6 @@ using Debug = UnityEngine.Debug;
 
 public class GitBashInterface : ITerminalInterface
 {
-    // private const string PathToBashExe = @"C:\Program Files\Git\git-bash.exe";
     private const string TempFile = "temp_commit_hash.txt";
     private const string SavedDiff = "saved_diff.txt";
 

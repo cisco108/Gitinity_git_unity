@@ -15,7 +15,6 @@ public static class GitUnMain
 
     static GitUnMain()
     {
-        Debug.Log(UserConfig.instance.gitBashExe);
         _diffReader = new DiffGameObjectExtractor();
         _saver = new PrefabSaver();
         _terminal = new GitBashInterface();
@@ -44,7 +43,7 @@ public static class GitUnMain
 
     private static void PseudoMerge(string targetBranch, string sourceBranch)
     {
-        string commitCommand = _commandBuilder.GetCommit(GlobalRefs.filePaths.diffPrefabsDirectory);
+        string commitCommand = _commandBuilder.GetCommit(GlobalRefs.filePaths.DiffPrefabsDirectory);
         _terminal.ExecuteBasicCommand(commitCommand);
 
         string switchCommand = _commandBuilder.GetSwitch(targetBranch);

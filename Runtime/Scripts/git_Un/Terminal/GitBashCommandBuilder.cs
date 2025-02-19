@@ -26,6 +26,7 @@ public class GitBashCommandBuilder : ICommandBuilder
     {
         mergeBase = mergeBase.Remove(mergeBase.Length - 28, 28);
         revParse = revParse.Remove(revParse.Length - 28, 28);
+        //TODO: rn hard coded path, maybe bring to configs
         return GitCommands.diff + mergeBase + " " + revParse + " Assets/Scenes";
     }
 
