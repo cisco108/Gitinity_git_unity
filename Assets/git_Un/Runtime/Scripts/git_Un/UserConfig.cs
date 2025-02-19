@@ -1,3 +1,4 @@
+using System.IO;
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.Serialization;
@@ -21,7 +22,9 @@ public class UserConfig : ScriptableObject
 
     public string logsFile = "logs.txt";
     public string lockedProtocolFile = "locked_files.txt";
-    public string diffPrefabsDirectory = "Assets/DiffObjects_as_Prefabs/";
+    public string diffPrefabsParentDirectory = "Assets/";
+    public string diffPrefabsDirName = "DiffObjects_as_Prefabs/";
+    public string DiffPrefabsDirectory => Path.Combine(diffPrefabsParentDirectory, diffPrefabsDirName);
     public string lockingProtocolDirectory = "LockingProtocol/";
     public string gitBashExe = @"C:\Program Files\Git\git-bash.exe";
 }
