@@ -24,7 +24,7 @@ public static class GlobalRefs
                 filePaths.gitBashExe = newPath;
                 break;
             default:
-                Debug.Log($"hello from Global Refs");
+                Debug.Log($"no valid option");
                 break;
         }
     }
