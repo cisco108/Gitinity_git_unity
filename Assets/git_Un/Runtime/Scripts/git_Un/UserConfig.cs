@@ -24,7 +24,7 @@ public class UserConfig : ScriptableObject
     public string lockedProtocolFile = "locked_files.txt";
     public string diffPrefabsParentDirectory = "Assets/";
     public string diffPrefabsDirName = "DiffObjects_as_Prefabs/";
-    public string DiffPrefabsDirectory => Path.Combine(diffPrefabsParentDirectory, diffPrefabsDirName);
+    public string DiffPrefabsDirectory => diffPrefabsParentDirectory + diffPrefabsDirName;
     public string lockingProtocolDirectory = "LockingProtocol/";
     public string gitBashExe = @"C:\Program Files\Git\git-bash.exe";
 }
