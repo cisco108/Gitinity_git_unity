@@ -1,9 +1,8 @@
-# git_Un - A git wrapper for Unity
-
+# <img src="Assets/git_Un/Documentation/Images/2502_logo.jpg" alt="Alt text" style="width:4cm;vertical-align:middle;" >  git_Un - A git wrapper for Unity
 ### Get it with the package manager from:
 ``https://github.com/cisco108/2502_Git_Un.git#upm``
 
-![Alt text](Assets/git_Un/Documentation/Images/2502_logo.jpg)
+[//]: # (![Alt text]&#40;Assets/git_Un/Documentation/Images/2502_logo.jpg&#41;)
 
 # How to Use: 
 
