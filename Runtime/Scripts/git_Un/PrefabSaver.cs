@@ -13,7 +13,7 @@ public class PrefabSaver
             AssetDatabase.CreateFolder(filePaths.diffPrefabsParentDirectory, filePaths.diffPrefabsDirName);
         }
 
-        string localPath = GlobalRefs.filePaths.DiffPrefabsDirectory + gameObject.name + ".prefab";
+        string localPath = filePaths.DiffPrefabsDirectory + gameObject.name + ".prefab";
 
         // Make sure the file name is unique, in case an existing Prefab has the same name.
         localPath = AssetDatabase.GenerateUniqueAssetPath(localPath);
