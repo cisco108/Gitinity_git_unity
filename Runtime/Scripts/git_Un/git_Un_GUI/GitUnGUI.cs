@@ -26,7 +26,23 @@ public class GitUnGUI : EditorWindow
     // private string _fileToLock = string.Empty;
     private int foo = 0;
 
+    private bool useCustomSettings;
+
     private void OnGUI()
+    {
+        BranchDropdown();
+        if (GUILayout.Button("START"))
+        {
+            FireStartSceneGet();
+        }
+
+        if (!useCustomSettings)
+        {
+            return;
+        }
+    }
+
+    private void BranchDropdown()
     {
         if (_dataObject == null)
         {
@@ -41,31 +57,7 @@ public class GitUnGUI : EditorWindow
 
         _targetBranch = _branchNames[_targetSelection];
         _sourceBranch = _branchNames[_sourceSelection];
-
-
-        if (GUILayout.Button("START"))
-        {
-            FireStartSceneGet();
-        }
-
-
-        /*_fileToLock = EditorGUILayout.TextField(new GUIContent("File to Lock"), _fileToLock);
-        if (GUILayout.Button("Lock File"))
-        {
-            FireLockFile();
-        }*/
     }
-
-    /*private void FireLockFile()
-    {
-        if (_fileToLock == string.Empty)
-        {
-            Debug.LogError("File can not be empty!");
-            return;
-        }
-
-        OnLockFile.Invoke(_fileToLock);
-    }*/
 
     private void FireStartSceneGet()
     {
@@ -80,7 +72,11 @@ public class GitUnGUI : EditorWindow
 
     public static void InitGitDataObj(string[] branchNames)
     {
-        _dataObject = new GitDataObject(branchNames);
+        if (branchNames != null)
+        {
+            _dataObject = new GitDataObject(branchNames);
+            return;
+        }
     }
 
     private void OnDestroy()

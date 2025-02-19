@@ -15,13 +15,14 @@ public static class GitUnMain
 
     static GitUnMain()
     {
+        Debug.Log(UserConfig.instance.test);
         _diffReader = new DiffGameObjectExtractor();
         _saver = new PrefabSaver();
         _terminal = new GitBashInterface();
         _commandBuilder = new GitBashCommandBuilder();
 
         // _fileLocking = new FileLocking(_terminal, _commandBuilder);
-        
+
         GitUnGUI.OnStartSceneGet += Main;
         GitUnGUI.InitGitDataObject += GetGitData;
         // GitUnGUI.OnLockFile += _fileLocking.LockFile;
@@ -66,8 +67,9 @@ public static class GitUnMain
 
         string diffCommand = _commandBuilder.GetDiff(mergeBaseResult, revParseResult);
         _terminal.ExecuteResultToTxt(diffCommand);
-        
-        LogSystem.WriteLog(new string[] {mergeBaseCommand, mergeBaseResult, revParseCommand, revParseResult, diffCommand});
+
+        LogSystem.WriteLog(new string[]
+            { mergeBaseCommand, mergeBaseResult, revParseCommand, revParseResult, diffCommand });
     }
 
     private static void SaveDiffObjectsAsPrefab(IList<GameObject> diffGaObjects)
