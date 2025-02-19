@@ -1,6 +1,7 @@
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
+using UnityEditor;
 
 [CustomEditor(typeof(UserConfig), true)]
 public class UserConfigEditor : Editor
@@ -19,7 +20,7 @@ public class UserConfigEditor : Editor
 
     void FindProperties()
     {
-        _terminal = serializedObject.FindProperty(nameof(UserConfig.terminal));
+        _terminal = serializedObject.FindProperty(nameof(UserConfig.gitBashExe));
     }
 
     void InitEditor()
@@ -30,7 +31,6 @@ public class UserConfigEditor : Editor
 
     void Compose()
     {
-        _root.Add(new Label("git Un Config"));
         _root.Add(_terminalField);
     }
 }

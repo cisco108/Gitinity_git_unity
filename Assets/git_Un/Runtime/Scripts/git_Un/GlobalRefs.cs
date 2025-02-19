@@ -9,11 +9,11 @@ public enum CustomPath
 [InitializeOnLoad]
 public static class GlobalRefs
 {
-    public static FilePaths filePaths;
+    public static UserConfig filePaths;
 
     static GlobalRefs()
     {
-        filePaths = new FilePaths();
+        filePaths = UserConfig.instance;
     }
 
     public static void UpdateCustomPaths(CustomPath pathToUpdate, string newPath)

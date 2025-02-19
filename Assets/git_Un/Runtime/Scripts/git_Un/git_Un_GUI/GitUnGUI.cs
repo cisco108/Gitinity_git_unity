@@ -3,6 +3,7 @@ using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
+using PopupWindow = UnityEngine.UIElements.PopupWindow;
 
 public class GitUnGUI : EditorWindow
 {
@@ -26,23 +27,21 @@ public class GitUnGUI : EditorWindow
 
     void CreateGUI()
     {
-        rootVisualElement.Add(new Label("Unity Git Helper"));
         var editor = (UserConfigEditor)Editor.CreateEditor(UserConfig.instance);
         var editorRoot = editor.CreateInspectorGUI();
         editorRoot.Bind(editor.serializedObject);
         rootVisualElement.Add(editorRoot);
-
     }
 
     private void OnGUI()
     {
-        /*
+        //TODO: make nice layout, possibly move also to ScriptableObject
+        GUILayout.Space(100);
         BranchDropdown();
         if (GUILayout.Button("START"))
         {
             FireStartSceneGet();
         }
-        */
 
     }
 
