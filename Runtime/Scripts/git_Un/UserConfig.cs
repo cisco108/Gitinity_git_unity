@@ -1,11 +1,13 @@
 using UnityEngine;
 using UnityEditor;
+using UnityEngine.Serialization;
 
 public class UserConfig : ScriptableObject
 {
     private static string assetName => nameof(UserConfig);
 
     private static UserConfig _instance;
+
     public static UserConfig instance
     {
         get
@@ -17,5 +19,5 @@ public class UserConfig : ScriptableObject
         }
     }
 
-    public string test = $"Hello Sir {assetName}";
+    public string terminal = $"Hello Sir {assetName}";
 }
