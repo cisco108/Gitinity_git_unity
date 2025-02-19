@@ -1,6 +1,8 @@
 using System;
 using UnityEditor;
+using UnityEditor.UIElements;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class GitUnGUI : EditorWindow
 {
@@ -10,7 +12,6 @@ public class GitUnGUI : EditorWindow
     public static event Action<string, string> OnStartSceneGet;
     public static event Action InitGitDataObject;
 
-    public static event Action<string[]> OnGetBranches;
 
     private string _sourceBranch = string.Empty;
     private string _targetBranch = string.Empty;
@@ -23,14 +24,25 @@ public class GitUnGUI : EditorWindow
 
     private int foo = 0;
 
+    void CreateGUI()
+    {
+        rootVisualElement.Add(new Label("Unity Git Helper"));
+        var editor = (UserConfigEditor)Editor.CreateEditor(UserConfig.instance);
+        var editorRoot = editor.CreateInspectorGUI();
+        editorRoot.Bind(editor.serializedObject);
+        rootVisualElement.Add(editorRoot);
+
+    }
 
     private void OnGUI()
     {
+        /*
         BranchDropdown();
         if (GUILayout.Button("START"))
         {
             FireStartSceneGet();
         }
+        */
 
     }
 
