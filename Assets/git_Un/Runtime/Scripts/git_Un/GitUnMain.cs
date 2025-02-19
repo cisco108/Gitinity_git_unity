@@ -15,7 +15,7 @@ public static class GitUnMain
 
     static GitUnMain()
     {
-        Debug.Log(UserConfig.instance.test);
+        Debug.Log(UserConfig.instance.terminal);
         _diffReader = new DiffGameObjectExtractor();
         _saver = new PrefabSaver();
         _terminal = new GitBashInterface();

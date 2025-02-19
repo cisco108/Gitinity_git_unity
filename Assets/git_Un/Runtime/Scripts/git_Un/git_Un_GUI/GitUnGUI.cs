@@ -12,8 +12,6 @@ public class GitUnGUI : EditorWindow
 
     public static event Action<string[]> OnGetBranches;
 
-    // public static event Action<string> OnLockFile;
-    // public static event Action<string, string> OnGetDiffFromSh;
     private string _sourceBranch = string.Empty;
     private string _targetBranch = string.Empty;
     private int _targetSelection = 0;
@@ -23,10 +21,8 @@ public class GitUnGUI : EditorWindow
 
     private string[] _branchNames;
 
-    // private string _fileToLock = string.Empty;
     private int foo = 0;
 
-    private bool useCustomSettings;
 
     private void OnGUI()
     {
@@ -36,10 +32,6 @@ public class GitUnGUI : EditorWindow
             FireStartSceneGet();
         }
 
-        if (!useCustomSettings)
-        {
-            return;
-        }
     }
 
     private void BranchDropdown()

@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c61ec0ae37c4674a825119d8b6ba439, type: 3}
   m_Name: UserConfig
   m_EditorClassIdentifier: 
-  test: Hello Sir UserConfig
+  terminal: Hello Sir UserConfig
