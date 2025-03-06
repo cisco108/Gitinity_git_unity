@@ -11,10 +11,11 @@ public class GitUnGUI : EditorWindow
     private static void Init() => GetWindow<GitUnGUI>(true, "git_Un_GUI");
 
     public static event Action<string, string> OnStartSceneGet;
+    public static event Action<string> OnLockFile;
     public static event Action OnSetupGitUn;
     public static event Action InitGitDataObject;
 
-
+    private string _fileToLock = string.Empty;
     private string _sourceBranch = string.Empty;
     private string _targetBranch = string.Empty;
     private int _targetSelection = 0;
@@ -44,12 +45,25 @@ public class GitUnGUI : EditorWindow
             FireSetup();
         }
 
-        GUILayout.Space(100);
+        GUILayout.Space(50);
         BranchDropdown();
         if (GUILayout.Button("START"))
         {
             FireStartSceneGet();
         }
+        
+        GUILayout.Space(50);
+        _fileToLock = EditorGUILayout.TextField(new GUIContent("file to lock"), _fileToLock);
+
+        if (GUILayout.Button("Lock File"))
+        {
+            FireLockFile();
+        }
+    }
+
+    private void FireLockFile()
+    {
+        OnLockFile.Invoke(_fileToLock);
     }
 
     private void FireSetup()
