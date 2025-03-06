@@ -24,7 +24,38 @@ public static class GitUnMain
 
         GitUnGUI.OnStartSceneGet += Main;
         GitUnGUI.InitGitDataObject += GetGitData;
+        GitUnGUI.OnSetupGitUn += SetupGitUn;
         // GitUnGUI.OnLockFile += _fileLocking.LockFile;
+    }
+
+    private static void SetupGitUn()
+    {
+        string initCmd = _commandBuilder.GetInit();
+        _terminal.ExecuteBasicCommand(initCmd);
+        
+        string touchCmd = _commandBuilder.GetTouch("", GlobalRefs.gitignore);
+        _terminal.ExecuteBasicCommand(touchCmd);
+
+        string gitignoreContentCmd = _commandBuilder.GetNewestGitignoreContent();
+        _terminal.ExecuteBasicCommand(gitignoreContentCmd);
+        
+        string commitCmd = _commandBuilder.GetCommit(GlobalRefs.gitignore);
+        _terminal.ExecuteBasicCommand(commitCmd);
+        
+        string branchCmd = _commandBuilder.GetBranch(GlobalRefs.lockingBranch);
+        _terminal.ExecuteBasicCommand(branchCmd);
+        
+        string switchCmd = _commandBuilder.GetSwitch(GlobalRefs.lockingBranch);
+        _terminal.ExecuteBasicCommand(switchCmd);
+
+        string newIgnore = _commandBuilder.GetOverrideGitignore();
+        _terminal.ExecuteBasicCommand(newIgnore);
+        // Again commiting gitignore so can be reused.
+        _terminal.ExecuteBasicCommand(commitCmd);
+        
+        string switch2Cmd = _commandBuilder.GetSwitch("master");
+        _terminal.ExecuteBasicCommand(switch2Cmd);
+        
     }
 
     private static void GetGitData()
