@@ -53,8 +53,12 @@ public static class GitUnMain
         // Again commiting gitignore so can be reused.
         _terminal.ExecuteBasicCommand(commitCmd);
         
+        //TODO: rm the hardcoded master 
         string switch2Cmd = _commandBuilder.GetSwitch("master");
         _terminal.ExecuteBasicCommand(switch2Cmd);
+        
+        string commit2Cmd = _commandBuilder.GetCommit(".");
+        _terminal.ExecuteBasicCommand(commit2Cmd);
         
     }
 
