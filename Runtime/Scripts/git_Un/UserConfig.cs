@@ -19,7 +19,7 @@ public class UserConfig : ScriptableObject
             return _instance;
         }
     }
-
+    public string welcomeFile = "welcome.txt"; // Just a file for making first commit.
     public string logsFile = "logs.txt";
     public string lockedProtocolFile = "locked_files.txt";
     public string diffPrefabsParentDirectory = "Assets/";

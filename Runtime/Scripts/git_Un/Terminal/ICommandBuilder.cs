@@ -12,11 +12,28 @@
     /// <returns></returns>
     public string GetCommit(string contentPath);
     public string GetPush(string branchName);
+    public string GetBranch(string branchName);
 
     public string GetSwitch(string branch);
     public string GetMergeXours(string sourceBranch);
 
     public string GetMkdir(string path);
     public string GetTouch(string path, string fileNameWithType);
+    public string GetInit();
     public string GetSubtreeSplitNewBranch(string prefix, string newBranchName);
+
+    /// <summary>
+    /// Curls (downloads) the gitignore for Unity Projects from github
+    /// and writes it to an existing gitignore (has to exist).
+    /// </summary>
+    /// <returns></returns>
+    public string GetNewestGitignoreContent();
+
+    /// <summary>
+    /// Current implementation only for file locking
+    /// branch: ignores everything except for
+    /// locked_files.txt .
+    /// </summary>
+    /// <returns></returns>
+    public string GetOverrideGitignore();
 }

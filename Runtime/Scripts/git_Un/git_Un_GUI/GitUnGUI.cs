@@ -11,6 +11,7 @@ public class GitUnGUI : EditorWindow
     private static void Init() => GetWindow<GitUnGUI>(true, "git_Un_GUI");
 
     public static event Action<string, string> OnStartSceneGet;
+    public static event Action OnSetupGitUn;
     public static event Action InitGitDataObject;
 
 
@@ -18,10 +19,11 @@ public class GitUnGUI : EditorWindow
     private string _targetBranch = string.Empty;
     private int _targetSelection = 0;
     private int _sourceSelection = 0;
+    private bool _isSetup = false;
 
     private static GitDataObject _dataObject;
 
-    private string[] _branchNames;
+    private string[] _branchNames = {"Not setup yet!"};
 
     private int foo = 0;
 
@@ -37,12 +39,24 @@ public class GitUnGUI : EditorWindow
     {
         //TODO: make nice layout, possibly move also to ScriptableObject
         GUILayout.Space(100);
+        if (GUILayout.Button("Setup git Un"))
+        {
+            FireSetup();
+        }
+
+        GUILayout.Space(100);
         BranchDropdown();
         if (GUILayout.Button("START"))
         {
             FireStartSceneGet();
         }
+    }
 
+    private void FireSetup()
+    {
+        Debug.Log("Fire setup");
+        _isSetup = true;
+        OnSetupGitUn.Invoke();
     }
 
     private void BranchDropdown()
@@ -51,8 +65,12 @@ public class GitUnGUI : EditorWindow
         {
             foo++;
             Debug.Log(foo);
-            InitGitDataObject.Invoke();
-            _branchNames = _dataObject.BranchNames;
+
+            if (_isSetup)
+            {
+                InitGitDataObject.Invoke();
+                _branchNames = _dataObject.BranchNames;
+            }
         }
 
         _targetSelection = EditorGUILayout.Popup(new GUIContent("target branch"), _targetSelection, _branchNames);
