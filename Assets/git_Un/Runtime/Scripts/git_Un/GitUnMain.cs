@@ -11,7 +11,7 @@ public static class GitUnMain
     private static PrefabSaver _saver;
     private static ITerminalInterface _terminal;
     private static ICommandBuilder _commandBuilder;
-    // private static FileLocking _fileLocking;
+    private static FileLocking _fileLocking;
 
     static GitUnMain()
     {
@@ -20,12 +20,12 @@ public static class GitUnMain
         _terminal = new GitBashInterface();
         _commandBuilder = new GitBashCommandBuilder();
 
-        // _fileLocking = new FileLocking(_terminal, _commandBuilder);
+        _fileLocking = new FileLocking(_terminal, _commandBuilder);
 
         GitUnGUI.OnStartSceneGet += Main;
         GitUnGUI.InitGitDataObject += GetGitData;
         GitUnGUI.OnSetupGitUn += SetupGitUn;
-        // GitUnGUI.OnLockFile += _fileLocking.LockFile;
+        GitUnGUI.OnLockFile += _fileLocking.LockFile;
     }
 
     private static void SetupGitUn()
