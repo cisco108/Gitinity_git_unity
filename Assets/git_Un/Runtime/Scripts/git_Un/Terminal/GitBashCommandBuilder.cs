@@ -40,12 +40,12 @@ public class GitBashCommandBuilder : ICommandBuilder
 
     public string GetPush(string branchName)
     {
-        return GitCommands.push + branchName;
+        return GitCommands.push_origin + branchName;
     }
 
     public string GetPushAllBranches()
     {
-        return GitCommands.push + GitFlags.all_origin;
+        return GitCommands.push_origin + GitFlags.all;
     }
 
     public string GetBranch(string branchName)

@@ -15,7 +15,7 @@ public static class GitCommands
     public static string commit_m = "git commit -m ";
     public static string diff = "git diff ";
     public static string subtree_split_prefix = "git subtree split --prefix="; //no space intentional
-    public static string push = "git push origin ";
+    public static string push_origin = "git push origin ";
     public static string branch = "git branch ";
     public static string init = "git init ";
     public static string add_remote = "git remote add origin ";
@@ -29,7 +29,7 @@ public static class GitFlags
     //TODO add SPACE before and after flag
     public static string no_edit = " --no-edit ";
     public static string branch= " --branch ";
-    public static string all_origin = " --all origin ";
+    public static string all = " --all ";
 
 }
 

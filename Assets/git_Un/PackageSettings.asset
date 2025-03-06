@@ -13,18 +13,18 @@ MonoBehaviour:
   m_Name: PackageSettings
   m_EditorClassIdentifier: 
   domainName: com
-  companyName: company
+  companyName: newhere_tools
   useSettingsCompanyName: 1
-  packageName: package-name
+  packageName: git_un
   useSettingsProductName: 1
-  version: 0.0.0
+  version: 0.2.9
   useSettingsVersion: 1
-  displayName: 
+  displayName: git_Un
   _useSettingsProductName: 1
   description: 
-  unity: 2021.3
+  unity: 6000.0
   useCurrentUnityVersion: 1
-  unityRelease: .0f1
+  unityRelease: 34f1
   useCurrentUnityRelease: 1
   _dependencies: []
   documentationUrl: https://
@@ -37,7 +37,7 @@ MonoBehaviour:
     description: This is a sample.
     path: Samples~/Sample
   author:
-    name: Author
+    name: newhere_tools
     useSettingsCompanyName: 1
     email: author@mail.com
     url: https://
