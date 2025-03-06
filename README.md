@@ -1,13 +1,24 @@
-# Depths of Unity 24/25
-## Linus Ziesel, 2nd part of submission
-
 # <img src="Assets/git_Un/Documentation/Images/2502_logo.jpg" alt="Alt text" style="width:4cm;vertical-align:middle;" >  git_Un - A git wrapper for Unity
+(Suggestions for another name are welcome.)
 ### Get it with the package manager from:
 ``https://github.com/cisco108/2502_Git_Un.git#upm``
 
 [//]: # (![Alt text]&#40;Assets/git_Un/Documentation/Images/2502_logo.jpg&#41;)
 
-# How to Use: 
+# Get Started:
+
+### 1. Install git_Un to your Unity Project.
+### 2. Open the git_Un GUI (Window -> git_Un_GUI)
+![Alt text](Assets/git_Un/Documentation/Images/13.png)
+### 3. Paste in the http link to an EMPTY (no commits) repository of your preferred hosting platform.
+### 4. Press "Setup git Un"
+### What happens:
+- The project gets initialized as a git repository.
+- A .gitignore for unity projects is added.
+- The provided remote is added to the repository.
+- The entire project (minus gitignored files) is pushed to the remote.
+-  (An additional branch is added for managing file locking, which is not implemented yet.)
+# How to Use Merge Function: 
 
 ## 1. Changes on scene file on <span style="color: #0000FF;">feature</span>
 ![Alt text](Assets/git_Un/Documentation/Images/1.png)
