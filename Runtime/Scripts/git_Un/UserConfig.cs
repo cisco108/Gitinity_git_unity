@@ -19,7 +19,6 @@ public class UserConfig : ScriptableObject
             return _instance;
         }
     }
-    public string welcomeFile = "welcome.txt"; // Just a file for making first commit.
     public string logsFile = "logs.txt";
     public string lockedProtocolFile = "locked_files.txt";
     public string diffPrefabsParentDirectory = "Assets/";
@@ -27,4 +26,5 @@ public class UserConfig : ScriptableObject
     public string DiffPrefabsDirectory => diffPrefabsParentDirectory + diffPrefabsDirName;
     public string lockingProtocolDirectory = "LockingProtocol/";
     public string gitBashExe = @"C:\Program Files\Git\git-bash.exe";
+    public string remoteUrl = "Paste the http link for your empty repository.";
 }
