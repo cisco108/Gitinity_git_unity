@@ -18,6 +18,8 @@ public static class GitCommands
     public static string push = "git push origin ";
     public static string branch = "git branch ";
     public static string init = "git init ";
+    public static string add_remote = "git remote add origin ";
+    
 
 
 }
@@ -26,12 +28,15 @@ public static class GitFlags
 {
     //TODO add SPACE before and after flag
     public static string no_edit = " --no-edit ";
-    public static string branch= " --branch "; 
-    
+    public static string branch= " --branch ";
+    public static string all_origin = " --all origin ";
+
 }
 
 public static class BashCommands
 {
     public static string touch = "touch ";
     public static string mkdir = "mkdir ";
+    public static string curl_o= "curl -o ";
+    public static string echo_e = "echo -e ";
 }

@@ -12,6 +12,7 @@
     /// <returns></returns>
     public string GetCommit(string contentPath);
     public string GetPush(string branchName);
+    public string GetPushAllBranches();
     public string GetBranch(string branchName);
 
     public string GetSwitch(string branch);
@@ -20,6 +21,7 @@
     public string GetMkdir(string path);
     public string GetTouch(string path, string fileNameWithType);
     public string GetInit();
+    public string GetAddRemote();
     public string GetSubtreeSplitNewBranch(string prefix, string newBranchName);
 
     /// <summary>

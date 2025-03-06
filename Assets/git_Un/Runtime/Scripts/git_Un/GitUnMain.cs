@@ -59,6 +59,18 @@ public static class GitUnMain
         
         string commit2Cmd = _commandBuilder.GetCommit(".");
         _terminal.ExecuteBasicCommand(commit2Cmd);
+
+        string addRemoteCmd = _commandBuilder.GetAddRemote();
+        _terminal.ExecuteBasicCommand(addRemoteCmd);
+
+        string pushAllCmd = _commandBuilder.GetPushAllBranches();
+        _terminal.ExecuteBasicCommand(pushAllCmd);
+        
+        LogSystem.WriteLog(new []
+        {
+            initCmd, touchCmd, gitignoreContentCmd, commitCmd, branchCmd, switch2Cmd,
+            newIgnore, commitCmd, switch2Cmd, commit2Cmd, addRemoteCmd, pushAllCmd
+        });
         
     }
 

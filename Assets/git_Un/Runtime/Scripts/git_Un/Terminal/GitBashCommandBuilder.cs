@@ -43,6 +43,11 @@ public class GitBashCommandBuilder : ICommandBuilder
         return GitCommands.push + branchName;
     }
 
+    public string GetPushAllBranches()
+    {
+        return GitCommands.push + GitFlags.all_origin;
+    }
+
     public string GetBranch(string branchName)
     {
         return GitCommands.branch + branchName;
@@ -79,6 +84,11 @@ public class GitBashCommandBuilder : ICommandBuilder
         return GitCommands.init;
     }
 
+    public string GetAddRemote()
+    {
+        return GitCommands.add_remote + GlobalRefs.filePaths.remoteUrl;
+    }
+
     public string GetSubtreeSplitNewBranch(string prefix, string newBranchName)
     {
         return GitCommands.subtree_split_prefix + prefix + GitFlags.branch + newBranchName;
@@ -86,12 +96,12 @@ public class GitBashCommandBuilder : ICommandBuilder
 
     public string GetNewestGitignoreContent()
     {
-        return "curl -o .gitignore https://raw.githubusercontent.com/github/gitignore/main/Unity.gitignore";
+        return BashCommands.curl_o + ".gitignore https://raw.githubusercontent.com/github/gitignore/main/Unity.gitignore";
     }
 
     public string GetOverrideGitignore()
     {
-        return $"echo -e '*\\n!{GlobalRefs.filePaths.lockedProtocolFile}' > .gitignore\n";
+        return $"{BashCommands.echo_e} '*\\n!{GlobalRefs.filePaths.lockedProtocolFile}' > .gitignore\n";
     }
     
 
