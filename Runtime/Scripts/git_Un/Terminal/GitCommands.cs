@@ -30,6 +30,7 @@ public static class GitFlags
     public static string no_edit = " --no-edit ";
     public static string branch= " --branch ";
     public static string all = " --all ";
+    public static string show_current = " --show-current ";
 
 }
 

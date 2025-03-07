@@ -55,7 +55,7 @@ public class GitBashCommandBuilder : ICommandBuilder
 
     public string GetCurrentBranch()
     {
-        return GitCommands.branch;
+        return GitCommands.branch + GitFlags.show_current;
     }
 
     public string GetSwitch(string branch)
