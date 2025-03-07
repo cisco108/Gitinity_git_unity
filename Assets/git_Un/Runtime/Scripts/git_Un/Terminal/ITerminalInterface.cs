@@ -5,7 +5,7 @@
     /// Same location also accessed when reading diff from IGitDiffReader. 
     /// </summary>
     /// <param name="command"></param>
-    public void ExecuteResultToTxt(string command);
+    public void ExecuteResultToTxt(string command, string outputPath = default);
 
     /// <summary>
     /// Writes it to txt first, then extracts string.
@@ -18,6 +18,6 @@
     /// Use it when you just want to do a command where you not want to get anything back.
     /// </summary>
     /// <param name="command"></param>
-    public void ExecuteBasicCommand(string command);
+    public void Execute(string command);
     
 }

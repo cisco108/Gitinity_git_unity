@@ -31,40 +31,40 @@ public static class GitUnMain
     private static void SetupGitUn()
     {
         string initCmd = _commandBuilder.GetInit();
-        _terminal.ExecuteBasicCommand(initCmd);
+        _terminal.Execute(initCmd);
         
         string touchCmd = _commandBuilder.GetTouch("", GlobalRefs.gitignore);
-        _terminal.ExecuteBasicCommand(touchCmd);
+        _terminal.Execute(touchCmd);
 
         string gitignoreContentCmd = _commandBuilder.GetNewestGitignoreContent();
-        _terminal.ExecuteBasicCommand(gitignoreContentCmd);
+        _terminal.Execute(gitignoreContentCmd);
         
         string commitCmd = _commandBuilder.GetCommit(GlobalRefs.gitignore);
-        _terminal.ExecuteBasicCommand(commitCmd);
+        _terminal.Execute(commitCmd);
         
-        string branchCmd = _commandBuilder.GetBranch(GlobalRefs.lockingBranch);
-        _terminal.ExecuteBasicCommand(branchCmd);
+        string branchCmd = _commandBuilder.GetCreateBranch(GlobalRefs.lockingBranch);
+        _terminal.Execute(branchCmd);
         
         string switchCmd = _commandBuilder.GetSwitch(GlobalRefs.lockingBranch);
-        _terminal.ExecuteBasicCommand(switchCmd);
+        _terminal.Execute(switchCmd);
 
         string newIgnore = _commandBuilder.GetOverrideGitignore();
-        _terminal.ExecuteBasicCommand(newIgnore);
+        _terminal.Execute(newIgnore);
         // Again commiting gitignore so can be reused.
-        _terminal.ExecuteBasicCommand(commitCmd);
+        _terminal.Execute(commitCmd);
         
         //TODO: rm the hardcoded master 
         string switch2Cmd = _commandBuilder.GetSwitch("master");
-        _terminal.ExecuteBasicCommand(switch2Cmd);
+        _terminal.Execute(switch2Cmd);
         
         string commit2Cmd = _commandBuilder.GetCommit(".");
-        _terminal.ExecuteBasicCommand(commit2Cmd);
+        _terminal.Execute(commit2Cmd);
 
         string addRemoteCmd = _commandBuilder.GetAddRemote();
-        _terminal.ExecuteBasicCommand(addRemoteCmd);
+        _terminal.Execute(addRemoteCmd);
 
         string pushAllCmd = _commandBuilder.GetPushAllBranches();
-        _terminal.ExecuteBasicCommand(pushAllCmd);
+        _terminal.Execute(pushAllCmd);
         
         LogSystem.WriteLog(new []
         {
@@ -91,13 +91,13 @@ public static class GitUnMain
     private static void PseudoMerge(string targetBranch, string sourceBranch)
     {
         string commitCommand = _commandBuilder.GetCommit(GlobalRefs.filePaths.DiffPrefabsDirectory);
-        _terminal.ExecuteBasicCommand(commitCommand);
+        _terminal.Execute(commitCommand);
 
         string switchCommand = _commandBuilder.GetSwitch(targetBranch);
-        _terminal.ExecuteBasicCommand(switchCommand);
+        _terminal.Execute(switchCommand);
 
         string mergeCommand = _commandBuilder.GetMergeXours(sourceBranch);
-        _terminal.ExecuteBasicCommand(mergeCommand);
+        _terminal.Execute(mergeCommand);
 
         LogSystem.WriteLog(new string[] { commitCommand, switchCommand, mergeCommand });
     }

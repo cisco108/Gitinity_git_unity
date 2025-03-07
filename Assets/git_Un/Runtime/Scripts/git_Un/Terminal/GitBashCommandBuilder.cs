@@ -48,9 +48,14 @@ public class GitBashCommandBuilder : ICommandBuilder
         return GitCommands.push_origin + GitFlags.all;
     }
 
-    public string GetBranch(string branchName)
+    public string GetCreateBranch(string branchName)
     {
         return GitCommands.branch + branchName;
+    }
+
+    public string GetCurrentBranch()
+    {
+        return GitCommands.branch;
     }
 
     public string GetSwitch(string branch)
@@ -103,6 +108,9 @@ public class GitBashCommandBuilder : ICommandBuilder
     {
         return $"{BashCommands.echo_e} '*\\n!{GlobalRefs.filePaths.lockedProtocolFile}' > .gitignore\n";
     }
-    
 
+    public string GetEcho(string arg)
+    {
+        return BashCommands.echo + arg;
+    }
 }

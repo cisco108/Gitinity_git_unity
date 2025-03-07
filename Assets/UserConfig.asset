@@ -16,6 +16,6 @@ MonoBehaviour:
   lockedProtocolFile: locked_files.txt
   diffPrefabsParentDirectory: Assets/
   diffPrefabsDirName: DiffObjects_as_Prefabs/
-  lockingProtocolDirectory: LockingProtocol/
   gitBashExe: C:\Program Files\Git\git-bash.exe
   remoteUrl: Paste the http link for your empty repository.
+  fileToLockNameOrPathLetsSee: This file will the locked!
