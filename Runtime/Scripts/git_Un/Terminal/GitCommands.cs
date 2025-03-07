@@ -38,5 +38,6 @@ public static class BashCommands
     public static string touch = "touch ";
     public static string mkdir = "mkdir ";
     public static string curl_o= "curl -o ";
+    public static string echo= "echo  ";
     public static string echo_e = "echo -e ";
 }

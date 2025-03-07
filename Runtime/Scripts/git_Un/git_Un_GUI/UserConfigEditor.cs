@@ -8,11 +8,13 @@ public class UserConfigEditor : Editor
 {
     VisualElement _root;
     SerializedProperty _terminal;
-    SerializedProperty _diffObjFolderName;
-    SerializedProperty _remoteUrl;
     PropertyField _terminalField;
+    SerializedProperty _diffObjFolderName;
     PropertyField _diffObjFolderNameField;
+    SerializedProperty _remoteUrl;
     PropertyField _remoteUrlField;
+    private SerializedProperty _fileToLock;
+    private PropertyField _fileToLockField;
 
     public override VisualElement CreateInspectorGUI()
     {
@@ -27,6 +29,7 @@ public class UserConfigEditor : Editor
         _terminal = serializedObject.FindProperty(nameof(UserConfig.gitBashExe));
         _diffObjFolderName = serializedObject.FindProperty(nameof(UserConfig.diffPrefabsDirName));
         _remoteUrl = serializedObject.FindProperty(nameof(UserConfig.remoteUrl));
+        _fileToLock = serializedObject.FindProperty(nameof(UserConfig.fileToLockNameOrPathLetsSee));
     }
 
     void InitEditor()
@@ -35,6 +38,7 @@ public class UserConfigEditor : Editor
         _terminalField = new PropertyField(_terminal);
         _diffObjFolderNameField  = new PropertyField(_diffObjFolderName);
         _remoteUrlField = new PropertyField(_remoteUrl);
+        _fileToLockField = new PropertyField(_fileToLock);
     }
 
     void Compose()
@@ -42,5 +46,6 @@ public class UserConfigEditor : Editor
         _root.Add(_terminalField);
         _root.Add(_diffObjFolderNameField);
         _root.Add(_remoteUrlField);
+        _root.Add(_fileToLockField);
     }
 }

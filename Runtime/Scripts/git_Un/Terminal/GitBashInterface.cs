@@ -10,9 +10,16 @@ public class GitBashInterface : ITerminalInterface
     private const string SavedDiff = "saved_diff.txt";
 
 
-    public void ExecuteResultToTxt(string command)
+    public void ExecuteResultToTxt(string command, string outputPath = default)
     {
-        BashToTxt(command, SavedDiff);
+        // Could be changed, dependent if the save diff is most used or not.
+        // Looks like this cause save diff was the first functionality.
+        if (outputPath == default)
+        {
+            outputPath = SavedDiff;
+        }
+        
+        BashToTxt(command, outputPath);
     }
 
     public string ExecuteResultToString(string command)
@@ -45,7 +52,7 @@ public class GitBashInterface : ITerminalInterface
         }
     }
 
-    public void ExecuteBasicCommand(string command)
+    public void Execute(string command)
     {
         Bash(command);
     }

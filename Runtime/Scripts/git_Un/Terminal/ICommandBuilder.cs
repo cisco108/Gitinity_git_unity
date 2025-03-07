@@ -13,7 +13,8 @@
     public string GetCommit(string contentPath);
     public string GetPush(string branchName);
     public string GetPushAllBranches();
-    public string GetBranch(string branchName);
+    public string GetCreateBranch(string branchName);
+    public string GetCurrentBranch();
 
     public string GetSwitch(string branch);
     public string GetMergeXours(string sourceBranch);
@@ -38,4 +39,7 @@
     /// </summary>
     /// <returns></returns>
     public string GetOverrideGitignore();
+
+    public string GetEcho(string arg);
+
 }
