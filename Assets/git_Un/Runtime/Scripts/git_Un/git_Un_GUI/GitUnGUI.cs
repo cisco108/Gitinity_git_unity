@@ -28,7 +28,7 @@ public class GitUnGUI : EditorWindow
 
     private int foo = 0;
 
-    void CreateGUI()
+    private void CreateGUI()
     {
         var editor = (UserConfigEditor)Editor.CreateEditor(UserConfig.instance);
         var editorRoot = editor.CreateInspectorGUI();
