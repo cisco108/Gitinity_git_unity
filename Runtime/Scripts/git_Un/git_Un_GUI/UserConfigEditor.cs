@@ -1,7 +1,6 @@
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
-using UnityEditor;
 
 [CustomEditor(typeof(UserConfig), true)]
 public class UserConfigEditor : Editor

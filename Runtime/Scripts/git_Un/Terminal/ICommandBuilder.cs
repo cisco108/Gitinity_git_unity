@@ -41,5 +41,12 @@
     public string GetOverrideGitignore();
 
     public string GetEcho(string arg);
+    /// <summary>
+    /// Pass in path to file, if you want only want the content of
+    /// a specific file. Otherwise, you get commit message, author, ... 
+    /// </summary>
+    /// <param name="specificFile"></param>
+    /// <returns></returns>
+    public string GetCatFile(string hash, string specificFile = default);
 
 }

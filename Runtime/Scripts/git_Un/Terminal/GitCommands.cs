@@ -18,8 +18,11 @@ public static class GitCommands
     public static string push_origin = "git push origin ";
     public static string branch = "git branch ";
     public static string init = "git init ";
+    public static string fetch = "git fetch ";
     public static string add_remote = "git remote add origin ";
-    
+    public static string cat_file_p = "git cat-file -p ";
+
+
 
 
 }

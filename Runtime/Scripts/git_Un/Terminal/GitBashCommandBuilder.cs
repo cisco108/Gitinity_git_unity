@@ -113,4 +113,17 @@ public class GitBashCommandBuilder : ICommandBuilder
     {
         return BashCommands.echo + arg;
     }
+
+    public string GetCatFile(string hash, string specificFile = default)
+    {
+        // Precaution, reduce to 12, because it caused issues in the past.
+        hash = hash.Remove(hash.Length - 28, 28);
+        
+        if (specificFile == default)
+        {
+            return GitCommands.rev_parse + hash;
+
+        }
+        return GitCommands.rev_parse + hash + ":" + specificFile;
+    }
 }

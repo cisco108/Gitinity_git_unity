@@ -1,4 +1,8 @@
-﻿public class FileLocking
+﻿using UnityEditor.SceneManagement;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class FileLocking
 {
     private ICommandBuilder _commandBuilder;
     private ITerminalInterface _terminal;
@@ -6,19 +10,35 @@
     {
         _terminal = terminal;
         _commandBuilder = commandBuilder;
+
+        EditorSceneManager.sceneOpened += CheckIfFileIsLocked;
+    }
+
+    private void CheckIfFileIsLocked(Scene scene, OpenSceneMode mode)
+    {
+        string fetchCmd = GitCommands.fetch;
+        _terminal.Execute(fetchCmd);
+
+        string revParseFileLockBranchCmd = _commandBuilder.GetRevParse("origin/" + GlobalRefs.lockingBranch);
+        string revParseHash = _terminal.ExecuteResultToString(revParseFileLockBranchCmd);
+
+        string readLockFileCmd = _commandBuilder.GetCatFile(revParseHash, GlobalRefs.filePaths.lockedProtocolFile);
+        string lockedFileName = _terminal.ExecuteResultToString(readLockFileCmd);
+        
+        if (scene.name == lockedFileName)
+        {
+            Debug.LogError($"{lockedFileName} is locked! Ask your colleges what's up!");
+        }
+        
+        LogSystem.WriteLog(new []
+        {
+            fetchCmd, revParseFileLockBranchCmd, "hash of rev parse: ", 
+            revParseHash, readLockFileCmd, "locked file name: ", lockedFileName
+        });
     }
 
     public void LockFile()
     {
-        /*
-         * 0 save current branch
-         * 1 switch file lock
-         * 2 write lock to file
-         * commit
-         * 3 push
-         * 4 switch back to saved branch 
-         */
-
         string saveBranchCmd = _commandBuilder.GetCurrentBranch();
         string currentBranch = _terminal.ExecuteResultToString(saveBranchCmd);
 
