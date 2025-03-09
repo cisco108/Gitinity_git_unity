@@ -12,7 +12,7 @@ public class GitBashInterface : ITerminalInterface
 
     public void ExecuteResultToTxt(string command, string outputPath = default)
     {
-        // Could be changed, dependent if the save diff is most used or not.
+        // TODO: Could be changed, dependent if the save diff is most used or not.
         // Looks like this cause save diff was the first functionality.
         if (outputPath == default)
         {
@@ -69,7 +69,8 @@ public class GitBashInterface : ITerminalInterface
 
             gitProcess.StartInfo.Arguments = $"-c \"{command}\"";
 
-            Debug.Log(gitProcess.StartInfo.Arguments);
+            // Debug.Log(gitProcess.StartInfo.Arguments);
+            
             gitProcess.StartInfo.UseShellExecute = false;
             gitProcess.StartInfo.RedirectStandardOutput = true;
             gitProcess.StartInfo.RedirectStandardError = true;
@@ -95,9 +96,9 @@ public class GitBashInterface : ITerminalInterface
 
             string outputPath = Path.Combine(Directory.GetCurrentDirectory(), $"\\{outputFileNameWithType}");
 
-            if (File.Exists(SavedDiff))
+            if (File.Exists(outputPath))
             {
-                File.Delete(SavedDiff);
+                File.Delete(outputPath);
             }
 
             gitProcess.StartInfo.Arguments = $"-c \"{command} >> {outputPath}\"";
