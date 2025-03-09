@@ -10,9 +10,13 @@ public class GitBashInterface : ITerminalInterface
     private const string SavedDiff = "saved_diff.txt";
 
 
+    /// <summary>
+    /// This might not do what you want.
+    /// Only checks if hardcoded SaveDiff exists, not the outputFile parameter.
+    /// </summary>
     public void ExecuteResultToTxt(string command, string outputPath = default)
     {
-        // TODO: Could be changed, dependent if the save diff is most used or not.
+        // Could be changed, dependent if the save diff is most used or not.
         // Looks like this cause save diff was the first functionality.
         if (outputPath == default)
         {
@@ -69,8 +73,7 @@ public class GitBashInterface : ITerminalInterface
 
             gitProcess.StartInfo.Arguments = $"-c \"{command}\"";
 
-            // Debug.Log(gitProcess.StartInfo.Arguments);
-            
+            Debug.Log(gitProcess.StartInfo.Arguments);
             gitProcess.StartInfo.UseShellExecute = false;
             gitProcess.StartInfo.RedirectStandardOutput = true;
             gitProcess.StartInfo.RedirectStandardError = true;
@@ -86,6 +89,10 @@ public class GitBashInterface : ITerminalInterface
         }
     }
 
+    /// <summary>
+    /// This might not do what you want.
+    /// Uses hardcoded SaveDiff, not the outputFile parameter.
+    /// </summary>
     private void BashToTxt(string command, string outputFileNameWithType)
     {
         try
@@ -96,9 +103,9 @@ public class GitBashInterface : ITerminalInterface
 
             string outputPath = Path.Combine(Directory.GetCurrentDirectory(), $"\\{outputFileNameWithType}");
 
-            if (File.Exists(outputPath))
+            if (File.Exists(SavedDiff))
             {
-                File.Delete(outputPath);
+                File.Delete(SavedDiff);
             }
 
             gitProcess.StartInfo.Arguments = $"-c \"{command} >> {outputPath}\"";

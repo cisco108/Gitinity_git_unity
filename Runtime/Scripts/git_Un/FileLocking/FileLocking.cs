@@ -31,7 +31,7 @@ public class FileLocking
         }
         else
         {
-            Debug.Log($"This scene is save to work on, Congrats!");
+            Debug.Log($"This scene {scene.name} is save to work on, Congrats!");
         }
         
         LogSystem.WriteLog(new []
@@ -49,8 +49,9 @@ public class FileLocking
         string switchFileLockingCmd = _commandBuilder.GetSwitch(GlobalRefs.lockingBranch);
         _terminal.Execute(switchFileLockingCmd);
 
-        string writeLockCmd = _commandBuilder.GetEcho(GlobalRefs.filePaths.fileToLockNameOrPathLetsSee);
-        _terminal.ExecuteResultToTxt(writeLockCmd, GlobalRefs.filePaths.lockedProtocolFile);
+        string writeLockCmd = _commandBuilder.GetOverrideFileContent
+            (GlobalRefs.filePaths.fileToLockNameOrPathLetsSee, GlobalRefs.filePaths.lockedProtocolFile);
+        _terminal.Execute(writeLockCmd);
 
         string commitCmd = _commandBuilder.GetCommit(" . ");
         _terminal.Execute(commitCmd);

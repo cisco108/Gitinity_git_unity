@@ -108,9 +108,9 @@ public class GitBashCommandBuilder : ICommandBuilder
         return BashCommands.curl_o + ".gitignore https://raw.githubusercontent.com/github/gitignore/main/Unity.gitignore";
     }
 
-    public string GetOverrideGitignore()
+    public string GetOverrideFileContent(string content, string file)
     {
-        return $"{BashCommands.echo_e} '*\\n!{GlobalRefs.filePaths.lockedProtocolFile}' > .gitignore\n";
+        return $"{BashCommands.echo_e} '*\\n!{content}' > {file}\n";
     }
 
     public string GetEcho(string arg)

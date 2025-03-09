@@ -38,7 +38,7 @@
     /// locked_files.txt .
     /// </summary>
     /// <returns></returns>
-    public string GetOverrideGitignore();
+    public string GetOverrideFileContent(string content, string file);
 
     public string GetEcho(string arg);
     /// <summary>

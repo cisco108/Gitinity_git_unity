@@ -52,7 +52,8 @@ public static class GitUnMain
         string switchCmd = _commandBuilder.GetSwitch(GlobalRefs.lockingBranch);
         _terminal.Execute(switchCmd);
 
-        string newIgnore = _commandBuilder.GetOverrideGitignore();
+        string newIgnore = _commandBuilder.GetOverrideFileContent
+            (GlobalRefs.filePaths.lockedProtocolFile,GlobalRefs.gitignore);
         _terminal.Execute(newIgnore);
         // Again commiting gitignore so can be reused.
         _terminal.Execute(commitCmd);
