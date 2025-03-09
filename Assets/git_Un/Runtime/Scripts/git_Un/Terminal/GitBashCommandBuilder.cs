@@ -136,7 +136,7 @@ public class GitBashCommandBuilder : ICommandBuilder
         string cmd = BashCommands.echo_e;
         foreach (string l in lines)
         {
-            string newL = l + "\\n";
+            string newL = l + "\n";
             cmd += newL;
         }
 
