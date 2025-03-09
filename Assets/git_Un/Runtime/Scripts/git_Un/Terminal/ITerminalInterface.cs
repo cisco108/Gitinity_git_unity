@@ -1,8 +1,9 @@
 ﻿public interface ITerminalInterface
 {
     /// <summary>
-    /// File location specified in implementation.
-    /// Same location also accessed when reading diff from IGitDiffReader. 
+    /// File location specified in implementation. 
+    /// Same location also accessed when reading diff from IGitDiffReader.
+    /// This function will likely be replaces by just using >> directly in bash.
     /// </summary>
     /// <param name="command"></param>
     public void ExecuteResultToTxt(string command, string outputPath = default);

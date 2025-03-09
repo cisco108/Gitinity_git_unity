@@ -29,6 +29,10 @@ public class FileLocking
         {
             Debug.LogError($"{lockedFileName} is locked! Ask your colleges what's up!");
         }
+        else
+        {
+            Debug.Log($"This scene is save to work on, Congrats!");
+        }
         
         LogSystem.WriteLog(new []
         {
