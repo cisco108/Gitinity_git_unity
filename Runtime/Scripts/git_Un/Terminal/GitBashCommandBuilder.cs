@@ -108,9 +108,10 @@ public class GitBashCommandBuilder : ICommandBuilder
         return BashCommands.curl_o + ".gitignore https://raw.githubusercontent.com/github/gitignore/main/Unity.gitignore";
     }
 
+    // ($"'*\\n!{GlobalRefs.filePaths.lockedProtocolFile}'",GlobalRefs.gitignore);
     public string GetOverrideFileContent(string content, string file)
     {
-        return $"{BashCommands.echo_e} '*\\n!{content}' > {file}\n";
+        return $"{BashCommands.echo_e} {content} > {file}\n";
     }
 
     public string GetEcho(string arg)
@@ -136,7 +137,7 @@ public class GitBashCommandBuilder : ICommandBuilder
         string cmd = BashCommands.echo_e;
         foreach (string l in lines)
         {
-            string newL = l + "\n";
+            string newL = l + $"'\\n'";
             cmd += newL;
         }
 
