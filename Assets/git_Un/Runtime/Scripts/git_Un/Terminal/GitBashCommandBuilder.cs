@@ -38,8 +38,12 @@ public class GitBashCommandBuilder : ICommandBuilder
                                + $" \' added {contentPath} on {DateTime.Now} \'";
     }
 
-    public string GetPush(string branchName)
+    public string GetPush(string branchName = default)
     {
+        if (branchName == default)
+        {
+            return GitCommands.push_origin;
+        }
         return GitCommands.push_origin + branchName;
     }
 
@@ -121,9 +125,21 @@ public class GitBashCommandBuilder : ICommandBuilder
         
         if (specificFile == default)
         {
-            return GitCommands.rev_parse + hash;
+            return GitCommands.cat_file_p + hash;
 
         }
-        return GitCommands.rev_parse + hash + ":" + specificFile;
+        return GitCommands.cat_file_p + hash + ":" + specificFile;
+    }
+
+    public string GetWriteLinesToFile(string[] lines, string filePath)
+    {
+        string cmd = BashCommands.echo_e;
+        foreach (string l in lines)
+        {
+            string newL = l + "\\n";
+            cmd += newL;
+        }
+
+        return cmd + " >> " + filePath;
     }
 }

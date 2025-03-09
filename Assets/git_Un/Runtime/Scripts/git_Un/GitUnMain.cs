@@ -38,6 +38,10 @@ public static class GitUnMain
 
         string gitignoreContentCmd = _commandBuilder.GetNewestGitignoreContent();
         _terminal.Execute(gitignoreContentCmd);
+
+        string addToGitignoreCmd = _commandBuilder.GetWriteLinesToFile(
+            new[] { GlobalRefs.filePaths.logsFile, GlobalRefs.filePaths.lockedProtocolFile }, GlobalRefs.gitignore);
+        _terminal.Execute(addToGitignoreCmd);
         
         string commitCmd = _commandBuilder.GetCommit(GlobalRefs.gitignore);
         _terminal.Execute(commitCmd);
@@ -68,7 +72,7 @@ public static class GitUnMain
         
         LogSystem.WriteLog(new []
         {
-            initCmd, touchCmd, gitignoreContentCmd, commitCmd, branchCmd, switch2Cmd,
+            initCmd, touchCmd, gitignoreContentCmd, addToGitignoreCmd, commitCmd, branchCmd, switch2Cmd,
             newIgnore, commitCmd, switch2Cmd, commit2Cmd, addRemoteCmd, pushAllCmd
         });
         

@@ -51,7 +51,7 @@ public class FileLocking
         string commitCmd = _commandBuilder.GetCommit(" . ");
         _terminal.Execute(commitCmd);
 
-        string pushCmd = _commandBuilder.GetPush(" "); // Push the branch it is on, no name needed.
+        string pushCmd = _commandBuilder.GetPush(); 
         _terminal.Execute(pushCmd);
 
         string switchBackCmd = _commandBuilder.GetSwitch(currentBranch);
@@ -59,7 +59,7 @@ public class FileLocking
         
         LogSystem.WriteLog(new []
         {
-            saveBranchCmd, switchFileLockingCmd, writeLockCmd, commitCmd,
+            saveBranchCmd, "current branch: ", currentBranch, switchFileLockingCmd, writeLockCmd, commitCmd,
             pushCmd, switchBackCmd
         });
     }
