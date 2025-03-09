@@ -11,7 +11,7 @@
     /// <param name="contentPath">file/directory</param>
     /// <returns></returns>
     public string GetCommit(string contentPath);
-    public string GetPush(string branchName);
+    public string GetPush(string branchName = default);
     public string GetPushAllBranches();
     public string GetCreateBranch(string branchName);
     public string GetCurrentBranch();
@@ -48,5 +48,7 @@
     /// <param name="specificFile"></param>
     /// <returns></returns>
     public string GetCatFile(string hash, string specificFile = default);
+
+    public string GetWriteLinesToFile(string[] lines, string filePath);
 
 }
