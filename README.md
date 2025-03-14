@@ -1,5 +1,6 @@
 # <img src="Assets/git_Un/Documentation/Images/2502_logo.jpg" alt="Alt text" style="width:4cm;vertical-align:middle;" >  Gitinity - A git wrapper for Unity
 (Suggestions for another name are welcome.)
+## Current state on upm not rdy, if you want to use it contact me I'll provide you with a working version.
 ### Get it with the package manager from:
 ``https://github.com/cisco108/2502_Git_Un.git#upm``
 
