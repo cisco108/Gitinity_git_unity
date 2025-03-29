@@ -20,7 +20,7 @@ public class UserConfig : ScriptableObject
         }
     }
     public string logsFile = "logs.txt";
-    public string lockedProtocolFile = "locked_files.txt";
+    public string lockedProtocolFile = "locked_files.json";
     public string diffPrefabsParentDirectory = "Assets/";
     public string diffPrefabsDirName = "DiffObjects_as_Prefabs/";
     public string DiffPrefabsDirectory => diffPrefabsParentDirectory + diffPrefabsDirName;
