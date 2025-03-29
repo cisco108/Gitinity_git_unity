@@ -74,7 +74,7 @@ public class FileLocking
         
         LogSystem.WriteLog(new []
         {
-            saveBranchCmd, "current branch: ", currentBranch, switchFileLockingCmd, writeLockCmd, commitCmd,
+            saveBranchCmd, "current branch: ", currentBranch, switchFileLockingCmd, "locking here", commitCmd,
             pushCmd, switchBackCmd
         });
     }
