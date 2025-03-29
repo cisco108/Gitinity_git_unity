@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.newinchicago.newhere_utils": {
+      "version": "https://github.com/cisco108/2502_DepthsOfUnity_Helpers.git#upm",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "28c3326e32527e0f8b8a06e035ad538041d98455"
+    },
     "com.unity.ai.navigation": {
       "version": "2.0.5",
       "depth": 0,

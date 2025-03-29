@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: UserConfig
   m_EditorClassIdentifier: 
   logsFile: logs.txt
-  lockedProtocolFile: locked_files.txt
+  lockedProtocolFile: locked_files.json
   diffPrefabsParentDirectory: Assets/
   diffPrefabsDirName: DiffObjects_as_Prefabs/
   gitBashExe: C:\Program Files\Git\git-bash.exe
