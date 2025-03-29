@@ -6,10 +6,13 @@ public class FileLocking
 {
     private ICommandBuilder _commandBuilder;
     private ITerminalInterface _terminal;
+    private TheLock _theLock;
+
     public FileLocking(ITerminalInterface terminal, ICommandBuilder commandBuilder)
     {
         _terminal = terminal;
         _commandBuilder = commandBuilder;
+        _theLock = new TheLock();
 
         EditorSceneManager.sceneOpened += CheckIfFileIsLocked;
     }
@@ -23,7 +26,10 @@ public class FileLocking
         string revParseHash = _terminal.ExecuteResultToString(revParseFileLockBranchCmd);
 
         string readLockFileCmd = _commandBuilder.GetCatFile(revParseHash, GlobalRefs.filePaths.lockedProtocolFile);
-        string lockedFileName = _terminal.ExecuteResultToString(readLockFileCmd);
+        string lockedFileContent = _terminal.ExecuteResultToString(readLockFileCmd);
+        string lockedFileName = _theLock.DeserializeFileLockInfo(lockedFileContent);
+        
+        
         
         if (scene.name == lockedFileName)
         {
@@ -49,10 +55,14 @@ public class FileLocking
         string switchFileLockingCmd = _commandBuilder.GetSwitch(GlobalRefs.lockingBranch);
         _terminal.Execute(switchFileLockingCmd);
 
+        /*
         string writeLockCmd = _commandBuilder.GetOverrideFileContent
             (GlobalRefs.filePaths.fileToLockNameOrPathLetsSee, GlobalRefs.filePaths.lockedProtocolFile);
         _terminal.Execute(writeLockCmd);
+        */
 
+        _theLock.WriteLocking();
+        
         string commitCmd = _commandBuilder.GetCommit(" . ");
         _terminal.Execute(commitCmd);
 
