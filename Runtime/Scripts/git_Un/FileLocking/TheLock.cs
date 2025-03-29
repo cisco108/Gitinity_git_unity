@@ -9,7 +9,7 @@ public class TheLock
 
     public void WriteLocking()
     {
-        var lockInfo = new LockInfo("this file man");
+        var lockInfo = new LockInfo(GlobalRefs.filePaths.fileToLockNameOrPathLetsSee);
         // serializer.NullValueHandling = NullValueHandling.Ignore;
 
         using StreamWriter sw = new StreamWriter(path);
