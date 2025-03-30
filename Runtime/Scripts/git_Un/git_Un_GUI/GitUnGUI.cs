@@ -7,7 +7,7 @@ using PopupWindow = UnityEngine.UIElements.PopupWindow;
 
 public class GitUnGUI : EditorWindow
 {
-    [MenuItem("Window/git_Un_GUI")]
+    [MenuItem("Window/Gitinity")]
     private static void Init() => GetWindow<GitUnGUI>(true, "git_Un_GUI");
 
     public static event Action<string, string> OnStartSceneGet;
@@ -21,6 +21,7 @@ public class GitUnGUI : EditorWindow
     private int _targetSelection = 0;
     private int _sourceSelection = 0;
     private bool _isSetup = false;
+    private bool _guiUseFileLocking = false;
 
     private static GitDataObject _dataObject;
 
@@ -57,7 +58,11 @@ public class GitUnGUI : EditorWindow
         {
             FireStartSceneGet();
         }
-        
+
+        GUILayout.Space(50);
+        _guiUseFileLocking = GUILayout.Toggle(_guiUseFileLocking, "Use FileLocking");
+
+
         // GUILayout.Space(50);
         // _fileToLock = EditorGUILayout.TextField(new GUIContent("file to lock"), _fileToLock);
 

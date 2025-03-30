@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
@@ -12,6 +13,7 @@ public static class GitUnMain
     private static ITerminalInterface _terminal;
     private static ICommandBuilder _commandBuilder;
     private static FileLocking _fileLocking;
+    private static bool _useFileLocking = false;
 
     static GitUnMain()
     {
@@ -30,38 +32,47 @@ public static class GitUnMain
 
     private static void SetupGitUn()
     {
-        string initCmd = _commandBuilder.GetInit();
+        // 1
+        string sh1 = File.ReadAllText(GlobalRefs.shellScripts + "SetupGitUn_1.sh");
+        _terminal.Execute(sh1);
+        /*string initCmd = _commandBuilder.GetInit();
         _terminal.Execute(initCmd);
-        
+
         string touchCmd = _commandBuilder.GetTouch("", GlobalRefs.gitignore);
         _terminal.Execute(touchCmd);
 
         string gitignoreContentCmd = _commandBuilder.GetNewestGitignoreContent();
-        _terminal.Execute(gitignoreContentCmd);
+        _terminal.Execute(gitignoreContentCmd);*/
+        // END
 
         string addToGitignoreCmd = _commandBuilder.GetWriteLinesToFile(
             new[] { GlobalRefs.filePaths.logsFile, GlobalRefs.filePaths.lockedProtocolFile }, GlobalRefs.gitignore);
         _terminal.Execute(addToGitignoreCmd);
-        
-        string commitCmd = _commandBuilder.GetCommit(GlobalRefs.gitignore);
+
+        // 2
+        string sh2 = File.ReadAllText(GlobalRefs.shellScripts + "SetupGitUn_2.sh");
+        _terminal.Execute(sh2);
+        /*string commitCmd = _commandBuilder.GetCommit(GlobalRefs.gitignore);
         _terminal.Execute(commitCmd);
-        
+
         string branchCmd = _commandBuilder.GetCreateBranch(GlobalRefs.lockingBranch);
         _terminal.Execute(branchCmd);
-        
+
         string switchCmd = _commandBuilder.GetSwitch(GlobalRefs.lockingBranch);
-        _terminal.Execute(switchCmd);
+        _terminal.Execute(switchCmd);*/
+        // END
 
         string newIgnore = _commandBuilder.GetOverrideFileContent
-           ($"'*\\n!{GlobalRefs.filePaths.lockedProtocolFile}'",GlobalRefs.gitignore);
+            ($"'*\\n!{GlobalRefs.filePaths.lockedProtocolFile}'", GlobalRefs.gitignore);
         _terminal.Execute(newIgnore);
-        // Again commiting gitignore so can be reused.
+
+        string commitCmd = _commandBuilder.GetCommit(GlobalRefs.gitignore);
         _terminal.Execute(commitCmd);
-        
+
         //TODO: rm the hardcoded master 
         string switch2Cmd = _commandBuilder.GetSwitch("master");
         _terminal.Execute(switch2Cmd);
-        
+
         string commit2Cmd = _commandBuilder.GetCommit(".");
         _terminal.Execute(commit2Cmd);
 
@@ -70,13 +81,12 @@ public static class GitUnMain
 
         string pushAllCmd = _commandBuilder.GetPushAllBranches();
         _terminal.Execute(pushAllCmd);
-        
-        LogSystem.WriteLog(new []
+
+        LogSystem.WriteLog(new[]
         {
-            initCmd, touchCmd, gitignoreContentCmd, addToGitignoreCmd, commitCmd, branchCmd, switch2Cmd,
+            sh1, addToGitignoreCmd, sh2, commitCmd,
             newIgnore, commitCmd, switch2Cmd, commit2Cmd, addRemoteCmd, pushAllCmd
         });
-        
     }
 
     private static void GetGitData()
