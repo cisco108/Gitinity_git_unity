@@ -1,4 +1,4 @@
-﻿git add .gitnignore
+﻿git add .gitignore
 
 git commit -m "added gitignore" 
 
