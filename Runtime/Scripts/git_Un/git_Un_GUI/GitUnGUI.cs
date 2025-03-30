@@ -7,7 +7,7 @@ using PopupWindow = UnityEngine.UIElements.PopupWindow;
 
 public class GitUnGUI : EditorWindow
 {
-    [MenuItem("Window/Gitinity")]
+    [MenuItem("Window/Gitinity Version Control")]
     private static void Init() => GetWindow<GitUnGUI>(true, "git_Un_GUI");
 
     public static event Action<string, string> OnStartSceneGet;
