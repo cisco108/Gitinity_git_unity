@@ -54,13 +54,7 @@ public class FileLocking
 
         string switchFileLockingCmd = _commandBuilder.GetSwitch(GlobalRefs.lockingBranch);
         _terminal.Execute(switchFileLockingCmd);
-
-        /*
-        string writeLockCmd = _commandBuilder.GetOverrideFileContent
-            (GlobalRefs.filePaths.fileToLockNameOrPathLetsSee, GlobalRefs.filePaths.lockedProtocolFile);
-        _terminal.Execute(writeLockCmd);
-        */
-
+      
         _theLock.WriteLocking();
         
         string commitCmd = _commandBuilder.GetCommit(" . ");
