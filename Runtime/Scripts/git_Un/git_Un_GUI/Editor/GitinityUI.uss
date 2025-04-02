@@ -6,7 +6,7 @@
 
 .warning {
     font-size: 16px;
-    background-color: rgba(217, 63, 0, 0.37);
+    background-color: rgb(215, 97, 0);
 }
 
 VisualElement {
@@ -15,11 +15,15 @@ VisualElement {
 }
 
 Button {
-    background-color: darkgreen;
+    background-color: #174562;
     border-radius: 6px;
     padding: 8px 16px;
     color: white;
     transition: all 0.2s ease;
+}
+
+Label {
+    font-size: 14;
 }
 
 /* Layout Utilities */
