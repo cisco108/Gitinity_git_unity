@@ -13,6 +13,7 @@ public static class GlobalRefs
     public static UserConfig filePaths;
     public static string lockingBranch = "file-locking";
     public static string gitignore = ".gitignore";
+    public static GitDataObject gitDataObj;
 
     public static string shellScripts =
         @"Library\PackageCache\com.newhere_tools.git_un\Runtime\Scripts\git_Un\ShellScripts\";
@@ -33,6 +34,16 @@ public static class GlobalRefs
             default:
                 Debug.Log($"no valid option");
                 break;
+        }
+    }
+    
+    
+    public static void InitGitDataObj(string[] branchNames)
+    {
+        if (branchNames != null)
+        {
+            gitDataObj = new GitDataObject(branchNames);
+            return;
         }
     }
 }

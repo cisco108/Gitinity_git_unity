@@ -112,14 +112,7 @@ public class GitUnGUI : EditorWindow
         OnStartSceneGet.Invoke(_targetBranch, _sourceBranch);
     }
 
-    public static void InitGitDataObj(string[] branchNames)
-    {
-        if (branchNames != null)
-        {
-            _dataObject = new GitDataObject(branchNames);
-            return;
-        }
-    }
+    
 
     private void OnDestroy()
     {

@@ -92,7 +92,7 @@ public static class GitUnMain
     private static void GetGitData()
     {
         var branches = _terminal.ExecuteResultToStringArr(GitCommands.branch);
-        GitUnGUI.InitGitDataObj(branches);
+        GlobalRefs.InitGitDataObj(branches);
     }
 
     private static void Main(string targetBranch, string sourceBranch)
