@@ -8,7 +8,11 @@
     font-size: 16px;
     background-color: rgb(215, 97, 0);
 }
-
+.header {
+    font-size: 18px;
+    -unity-font-style: bold;
+    color: rgb(68, 138, 255);
+}
 VisualElement {
     margin: 8px 0;
     padding: 4px;
@@ -23,7 +27,7 @@ Button {
 }
 
 Label {
-    font-size: 14;
+    font-size: 14px;
 }
 
 /* Layout Utilities */
@@ -41,4 +45,8 @@ Label {
 
 .pull-right {
     margin-left: auto;
+}
+
+.pull-right-field{
+    margin-left: 50px;
 }

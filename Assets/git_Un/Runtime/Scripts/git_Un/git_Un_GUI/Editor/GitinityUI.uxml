@@ -6,7 +6,10 @@
     xsi:noNamespaceSchemaLocation="../../../../../../../UIElementsSchema/UIElements.xsd"
 >
     <Style src="project://database/Assets/git_Un/Runtime/Scripts/git_Un/git_Un_GUI/Editor/GitinityUI.uss?fileID=7433441132597879392&amp;guid=45dc2e453a1151e4081c4deb8344100b&amp;type=3#GitinityUI" />
+    <engine:Label text="User Settings" class="header"/>
+    <engine:TextField label="Git Bash Exe" name="git-exe"/>
     <engine:TextField label="Http link to Repo: " name="remote-link" value="https://yourrepo.com"/>
+    <engine:TextField label="Path for Diff-Prefabs:" name="diff-obj-path"/>
     <engine:Button name="setup-btn" text="git init + setup" class="pull-right"/>
     
     <engine:DropdownField name="target-branch-dd"/>
@@ -26,5 +29,4 @@
     
     
 	
-
 </engine:UXML>
