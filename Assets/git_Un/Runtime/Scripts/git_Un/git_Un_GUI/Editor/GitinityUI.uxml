@@ -13,9 +13,8 @@
     <engine:DropdownField name="source-branch-dd"/>
     <engine:Button name="merge-btn" text="Merge" class="pull-right"/>
 
-    <engine:TextField label="🔒 File to lock: " name="lock-file" value="Name of File"/>
+    <editor:ObjectField name="lock-file" label="🔒 File to lock:" type="UnityEngine.Object"/>
     <engine:Button name="lock-btn" text="Lock specified File" class="pull-right"/>
-    <editor:ObjectField name="obj-field" label="File:" type="UnityEngine.Object"/>
     <!-- when problem with type selection, use ui builder gui -->
     
     <engine:VisualElement class="flex-row flex-wrap space-between warning">
