@@ -7,17 +7,14 @@
 >
     <Style src="project://database/Assets/git_Un/Runtime/Scripts/git_Un/git_Un_GUI/Editor/GitinityUI.uss?fileID=7433441132597879392&amp;guid=45dc2e453a1151e4081c4deb8344100b&amp;type=3#GitinityUI" />
     <engine:TextField label="Http link to Repo: " name="remote-link" value="https://yourrepo.com"/>
-    <engine:Button name="setup-btn" text="git init + setup"/>
-    
-    <engine:Label name="warn-label" text="This is a label that's good." class="warning"/>
-    
-    <engine:TextField label="🔒 File to lock: " name="lock-file" value="Name of File"/>
-    <engine:Button name="lock-btn" text="Lock specified File"/>
+    <engine:Button name="setup-btn" text="git init + setup" class="pull-right"/>
     
     <engine:DropdownField name="target-branch-dd"/>
     <engine:DropdownField name="source-branch-dd"/>
-    <engine:Button name="merge-btn" text="Merge"/>
-    
+    <engine:Button name="merge-btn" text="Merge" class="pull-right"/>
+
+    <engine:TextField label="🔒 File to lock: " name="lock-file" value="Name of File"/>
+    <engine:Button name="lock-btn" text="Lock specified File" class="pull-right"/>
     <editor:ObjectField name="obj-field" label="File:" type="UnityEngine.Object"/>
     <!-- when problem with type selection, use ui builder gui -->
     
