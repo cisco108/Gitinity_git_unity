@@ -1,6 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
+// Is this still needed ?
 public enum CustomPath
 {
     BashExe,

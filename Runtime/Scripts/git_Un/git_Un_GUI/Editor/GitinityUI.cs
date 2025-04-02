@@ -6,7 +6,9 @@ using UnityEngine.UIElements;
 
 public class GitinityUI : EditorWindow
 {
+    private TextField GitExe => rootVisualElement.Q<TextField>("git-exe");
     private TextField RemoteLink => rootVisualElement.Q<TextField>("remote-link");
+    private TextField DiffObjPath => rootVisualElement.Q<TextField>("diff-obj-path");
     private Button SetUpBtn => rootVisualElement.Q<Button>("setup-btn");
     private Label WarnLabel => rootVisualElement.Q<Label>("warn-label");
     private ObjectField LockFile => rootVisualElement.Q<ObjectField>("lock-file");
@@ -31,8 +33,15 @@ public class GitinityUI : EditorWindow
 
         asset.CloneTree(root);
 
+        GitExe.SetValueWithoutNotify(GlobalRefs.filePaths.gitBashExe);
+        GitExe.RegisterValueChangedCallback(UpdateRemoreLink);
+        RemoteLink.SetValueWithoutNotify(GlobalRefs.filePaths.remoteUrl);
         RemoteLink.RegisterValueChangedCallback(UpdateRemoreLink);
+        DiffObjPath.SetValueWithoutNotify(GlobalRefs.filePaths.diffPrefabsDirName);
+        DiffObjPath.RegisterValueChangedCallback(UpdateRemoreLink);
         SetUpBtn.RegisterCallback<ClickEvent>(Setup);
+        
+        
         LockBtn.RegisterCallback<ClickEvent>(Lock);
 
         LockFile.RegisterValueChangedCallback(UpdateLockFile);
@@ -49,6 +58,7 @@ public class GitinityUI : EditorWindow
     private void UpdateRemoreLink(ChangeEvent<string> evt)
     {
         Debug.Log(evt.newValue);
+        Debug.LogError($"WRONTGFFFF");
     }
 
     private void UpdateLockFile(ChangeEvent<Object> evt)
