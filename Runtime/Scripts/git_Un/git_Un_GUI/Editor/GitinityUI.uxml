@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<engine:UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:engine="UnityEngine.UIElements"
+    xmlns:editor="UnityEditor.UIElements"
+    xsi:noNamespaceSchemaLocation="../../../../../../../UIElementsSchema/UIElements.xsd"
+>
+    <Style src="project://database/Assets/git_Un/Runtime/Scripts/git_Un/git_Un_GUI/Editor/GitinityUI.uss?fileID=7433441132597879392&amp;guid=45dc2e453a1151e4081c4deb8344100b&amp;type=3#GitinityUI" />
+    <engine:TextField label="Http link to Repo: " name="remote-link" value="https://yourrepo.com"/>
+    <engine:Button name="setup-btn" text="git init + setup"/>
+    
+    <engine:Label name="warn-label" text="This is a label that's good." class="warning"/>
+    
+    <engine:TextField label="🔒 File to lock: " name="lock-file" value="Name of File"/>
+    <engine:Button name="lock-btn" text="Lock specified File"/>
+    
+    <engine:DropdownField name="target-branch-dd"/>
+    <engine:DropdownField name="source-branch-dd"/>
+    <engine:Button name="merge-btn" text="Merge"/>
+    
+    <editor:ObjectField name="obj-field" label="File:" type="UnityEngine.Object"/>
+    <!-- when problem with type selection, use ui builder gui -->
+    
+    <engine:VisualElement class="flex-row flex-wrap space-between warning">
+        <engine:Label text="Warning: You tried to use a file, that was locked by user-name!"/>
+        <engine:Button text="Request Access" name="request-btn" class="pull-right"/> 
+        <!-- maybe using discord -->
+        
+    </engine:VisualElement>
+    
+    
+	
+
+</engine:UXML>
