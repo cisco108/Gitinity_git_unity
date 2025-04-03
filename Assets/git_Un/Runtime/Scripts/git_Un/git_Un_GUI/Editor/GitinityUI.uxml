@@ -12,8 +12,8 @@
     <engine:TextField label="Path for Diff-Prefabs:" name="diff-obj-path"/>
     <engine:Button name="setup-btn" text="git init + setup" class="pull-right"/>
     
-    <engine:DropdownField name="target-branch-dd"/>
-    <engine:DropdownField name="source-branch-dd"/>
+    <engine:DropdownField label="Target Branch" name="target-branch-dd"/>
+    <engine:DropdownField label="Source Branch" name="source-branch-dd"/>
     <engine:Button name="merge-btn" text="Merge" class="pull-right"/>
 
     <editor:ObjectField name="lock-file" label="🔒 File to lock:" type="UnityEngine.Object"/>

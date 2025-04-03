@@ -9,8 +9,7 @@ public class TheLock
 
     public void WriteLocking()
     {
-        var lockInfo = new LockInfo(GlobalRefs.filePaths.fileToLockNameOrPathLetsSee);
-        // serializer.NullValueHandling = NullValueHandling.Ignore;
+        var lockInfo = new LockInfo(GlobalRefs.filePaths.fileToLockName);
 
         using StreamWriter sw = new StreamWriter(path);
         using JsonWriter writer = new JsonTextWriter(sw);
