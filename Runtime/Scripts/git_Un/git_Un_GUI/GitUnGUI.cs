@@ -23,7 +23,7 @@ public class GitUnGUI : EditorWindow
     private bool _isSetup = false;
     private bool _guiUseFileLocking = false;
 
-    private static GitDataObject _dataObject;
+    private static StateObj _dataObject;
 
     private string[] _branchNames = {"Not setup yet!"};
 

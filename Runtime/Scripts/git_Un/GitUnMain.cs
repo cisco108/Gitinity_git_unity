@@ -91,8 +91,10 @@ public static class GitUnMain
 
     private static void GetGitData()
     {
+        // this should be called when ever the gui is loaded and then 
+        // handle the different possibilities and pack the result in the state object
         var branches = _terminal.ExecuteResultToStringArr(GitCommands.branch);
-        GlobalRefs.InitGitDataObj(branches);
+        GlobalRefs.SetState(branches);
     }
 
     private static void Main(string targetBranch, string sourceBranch)

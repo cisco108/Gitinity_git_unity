@@ -1,0 +1,1 @@
+﻿# Handle the state before and after git init
