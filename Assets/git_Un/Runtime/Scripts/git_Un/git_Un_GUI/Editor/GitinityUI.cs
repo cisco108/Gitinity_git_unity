@@ -1,8 +1,10 @@
+using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Object = UnityEngine.Object;
 
 public class GitinityUI : EditorWindow
 {
@@ -18,6 +20,10 @@ public class GitinityUI : EditorWindow
     private Button RequestAccessBtn => rootVisualElement.Q<Button>("request-btn");
 
 
+
+    public static event Action GetGitInfo;
+    
+    
     [MenuItem("Tools/GitinityUI")]
     public static void ShowWindow()
     {
@@ -34,11 +40,11 @@ public class GitinityUI : EditorWindow
         asset.CloneTree(root);
 
         GitExe.SetValueWithoutNotify(GlobalRefs.filePaths.gitBashExe);
-        GitExe.RegisterValueChangedCallback(UpdateRemoreLink);
+        GitExe.RegisterValueChangedCallback(UpdateRemoteLink);
         RemoteLink.SetValueWithoutNotify(GlobalRefs.filePaths.remoteUrl);
-        RemoteLink.RegisterValueChangedCallback(UpdateRemoreLink);
+        RemoteLink.RegisterValueChangedCallback(UpdateRemoteLink);
         DiffObjPath.SetValueWithoutNotify(GlobalRefs.filePaths.diffPrefabsDirName);
-        DiffObjPath.RegisterValueChangedCallback(UpdateRemoreLink);
+        DiffObjPath.RegisterValueChangedCallback(UpdateRemoteLink);
         SetUpBtn.RegisterCallback<ClickEvent>(Setup);
         
         
@@ -46,16 +52,33 @@ public class GitinityUI : EditorWindow
 
         LockFile.RegisterValueChangedCallback(UpdateLockFile);
 
-        TargetBranchDropDown.choices = new List<string>() { "master", "feature", "value" };
+        var branchNames = GetBranches();
+        TargetBranchDropDown.choices = branchNames; 
         TargetBranchDropDown.RegisterValueChangedCallback(SelectBranch);
 
-        SourceBranchDropDown.choices = new List<string>() { "master", "feature", "value" };
+        SourceBranchDropDown.choices = branchNames; 
         SourceBranchDropDown.RegisterValueChangedCallback(SelectBranch);
         
         RequestAccessBtn.RegisterCallback<ClickEvent>((evt) => Debug.Log($"This could go out to the coworkers"));
     }
 
-    private void UpdateRemoreLink(ChangeEvent<string> evt)
+    private List<string> GetBranches()
+    {
+        GetGitInfo.Invoke();
+
+        var state = GlobalRefs.StateObj.State;
+        switch (state)
+        {
+            case State.PostInit:
+                var names = GlobalRefs.StateObj.BranchNames;
+                List<string> list = new List<string>(names);
+                return list;
+                
+            default:
+                return new List<string>() { "example", "example", "example" };
+        }
+    }
+    private void UpdateRemoteLink(ChangeEvent<string> evt)
     {
         Debug.Log(evt.newValue);
         Debug.LogError($"WRONTGFFFF");

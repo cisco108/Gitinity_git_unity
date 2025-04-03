@@ -28,6 +28,9 @@ public static class GitUnMain
         GitUnGUI.InitGitDataObject += GetGitData;
         GitUnGUI.OnSetupGitUn += SetupGitUn;
         GitUnGUI.OnLockFile += _fileLocking.LockFile;
+
+
+        GitinityUI.GetGitInfo += GetGitData;
     }
 
     private static void SetupGitUn()
