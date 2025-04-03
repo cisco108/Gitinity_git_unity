@@ -46,8 +46,7 @@ public class GitBashInterface : ITerminalInterface
             case "git branch ":
                 var s = ExecuteResultToString(command);
 
-                string copy = s.Substring(0, 5);
-                if (copy == "fatal") //TODO: think of better way
+                if(string.IsNullOrEmpty(s))
                 {
                     return null; 
                 }
