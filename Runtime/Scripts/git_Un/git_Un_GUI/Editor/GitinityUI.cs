@@ -40,8 +40,10 @@ public class GitinityUI : EditorWindow
     public void CreateGUI()
     {
         VisualElement root = rootVisualElement;
-        VisualTreeAsset asset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(
-            "Assets/git_Un/Runtime/Scripts/git_Un/git_Un_GUI/Editor/GitinityUI.uxml");
+        // VisualTreeAsset asset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(
+        // "Assets/git_Un/Runtime/Scripts/git_Un/git_Un_GUI/Editor/GitinityUI.uxml");
+        
+        VisualTreeAsset asset = Resources.Load<VisualTreeAsset>("GitinityUI");
 
         asset.CloneTree(root);
 
