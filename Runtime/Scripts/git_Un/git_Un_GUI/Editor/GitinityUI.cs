@@ -12,6 +12,7 @@ public class GitinityUI : EditorWindow
     private TextField RemoteLink => rootVisualElement.Q<TextField>("remote-link");
     private TextField DiffObjPath => rootVisualElement.Q<TextField>("diff-obj-path");
     private Button SetUpBtn => rootVisualElement.Q<Button>("setup-btn");
+    private Button MergeBtn => rootVisualElement.Q<Button>("merge-btn");
     private Label WarnLabel => rootVisualElement.Q<Label>("warn-label");
     private ObjectField LockFile => rootVisualElement.Q<ObjectField>("lock-file");
     private Button LockBtn => rootVisualElement.Q<Button>("lock-btn");
@@ -20,10 +21,15 @@ public class GitinityUI : EditorWindow
     private Button RequestAccessBtn => rootVisualElement.Q<Button>("request-btn");
 
 
-
+    public static event Action OnSetup;
     public static event Action GetGitInfo;
-    
-    
+    public static event Action<string, string> OnMerge;
+    public static event Action OnLockFile;
+
+    private string _sourceBranch;
+    private string _targetBranch;
+
+
     [MenuItem("Tools/GitinityUI")]
     public static void ShowWindow()
     {
@@ -45,20 +51,21 @@ public class GitinityUI : EditorWindow
         RemoteLink.RegisterValueChangedCallback(UpdateRemoteLink);
         DiffObjPath.SetValueWithoutNotify(GlobalRefs.filePaths.diffPrefabsDirName);
         DiffObjPath.RegisterValueChangedCallback(UpdateRemoteLink);
-        SetUpBtn.RegisterCallback<ClickEvent>(Setup);
-        
-        
-        LockBtn.RegisterCallback<ClickEvent>(Lock);
+        SetUpBtn.RegisterCallback<ClickEvent>(_ => OnSetup.Invoke());
+
+        MergeBtn.RegisterCallback<ClickEvent>(evt => OnMerge.Invoke(_targetBranch, _sourceBranch));
+
+        LockBtn.RegisterCallback<ClickEvent>(evt => OnLockFile.Invoke());
 
         LockFile.RegisterValueChangedCallback(UpdateLockFile);
 
         var branchNames = GetBranches();
-        TargetBranchDropDown.choices = branchNames; 
-        TargetBranchDropDown.RegisterValueChangedCallback(SelectBranch);
+        TargetBranchDropDown.choices = branchNames;
+        TargetBranchDropDown.RegisterValueChangedCallback(SelectTargetBranch);
 
-        SourceBranchDropDown.choices = branchNames; 
-        SourceBranchDropDown.RegisterValueChangedCallback(SelectBranch);
-        
+        SourceBranchDropDown.choices = branchNames;
+        SourceBranchDropDown.RegisterValueChangedCallback(SelectSourceBranch);
+
         RequestAccessBtn.RegisterCallback<ClickEvent>((evt) => Debug.Log($"This could go out to the coworkers"));
     }
 
@@ -73,35 +80,34 @@ public class GitinityUI : EditorWindow
                 var names = GlobalRefs.StateObj.BranchNames;
                 List<string> list = new List<string>(names);
                 return list;
-                
+
             default:
-                return new List<string>() { "example", "example", "example" };
+                return new List<string>() { "example1", "example2", "example3" };
         }
     }
+
     private void UpdateRemoteLink(ChangeEvent<string> evt)
     {
-        Debug.Log(evt.newValue);
-        Debug.LogError($"WRONTGFFFF");
+        GlobalRefs.filePaths.remoteUrl = evt.newValue;
+        Debug.Log($"Updated remote url to: {GlobalRefs.filePaths.remoteUrl}");
     }
 
     private void UpdateLockFile(ChangeEvent<Object> evt)
     {
-        Debug.Log(evt.newValue);
+        GlobalRefs.filePaths.fileToLockName = evt.newValue.name;
+        Debug.Log($"Updated file to lock to: {GlobalRefs.filePaths.fileToLockName}");
     }
 
-    private void SelectBranch(ChangeEvent<string> evt)
+    private void SelectSourceBranch(ChangeEvent<string> evt)
     {
-        Debug.Log(evt.newValue);
-        Debug.Log(evt.target);
+        _sourceBranch = evt.newValue;
+        Debug.Log($"source branch: {_sourceBranch}");
     }
 
-    private void Lock(ClickEvent _)
+    private void SelectTargetBranch(ChangeEvent<string> evt)
     {
-        Debug.Log("Lock");
+        _targetBranch = evt.newValue;
+        Debug.Log($"target branch: {_targetBranch}");
     }
 
-    private void Setup(ClickEvent _)
-    {
-        Debug.Log("Setup");
-    }
 }

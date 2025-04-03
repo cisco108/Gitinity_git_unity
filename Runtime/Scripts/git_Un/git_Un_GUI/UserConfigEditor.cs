@@ -28,7 +28,7 @@ public class UserConfigEditor : Editor
         _terminal = serializedObject.FindProperty(nameof(UserConfig.gitBashExe));
         _diffObjFolderName = serializedObject.FindProperty(nameof(UserConfig.diffPrefabsDirName));
         _remoteUrl = serializedObject.FindProperty(nameof(UserConfig.remoteUrl));
-        _fileToLock = serializedObject.FindProperty(nameof(UserConfig.fileToLockNameOrPathLetsSee));
+        _fileToLock = serializedObject.FindProperty(nameof(UserConfig.fileToLockName));
     }
 
     void InitEditor()

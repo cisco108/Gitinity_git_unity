@@ -26,14 +26,17 @@ public static class GitUnMain
 
         GitUnGUI.OnStartSceneGet += Main;
         GitUnGUI.InitGitDataObject += GetGitData;
-        GitUnGUI.OnSetupGitUn += SetupGitUn;
+        GitUnGUI.OnSetupGitUn += SetupGitinity;
         GitUnGUI.OnLockFile += _fileLocking.LockFile;
 
 
+        GitinityUI.OnSetup += SetupGitinity;
         GitinityUI.GetGitInfo += GetGitData;
+        GitinityUI.OnMerge += Main;
+        GitinityUI.OnLockFile += _fileLocking.LockFile;
     }
 
-    private static void SetupGitUn()
+    private static void SetupGitinity()
     {
         // 1
         string sh1 = File.ReadAllText(GlobalRefs.shellScripts + "SetupGitUn_1.sh");
@@ -94,8 +97,6 @@ public static class GitUnMain
 
     private static void GetGitData()
     {
-        // this should be called when ever the gui is loaded and then 
-        // handle the different possibilities and pack the result in the state object
         var branches = _terminal.ExecuteResultToStringArr(GitCommands.branch);
         GlobalRefs.SetState(branches);
     }
