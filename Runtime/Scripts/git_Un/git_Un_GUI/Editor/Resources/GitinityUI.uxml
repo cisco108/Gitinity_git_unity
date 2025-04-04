@@ -21,8 +21,8 @@
     <!-- when problem with type selection, use ui builder gui -->
     
     <engine:VisualElement class="flex-row flex-wrap space-between warning">
-        <engine:Label text="Warning: You tried to use a file, that was locked by user-name!"/>
-        <engine:Button text="Request Access" name="request-btn" class="pull-right"/> 
+        <!-- <engine:Label text="Warning: You tried to use a file, that was locked by user-name!"/> -->
+        <!-- <engine:Button text="Request Access" name="request-btn" class="pull-right"/>  -->
         <!-- maybe using discord -->
         
     </engine:VisualElement>

@@ -18,7 +18,7 @@ public class GitinityUI : EditorWindow
     private Button LockBtn => rootVisualElement.Q<Button>("lock-btn");
     private DropdownField SourceBranchDropDown => rootVisualElement.Q<DropdownField>("source-branch-dd");
     private DropdownField TargetBranchDropDown => rootVisualElement.Q<DropdownField>("target-branch-dd");
-    private Button RequestAccessBtn => rootVisualElement.Q<Button>("request-btn");
+    // private Button RequestAccessBtn => rootVisualElement.Q<Button>("request-btn");
 
 
     public static event Action OnSetup;
@@ -68,7 +68,7 @@ public class GitinityUI : EditorWindow
         SourceBranchDropDown.choices = branchNames;
         SourceBranchDropDown.RegisterValueChangedCallback(SelectSourceBranch);
 
-        RequestAccessBtn.RegisterCallback<ClickEvent>((evt) => Debug.Log($"This could go out to the coworkers"));
+        // RequestAccessBtn.RegisterCallback<ClickEvent>((evt) => Debug.Log($"This could go out to the coworkers"));
     }
 
     private List<string> GetBranches()
