@@ -6,6 +6,7 @@
     xsi:noNamespaceSchemaLocation="../../../../../../../../UIElementsSchema/UIElements.xsd"
 >
     <Style src="project://database/Assets/git_Un/Runtime/Scripts/git_Un/git_Un_GUI/Editor/GitinityUI.uss?fileID=7433441132597879392&amp;guid=45dc2e453a1151e4081c4deb8344100b&amp;type=3#GitinityUI" />
+    <engine:TextField label="User name:" class="user" name="user-email"/>
     <engine:Label text="User Settings" class="header"/>
     <engine:TextField label="Git Bash Exe" name="git-exe"/>
     <engine:TextField label="Http link to Repo: " name="remote-link" value="https://yourrepo.com"/>
@@ -19,13 +20,15 @@
     <editor:ObjectField name="lock-file" label="🔒 File to lock:" type="UnityEngine.Object"/>
     <engine:Button name="lock-btn" text="Lock specified File" class="pull-right"/>
     <!-- when problem with type selection, use ui builder gui -->
+    <engine:Label text="Warning: You tried to use a file, that was locked by user-name!" class="warning" name="warn-label"/>
     
-    <engine:VisualElement class="flex-row flex-wrap space-between warning">
-        <!-- <engine:Label text="Warning: You tried to use a file, that was locked by user-name!"/> -->
+    <!-- <engine:VisualElement class="flex-row flex-wrap space-between warning"> -->
+        <!-- <engine:PopupWindow name="warning-popup" text="Warning"></engine:PopupWindow> -->
+        <!-- <engine:Label text="Warning: You tried to use a file, that was locked by user-name!" name="warn-label"/> -->
         <!-- <engine:Button text="Request Access" name="request-btn" class="pull-right"/>  -->
         <!-- maybe using discord -->
         
-    </engine:VisualElement>
+    <!-- </engine:VisualElement> -->
     
     
 	

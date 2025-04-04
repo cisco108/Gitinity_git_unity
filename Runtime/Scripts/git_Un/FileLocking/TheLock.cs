@@ -9,7 +9,9 @@ public class TheLock
 
     public void WriteLocking()
     {
-        var lockInfo = new LockInfo(GlobalRefs.filePaths.fileToLockName);
+        var lockInfo = new LockInfo(
+            GlobalRefs.filePaths.fileToLockName,
+            GlobalRefs.filePaths.userEmail);
 
         using StreamWriter sw = new StreamWriter(path);
         using JsonWriter writer = new JsonTextWriter(sw);
@@ -19,7 +21,8 @@ public class TheLock
     public string ReadLockInfo() // Not really used, just kept it for now.
     {
         string json = File.ReadAllText(path);
-        return DeserializeFileLockInfo(json);
+        var r =DeserializeFileLockInfo(json);
+        return $"{r.lockedFile} {r.personWhoLocked}";
     }
 
     /// <summary>
@@ -27,25 +30,26 @@ public class TheLock
     /// the lockedFile property.
     /// </summary>
     /// <returns>lockedFile</returns>
-    public string DeserializeFileLockInfo(string json)
+    public (string lockedFile, string personWhoLocked) DeserializeFileLockInfo(string json)
     {
         var lockInfo = JsonConvert.DeserializeObject<LockInfo>(json);
         if (lockInfo == null)
         {
             Debug.LogError("Deserialization failed.");
-            return null;
+            return (null, null);
         }
-
-        return lockInfo.lockedFile;
+        return (lockInfo.lockedFile, lockInfo.lockerEmail);
     }
 }
 
 public class LockInfo
 {
-    public LockInfo(string fileToLock)
+    public LockInfo(string fileToLock, string lockerMail)
     {
         lockedFile = fileToLock;
+        lockerEmail = lockerMail;
     }
 
     public string lockedFile;
+    public string lockerEmail;
 }
