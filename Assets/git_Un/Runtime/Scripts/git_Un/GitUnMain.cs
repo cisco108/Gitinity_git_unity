@@ -24,11 +24,6 @@ public static class GitUnMain
 
         _fileLocking = new FileLocking(_terminal, _commandBuilder);
 
-        GitUnGUI.OnStartSceneGet += Main;
-        GitUnGUI.InitGitDataObject += GetGitData;
-        GitUnGUI.OnSetupGitUn += SetupGitinity;
-        GitUnGUI.OnLockFile += _fileLocking.LockFile;
-
 
         GitinityUI.OnSetup += SetupGitinity;
         GitinityUI.GetGitInfo += GetGitData;
