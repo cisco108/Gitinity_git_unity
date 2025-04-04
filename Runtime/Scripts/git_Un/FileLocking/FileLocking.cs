@@ -13,7 +13,11 @@ public class FileLocking
 
     public void TestEvent()
     {
-        OnFileIsLocked.Invoke($"Access Violation! \nFile was locked by Name");
+        // OnFileIsLocked.Invoke($"Access Violation! \nFile was locked by Name");
+        // EditorSceneManager.OpenScene("Assets/Scenes/SampleScene.unity");
+        EditorSceneManager.OpenScene("Assets/git_Un/Runtime/Scene/OpensWhenSceneIsLocked.unity");
+        
+
     }
 
     public FileLocking()
@@ -51,6 +55,7 @@ public class FileLocking
             string message = $"Access Violation!\n{lockedFileName} was locked by {lockerEmail}";
             Debug.LogError(message);
             OnFileIsLocked.Invoke(message);
+            EditorSceneManager.OpenScene(GlobalRefs.openWhenSceneIsLocked);
         }
         else
         {
