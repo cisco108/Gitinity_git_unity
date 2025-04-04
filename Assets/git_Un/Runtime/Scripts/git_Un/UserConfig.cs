@@ -19,6 +19,8 @@ public class UserConfig : ScriptableObject
             return _instance;
         }
     }
+
+    public string userEmail = "example@mail.com";
     public string logsFile = "logs.txt";
     public string lockedProtocolFile = "locked_files.json";
     public string diffPrefabsParentDirectory = "Assets/";

@@ -1,4 +1,5 @@
-﻿using UnityEditor.SceneManagement;
+﻿using System;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,6 +8,18 @@ public class FileLocking
     private ICommandBuilder _commandBuilder;
     private ITerminalInterface _terminal;
     private TheLock _theLock;
+
+    public static event Action<string> OnFileIsLocked;
+
+    public void TestEvent()
+    {
+        OnFileIsLocked.Invoke($"Access Violation! \nFile was locked by Name");
+    }
+
+    public FileLocking()
+    {
+        Debug.LogWarning("You using empty FileLocking");
+    } // just for testing
 
     public FileLocking(ITerminalInterface terminal, ICommandBuilder commandBuilder)
     {
@@ -27,22 +40,26 @@ public class FileLocking
 
         string readLockFileCmd = _commandBuilder.GetCatFile(revParseHash, GlobalRefs.filePaths.lockedProtocolFile);
         string lockedFileContent = _terminal.ExecuteResultToString(readLockFileCmd);
-        string lockedFileName = _theLock.DeserializeFileLockInfo(lockedFileContent);
-        
-        
-        
+
+        var result = _theLock.DeserializeFileLockInfo(lockedFileContent);
+        string lockedFileName = result.lockedFile;
+        string lockerEmail = result.personWhoLocked;
+
+
         if (scene.name == lockedFileName)
         {
-            Debug.LogError($"{lockedFileName} is locked! Ask your colleges what's up!");
+            string message = $"Access Violation!\n{lockedFileName} was locked by {lockerEmail}";
+            Debug.LogError(message);
+            OnFileIsLocked.Invoke(message);
         }
         else
         {
             Debug.Log($"This scene {scene.name} is save to work on, Congrats!");
         }
-        
-        LogSystem.WriteLog(new []
+
+        LogSystem.WriteLog(new[]
         {
-            fetchCmd, revParseFileLockBranchCmd, "hash of rev parse: ", 
+            fetchCmd, revParseFileLockBranchCmd, "hash of rev parse: ",
             revParseHash, readLockFileCmd, "locked file name: ", lockedFileName
         });
     }
@@ -54,9 +71,9 @@ public class FileLocking
 
         string switchFileLockingCmd = _commandBuilder.GetSwitch(GlobalRefs.lockingBranch);
         _terminal.Execute(switchFileLockingCmd);
-      
+
         _theLock.WriteLocking();
-        
+
         string commitCmd = _commandBuilder.GetCommit(" . ");
         _terminal.Execute(commitCmd);
 
@@ -68,8 +85,8 @@ public class FileLocking
 
         string pushAllCmd = _commandBuilder.GetPushAllBranches();
         _terminal.Execute(pushAllCmd);
-        
-        LogSystem.WriteLog(new []
+
+        LogSystem.WriteLog(new[]
         {
             saveBranchCmd, "current branch: ", currentBranch, switchFileLockingCmd, "locking here", commitCmd,
             pushAllCmd, switchBackCmd

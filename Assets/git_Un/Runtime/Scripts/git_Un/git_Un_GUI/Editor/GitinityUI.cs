@@ -8,6 +8,7 @@ using Object = UnityEngine.Object;
 
 public class GitinityUI : EditorWindow
 {
+    private TextField UserEmail => rootVisualElement.Q<TextField>("user-email");
     private TextField GitExe => rootVisualElement.Q<TextField>("git-exe");
     private TextField RemoteLink => rootVisualElement.Q<TextField>("remote-link");
     private TextField DiffObjPath => rootVisualElement.Q<TextField>("diff-obj-path");
@@ -18,6 +19,7 @@ public class GitinityUI : EditorWindow
     private Button LockBtn => rootVisualElement.Q<Button>("lock-btn");
     private DropdownField SourceBranchDropDown => rootVisualElement.Q<DropdownField>("source-branch-dd");
     private DropdownField TargetBranchDropDown => rootVisualElement.Q<DropdownField>("target-branch-dd");
+    
     // private Button RequestAccessBtn => rootVisualElement.Q<Button>("request-btn");
 
 
@@ -39,6 +41,7 @@ public class GitinityUI : EditorWindow
 
     public void CreateGUI()
     {
+        FileLocking.OnFileIsLocked += ReactWhenFileIsLocked;
         VisualElement root = rootVisualElement;
         // VisualTreeAsset asset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(
         // "Assets/git_Un/Runtime/Scripts/git_Un/git_Un_GUI/Editor/GitinityUI.uxml");
@@ -47,13 +50,14 @@ public class GitinityUI : EditorWindow
 
         asset.CloneTree(root);
 
+        UserEmail.SetValueWithoutNotify(GlobalRefs.filePaths.userEmail);
         GitExe.SetValueWithoutNotify(GlobalRefs.filePaths.gitBashExe);
         GitExe.RegisterValueChangedCallback(UpdateRemoteLink);
         RemoteLink.SetValueWithoutNotify(GlobalRefs.filePaths.remoteUrl);
         RemoteLink.RegisterValueChangedCallback(UpdateRemoteLink);
         DiffObjPath.SetValueWithoutNotify(GlobalRefs.filePaths.diffPrefabsDirName);
         DiffObjPath.RegisterValueChangedCallback(UpdateRemoteLink);
-        SetUpBtn.RegisterCallback<ClickEvent>(_ => OnSetup.Invoke());
+        SetUpBtn.RegisterCallback<ClickEvent>(FireSetup);
 
         MergeBtn.RegisterCallback<ClickEvent>(evt => OnMerge.Invoke(_targetBranch, _sourceBranch));
 
@@ -69,8 +73,28 @@ public class GitinityUI : EditorWindow
         SourceBranchDropDown.RegisterValueChangedCallback(SelectSourceBranch);
 
         // RequestAccessBtn.RegisterCallback<ClickEvent>((evt) => Debug.Log($"This could go out to the coworkers"));
+            
+        WarnLabel.AddToClassList("hidden");
+
     }
 
+    private void ReactWhenFileIsLocked(string message)
+    {
+        
+        WarnLabel.text = message;
+        WarnLabel.RemoveFromClassList("hidden");
+    }
+
+
+    private void FireSetup(ClickEvent _)
+    {
+        var state = GlobalRefs.StateObj.State;
+        if (state == State.PostInit)
+        {
+            return;
+        }
+        OnSetup.Invoke();
+    }
     private List<string> GetBranches()
     {
         GetGitInfo.Invoke();

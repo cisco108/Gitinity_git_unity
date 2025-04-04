@@ -3,6 +3,7 @@
 public class TestLockWriting : MonoBehaviour
 {
     private TheLock _theLock;
+    private FileLocking _fileLocking;
 
     [Button("Test lock write and read")]
     public void Test()
@@ -20,5 +21,12 @@ public class TestLockWriting : MonoBehaviour
 
         string foo = _theLock.ReadLockInfo();
         Debug.Log($"locked file is:\n {foo}");
+    }
+
+    [Button("Event")]
+    public void TestEvent()
+    {
+        _fileLocking = new FileLocking();
+        _fileLocking.TestEvent();
     }
 }

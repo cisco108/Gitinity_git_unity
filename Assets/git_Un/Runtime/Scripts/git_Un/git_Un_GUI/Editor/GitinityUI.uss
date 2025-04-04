@@ -4,14 +4,25 @@
     color: rgb(68, 138, 255);
 }
 
+.hidden{
+    display: none;
+}
 .warning {
-    font-size: 16px;
-    background-color: rgb(215, 97, 0);
+    font-size: 18px;
+    background-color: rgb(195, 0, 0);
+    color: black;
+    -unity-font-style: bold;
+    
 }
 .header {
     font-size: 18px;
     -unity-font-style: bold;
     color: rgb(68, 138, 255);
+}
+
+.user{
+    font-size: 14px;
+    -unity-font-style: bold;
 }
 VisualElement {
     margin: 8px 0;
