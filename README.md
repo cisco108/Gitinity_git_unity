@@ -22,6 +22,16 @@ The following example using the old Gui is still applicable.
 - The provided remote is added to the repository.
 - The entire project (minus gitignored files) is pushed to the remote.
 -  (An additional branch is added for managing file locking, which is not implemented yet.)
+
+# How to Use File Locking:
+## 1. Drag the Scene File (only scenes are supported right now)
+![Alt text](Assets/git_Un/Documentation/Images/16.png)
+
+## 2. Click on "Lock Specified File"
+## When this file is opened on any version of the repository, it will cause this message to show:
+![Alt text](Assets/git_Un/Documentation/Images/17.png)
+
+
 # How to Use Merge Function: 
 
 ## 1. Changes on scene file on <span style="color: #0000FF;">feature</span>
