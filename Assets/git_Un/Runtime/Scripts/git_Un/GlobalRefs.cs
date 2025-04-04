@@ -11,8 +11,11 @@ public static class GlobalRefs
     public static string gitignore = ".gitignore";
     public static StateObj StateObj;
 
+    //TODO: solve these paths, make it better
     public static string shellScripts =
         @"Library\PackageCache\com.newhere_tools.git_un\Runtime\Scripts\git_Un\ShellScripts\";
+    public static string openWhenSceneIsLocked =
+        @"Library\PackageCache\com.newhere_tools.git_un\Runtime\Scene\OpensWhenSceneIsLocked.unity";
 
     static GlobalRefs()
     {
