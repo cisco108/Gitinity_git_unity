@@ -24,6 +24,8 @@
     "UseSettingsCompanyNameAsName": true
   },
   "name": "com.newhere_tools.git_un",
-  "dependencies": {},
+  "dependencies": {
+    "com.unity.nuget.newtonsoft-json": "3.2.1"
+  },
   "hideFlags": 0
 }
