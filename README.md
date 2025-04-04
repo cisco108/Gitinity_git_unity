@@ -21,7 +21,7 @@ The following example using the old Gui is still applicable.
 - A .gitignore for unity projects is added.
 - The provided remote is added to the repository.
 - The entire project (minus gitignored files) is pushed to the remote.
--  (An additional branch is added for managing file locking, which is not implemented yet.)
+- An additional branch is added for managing file locking.
 
 # How to Use File Locking:
 ## 1. Drag the Scene File (only scenes are supported right now)
