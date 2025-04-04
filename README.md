@@ -1,13 +1,16 @@
 # <img src="Assets/git_Un/Documentation/Images/2502_logo.jpg" alt="Alt text" style="width:4cm;vertical-align:middle;" >  Gitinity - A git wrapper for Unity
 (Suggestions for another name are welcome.)
-## Current state on upm not rdy, if you want to use it contact me I'll provide you with a working version.
 ### Get it with the package manager from:
 ``https://github.com/cisco108/2502_Git_Un.git#upm``
 
-[//]: # (![Alt text]&#40;Assets/git_Un/Documentation/Images/2502_logo.jpg&#41;)
+
 
 # Get Started:
 
+### The gui changed and can be found under tools now:
+![Alt text](Assets/git_Un/Documentation/Images/14.png)
+![Alt text](Assets/git_Un/Documentation/Images/15.png)
+The following example using the old Gui is still applicable.
 ### 1. Install git_Un to your Unity Project.
 ### 2. Open the git_Un GUI (Window -> git_Un_GUI)
 ![Alt text](Assets/git_Un/Documentation/Images/13.png)
@@ -34,7 +37,7 @@
 ## 4. Switch to feature
 ![Alt text](Assets/git_Un/Documentation/Images/7.png)
 
-## 5. Open Window → git_Un_GUI 
+## 5. Open Tools → GitinityUI 
 ![Alt text](Assets/git_Un/Documentation/Images/8.png)
 
 ## 6. Select target and feature branch, then press START 
