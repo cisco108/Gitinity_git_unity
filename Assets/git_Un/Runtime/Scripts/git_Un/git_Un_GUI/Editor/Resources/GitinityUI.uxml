@@ -19,6 +19,7 @@
 
     <editor:ObjectField name="lock-file" label="🔒 File to lock:" type="UnityEngine.Object"/>
     <engine:Button name="lock-btn" text="Lock specified File" class="pull-right"/>
+    <engine:Button name="unlock-btn" text="Unlock specified File" class="pull-right"/>
     <!-- when problem with type selection, use ui builder gui -->
     <engine:Label text="Warning: You tried to use a file, that was locked by user-name!" class="warning" name="warn-label"/>
     

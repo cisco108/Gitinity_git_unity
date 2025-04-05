@@ -9,7 +9,7 @@ public class TestLockWriting : MonoBehaviour
     public void Test()
     {
         _theLock = new TheLock();
-        _theLock.WriteLocking();
+        _theLock.WriteLocking("SampleScene");
 
         string foo = _theLock.ReadLockInfo();
         Debug.Log($"locked file is:\n {foo}");

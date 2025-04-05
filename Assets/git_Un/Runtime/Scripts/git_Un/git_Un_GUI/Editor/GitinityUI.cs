@@ -4,6 +4,7 @@ using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
+using ClickEvent = UnityEngine.UIElements.ClickEvent;
 using Object = UnityEngine.Object;
 
 public class GitinityUI : EditorWindow
@@ -17,6 +18,7 @@ public class GitinityUI : EditorWindow
     private Label WarnLabel => rootVisualElement.Q<Label>("warn-label");
     private ObjectField LockFile => rootVisualElement.Q<ObjectField>("lock-file");
     private Button LockBtn => rootVisualElement.Q<Button>("lock-btn");
+    private Button UnlockBtn => rootVisualElement.Q<Button>("unlock-btn");
     private DropdownField SourceBranchDropDown => rootVisualElement.Q<DropdownField>("source-branch-dd");
     private DropdownField TargetBranchDropDown => rootVisualElement.Q<DropdownField>("target-branch-dd");
     
@@ -26,10 +28,13 @@ public class GitinityUI : EditorWindow
     public static event Action OnSetup;
     public static event Action GetGitInfo;
     public static event Action<string, string> OnMerge;
-    public static event Action OnLockFile;
+    public static event Action<string> OnLockFile;
+    public static event Action<string> OnUnlockFile;
 
     private string _sourceBranch;
     private string _targetBranch;
+
+    private string _fileToLock;
 
 
     [MenuItem("Tools/GitinityUI")]
@@ -61,7 +66,8 @@ public class GitinityUI : EditorWindow
 
         MergeBtn.RegisterCallback<ClickEvent>(evt => OnMerge.Invoke(_targetBranch, _sourceBranch));
 
-        LockBtn.RegisterCallback<ClickEvent>(evt => OnLockFile.Invoke());
+        LockBtn.RegisterCallback<ClickEvent>(evt => OnLockFile.Invoke(_fileToLock));
+        UnlockBtn.RegisterCallback<ClickEvent>(evt => OnUnlockFile.Invoke(_fileToLock));
 
         LockFile.RegisterValueChangedCallback(UpdateLockFile);
 
@@ -120,8 +126,9 @@ public class GitinityUI : EditorWindow
 
     private void UpdateLockFile(ChangeEvent<Object> evt)
     {
-        GlobalRefs.filePaths.fileToLockName = evt.newValue.name;
-        Debug.Log($"Updated file to lock to: {GlobalRefs.filePaths.fileToLockName}");
+        _fileToLock = evt.newValue.name;
+        // GlobalRefs.filePaths.fileToLockName = evt.newValue.name;
+        // Debug.Log($"Updated file to lock to: {GlobalRefs.filePaths.fileToLockName}");
     }
 
     private void SelectSourceBranch(ChangeEvent<string> evt)
