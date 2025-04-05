@@ -17,6 +17,7 @@
     <engine:DropdownField label="Source Branch" name="source-branch-dd"/>
     <engine:Button name="merge-btn" text="Merge" class="pull-right"/>
 
+    <engine:Toggle label="Enable File Locking" name="use-locking"/> 
     <editor:ObjectField name="lock-file" label="🔒 File to lock:" type="UnityEngine.Object"/>
     <engine:Button name="lock-btn" text="Lock specified File" class="pull-right"/>
     <engine:Button name="unlock-btn" text="Unlock specified File" class="pull-right"/>
