@@ -16,6 +16,7 @@ public class GitinityUI : EditorWindow
     private Button SetUpBtn => rootVisualElement.Q<Button>("setup-btn");
     private Button MergeBtn => rootVisualElement.Q<Button>("merge-btn");
     private Label WarnLabel => rootVisualElement.Q<Label>("warn-label");
+    private Toggle UseFileLocking => rootVisualElement.Q<Toggle>("use-locking");
     private ObjectField LockFile => rootVisualElement.Q<ObjectField>("lock-file");
     private Button LockBtn => rootVisualElement.Q<Button>("lock-btn");
     private Button UnlockBtn => rootVisualElement.Q<Button>("unlock-btn");
@@ -63,9 +64,10 @@ public class GitinityUI : EditorWindow
         DiffObjPath.SetValueWithoutNotify(GlobalRefs.filePaths.diffPrefabsDirName);
         DiffObjPath.RegisterValueChangedCallback(UpdateRemoteLink);
         SetUpBtn.RegisterCallback<ClickEvent>(FireSetup);
-
         MergeBtn.RegisterCallback<ClickEvent>(evt => OnMerge.Invoke(_targetBranch, _sourceBranch));
 
+        
+        
         LockBtn.RegisterCallback<ClickEvent>(evt =>
         {
             if (!string.IsNullOrEmpty(_fileToLock))
@@ -83,8 +85,12 @@ public class GitinityUI : EditorWindow
             else Debug.LogError("No file provided.");
         });
 
-        LockFile.RegisterValueChangedCallback(UpdateLockFile);
 
+
+        UseFileLocking.SetValueWithoutNotify(GlobalRefs.filePaths.useFileLocking);
+        UseFileLocking.RegisterValueChangedCallback(evt => GlobalRefs.filePaths.useFileLocking = evt.newValue);
+        LockFile.RegisterValueChangedCallback(UpdateLockFile);
+        
         var branchNames = GetBranches();
         TargetBranchDropDown.choices = branchNames;
         TargetBranchDropDown.RegisterValueChangedCallback(SelectTargetBranch);

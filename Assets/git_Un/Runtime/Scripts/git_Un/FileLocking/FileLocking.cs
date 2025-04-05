@@ -29,10 +29,10 @@ public class FileLocking
         _commandBuilder = commandBuilder;
         _theLock = new TheLock();
 
-        EditorSceneManager.sceneOpened += CheckIfFileIsLocked;
+        EditorSceneManager.sceneOpened += FeedbackIfLocked;
     }
 
-    private void CheckIfFileIsLocked(Scene scene, OpenSceneMode mode)
+    private (bool isLocked, string whoLockedIt) CheckIfFileIsLocked(string file)
     {
         string fetchCmd = GitCommands.fetch;
         _terminal.Execute(fetchCmd);
@@ -43,10 +43,22 @@ public class FileLocking
         string readLockFileCmd = _commandBuilder.GetCatFile(revParseHash, GlobalRefs.filePaths.lockedProtocolFile);
         string lockedFileContentJson = _terminal.ExecuteResultToString(readLockFileCmd);
 
+        LogSystem.WriteLog(new[]
+        {
+            "CheckIfFileIsLocked: ", fetchCmd, revParseFileLockBranchCmd, "hash of rev parse: ",
+            revParseHash, readLockFileCmd, "locked file content: ", lockedFileContentJson
+        });
 
-        bool isLocked = _theLock.IsFileLocked(lockedFileContentJson,
-            scene.name, out var whoLockedIt);
+        bool isLocked = _theLock.IsFileLocked(lockedFileContentJson, file, out var whoLockedIt);
+        return (isLocked, whoLockedIt);
+    }
 
+    private void FeedbackIfLocked(Scene scene, OpenSceneMode _)
+    {
+        if (!GlobalRefs.filePaths.useFileLocking) return; 
+        
+        (bool isLocked, string whoLockedIt) = CheckIfFileIsLocked(scene.name);
+        
         if (isLocked && whoLockedIt != GlobalRefs.filePaths.userEmail)
         {
             string message = $"Access Violation!\n{scene.name} was locked by {whoLockedIt}";
@@ -57,16 +69,19 @@ public class FileLocking
         {
             Debug.Log($"This scene {scene.name} is save to work on, Congrats!");
         }
-
-        LogSystem.WriteLog(new[]
-        {
-            fetchCmd, revParseFileLockBranchCmd, "hash of rev parse: ",
-            revParseHash, readLockFileCmd, "locked file content: ", lockedFileContentJson 
-        });
     }
 
     public void LockFile(string file)
     {
+        if (!GlobalRefs.filePaths.useFileLocking) return; 
+        
+        (bool isFileAlreadyLocked, string whoLockedIt) = CheckIfFileIsLocked(file);
+        if (isFileAlreadyLocked)
+        {
+            Debug.LogWarning($"{file} was already locked by {whoLockedIt}");
+            return;
+        }
+        
         string saveBranchCmd = _commandBuilder.GetCurrentBranch();
         string currentBranch = _terminal.ExecuteResultToString(saveBranchCmd);
 
@@ -96,7 +111,32 @@ public class FileLocking
 
     public void UnlockFile(string file)
     {
+        if (!GlobalRefs.filePaths.useFileLocking) return; 
+        
+        string saveBranchCmd = _commandBuilder.GetCurrentBranch();
+        string currentBranch = _terminal.ExecuteResultToString(saveBranchCmd);
+
+        string switchFileLockingCmd = _commandBuilder.GetSwitch(GlobalRefs.lockingBranch);
+        _terminal.Execute(switchFileLockingCmd);
+
         _theLock.WriteUnlocking(file);
+
+        string commitCmd = _commandBuilder.GetCommit(" . ");
+        _terminal.Execute(commitCmd);
+
+        // string pushCmd = _commandBuilder.GetPush(); 
+        // _terminal.Execute(pushCmd);
+
+        string switchBackCmd = _commandBuilder.GetSwitch(currentBranch);
+        _terminal.Execute(switchBackCmd);
+
+        string pushAllCmd = _commandBuilder.GetPushAllBranches();
+        _terminal.Execute(pushAllCmd);
+
+        LogSystem.WriteLog(new[]
+        {
+            saveBranchCmd, "current branch: ", currentBranch, switchFileLockingCmd, "unlocking here", commitCmd,
+            pushAllCmd, switchBackCmd
+        });
     }
-    
 }
