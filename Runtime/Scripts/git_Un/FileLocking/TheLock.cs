@@ -7,10 +7,11 @@ public class TheLock
     private JsonSerializer serializer = new JsonSerializer();
     private string path = GlobalRefs.filePaths.lockedProtocolFile;
 
-    public void WriteLocking()
+    public void WriteLocking(string file)
     {
         var lockInfo = new LockInfo(
-            GlobalRefs.filePaths.fileToLockName,
+            file, 
+            // GlobalRefs.filePaths.fileToLockName,
             GlobalRefs.filePaths.userEmail);
 
         using StreamWriter sw = new StreamWriter(path);
@@ -44,6 +45,7 @@ public class TheLock
 
 public class LockInfo
 {
+    public LockInfo(){}
     public LockInfo(string fileToLock, string lockerMail)
     {
         lockedFile = fileToLock;

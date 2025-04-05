@@ -29,6 +29,7 @@ public static class GitUnMain
         GitinityUI.GetGitInfo += GetGitData;
         GitinityUI.OnMerge += Main;
         GitinityUI.OnLockFile += _fileLocking.LockFile;
+        GitinityUI.OnUnlockFile += _fileLocking.UnlockFile;
     }
 
     private static void SetupGitinity()

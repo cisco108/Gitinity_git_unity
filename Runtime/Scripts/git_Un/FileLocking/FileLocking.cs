@@ -16,8 +16,6 @@ public class FileLocking
         // OnFileIsLocked.Invoke($"Access Violation! \nFile was locked by Name");
         // EditorSceneManager.OpenScene("Assets/Scenes/SampleScene.unity");
         EditorSceneManager.OpenScene("Assets/git_Un/Runtime/Scene/OpensWhenSceneIsLocked.unity");
-        
-
     }
 
     public FileLocking()
@@ -69,7 +67,7 @@ public class FileLocking
         });
     }
 
-    public void LockFile()
+    public void LockFile(string file)
     {
         string saveBranchCmd = _commandBuilder.GetCurrentBranch();
         string currentBranch = _terminal.ExecuteResultToString(saveBranchCmd);
@@ -77,7 +75,7 @@ public class FileLocking
         string switchFileLockingCmd = _commandBuilder.GetSwitch(GlobalRefs.lockingBranch);
         _terminal.Execute(switchFileLockingCmd);
 
-        _theLock.WriteLocking();
+        _theLock.WriteLocking(file);
 
         string commitCmd = _commandBuilder.GetCommit(" . ");
         _terminal.Execute(commitCmd);
@@ -97,4 +95,11 @@ public class FileLocking
             pushAllCmd, switchBackCmd
         });
     }
+
+    public void UnlockFile(string file)
+    {
+        
+        Debug.LogError($"Unlocking is not done, but it would have unlocked: {file}");
+    }
+    
 }
