@@ -22,7 +22,7 @@ public class FileLocking
 
     public FileLocking()
     {
-        Debug.LogWarning("You using empty FileLocking");
+        Debug.LogWarning("You are using empty FileLocking");
     } // just for testing
 
     public FileLocking(ITerminalInterface terminal, ICommandBuilder commandBuilder)
@@ -50,7 +50,7 @@ public class FileLocking
         string lockerEmail = result.personWhoLocked;
 
 
-        if (scene.name == lockedFileName)
+        if (scene.name == lockedFileName && lockerEmail != GlobalRefs.filePaths.userEmail)
         {
             string message = $"Access Violation!\n{lockedFileName} was locked by {lockerEmail}";
             Debug.LogError(message);
