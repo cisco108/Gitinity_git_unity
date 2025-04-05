@@ -43,7 +43,7 @@ public class FileLocking
         string readLockFileCmd = _commandBuilder.GetCatFile(revParseHash, GlobalRefs.filePaths.lockedProtocolFile);
         string lockedFileContent = _terminal.ExecuteResultToString(readLockFileCmd);
 
-        var result = _theLock.DeserializeFileLockInfo(lockedFileContent);
+        /*var result = _theLock.IsFileLocked(lockedFileContent, scene.name);
         string lockedFileName = result.lockedFile;
         string lockerEmail = result.personWhoLocked;
 
@@ -64,7 +64,7 @@ public class FileLocking
         {
             fetchCmd, revParseFileLockBranchCmd, "hash of rev parse: ",
             revParseHash, readLockFileCmd, "locked file name: ", lockedFileName
-        });
+        });*/
     }
 
     public void LockFile(string file)
