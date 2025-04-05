@@ -21,7 +21,7 @@ public class GitinityUI : EditorWindow
     private Button UnlockBtn => rootVisualElement.Q<Button>("unlock-btn");
     private DropdownField SourceBranchDropDown => rootVisualElement.Q<DropdownField>("source-branch-dd");
     private DropdownField TargetBranchDropDown => rootVisualElement.Q<DropdownField>("target-branch-dd");
-    
+
     // private Button RequestAccessBtn => rootVisualElement.Q<Button>("request-btn");
 
 
@@ -50,7 +50,7 @@ public class GitinityUI : EditorWindow
         VisualElement root = rootVisualElement;
         // VisualTreeAsset asset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(
         // "Assets/git_Un/Runtime/Scripts/git_Un/git_Un_GUI/Editor/GitinityUI.uxml");
-        
+
         VisualTreeAsset asset = Resources.Load<VisualTreeAsset>("GitinityUI");
 
         asset.CloneTree(root);
@@ -66,8 +66,22 @@ public class GitinityUI : EditorWindow
 
         MergeBtn.RegisterCallback<ClickEvent>(evt => OnMerge.Invoke(_targetBranch, _sourceBranch));
 
-        LockBtn.RegisterCallback<ClickEvent>(evt => OnLockFile.Invoke(_fileToLock));
-        UnlockBtn.RegisterCallback<ClickEvent>(evt => OnUnlockFile.Invoke(_fileToLock));
+        LockBtn.RegisterCallback<ClickEvent>(evt =>
+        {
+            if (!string.IsNullOrEmpty(_fileToLock))
+            {
+                OnLockFile.Invoke(_fileToLock);
+            }
+            else Debug.LogError("No file provided.");
+        });
+        UnlockBtn.RegisterCallback<ClickEvent>(evt =>
+        {
+            if (!string.IsNullOrEmpty(_fileToLock))
+            {
+                OnUnlockFile.Invoke(_fileToLock);
+            }
+            else Debug.LogError("No file provided.");
+        });
 
         LockFile.RegisterValueChangedCallback(UpdateLockFile);
 
@@ -79,14 +93,12 @@ public class GitinityUI : EditorWindow
         SourceBranchDropDown.RegisterValueChangedCallback(SelectSourceBranch);
 
         // RequestAccessBtn.RegisterCallback<ClickEvent>((evt) => Debug.Log($"This could go out to the coworkers"));
-            
-        WarnLabel.AddToClassList("hidden");
 
+        WarnLabel.AddToClassList("hidden");
     }
 
     private void ReactWhenFileIsLocked(string message)
     {
-        
         WarnLabel.text = message;
         WarnLabel.RemoveFromClassList("hidden");
     }
@@ -99,8 +111,10 @@ public class GitinityUI : EditorWindow
         {
             return;
         }
+
         OnSetup.Invoke();
     }
+
     private List<string> GetBranches()
     {
         GetGitInfo.Invoke();
@@ -142,5 +156,4 @@ public class GitinityUI : EditorWindow
         _targetBranch = evt.newValue;
         Debug.Log($"target branch: {_targetBranch}");
     }
-
 }
