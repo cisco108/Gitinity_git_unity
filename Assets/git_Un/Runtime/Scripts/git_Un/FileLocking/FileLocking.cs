@@ -41,19 +41,17 @@ public class FileLocking
         string revParseHash = _terminal.ExecuteResultToString(revParseFileLockBranchCmd);
 
         string readLockFileCmd = _commandBuilder.GetCatFile(revParseHash, GlobalRefs.filePaths.lockedProtocolFile);
-        string lockedFileContent = _terminal.ExecuteResultToString(readLockFileCmd);
-
-        /*var result = _theLock.IsFileLocked(lockedFileContent, scene.name);
-        string lockedFileName = result.lockedFile;
-        string lockerEmail = result.personWhoLocked;
+        string lockedFileContentJson = _terminal.ExecuteResultToString(readLockFileCmd);
 
 
-        if (scene.name == lockedFileName && lockerEmail != GlobalRefs.filePaths.userEmail)
+        bool isLocked = _theLock.IsFileLocked(lockedFileContentJson,
+            scene.name, out var whoLockedIt);
+
+        if (isLocked && whoLockedIt != GlobalRefs.filePaths.userEmail)
         {
-            string message = $"Access Violation!\n{lockedFileName} was locked by {lockerEmail}";
+            string message = $"Access Violation!\n{scene.name} was locked by {whoLockedIt}";
             Debug.LogError(message);
             OnFileIsLocked.Invoke(message);
-            EditorSceneManager.OpenScene(GlobalRefs.openWhenSceneIsLocked);
         }
         else
         {
@@ -63,8 +61,8 @@ public class FileLocking
         LogSystem.WriteLog(new[]
         {
             fetchCmd, revParseFileLockBranchCmd, "hash of rev parse: ",
-            revParseHash, readLockFileCmd, "locked file name: ", lockedFileName
-        });*/
+            revParseHash, readLockFileCmd, "locked file content: ", lockedFileContentJson 
+        });
     }
 
     public void LockFile(string file)
@@ -98,8 +96,7 @@ public class FileLocking
 
     public void UnlockFile(string file)
     {
-        
-        Debug.LogError($"Unlocking is not done, but it would have unlocked: {file}");
+        _theLock.WriteUnlocking(file);
     }
     
 }
