@@ -1,5 +1,5 @@
 {
-  "version": "0.5.3",
+  "version": "0.5.4",
   "displayName": "git_Un",
   "description": "",
   "unity": "6000.0",
@@ -24,8 +24,6 @@
     "UseSettingsCompanyNameAsName": true
   },
   "name": "com.newhere_tools.git_un",
-  "dependencies": {
-    "com.unity.nuget.newtonsoft-json": "3.2.1"
-  },
+  "dependencies": {},
   "hideFlags": 0
 }

@@ -65,15 +65,21 @@ public class FileLocking
 
         (bool isLocked, string whoLockedIt) = CheckIfFileIsLocked(scene.name);
 
-        if (isLocked && whoLockedIt != GlobalRefs.filePaths.userEmail)
+        if (isLocked)
         {
+            if (string.Equals(whoLockedIt, GlobalRefs.filePaths.userEmail))
+            {
+                Debug.Log($"The file is locked by the current user: {GlobalRefs.filePaths.userEmail}");
+                return;
+            }
+
             string message = $"Access Violation!\n{scene.name} was locked by {whoLockedIt}";
             Debug.LogError(message);
             OnFileIsLocked.Invoke(message);
         }
         else
         {
-            Debug.Log($"This scene {scene.name} is save to work on, Congrats!");
+            Debug.Log($"This scene {scene.name} is not locked. Congrats!");
         }
     }
 
