@@ -34,20 +34,26 @@ public class FileLocking
 
     private (bool isLocked, string whoLockedIt) CheckIfFileIsLocked(string file)
     {
-        string fetchCmd = GitCommands.fetch;
+        /*string fetchCmd = GitCommands.fetch;
         _terminal.Execute(fetchCmd);
 
         string revParseFileLockBranchCmd = _commandBuilder.GetRevParse("origin/" + GlobalRefs.lockingBranch);
         string revParseHash = _terminal.ExecuteResultToString(revParseFileLockBranchCmd);
 
         string readLockFileCmd = _commandBuilder.GetCatFile(revParseHash, GlobalRefs.filePaths.lockedProtocolFile);
-        string lockedFileContentJson = _terminal.ExecuteResultToString(readLockFileCmd);
+        string lockedFileContentJson = _terminal.ExecuteResultToString(readLockFileCmd);*/
 
-        LogSystem.WriteLog(new[]
+
+        string readLockFileCmd = _commandBuilder.GetReadLockedFile();
+        string lockedFileContentJson = _terminal.ExecuteResultToString(readLockFileCmd);
+        // git cat-file -p origin/file-locking:locked_files.json
+        LogSystem.WriteLog(new[] { readLockFileCmd, "locked file content:", lockedFileContentJson });
+
+        /*LogSystem.WriteLog(new[]
         {
             "CheckIfFileIsLocked: ", fetchCmd, revParseFileLockBranchCmd, "hash of rev parse: ",
             revParseHash, readLockFileCmd, "locked file content: ", lockedFileContentJson
-        });
+        });*/
 
         bool isLocked = _theLock.IsFileLocked(lockedFileContentJson, file, out var whoLockedIt);
         return (isLocked, whoLockedIt);
@@ -55,10 +61,10 @@ public class FileLocking
 
     private void FeedbackIfLocked(Scene scene, OpenSceneMode _)
     {
-        if (!GlobalRefs.filePaths.useFileLocking) return; 
-        
+        if (!GlobalRefs.filePaths.useFileLocking) return;
+
         (bool isLocked, string whoLockedIt) = CheckIfFileIsLocked(scene.name);
-        
+
         if (isLocked && whoLockedIt != GlobalRefs.filePaths.userEmail)
         {
             string message = $"Access Violation!\n{scene.name} was locked by {whoLockedIt}";
@@ -73,15 +79,15 @@ public class FileLocking
 
     public void LockFile(string file)
     {
-        if (!GlobalRefs.filePaths.useFileLocking) return; 
-        
+        if (!GlobalRefs.filePaths.useFileLocking) return;
+
         (bool isFileAlreadyLocked, string whoLockedIt) = CheckIfFileIsLocked(file);
         if (isFileAlreadyLocked)
         {
             Debug.LogWarning($"{file} was already locked by {whoLockedIt}");
             return;
         }
-        
+
         string saveBranchCmd = _commandBuilder.GetCurrentBranch();
         string currentBranch = _terminal.ExecuteResultToString(saveBranchCmd);
 
@@ -111,8 +117,8 @@ public class FileLocking
 
     public void UnlockFile(string file)
     {
-        if (!GlobalRefs.filePaths.useFileLocking) return; 
-        
+        if (!GlobalRefs.filePaths.useFileLocking) return;
+
         string saveBranchCmd = _commandBuilder.GetCurrentBranch();
         string currentBranch = _terminal.ExecuteResultToString(saveBranchCmd);
 

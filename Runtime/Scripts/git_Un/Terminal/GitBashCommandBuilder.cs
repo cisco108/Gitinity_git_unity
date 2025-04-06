@@ -103,6 +103,12 @@ public class GitBashCommandBuilder : ICommandBuilder
         return GitCommands.subtree_split_prefix + prefix + GitFlags.branch + newBranchName;
     }
 
+    public string GetReadLockedFile()
+    {
+        // git cat-file -p origin/file-locking:locked_files.json
+        return $"{GitCommands.cat_file_p} origin/{GlobalRefs.lockingBranch}:{GlobalRefs.filePaths.lockedProtocolFile}";
+    }
+
     public string GetNewestGitignoreContent()
     {
         return BashCommands.curl_o + ".gitignore https://raw.githubusercontent.com/github/gitignore/main/Unity.gitignore";
