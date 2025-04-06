@@ -57,17 +57,21 @@ public class GitinityUI : EditorWindow
         asset.CloneTree(root);
 
         UserEmail.SetValueWithoutNotify(GlobalRefs.filePaths.userEmail);
+        UserEmail.RegisterValueChangedCallback(UpdateUser);
+
         GitExe.SetValueWithoutNotify(GlobalRefs.filePaths.gitBashExe);
         GitExe.RegisterValueChangedCallback(UpdateRemoteLink);
+
         RemoteLink.SetValueWithoutNotify(GlobalRefs.filePaths.remoteUrl);
         RemoteLink.RegisterValueChangedCallback(UpdateRemoteLink);
+
         DiffObjPath.SetValueWithoutNotify(GlobalRefs.filePaths.diffPrefabsDirName);
-        DiffObjPath.RegisterValueChangedCallback(UpdateRemoteLink);
+        DiffObjPath.RegisterValueChangedCallback(UpdateDiffPath);
+
         SetUpBtn.RegisterCallback<ClickEvent>(FireSetup);
+
         MergeBtn.RegisterCallback<ClickEvent>(evt => OnMerge.Invoke(_targetBranch, _sourceBranch));
 
-        
-        
         LockBtn.RegisterCallback<ClickEvent>(evt =>
         {
             if (!string.IsNullOrEmpty(_fileToLock))
@@ -86,11 +90,10 @@ public class GitinityUI : EditorWindow
         });
 
 
-
         UseFileLocking.SetValueWithoutNotify(GlobalRefs.filePaths.useFileLocking);
         UseFileLocking.RegisterValueChangedCallback(evt => GlobalRefs.filePaths.useFileLocking = evt.newValue);
         LockFile.RegisterValueChangedCallback(UpdateLockFile);
-        
+
         var branchNames = GetBranches();
         TargetBranchDropDown.choices = branchNames;
         TargetBranchDropDown.RegisterValueChangedCallback(SelectTargetBranch);
@@ -142,6 +145,18 @@ public class GitinityUI : EditorWindow
     {
         GlobalRefs.filePaths.remoteUrl = evt.newValue;
         Debug.Log($"Updated remote url to: {GlobalRefs.filePaths.remoteUrl}");
+    }
+
+    private void UpdateDiffPath(ChangeEvent<string> evt)
+    {
+        GlobalRefs.filePaths.diffPrefabsDirName = evt.newValue;
+        Debug.Log($"Updated Diff Prefabs path to: {GlobalRefs.filePaths.DiffPrefabsDirectory}");
+    }
+
+    private void UpdateUser(ChangeEvent<string> evt)
+    {
+        GlobalRefs.filePaths.userEmail = evt.newValue;
+        Debug.Log($"Updated user email to: {GlobalRefs.filePaths.userEmail}");
     }
 
     private void UpdateLockFile(ChangeEvent<Object> evt)
