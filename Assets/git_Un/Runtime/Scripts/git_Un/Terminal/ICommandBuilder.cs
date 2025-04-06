@@ -24,6 +24,7 @@
     public string GetInit();
     public string GetAddRemote();
     public string GetSubtreeSplitNewBranch(string prefix, string newBranchName);
+    public string GetReadLockedFile();
 
     /// <summary>
     /// Curls (downloads) the gitignore for Unity Projects from github
