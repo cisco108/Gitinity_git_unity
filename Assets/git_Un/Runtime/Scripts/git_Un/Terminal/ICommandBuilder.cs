@@ -52,5 +52,6 @@
 
     public string GetWriteLinesToFile(string[] lines, string filePath);
     public string GetLogOfFile(string filePath);
+    public string GetCheckout(string hash, string path = default);
 
 }

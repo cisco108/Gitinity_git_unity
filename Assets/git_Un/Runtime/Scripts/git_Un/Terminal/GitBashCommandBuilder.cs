@@ -155,4 +155,13 @@ public class GitBashCommandBuilder : ICommandBuilder
         return GitCommands.log_oneline + filePath;
     }
 
+    public string GetCheckout(string hash, string path = default)
+    {
+        if (path == default)
+        {
+            return GitCommands.checkout + hash;
+        }
+
+        return GitCommands.checkout + hash + " " + path;
+    }
 }
