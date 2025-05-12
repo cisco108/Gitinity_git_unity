@@ -3,7 +3,7 @@
 public static class GitCommands
 {
     //TODO add SPACE after command
-    public static string log_oneline = "git log --oneline -n 10";
+    public static string log_oneline = "git log --oneline ";
     public static string echo_hello = "echo hello";
     public static string merge_base= "git merge-base ";
     public static string rev_parse = "git rev-parse ";

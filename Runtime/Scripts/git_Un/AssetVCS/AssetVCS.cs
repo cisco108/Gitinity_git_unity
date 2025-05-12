@@ -6,8 +6,11 @@ public class AssetVCS
     private string prefix;
     private ICommandBuilder _commandBuilder;
     private ITerminalInterface _terminal;
-    public AssetVCS()
+    public AssetVCS(ITerminalInterface terminal, ICommandBuilder commandBuilder)
     {
+        _terminal = terminal;
+        _commandBuilder = commandBuilder;
+        
         Selection.selectionChanged += OnSelectionChanged;
         prefix = GlobalRefs.filePaths.versionControlledAssets; 
     }
