@@ -25,7 +25,7 @@ public static class GitUnMain
 
         _fileLocking = new FileLocking(_terminal, _commandBuilder);
 
-        _assetVCS = new AssetVCS();
+        _assetVCS = new AssetVCS(_terminal, _commandBuilder);
 
         GitinityUI.OnSetup += SetupGitinity;
         GitinityUI.GetGitInfo += GetGitData;

@@ -41,23 +41,36 @@ public class GitBashInterface : ITerminalInterface
 
     public string[] ExecuteResultToStringArr(string command)
     {
+        string s = ExecuteResultToString(command);
+        
+        if(string.IsNullOrEmpty(s))
+        {
+            Debug.LogError($"Command {command} lead to empty result.");
+            return null; 
+        }
+        
+        if (command.StartsWith(GitCommands.log_oneline))
+        {
+            // command = command.Remove(GitCommands.log_oneline.Length);
+            command = GitCommands.log_oneline;
+        }
+        
+        Debug.Log($"Commands ({command}) result split in array.");
+        string[] result;
         switch (command)
         {
             case "git branch ":
-                var s = ExecuteResultToString(command);
-
-                if(string.IsNullOrEmpty(s))
-                {
-                    return null; 
-                }
-                
-                string[] result = s.Split('\n')
+                result = s.Split('\n')
                     .Select(b => b.Trim('*', ' '))
                     .ToArray();
                 return result;
             
+            case "git log --oneline ":
+                result = s.Split('\n');
+                return result;
+            
             default:
-                Debug.LogError($"Only implemented for 'git branchSPACE' command. Please add implementation for other");
+                Debug.LogError($"Only implemented for 'git branchSPACE' and 'git log ' command. Please add implementation for other");
                 return null;
         }
     }
