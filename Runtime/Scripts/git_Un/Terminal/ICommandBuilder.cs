@@ -51,5 +51,6 @@
     public string GetCatFile(string hash, string specificFile = default);
 
     public string GetWriteLinesToFile(string[] lines, string filePath);
+    public string GetLogOfFile(string filePath);
 
 }

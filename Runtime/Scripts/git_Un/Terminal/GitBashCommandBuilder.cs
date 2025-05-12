@@ -149,4 +149,10 @@ public class GitBashCommandBuilder : ICommandBuilder
 
         return cmd + " >> " + filePath;
     }
+
+    public string GetLogOfFile(string filePath)
+    {
+        return GitCommands.log_oneline + filePath;
+    }
+
 }
