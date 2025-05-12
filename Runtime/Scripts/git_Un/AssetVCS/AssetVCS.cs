@@ -50,12 +50,11 @@ public class AssetVCS
 
     private void UpdateVersion(string versionCommit, string path)
     {
-        Debug.Log(versionCommit);
         string hash = versionCommit.Remove(7);
 
         string checkoutCmd = _commandBuilder.GetCheckout(hash, path);
         Debug.Log(checkoutCmd);
-        // _terminal.Execute(checkoutCmd);
+        _terminal.Execute(checkoutCmd);
     }
        
 }
