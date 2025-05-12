@@ -1,5 +1,7 @@
-﻿using UnityEditor;
+﻿using System;
+using UnityEditor;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 public class AssetVCS
 {
@@ -38,9 +40,22 @@ public class AssetVCS
             // string[] versions = new[] { "version2", "superVersion", "thisIsGreat" };
             string name = selectedObj.name;
             
-            PopupWindow.Show(new Rect(100, 100, 200, 100), new AssetVCSPopup(name, versions));
+            AssetVCSPopup popup = new AssetVCSPopup(name, versions, path);
+            popup.OnUpdateVersion += UpdateVersion;
+            PopupWindow.Show(new Rect(100, 100, 200, 100), popup);
+            
             
         }
+    }
+
+    private void UpdateVersion(string versionCommit, string path)
+    {
+        Debug.Log(versionCommit);
+        string hash = versionCommit.Remove(7);
+
+        string checkoutCmd = _commandBuilder.GetCheckout(hash, path);
+        Debug.Log(checkoutCmd);
+        // _terminal.Execute(checkoutCmd);
     }
        
 }
@@ -51,10 +66,14 @@ public class AssetVCSPopup : PopupWindowContent
     private readonly string _assetName;
     private string[] _versions;
     private int _selectedIndex = 0;
-    public AssetVCSPopup(string name, string[] versions)
+    private string _pathOfContainedAsset;
+
+    public event Action<string, string> OnUpdateVersion;
+    public AssetVCSPopup(string name, string[] versions, string path)
     {
         _assetName = name;
         _versions = versions;
+        _pathOfContainedAsset = path;
     }
     public override Vector2 GetWindowSize() => new Vector2(450, 180);
 
@@ -67,6 +86,12 @@ public class AssetVCSPopup : PopupWindowContent
         // Dropdown selection for versions
         _selectedIndex = EditorGUILayout.Popup("Select Version", _selectedIndex, _versions);
         if (GUILayout.Button("Change Version"))
+        {
+            OnUpdateVersion.Invoke(_versions[_selectedIndex], _pathOfContainedAsset);
+        }
+        
+        EditorGUILayout.Space();
+        if (GUILayout.Button("Close"))
         {
             editorWindow.Close();
         }

@@ -51,7 +51,6 @@ public class GitBashInterface : ITerminalInterface
         
         if (command.StartsWith(GitCommands.log_oneline))
         {
-            // command = command.Remove(GitCommands.log_oneline.Length);
             command = GitCommands.log_oneline;
         }
         
