@@ -13,6 +13,7 @@ public static class GitUnMain
     private static ITerminalInterface _terminal;
     private static ICommandBuilder _commandBuilder;
     private static FileLocking _fileLocking;
+    private static AssetVCS _assetVCS;
     private static bool _useFileLocking = false;
 
     static GitUnMain()
@@ -24,6 +25,7 @@ public static class GitUnMain
 
         _fileLocking = new FileLocking(_terminal, _commandBuilder);
 
+        _assetVCS = new AssetVCS();
 
         GitinityUI.OnSetup += SetupGitinity;
         GitinityUI.GetGitInfo += GetGitData;
