@@ -25,6 +25,7 @@ public class UserConfig : ScriptableObject
     public string lockedProtocolFile = "locked_files.json";
     public string diffPrefabsParentDirectory = "Assets/";
     public string diffPrefabsDirName = "DiffObjects_as_Prefabs/";
+    public string versionControlledAssets = "Assets/VersionControlledAssets/";
     public string DiffPrefabsDirectory => diffPrefabsParentDirectory + diffPrefabsDirName;
     public string gitBashExe = @"C:\Program Files\Git\git-bash.exe";
     public string remoteUrl = "Paste the http link for your empty repository.";
