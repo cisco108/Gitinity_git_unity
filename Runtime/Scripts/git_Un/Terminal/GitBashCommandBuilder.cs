@@ -30,12 +30,22 @@ public class GitBashCommandBuilder : ICommandBuilder
         return GitCommands.diff + mergeBase + " " + revParse + " Assets/Scenes";
     }
 
-    public string GetCommit(string contentPath)
+    public string GetCommit(string contentPath, string commitMessage = null)
     {
+        string message;
+        if (commitMessage != null)
+        {
+            message = commitMessage;
+        }
+        else
+        {
+            message = $" \' added {contentPath} on {DateTime.Now} \'";
+        }
+        
         //TODO: include .meta file
         return GitCommands.add + contentPath
                                + " && " + GitCommands.commit_m
-                               + $" \' added {contentPath} on {DateTime.Now} \'";
+                               + message;
     }
 
     public string GetPush(string branchName = default)
