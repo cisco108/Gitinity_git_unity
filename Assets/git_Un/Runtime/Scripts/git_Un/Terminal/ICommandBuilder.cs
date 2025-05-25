@@ -4,13 +4,14 @@
     public string GetRevParse(string branch);
 
     public string GetDiff(string mergeBase, string revParse);
-    
+
     /// <summary>
     /// Adds and commit the file/directory (.meta not implemented yet)
     /// </summary>
     /// <param name="contentPath">file/directory</param>
+    /// <param name="commitMessage"> can be null</param>
     /// <returns></returns>
-    public string GetCommit(string contentPath);
+    public string GetCommit(string contentPath, string commitMessage = null);
     public string GetPush(string branchName = default);
     public string GetPushAllBranches();
     public string GetCreateBranch(string branchName);

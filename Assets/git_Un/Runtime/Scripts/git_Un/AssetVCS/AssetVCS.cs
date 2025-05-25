@@ -42,6 +42,7 @@ public class AssetVCS
             
             AssetVCSPopup popup = new AssetVCSPopup(name, versions, path);
             popup.OnUpdateVersion += UpdateVersion;
+            popup.OnSaveChanges += SaveChanges;
             PopupWindow.Show(new Rect(100, 100, 200, 100), popup);
             
             
@@ -56,6 +57,15 @@ public class AssetVCS
         Debug.Log(checkoutCmd);
         _terminal.Execute(checkoutCmd);
     }
+
+    private void SaveChanges(string versionCommit, string path)
+    {
+         string hash = versionCommit.Remove(7);
+
+         string commitCmd = _commandBuilder.GetCommit(path, $"Changed {path} to version {hash}");
+         Debug.Log(commitCmd);
+         _terminal.Execute(commitCmd);       
+    }
        
 }
 
@@ -68,6 +78,7 @@ public class AssetVCSPopup : PopupWindowContent
     private string _pathOfContainedAsset;
 
     public event Action<string, string> OnUpdateVersion;
+    public event Action<string, string> OnSaveChanges;
     public AssetVCSPopup(string name, string[] versions, string path)
     {
         _assetName = name;
@@ -84,10 +95,17 @@ public class AssetVCSPopup : PopupWindowContent
 
         // Dropdown selection for versions
         _selectedIndex = EditorGUILayout.Popup("Select Version", _selectedIndex, _versions);
-        if (GUILayout.Button("Change Version"))
+        if (GUILayout.Button("Switch Version"))
         {
             OnUpdateVersion.Invoke(_versions[_selectedIndex], _pathOfContainedAsset);
         }
+        
+        if (GUILayout.Button("Safe Changes"))
+        {
+            OnSaveChanges.Invoke(_versions[_selectedIndex], _pathOfContainedAsset);
+        }
+        
+        
         
         EditorGUILayout.Space();
         if (GUILayout.Button("Close"))
