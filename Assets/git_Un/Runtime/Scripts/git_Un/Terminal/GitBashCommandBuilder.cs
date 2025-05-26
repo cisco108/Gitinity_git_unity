@@ -35,7 +35,7 @@ public class GitBashCommandBuilder : ICommandBuilder
         string message;
         if (commitMessage != null)
         {
-            message = commitMessage;
+            message = $" \' {commitMessage} \' ";
         }
         else
         {
