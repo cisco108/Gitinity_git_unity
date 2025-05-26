@@ -30,20 +30,20 @@ public class AssetVCS
 
         if (controlled)
         {
-            // here some data has to be read to see which versions are available
-            // and then shown as selection for the asset
-            // how to handle when they get commited? automatic on default the newest version 
-            
             string getVersionsCmd = _commandBuilder.GetLogOfFile(path);
             string[] versions = _terminal.ExecuteResultToStringArr(getVersionsCmd);
 
             // string[] versions = new[] { "version2", "superVersion", "thisIsGreat" };
             string name = selectedObj.name;
             
+            AssetVCSEditorWindow.ShowWindow(name, versions, path, UpdateVersion, SaveChanges);
+ 
+            /*
             AssetVCSPopup popup = new AssetVCSPopup(name, versions, path);
             popup.OnUpdateVersion += UpdateVersion;
             popup.OnSaveChanges += SaveChanges;
             PopupWindow.Show(new Rect(100, 100, 200, 100), popup);
+            */
             
             
         }
@@ -56,6 +56,7 @@ public class AssetVCS
         string checkoutCmd = _commandBuilder.GetCheckout(hash, path);
         Debug.Log(checkoutCmd);
         _terminal.Execute(checkoutCmd);
+        AssetDatabase.Refresh();
     }
 
     private void SaveChanges(string versionCommit, string path)
@@ -68,6 +69,57 @@ public class AssetVCS
     }
        
 }
+
+
+
+public class AssetVCSEditorWindow : EditorWindow
+{
+    private string _assetName;
+    private string[] _versions;
+    private int _selectedIndex = 0;
+    private string _pathOfContainedAsset;
+
+    public event Action<string, string> OnUpdateVersion;
+    public event Action<string, string> OnSaveChanges;
+
+    public static void ShowWindow(string assetName, string[] versions, string path,
+        Action<string, string> onUpdate, Action<string, string> onSave)
+    {
+        AssetVCSEditorWindow window = GetWindow<AssetVCSEditorWindow>("Asset VCS");
+        window._assetName = assetName;
+        window._versions = versions;
+        window._pathOfContainedAsset = path;
+        window.OnUpdateVersion = onUpdate;
+        window.OnSaveChanges = onSave;
+        window.minSize = new Vector2(450, 180);
+        window.Show();
+    }
+
+    private void OnGUI()
+    {
+        GUILayout.Label($"Version Selection: {_assetName}", EditorStyles.boldLabel);
+
+        EditorGUILayout.Space();
+
+        _selectedIndex = EditorGUILayout.Popup("Select Version", _selectedIndex, _versions);
+
+        if (GUILayout.Button("Switch Version"))
+        {
+            OnUpdateVersion.Invoke(_versions[_selectedIndex], _pathOfContainedAsset);
+        }
+
+        if (GUILayout.Button("Save Changes"))
+        {
+            OnSaveChanges.Invoke(_versions[_selectedIndex], _pathOfContainedAsset);
+        }
+    }
+}
+
+
+
+
+
+
 
 
 public class AssetVCSPopup : PopupWindowContent
