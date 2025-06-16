@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEditor;
 using UnityEngine;
+using System.IO;
 using Object = UnityEngine.Object;
 
 public class AssetVCS
@@ -35,19 +36,58 @@ public class AssetVCS
 
             // string[] versions = new[] { "version2", "superVersion", "thisIsGreat" };
             string name = selectedObj.name;
+            string metaData = GetAssetMetadata(path);
+            Debug.Log($"Metadata: {metaData}");
             
             AssetVCSEditorWindow.ShowWindow(name, versions, path, UpdateVersion, SaveChanges);
- 
-            /*
-            AssetVCSPopup popup = new AssetVCSPopup(name, versions, path);
-            popup.OnUpdateVersion += UpdateVersion;
-            popup.OnSaveChanges += SaveChanges;
-            PopupWindow.Show(new Rect(100, 100, 200, 100), popup);
-            */
-            
-            
         }
     }
+    
+ 
+private string GetAssetMetadata(string path)
+{
+    string extension = Path.GetExtension(path).ToLower();
+    string metadata = "";
+
+    if (extension == ".fbx")
+    {
+        var importer = AssetImporter.GetAtPath(path) as ModelImporter;
+        if (importer != null)
+        {
+            metadata += $"Scale Factor: {importer.globalScale}\n";
+        }
+    }
+    else if (extension == ".png" || extension == ".jpg" || extension == ".jpeg")
+    {
+        var texture = AssetDatabase.LoadAssetAtPath<Texture2D>(path);
+        if (texture != null)
+        {
+            metadata += $"Resolution: {texture.width} × {texture.height}\n";
+        }
+    }
+
+    var textureImporter = AssetImporter.GetAtPath(path) as TextureImporter;
+    if (textureImporter != null)
+    {
+        metadata += $"Texture Format: {textureImporter.textureCompression}\n";
+    }
+
+    var audioClip = AssetDatabase.LoadAssetAtPath<AudioClip>(path);
+    if (audioClip != null)
+    {
+        metadata += $"Sample Rate: {audioClip.frequency} Hz\n";
+        metadata += $"Channels: {audioClip.channels}\n";
+    }
+
+    return string.IsNullOrWhiteSpace(metadata) ? "No additional metadata found." : metadata;
+}   
+    
+    
+    
+    
+    
+    
+
 
     private void UpdateVersion(string versionCommit, string path)
     {
@@ -67,9 +107,7 @@ public class AssetVCS
          Debug.Log(commitCmd);
          _terminal.Execute(commitCmd);       
     }
-       
 }
-
 
 
 public class AssetVCSEditorWindow : EditorWindow
@@ -101,6 +139,11 @@ public class AssetVCSEditorWindow : EditorWindow
 
         EditorGUILayout.Space();
 
+        if (_versions is null)
+        {
+            Debug.Log($"Asset: {_assetName} has no versions yet.");
+            return;
+        }
         _selectedIndex = EditorGUILayout.Popup("Select Version", _selectedIndex, _versions);
 
         if (GUILayout.Button("Switch Version"))
@@ -113,56 +156,44 @@ public class AssetVCSEditorWindow : EditorWindow
             OnSaveChanges.Invoke(_versions[_selectedIndex], _pathOfContainedAsset);
         }
     }
-}
 
 
 
-
-
-
-
-
-public class AssetVCSPopup : PopupWindowContent
-{
-    private readonly string _assetName;
-    private string[] _versions;
-    private int _selectedIndex = 0;
-    private string _pathOfContainedAsset;
-
-    public event Action<string, string> OnUpdateVersion;
-    public event Action<string, string> OnSaveChanges;
-    public AssetVCSPopup(string name, string[] versions, string path)
+    private string GetAssetMetadata(string path)
     {
-        _assetName = name;
-        _versions = versions;
-        _pathOfContainedAsset = path;
-    }
-    public override Vector2 GetWindowSize() => new Vector2(450, 180);
+        string extension = Path.GetExtension(path).ToLower();
+        string metadata = "";
 
-    public override void OnGUI(Rect rect)
-    {
-        GUILayout.Label($"Version Selection: {_assetName}", EditorStyles.boldLabel);
-        
-        EditorGUILayout.Space();
+        if (extension == ".fbx")
+        {
+            var importer = AssetImporter.GetAtPath(path) as ModelImporter;
+            if (importer != null)
+            {
+                metadata += $"Scale Factor: {importer.globalScale}\n";
+            }
+        }
+        else if (extension == ".png" || extension == ".jpg" || extension == ".jpeg")
+        {
+            var texture = AssetDatabase.LoadAssetAtPath<Texture2D>(path);
+            if (texture != null)
+            {
+                metadata += $"Resolution: {texture.width} × {texture.height}\n";
+            }
+        }
 
-        // Dropdown selection for versions
-        _selectedIndex = EditorGUILayout.Popup("Select Version", _selectedIndex, _versions);
-        if (GUILayout.Button("Switch Version"))
+        var textureImporter = AssetImporter.GetAtPath(path) as TextureImporter;
+        if (textureImporter != null)
         {
-            OnUpdateVersion.Invoke(_versions[_selectedIndex], _pathOfContainedAsset);
+            metadata += $"Texture Format: {textureImporter.textureCompression}\n";
         }
-        
-        if (GUILayout.Button("Safe Changes"))
+
+        var audioClip = AssetDatabase.LoadAssetAtPath<AudioClip>(path);
+        if (audioClip != null)
         {
-            OnSaveChanges.Invoke(_versions[_selectedIndex], _pathOfContainedAsset);
+            metadata += $"Sample Rate: {audioClip.frequency} Hz\n";
+            metadata += $"Channels: {audioClip.channels}\n";
         }
-        
-        
-        
-        EditorGUILayout.Space();
-        if (GUILayout.Button("Close"))
-        {
-            editorWindow.Close();
-        }
+
+        return string.IsNullOrWhiteSpace(metadata) ? "No additional metadata found." : metadata;
     }
 }

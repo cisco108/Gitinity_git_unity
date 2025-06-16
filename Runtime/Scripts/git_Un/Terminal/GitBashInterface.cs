@@ -33,7 +33,7 @@ public class GitBashInterface : ITerminalInterface
         File.Delete(TempFile);
         if (result == string.Empty)
         {
-            Debug.LogError($"Result is empty. Possible wrong branch names");
+            Debug.LogWarning($"Result is empty. Possible wrong branch names");
         }
 
         return result;
@@ -45,7 +45,7 @@ public class GitBashInterface : ITerminalInterface
         
         if(string.IsNullOrEmpty(s))
         {
-            Debug.LogError($"Command {command} lead to empty result.");
+            Debug.LogWarning($"Command {command} lead to empty result.");
             return null; 
         }
         
