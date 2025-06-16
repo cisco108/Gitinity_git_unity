@@ -6,7 +6,7 @@ using Object = UnityEngine.Object;
 
 public class AssetVCS
 {
-    private string prefix;
+    private string _prefix;
     private ICommandBuilder _commandBuilder;
     private ITerminalInterface _terminal;
     public AssetVCS(ITerminalInterface terminal, ICommandBuilder commandBuilder)
@@ -15,7 +15,7 @@ public class AssetVCS
         _commandBuilder = commandBuilder;
         
         Selection.selectionChanged += OnSelectionChanged;
-        prefix = GlobalRefs.filePaths.versionControlledAssets; 
+        _prefix = GlobalRefs.filePaths.versionControlledAssets; 
     }
 
     private void OnSelectionChanged()
@@ -26,7 +26,7 @@ public class AssetVCS
         string path = AssetDatabase.GetAssetPath(selectedObj);
         
         Debug.Log("Asset selected: " + path);
-        bool controlled = path.StartsWith(prefix);
+        bool controlled = path.StartsWith(_prefix);
         // Debug.Log($"Asset is under AssetVCS? {controlled}");
 
         if (controlled)
@@ -35,25 +35,33 @@ public class AssetVCS
             string[] versions = _terminal.ExecuteResultToStringArr(getVersionsCmd);
 
             string name = selectedObj.name;
-            string metadata = GetAssetMetadata(path);
+            (string metadata, bool isValid) = GetAssetMetadata(path);
             Debug.Log($"Metadata: {metadata}");
             
-            AssetVCSEditorWindow.ShowWindow(name, versions, path, UpdateVersion, SaveChanges, metadata);
+            AssetVCSEditorWindow.ShowWindow(name, versions, path, UpdateVersion, SaveChanges, metadata, isValid);
         }
     }
     
  
-private string GetAssetMetadata(string path)
+private (string info, bool isValid) GetAssetMetadata(string path)
 {
     string extension = Path.GetExtension(path).ToLower();
     string metadata = "";
+    bool isValid = true;
+    
+    float expectedScale = 1f;
+    int expectedWidth = 1024;
+    int hexpectedHeight = 1024;
+    // AudioClip audioClip = null;
 
     if (extension == ".fbx")
     {
         var importer = AssetImporter.GetAtPath(path) as ModelImporter;
         if (importer != null)
         {
-            metadata += $"Scale Factor: {importer.globalScale}\n";
+            var scale = importer.globalScale;
+            metadata += $"Scale Factor: {scale}\n";
+            isValid = Mathf.Approximately(scale, expectedScale);
         }
     }
     else if (extension == ".png" || extension == ".jpg" || extension == ".jpeg")
@@ -61,7 +69,10 @@ private string GetAssetMetadata(string path)
         var texture = AssetDatabase.LoadAssetAtPath<Texture2D>(path);
         if (texture != null)
         {
-            metadata += $"Resolution: {texture.width} × {texture.height}\n";
+            float width = texture.width;
+            float height = texture.height;
+            metadata += $"Resolution: {width} × {height}\n";
+            isValid = Mathf.Approximately(width, expectedWidth) && Mathf.Approximately(height, hexpectedHeight);
         }
     }
 
@@ -70,15 +81,16 @@ private string GetAssetMetadata(string path)
     {
         metadata += $"Texture Format: {textureImporter.textureCompression}\n";
     }
-
+/*
     var audioClip = AssetDatabase.LoadAssetAtPath<AudioClip>(path);
     if (audioClip != null)
     {
         metadata += $"Sample Rate: {audioClip.frequency} Hz\n";
         metadata += $"Channels: {audioClip.channels}\n";
     }
+    */
 
-    return string.IsNullOrWhiteSpace(metadata) ? "No additional metadata found." : metadata;
+    return (string.IsNullOrWhiteSpace(metadata) ? "No additional metadata found." : metadata, isValid);
 }   
     
     
@@ -116,12 +128,13 @@ public class AssetVCSEditorWindow : EditorWindow
     private int _selectedIndex = 0;
     private string _pathOfContainedAsset;
     private string _metadataInfo;
+    private bool _isValid;
 
     public event Action<string, string> OnUpdateVersion;
     public event Action<string, string> OnSaveChanges;
 
     public static void ShowWindow(string assetName, string[] versions, string path,
-        Action<string, string> onUpdate, Action<string, string> onSave, string metadataInfo)
+        Action<string, string> onUpdate, Action<string, string> onSave, string metadataInfo, bool isValid)
     {
         AssetVCSEditorWindow window = GetWindow<AssetVCSEditorWindow>("Asset VCS");
         window._assetName = assetName;
@@ -130,6 +143,7 @@ public class AssetVCSEditorWindow : EditorWindow
         window.OnUpdateVersion = onUpdate;
         window.OnSaveChanges = onSave;
         window._metadataInfo = metadataInfo;
+        window._isValid = isValid;
         window.minSize = new Vector2(450, 180);
         window.Show();
     }
@@ -159,7 +173,8 @@ public class AssetVCSEditorWindow : EditorWindow
         
         EditorGUILayout.Space();
         GUILayout.Label("Asset Metadata", EditorStyles.boldLabel);
-        EditorGUILayout.HelpBox(_metadataInfo, MessageType.Info);
+        var messageType = _isValid ? MessageType.Info : MessageType.Error;
+        EditorGUILayout.HelpBox(_metadataInfo, messageType);
     }
 
 

@@ -101,4 +101,73 @@ private void OnGUI()
     GUILayout.Label("Asset Metadata", EditorStyles.boldLabel);
     EditorGUILayout.HelpBox(_metadataInfo, MessageType.Info);
 }
+private (string info, bool isValid) GetAssetMetadata(string path)
+{
+    string extension = Path.GetExtension(path).ToLower();
+    string metadata = "";
+    bool isValid = true;
+
+    float scaleFactor = -1f;
+    int width = -1;
+    int height = -1;
+    AudioClip audioClip = null;
+
+    if (extension == ".fbx")
+    {
+        var importer = AssetImporter.GetAtPath(path) as ModelImporter;
+        if (importer != null)
+        {
+            scaleFactor = importer.globalScale;
+            metadata += $"Scale Factor: {scaleFactor}\n";
+
+            if (scaleFactor <= 0.0001f)
+            {
+                isValid = false;
+                metadata += "⚠️ Scale factor is too small or invalid.\n";
+            }
+        }
+    }
+    else if (extension == ".png" || extension == ".jpg" || extension == ".jpeg")
+    {
+        var texture = AssetDatabase.LoadAssetAtPath<Texture2D>(path);
+        if (texture != null)
+        {
+            width = texture.width;
+            height = texture.height;
+            metadata += $"Resolution: {width} × {height}\n";
+
+            if (width <= 1 || height <= 1)
+            {
+                isValid = false;
+                metadata += "⚠️ Image resolution seems invalid.\n";
+            }
+        }
+    }
+
+    var textureImporter = AssetImporter.GetAtPath(path) as TextureImporter;
+    if (textureImporter != null)
+    {
+        metadata += $"Texture Format: {textureImporter.textureCompression}\n";
+    }
+
+    audioClip = AssetDatabase.LoadAssetAtPath<AudioClip>(path);
+    if (audioClip != null)
+    {
+        metadata += $"Sample Rate: {audioClip.frequency} Hz\n";
+        metadata += $"Channels: {audioClip.channels}\n";
+
+        if (audioClip.frequency <= 0)
+        {
+            isValid = false;
+            metadata += "⚠️ Audio sample rate is invalid.\n";
+        }
+    }
+
+    if (string.IsNullOrWhiteSpace(metadata))
+    {
+        return ("No additional metadata found.", true);
+    }
+
+    return (metadata.TrimEnd(), isValid);
+}
 */
