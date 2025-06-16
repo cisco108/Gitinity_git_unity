@@ -27,19 +27,18 @@ public class AssetVCS
         
         Debug.Log("Asset selected: " + path);
         bool controlled = path.StartsWith(prefix);
-        Debug.Log($"Asset is under AssetVCS? {controlled}");
+        // Debug.Log($"Asset is under AssetVCS? {controlled}");
 
         if (controlled)
         {
             string getVersionsCmd = _commandBuilder.GetLogOfFile(path);
             string[] versions = _terminal.ExecuteResultToStringArr(getVersionsCmd);
 
-            // string[] versions = new[] { "version2", "superVersion", "thisIsGreat" };
             string name = selectedObj.name;
-            string metaData = GetAssetMetadata(path);
-            Debug.Log($"Metadata: {metaData}");
+            string metadata = GetAssetMetadata(path);
+            Debug.Log($"Metadata: {metadata}");
             
-            AssetVCSEditorWindow.ShowWindow(name, versions, path, UpdateVersion, SaveChanges);
+            AssetVCSEditorWindow.ShowWindow(name, versions, path, UpdateVersion, SaveChanges, metadata);
         }
     }
     
@@ -116,12 +115,13 @@ public class AssetVCSEditorWindow : EditorWindow
     private string[] _versions;
     private int _selectedIndex = 0;
     private string _pathOfContainedAsset;
+    private string _metadataInfo;
 
     public event Action<string, string> OnUpdateVersion;
     public event Action<string, string> OnSaveChanges;
 
     public static void ShowWindow(string assetName, string[] versions, string path,
-        Action<string, string> onUpdate, Action<string, string> onSave)
+        Action<string, string> onUpdate, Action<string, string> onSave, string metadataInfo)
     {
         AssetVCSEditorWindow window = GetWindow<AssetVCSEditorWindow>("Asset VCS");
         window._assetName = assetName;
@@ -129,6 +129,7 @@ public class AssetVCSEditorWindow : EditorWindow
         window._pathOfContainedAsset = path;
         window.OnUpdateVersion = onUpdate;
         window.OnSaveChanges = onSave;
+        window._metadataInfo = metadataInfo;
         window.minSize = new Vector2(450, 180);
         window.Show();
     }
@@ -155,6 +156,10 @@ public class AssetVCSEditorWindow : EditorWindow
         {
             OnSaveChanges.Invoke(_versions[_selectedIndex], _pathOfContainedAsset);
         }
+        
+        EditorGUILayout.Space();
+        GUILayout.Label("Asset Metadata", EditorStyles.boldLabel);
+        EditorGUILayout.HelpBox(_metadataInfo, MessageType.Info);
     }
 
 
