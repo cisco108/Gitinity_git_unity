@@ -58,3 +58,47 @@ private string GetAssetMetadata(string path)
 
     return string.IsNullOrWhiteSpace(metadata) ? "No additional metadata found." : metadata;
 }*/
+
+
+/*
+private string _metadataInfo;
+
+public static void ShowWindow(string assetName, string[] versions, string path,
+    Action<string, string> onUpdate, Action<string, string> onSave, string metadata)
+{
+    AssetVCSEditorWindow window = GetWindow<AssetVCSEditorWindow>("Asset VCS");
+    window._assetName = assetName;
+    window._versions = versions;
+    window._pathOfContainedAsset = path;
+    window.OnUpdateVersion = onUpdate;
+    window.OnSaveChanges = onSave;
+    window._metadataInfo = metadata;
+    window.minSize = new Vector2(450, 220);
+    window.Show();
+}
+
+
+
+private void OnGUI()
+{
+    GUILayout.Label($"Version Selection: {_assetName}", EditorStyles.boldLabel);
+
+    EditorGUILayout.Space();
+
+    _selectedIndex = EditorGUILayout.Popup("Select Version", _selectedIndex, _versions);
+
+    if (GUILayout.Button("Switch Version"))
+    {
+        OnUpdateVersion.Invoke(_versions[_selectedIndex], _pathOfContainedAsset);
+    }
+
+    if (GUILayout.Button("Save Changes"))
+    {
+        OnSaveChanges.Invoke(_versions[_selectedIndex], _pathOfContainedAsset);
+    }
+
+    EditorGUILayout.Space();
+    GUILayout.Label("Asset Metadata", EditorStyles.boldLabel);
+    EditorGUILayout.HelpBox(_metadataInfo, MessageType.Info);
+}
+*/

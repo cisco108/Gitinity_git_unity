@@ -54,7 +54,7 @@ public class GitBashInterface : ITerminalInterface
             command = GitCommands.log_oneline;
         }
         
-        Debug.Log($"Commands ({command}) result split in array.");
+        // Debug.Log($"Commands ({command}) result split in array.");
         string[] result;
         switch (command)
         {
