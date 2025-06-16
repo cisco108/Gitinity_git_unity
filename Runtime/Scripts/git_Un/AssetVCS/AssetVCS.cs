@@ -4,6 +4,16 @@ using UnityEngine;
 using System.IO;
 using Object = UnityEngine.Object;
 
+//TODO:
+/*
+ * Add folder structure, with configurable rules:
+ *  - Texutres:
+ *      - texturRules.scriptableObject (res, polycount, ...)
+ *      - hello.png
+ *      - sers.jpg
+ * - Meshes:
+ *      - meshRules.scriptObj
+ */
 public class AssetVCS
 {
     private string _prefix;
@@ -36,7 +46,6 @@ public class AssetVCS
 
             string name = selectedObj.name;
             (string metadata, bool isValid) = GetAssetMetadata(path);
-            Debug.Log($"Metadata: {metadata}");
             
             AssetVCSEditorWindow.ShowWindow(name, versions, path, UpdateVersion, SaveChanges, metadata, isValid);
         }
@@ -50,6 +59,7 @@ private (string info, bool isValid) GetAssetMetadata(string path)
     bool isValid = true;
     
     float expectedScale = 1f;
+    int expectedMaxVertexCount = 20;
     int expectedWidth = 1024;
     int hexpectedHeight = 1024;
     // AudioClip audioClip = null;
@@ -62,6 +72,24 @@ private (string info, bool isValid) GetAssetMetadata(string path)
             var scale = importer.globalScale;
             metadata += $"Scale Factor: {scale}\n";
             isValid = Mathf.Approximately(scale, expectedScale);
+            
+            // Load the asset to extract mesh info
+            var assetObjs = AssetDatabase.LoadAllAssetsAtPath(path);
+            int totalVertices = 0;
+            foreach (var obj in assetObjs)
+            {
+                if (obj is Mesh mesh)
+                {
+                    totalVertices += mesh.vertexCount;
+                }
+            }
+ 
+            metadata += $"Total Vertex Count: {totalVertices}\n";
+            if (totalVertices > expectedMaxVertexCount)
+            {
+                isValid = false;
+                metadata += "⚠️ Very high vertex count. Consider optimizing.\n";
+            }           
         }
     }
     else if (extension == ".png" || extension == ".jpg" || extension == ".jpeg")
