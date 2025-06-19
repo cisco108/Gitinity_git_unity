@@ -15,6 +15,7 @@ using Object = UnityEngine.Object;
 public class AssetVCS
 {
     private string _prefix;
+    private string _currentAssetName;
     private ICommandBuilder _commandBuilder;
     private ITerminalInterface _terminal;
     private AssetValidator _validator;
@@ -41,10 +42,10 @@ public class AssetVCS
             string getVersionsCmd = _commandBuilder.GetLogOfFile(path);
             string[] versions = _terminal.ExecuteResultToStringArr(getVersionsCmd);
 
-            string name = selectedObj.name;
+            _currentAssetName = selectedObj.name;
             (string metadata, bool isValid) = _validator.ValidateAsset(path);
             
-            AssetVCSEditorWindow.ShowWindow(name, versions, path, UpdateVersion, SaveChanges, metadata, isValid);
+            AssetVCSEditorWindow.ShowWindow(_currentAssetName, versions, path, UpdateVersion, SaveChanges, metadata, isValid);
         }
     }
 
@@ -62,7 +63,7 @@ public class AssetVCS
     {
          string hash = versionCommit.Remove(7);
 
-         string commitCmd = _commandBuilder.GetCommit(path, $"Changed {path} to version {hash}");
+         string commitCmd = _commandBuilder.GetCommit(path, $"{_currentAssetName} -> v: {hash}");
          Debug.Log(commitCmd);
          _terminal.Execute(commitCmd);       
     }
