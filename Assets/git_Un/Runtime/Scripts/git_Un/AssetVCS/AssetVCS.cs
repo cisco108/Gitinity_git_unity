@@ -2,16 +2,6 @@
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-//TODO:
-/*
- * Add folder structure, with configurable rules:
- *  - Texutres:
- *      - texturRules.scriptableObject (res, polycount, ...)
- *      - hello.png
- *      - sers.jpg
- * - Meshes:
- *      - meshRules.scriptObj
- */
 public class AssetVCS
 {
     private string _prefix;
@@ -33,11 +23,12 @@ public class AssetVCS
     {
         Object selectedObj = Selection.activeObject;
         string path = AssetDatabase.GetAssetPath(selectedObj);
+        if (path is null || AssetDatabase.IsValidFolder(path))
+        {
+            return;
+        }
         
-        Debug.Log("Asset selected: " + path);
-        bool controlled = path.StartsWith(_prefix);
-
-        if (controlled)
+        if(path.StartsWith(_prefix))
         {
             string getVersionsCmd = _commandBuilder.GetLogOfFile(path);
             string[] versions = _terminal.ExecuteResultToStringArr(getVersionsCmd);

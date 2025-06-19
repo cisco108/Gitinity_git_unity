@@ -9,9 +9,16 @@ public class AssetValidator
     {
         int index = path.LastIndexOf('/');
         path = path.Remove(index +1);
-        path += "Foo.asset"; //TODO: find by type
-
-        var rules = AssetDatabase.LoadAssetAtPath<AssetValidationSettings>(path);
+        
+        string[] guids = AssetDatabase.FindAssets("t:AssetValidationSettings", new[] { path });
+        if (guids.Length == 0)
+        {
+            Debug.LogWarning($"No AssetValidationSettings found in folder: {path}");
+            return null;
+        }
+        
+        string assetPath = AssetDatabase.GUIDToAssetPath(guids[0]);
+        var rules = AssetDatabase.LoadAssetAtPath<AssetValidationSettings>(assetPath);
         return rules;
     }
     
