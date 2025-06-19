@@ -39,7 +39,7 @@ public class AssetVCSEditorWindow : EditorWindow
         if (_versions is null)
         {
             Debug.Log($"Asset: {_assetName} has no versions yet.");
-            return;
+            _versions = new[] { "no version yet" };
         }
         _selectedIndex = EditorGUILayout.Popup("Select Version", _selectedIndex, _versions);
 
