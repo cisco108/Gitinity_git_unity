@@ -6,8 +6,7 @@ using UnityEngine;
 public class AssetValidationSettings : ScriptableObject
 {
     public int maxVertexCount = 100_000;
-    public float minScaleFactor = 0.0001f;
-    public int minImageWidth = 2;
-    public int minImageHeight = 2;
-    public int minAudioSampleRate = 1;
+    public float expectedScale = 0.0001f;
+    public int expectedImgWidth = 1024;
+    public int expectedImgHeight = 1024;
 }
