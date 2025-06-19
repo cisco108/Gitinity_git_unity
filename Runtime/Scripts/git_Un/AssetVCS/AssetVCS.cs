@@ -22,6 +22,10 @@ public class AssetVCS
     private void OnSelectionChanged()
     {
         Object selectedObj = Selection.activeObject;
+        if (selectedObj is AssetValidationSettings)
+        {
+            return;
+        }
         string path = AssetDatabase.GetAssetPath(selectedObj);
         if (path is null || AssetDatabase.IsValidFolder(path))
         {
