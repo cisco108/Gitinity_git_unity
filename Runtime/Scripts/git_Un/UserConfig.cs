@@ -30,6 +30,7 @@ public class UserConfig : ScriptableObject
     public string gitBashExe = @"C:\Program Files\Git\git-bash.exe";
     public string remoteUrl = "Paste the http link for your empty repository.";
 
-    public bool useFileLocking = true;
+    public bool useFileLocking = false;
+    public bool useAssetVCS = false;
     // public string fileToLockName = "This file will the locked!";
 }

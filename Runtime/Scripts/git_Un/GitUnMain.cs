@@ -25,47 +25,44 @@ public static class GitUnMain
 
         _fileLocking = new FileLocking(_terminal, _commandBuilder);
 
-        _assetVCS = new AssetVCS(_terminal, _commandBuilder);
 
         GitinityUI.OnSetup += SetupGitinity;
         GitinityUI.GetGitInfo += GetGitData;
         GitinityUI.OnMerge += Main;
         GitinityUI.OnLockFile += _fileLocking.LockFile;
         GitinityUI.OnUnlockFile += _fileLocking.UnlockFile;
+
+        GitinityUI.OnActivateAssetVCS += AssetVCSSetActive;
+    }
+    
+    private static void AssetVCSSetActive(bool state)
+    {
+        if (_assetVCS is null)
+        {
+            _assetVCS = new AssetVCS(_terminal, _commandBuilder);
+        }
+
+        string path = GlobalRefs.filePaths.versionControlledAssets;
+        if (!AssetDatabase.IsValidFolder(path))
+        {
+            Directory.CreateDirectory(path);
+            AssetDatabase.CreateAsset(ScriptableObject.CreateInstance<AssetValidationSettings>(), path + "Rules.asset");
+        }
+        _assetVCS.isActive = state;
     }
 
     private static void SetupGitinity()
     {
-        // 1
         string sh1 = File.ReadAllText(GlobalRefs.shellScripts + "SetupGitUn_1.sh");
         _terminal.Execute(sh1);
-        /*string initCmd = _commandBuilder.GetInit();
-        _terminal.Execute(initCmd);
-
-        string touchCmd = _commandBuilder.GetTouch("", GlobalRefs.gitignore);
-        _terminal.Execute(touchCmd);
-
-        string gitignoreContentCmd = _commandBuilder.GetNewestGitignoreContent();
-        _terminal.Execute(gitignoreContentCmd);*/
-        // END
-
+       
         string addToGitignoreCmd = _commandBuilder.GetWriteLinesToFile(
             new[] { GlobalRefs.filePaths.logsFile, GlobalRefs.filePaths.lockedProtocolFile }, GlobalRefs.gitignore);
         _terminal.Execute(addToGitignoreCmd);
 
-        // 2
         string sh2 = File.ReadAllText(GlobalRefs.shellScripts + "SetupGitUn_2.sh");
         _terminal.Execute(sh2);
-        /*string commitCmd = _commandBuilder.GetCommit(GlobalRefs.gitignore);
-        _terminal.Execute(commitCmd);
-
-        string branchCmd = _commandBuilder.GetCreateBranch(GlobalRefs.lockingBranch);
-        _terminal.Execute(branchCmd);
-
-        string switchCmd = _commandBuilder.GetSwitch(GlobalRefs.lockingBranch);
-        _terminal.Execute(switchCmd);*/
-        // END
-
+      
         string newIgnore = _commandBuilder.GetOverrideFileContent
             ($"'*\\n!{GlobalRefs.filePaths.lockedProtocolFile}'", GlobalRefs.gitignore);
         _terminal.Execute(newIgnore);
