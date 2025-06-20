@@ -17,6 +17,7 @@ public class GitinityUI : EditorWindow
     private Button MergeBtn => rootVisualElement.Q<Button>("merge-btn");
     private Label WarnLabel => rootVisualElement.Q<Label>("warn-label");
     private Toggle UseFileLocking => rootVisualElement.Q<Toggle>("use-locking");
+    private Toggle UseAssetVCS => rootVisualElement.Q<Toggle>("use-asset-vcs");
     private ObjectField LockFile => rootVisualElement.Q<ObjectField>("lock-file");
     private Button LockBtn => rootVisualElement.Q<Button>("lock-btn");
     private Button UnlockBtn => rootVisualElement.Q<Button>("unlock-btn");
@@ -28,6 +29,7 @@ public class GitinityUI : EditorWindow
 
     public static event Action OnSetup;
     public static event Action GetGitInfo;
+    public static event Action<bool> OnActivateAssetVCS;
     public static event Action<string, string> OnMerge;
     public static event Action<string> OnLockFile;
     public static event Action<string> OnUnlockFile;
@@ -78,7 +80,7 @@ public class GitinityUI : EditorWindow
             {
                 OnLockFile.Invoke(_fileToLock);
             }
-            else Debug.LogError("No file provided.");
+            else { Debug.LogError("No file provided.");}
         });
         UnlockBtn.RegisterCallback<ClickEvent>(evt =>
         {
@@ -86,7 +88,7 @@ public class GitinityUI : EditorWindow
             {
                 OnUnlockFile.Invoke(_fileToLock);
             }
-            else Debug.LogError("No file provided.");
+            else {Debug.LogError("No file provided.");}
         });
 
 
@@ -104,6 +106,13 @@ public class GitinityUI : EditorWindow
         // RequestAccessBtn.RegisterCallback<ClickEvent>((evt) => Debug.Log($"This could go out to the coworkers"));
 
         WarnLabel.AddToClassList("hidden");
+        
+        UseAssetVCS.SetValueWithoutNotify(GlobalRefs.filePaths.useAssetVCS);
+        UseAssetVCS.RegisterValueChangedCallback(evt =>
+        {
+            GlobalRefs.filePaths.useAssetVCS = evt.newValue;
+            OnActivateAssetVCS.Invoke(evt.newValue);
+        });
     }
 
     private void ReactWhenFileIsLocked(string message)
@@ -120,7 +129,6 @@ public class GitinityUI : EditorWindow
         {
             return;
         }
-
         OnSetup.Invoke();
     }
 

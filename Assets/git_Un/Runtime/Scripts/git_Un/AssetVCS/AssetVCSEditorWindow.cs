@@ -92,6 +92,7 @@ public class AssetVCSEditorWindow : EditorWindow
             if (GUILayout.Button("Switch Version", GUILayout.Width(150), GUILayout.Height(25)))
             {
                 OnUpdateVersion.Invoke(_versions[_selectedIndex], _pathOfContainedAsset);
+                _isCommitted = false;
             }
 
             GUI.backgroundColor = defaultColor;
@@ -110,6 +111,7 @@ public class AssetVCSEditorWindow : EditorWindow
             if (GUILayout.Button("Save Changes", GUILayout.Width(150), GUILayout.Height(25)))
             {
                 OnSaveChanges.Invoke(_versions[_selectedIndex], _pathOfContainedAsset);
+                _isCommitted = true;
             }
 
             GUI.backgroundColor = defaultColor;

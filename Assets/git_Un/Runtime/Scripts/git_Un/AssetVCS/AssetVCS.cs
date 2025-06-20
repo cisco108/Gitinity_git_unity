@@ -9,6 +9,7 @@ public class AssetVCS
     private ICommandBuilder _commandBuilder;
     private ITerminalInterface _terminal;
     private AssetValidator _validator;
+    public bool isActive;
     public AssetVCS(ITerminalInterface terminal, ICommandBuilder commandBuilder)
     {
         _terminal = terminal;
@@ -21,6 +22,11 @@ public class AssetVCS
 
     private void OnSelectionChanged()
     {
+        if (!isActive)
+        {
+            return;
+        }
+        
         Object selectedObj = Selection.activeObject;
         if (selectedObj is AssetValidationSettings)
         {
