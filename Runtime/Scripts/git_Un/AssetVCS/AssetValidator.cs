@@ -8,6 +8,7 @@ public class AssetValidator
 {
     private ITerminalInterface _terminal;
     private Dictionary<string, (string, bool)> _assetValidStates = new();
+    private static int _validationCallCounter;
 
     public AssetValidator(ITerminalInterface terminal)
     {
@@ -33,7 +34,8 @@ public class AssetValidator
 
     private bool ValidateAllControlledAssets()
     {
-        Debug.Log($"Validate all Assets");
+        _validationCallCounter++;
+        Debug.Log($"Validate all call: {_validationCallCounter}");
         bool areAllValid = true;
         
         string targetFolder = GlobalRefs.filePaths.versionControlledAssets;
@@ -57,6 +59,9 @@ public class AssetValidator
     public (string info, bool isValid) GetInfo(string path)
     {
         //TODO: come up with a way of less validation calls
+        // Those calls are somewhat needed because, when the rules change
+        // the validation state of all those assets could change.
+        // So maybe subscribe the update of the rules for this.
         ValidateAllControlledAssets();
         return _assetValidStates[path];
     }

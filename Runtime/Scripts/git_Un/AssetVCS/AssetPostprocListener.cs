@@ -9,6 +9,6 @@ public class AssetPostprocListener : AssetPostprocessor
         string[] movedFromAssetPaths)
     {
         OnAssetPosPro?.Invoke();
-        Debug.Log($"OnPostPro form AssetPostproListener");
+        // Debug.Log($"OnPostPro form AssetPostproListener");
     }
 }

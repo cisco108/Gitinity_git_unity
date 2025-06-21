@@ -56,7 +56,6 @@ public static class GitUnMain
 
     private static void SetupGitinity()
     {
-        // string sh1 = File.ReadAllText(GlobalRefs.shellScripts + "SetupGitUn_1.sh");
         string sh1 = File.ReadAllText(GlobalRefs.ShellScript(1));
         _terminal.Execute(sh1);
        
@@ -64,7 +63,6 @@ public static class GitUnMain
             new[] { GlobalRefs.filePaths.logsFile, GlobalRefs.filePaths.lockedProtocolFile }, GlobalRefs.gitignore);
         _terminal.Execute(addToGitignoreCmd);
 
-        // string sh2 = File.ReadAllText(GlobalRefs.shellScripts + "SetupGitUn_2.sh");
         string sh2 = File.ReadAllText(GlobalRefs.ShellScript(2));
         _terminal.Execute(sh2);
       
