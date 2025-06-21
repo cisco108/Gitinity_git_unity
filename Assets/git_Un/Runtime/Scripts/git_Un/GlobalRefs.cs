@@ -11,13 +11,6 @@ public static class GlobalRefs
     public static string lockingBranch = "file-locking";
     public static string gitignore = ".gitignore";
     public static StateObj StateObj;
-    //
-    // //TODO: solve these paths, make it better
-    // public static string shellScripts =
-    //     @"Library\PackageCache\com.newhere_tools.git_un\Runtime\Scripts\git_Un\ShellScripts\";
-    // public static string openWhenSceneIsLocked =
-    //     @"Library\PackageCache\com.newhere_tools.git_un\Runtime\Scene\OpensWhenSceneIsLocked.unity";
-    
     
     private static string ShellScript1GUID = "52110bcc73484879893fbbfbb69684b9";
     private static string ShellScript2GUID = "9af826befe274ba68165ff88d2bfa719";

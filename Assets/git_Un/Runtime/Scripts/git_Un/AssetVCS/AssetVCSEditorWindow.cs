@@ -41,7 +41,7 @@ public class AssetVCSEditorWindow : EditorWindow
         using (new EditorGUILayout.VerticalScope("box"))
         {
             GUILayout.Label("Version Control", EditorStyles.boldLabel);
-            DrawCommitStatus();
+            // DrawCommitStatus();
             
             if (_versions == null || _versions.Length == 0)
             {
@@ -80,7 +80,6 @@ public class AssetVCSEditorWindow : EditorWindow
     {
         using (new EditorGUILayout.HorizontalScope())
         {
-            // Switch Version Button
             bool shouldHighlightSwitch = _versions != null && _selectedIndex < _versions.Length;
             Color defaultColor = GUI.backgroundColor;
 
@@ -100,7 +99,6 @@ public class AssetVCSEditorWindow : EditorWindow
 
         using (new EditorGUILayout.HorizontalScope())
         {
-            // Save Changes Button
             Color defaultColor = GUI.backgroundColor;
 
             if (!_isCommitted)

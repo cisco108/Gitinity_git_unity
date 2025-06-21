@@ -55,7 +55,6 @@ public class AssetVCS
         string hash = versionCommit.Remove(7);
 
         string checkoutCmd = _commandBuilder.GetCheckout(hash, path);
-        Debug.Log(checkoutCmd);
         _terminal.Execute(checkoutCmd);
         AssetDatabase.Refresh();
     }
@@ -65,7 +64,6 @@ public class AssetVCS
          string hash = versionCommit.Remove(7);
 
          string commitCmd = _commandBuilder.GetCommit(path, $"{_currentAssetName} -> v: {hash}");
-         Debug.Log(commitCmd);
          _terminal.Execute(commitCmd);       
     }
 }
