@@ -63,15 +63,12 @@ public class AssetValidator
 
     public (string info, bool isValid) GetInfo(string path)
     {
-        if (_assetValidStates.Count.Equals(0))
-        {
-            ValidateAllControlledAssets();
-        }
+        //TODO: come up with a way of less validation calls
+        ValidateAllControlledAssets();
         return _assetValidStates[path];
     }
-    /// <summary>
-    /// Filetypes that are not handles will always return isValid true;
-    /// </summary>
+    
+    /// <summary> Filetypes that are not handles will always return isValid true; </summary>
     private (string info, bool isValid) ValidateAsset(string path)
     {
         string extension = Path.GetExtension(path).ToLower();
