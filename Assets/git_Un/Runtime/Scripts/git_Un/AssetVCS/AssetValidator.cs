@@ -48,14 +48,7 @@ public class AssetValidator
                 areAllValid = false;
             }
 
-            try
-            {
-                _assetValidStates.Add(path, (info, isValid));
-            }
-            catch
-            {
-                Debug.Log($"{path} already contained in {_assetValidStates}");
-            }
+            _assetValidStates[path] = (info, isValid);
         }
         _terminal.Execute($"echo '{areAllValid.ToString().ToLower()}' > {GlobalRefs.filePaths.allowCommitFile}");
         return areAllValid;
