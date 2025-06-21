@@ -47,8 +47,17 @@ public class AssetValidator
             {
                 areAllValid = false;
             }
-            _assetValidStates.Add(path, (info, isValid));
+
+            try
+            {
+                _assetValidStates.Add(path, (info, isValid));
+            }
+            catch
+            {
+                Debug.Log($"{path} already contained in {_assetValidStates}");
+            }
         }
+        _terminal.Execute($"echo '{areAllValid.ToString().ToLower()}' > {GlobalRefs.filePaths.allowCommitFile}");
         return areAllValid;
     }
 
@@ -122,7 +131,6 @@ public class AssetValidator
             metadata += $"Texture Format: {textureImporter.textureCompression}\n";
         }
         
-        _terminal.Execute($"echo '{isValid.ToString().ToLower()}' > {GlobalRefs.filePaths.allowCommitFile}");
         
         return (string.IsNullOrWhiteSpace(metadata) ? "No additional metadata found." : metadata, isValid);
     }
