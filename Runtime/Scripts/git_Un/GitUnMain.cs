@@ -33,6 +33,8 @@ public static class GitUnMain
         GitinityUI.OnUnlockFile += _fileLocking.UnlockFile;
 
         GitinityUI.OnActivateAssetVCS += AssetVCSSetActive;
+        
+        AssetVCSSetActive(true);
     }
     
     private static void AssetVCSSetActive(bool state)
