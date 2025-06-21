@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using UnityEditor;
 using UnityEngine;
 
@@ -6,10 +7,12 @@ using UnityEngine;
 public class AssetValidator
 {
     private ITerminalInterface _terminal;
+    private Dictionary<string, (string, bool)> _assetValidStates = new();
 
     public AssetValidator(ITerminalInterface terminal)
     {
         _terminal = terminal;
+        AssetPostprocListener.OnAssetPosPro += () => ValidateAllControlledAssets(); 
     }
     private AssetValidationSettings GetRules(string path)
     {
@@ -27,8 +30,40 @@ public class AssetValidator
         var rules = AssetDatabase.LoadAssetAtPath<AssetValidationSettings>(assetPath);
         return rules;
     }
-    
-    public (string info, bool isValid) ValidateAsset(string path)
+
+    private bool ValidateAllControlledAssets()
+    {
+        Debug.Log($"Validate all Assets");
+        bool areAllValid = true;
+        
+        string targetFolder = GlobalRefs.filePaths.versionControlledAssets;
+        string[] guids = AssetDatabase.FindAssets("", new[] { targetFolder });
+
+        foreach (string guid in guids)
+        {
+            string path = AssetDatabase.GUIDToAssetPath(guid);
+            (string info, bool isValid) = ValidateAsset(path);
+            if (!isValid)
+            {
+                areAllValid = false;
+            }
+            _assetValidStates.Add(path, (info, isValid));
+        }
+        return areAllValid;
+    }
+
+    public (string info, bool isValid) GetInfo(string path)
+    {
+        if (_assetValidStates.Count.Equals(0))
+        {
+            ValidateAllControlledAssets();
+        }
+        return _assetValidStates[path];
+    }
+    /// <summary>
+    /// Filetypes that are not handles will always return isValid true;
+    /// </summary>
+    private (string info, bool isValid) ValidateAsset(string path)
     {
         string extension = Path.GetExtension(path).ToLower();
         string metadata = "";
