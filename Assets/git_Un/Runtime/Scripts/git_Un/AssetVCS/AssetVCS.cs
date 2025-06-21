@@ -14,7 +14,7 @@ public class AssetVCS
     {
         _terminal = terminal;
         _commandBuilder = commandBuilder;
-        _validator = new AssetValidator();
+        _validator = new AssetValidator(_terminal);
         
         Selection.selectionChanged += OnSelectionChanged;
         _prefix = GlobalRefs.filePaths.versionControlledAssets; 

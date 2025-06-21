@@ -5,6 +5,12 @@ using UnityEngine;
 
 public class AssetValidator
 {
+    private ITerminalInterface _terminal;
+
+    public AssetValidator(ITerminalInterface terminal)
+    {
+        _terminal = terminal;
+    }
     private AssetValidationSettings GetRules(string path)
     {
         int index = path.LastIndexOf('/');
@@ -80,7 +86,9 @@ public class AssetValidator
         {
             metadata += $"Texture Format: {textureImporter.textureCompression}\n";
         }
-   
+        
+        _terminal.Execute($"echo '{isValid.ToString().ToLower()}' > {GlobalRefs.filePaths.allowCommitFile}");
+        
         return (string.IsNullOrWhiteSpace(metadata) ? "No additional metadata found." : metadata, isValid);
     }
 } 

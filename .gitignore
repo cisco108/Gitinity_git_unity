@@ -93,3 +93,4 @@ com.unity.textmeshpro
 
 # Project specific
 *XRCDEditor_clone_*/
+.allow_commit
