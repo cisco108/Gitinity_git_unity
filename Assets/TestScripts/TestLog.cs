@@ -8,7 +8,16 @@ public class TestLog : MonoBehaviour
     private bool b = true;
 
     private ITerminalInterface _terminal;
-
+    
+    // private void OnValidate()
+    // {
+    //     _terminal = new GitBashInterface();
+    //     string s = GlobalRefs.ShellScript(1);
+    //     Debug.Log(s);
+    //     Debug.Log(s);
+    //
+    // }
+    
     /*private void OnValidate()
     {
         string targetFolder = GlobalRefs.filePaths.versionControlledAssets;
