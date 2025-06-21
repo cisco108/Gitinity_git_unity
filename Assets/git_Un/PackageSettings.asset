@@ -17,7 +17,7 @@ MonoBehaviour:
   useSettingsCompanyName: 1
   packageName: git_un
   useSettingsProductName: 1
-  version: 0.5.4
+  version: 0.6.0
   useSettingsVersion: 1
   displayName: git_Un
   _useSettingsProductName: 1
@@ -27,7 +27,7 @@ MonoBehaviour:
   unityRelease: 0f1
   useCurrentUnityRelease: 1
   _dependencies:
-  - name: ' com.unity.nuget.newtonsoft-json'
+  - name: com.unity.nuget.newtonsoft-json
     version: 3.2.1
   documentationUrl: https://
   changelogUrl: https://
