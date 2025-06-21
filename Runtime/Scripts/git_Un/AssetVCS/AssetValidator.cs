@@ -34,6 +34,8 @@ public class AssetValidator
 
     private bool ValidateAllControlledAssets()
     {
+        _assetValidStates.Clear();
+        
         _validationCallCounter++;
         Debug.Log($"Validate all call: {_validationCallCounter}");
         bool areAllValid = true;
