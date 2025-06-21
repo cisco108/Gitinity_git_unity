@@ -44,7 +44,7 @@ public class AssetVCS
             string[] versions = _terminal.ExecuteResultToStringArr(getVersionsCmd);
 
             _currentAssetName = selectedObj.name;
-            (string metadata, bool isValid) = _validator.ValidateAsset(path);
+            (string metadata, bool isValid) = _validator.GetInfo(path);
             
             AssetVCSEditorWindow.ShowWindow(_currentAssetName, versions, path, UpdateVersion, SaveChanges, metadata, isValid);
         }
