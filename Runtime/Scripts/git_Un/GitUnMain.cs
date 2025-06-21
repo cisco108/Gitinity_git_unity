@@ -34,7 +34,8 @@ public static class GitUnMain
 
         GitinityUI.OnActivateAssetVCS += AssetVCSSetActive;
         
-        AssetVCSSetActive(true);
+        // for testing in development project:
+        // AssetVCSSetActive(true);
     }
     
     private static void AssetVCSSetActive(bool state)
