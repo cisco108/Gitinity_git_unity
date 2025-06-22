@@ -17,10 +17,21 @@ public class MRManager
         Debug.Log($"GetFeatureInfo() {this}");
         string command = _commandBuilder.GetIsBranchMerged(featureName, GlobalRefs.defaultBranch, checkOnRemote: true);
         string result = _terminal.ExecuteResultToString(command);
-        result = result.StartsWith("* ") ? result.Substring(1) : result;
+        result = result.StartsWith("*") ? result.Substring(2) : result.Substring(1); // is ether '* branch' or ' branch'
         result = result.TrimEnd('\n');
 
-        GlobalRefs.isFeatureMerged = featureName == result;
+        bool isMerged = featureName == result;
+        GlobalRefs.isFeatureMerged = isMerged;
+        
+        if (isMerged)
+        {
+            ReactIfMerged();
+        }
+    }
+    
+    private void ReactIfMerged()
+    {
+        Debug.Log($"Is merged so reset.");
     }
 
     public void StartFeature(string featureName)

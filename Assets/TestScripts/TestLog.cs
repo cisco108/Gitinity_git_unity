@@ -33,12 +33,17 @@ public class TestLog : MonoBehaviour
 
     void Start()
     {
-        _terminal = new GitBashInterface();
+
+        string result = " hello";
+        result = result.StartsWith("*") ? result.Substring(2) : result.Substring(1); // is ether '* branch' or ' branch'
+        Debug.Log($"-{result}-");
+        
+        /*_terminal = new GitBashInterface();
         
         string bS = b.ToString().ToLower();
         _terminal.Execute($"echo '{bS}' > {GlobalRefs.filePaths.allowCommitFile}");
         
-        Debug.Log(bS);
+        Debug.Log(bS);*/
     }
     
 }
