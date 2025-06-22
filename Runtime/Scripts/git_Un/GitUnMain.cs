@@ -78,8 +78,7 @@ public static class GitUnMain
         string commitCmd = _commandBuilder.GetCommit(GlobalRefs.gitignore);
         _terminal.Execute(commitCmd);
 
-        //TODO: rm the hardcoded master 
-        string switch2Cmd = _commandBuilder.GetSwitch("master");
+        string switch2Cmd = _commandBuilder.GetSwitch(GlobalRefs.filePaths.defaultBranchName);
         _terminal.Execute(switch2Cmd);
 
         string commit2Cmd = _commandBuilder.GetCommit(".");

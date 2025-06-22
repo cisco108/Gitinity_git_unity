@@ -21,7 +21,7 @@ public class MRManager
 
     bool CheckIfMerged(string featureName)
     {
-        string command = _commandBuilder.GetIsBranchMerged(featureName, GlobalRefs.defaultBranch, checkOnRemote: true);
+        string command = _commandBuilder.GetIsBranchMerged(featureName, GlobalRefs.filePaths.defaultBranchName, checkOnRemote: true);
         string result = _terminal.ExecuteResultToString(command);
         return !string.IsNullOrEmpty(result);
 
@@ -44,7 +44,7 @@ public class MRManager
         Debug.Log($"Updating GlobalRefs.currFeatureName to {featureName}");
         GlobalRefs.currFeatureName = featureName;
 
-        string pullDefaultBranchCmd = _commandBuilder.GetSwitchAndPull(GlobalRefs.defaultBranch); 
+        string pullDefaultBranchCmd = _commandBuilder.GetSwitchAndPull(GlobalRefs.filePaths.defaultBranchName); 
         string createSwitchPushCmd = _commandBuilder.GetCreateSwitchPushBranch(featureName);
 
         string startFeatureCmd = pullDefaultBranchCmd + " && " + createSwitchPushCmd;
