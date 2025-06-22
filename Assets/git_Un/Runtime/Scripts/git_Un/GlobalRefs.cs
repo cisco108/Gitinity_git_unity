@@ -13,6 +13,7 @@ public static class GlobalRefs
     public static string gitignore = ".gitignore";
     public static StateObj StateObj;
     public static bool isFeatureMerged;
+    public static string currFeatureName;
     
     private static string ShellScript1GUID = "52110bcc73484879893fbbfbb69684b9";
     private static string ShellScript2GUID = "9af826befe274ba68165ff88d2bfa719";

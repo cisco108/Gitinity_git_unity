@@ -10,13 +10,21 @@ public class MRManager
         _commandBuilder = commandBuilder;
     }
 
-    public void GetFeatureInfo(string featureName)
+    public void GetFeatureInfo()
     {
+        string featureName = GlobalRefs.currFeatureName;
+        
         Debug.Log($"GetFeatureInfo() {this}");
         string command = _commandBuilder.GetIsBranchMerged(featureName, GlobalRefs.defaultBranch, checkOnRemote: true);
         string result = _terminal.ExecuteResultToString(command);
         result = result.StartsWith("*") ? result.Substring(1) : result;
 
         GlobalRefs.isFeatureMerged = featureName == result;
+    }
+
+    public void StartFeature(string featureName)
+    {
+        Debug.Log($"Updating GlobalRefs.currFeatureName to {featureName}");
+        GlobalRefs.currFeatureName = featureName;
     }
 }
