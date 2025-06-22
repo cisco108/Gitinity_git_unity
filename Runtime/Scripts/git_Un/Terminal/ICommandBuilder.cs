@@ -19,6 +19,7 @@
     public string GetCurrentBranch();
 
     public string GetSwitch(string branch);
+    public string GetSwitchAndPull(string branch);
     public string GetMergeXours(string sourceBranch);
 
     public string GetMkdir(string path);

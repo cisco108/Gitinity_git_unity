@@ -23,6 +23,7 @@ public static class GitCommands
     public static string cat_file_p = "git cat-file -p ";
     public static string checkout = "git checkout ";
     public static string check_merged = "git branch --merged ";
+    public static string pull = "git pull ";
 
 
 
