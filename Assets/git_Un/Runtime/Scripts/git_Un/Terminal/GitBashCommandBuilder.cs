@@ -62,7 +62,7 @@ public class GitBashCommandBuilder : ICommandBuilder
     public string GetCreateBranch(string branchName, bool push=false)
     {
         string command = GitCommands.branch + branchName;
-        command = push ? command + " && git push origin " + branchName : command;
+        command = push ? command + " && git push --set-upstream origin " + branchName : command;
         return command;
     }
 
