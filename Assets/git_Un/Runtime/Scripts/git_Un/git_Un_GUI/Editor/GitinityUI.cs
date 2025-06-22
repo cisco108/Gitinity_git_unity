@@ -12,6 +12,7 @@ public class GitinityUI : EditorWindow
     // Setup and Settings
     private TextField UserEmail => rootVisualElement.Q<TextField>("user-email");
     private TextField GitExe => rootVisualElement.Q<TextField>("git-exe");
+    private TextField DefaultBranch => rootVisualElement.Q<TextField>("default-branch-name");
     private TextField RemoteLink => rootVisualElement.Q<TextField>("remote-link");
     private TextField DiffObjPath => rootVisualElement.Q<TextField>("diff-obj-path");
     private Button SetUpBtn => rootVisualElement.Q<Button>("setup-btn");
@@ -86,6 +87,8 @@ public class GitinityUI : EditorWindow
         UserEmail.RegisterValueChangedCallback(UpdateUser);
 
         GitExe.SetValueWithoutNotify(GlobalRefs.filePaths.gitBashExe);
+        DefaultBranch.SetValueWithoutNotify(GlobalRefs.filePaths.defaultBranchName);
+        DefaultBranch.RegisterValueChangedCallback(evt => GlobalRefs.filePaths.defaultBranchName = evt.newValue);
         RemoteLink.RegisterValueChangedCallback(UpdateRemoteLink);
 
         RemoteLink.SetValueWithoutNotify(GlobalRefs.filePaths.remoteUrl);

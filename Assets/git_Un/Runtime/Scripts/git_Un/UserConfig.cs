@@ -28,6 +28,7 @@ public class UserConfig : ScriptableObject
     public string versionControlledAssets = "Assets/VersionControlledAssets/";
     public string DiffPrefabsDirectory => diffPrefabsParentDirectory + diffPrefabsDirName;
     public string gitBashExe = @"C:\Program Files\Git\git-bash.exe";
+    public string defaultBranchName = "master";
     public string remoteUrl = "Paste the http link for your empty repository.";
     public string allowCommitFile = ".allow_commit";
 
