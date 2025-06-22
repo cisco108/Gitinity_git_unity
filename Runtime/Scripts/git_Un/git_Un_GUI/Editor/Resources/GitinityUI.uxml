@@ -17,8 +17,11 @@
     
     <!-- Merge Request Features -->
     <engine:TextField label="Feature Name:" name="feature-name"/>
-    <engine:Label name="feature-state" text="Feature State:" class="custom-label"/>
+    <engine:TextField label="Feature Status:" name="feature-status" value="if the feature is merged" isReadOnly="true"/>
+    <!-- <engine:Label name="feature-state" text="Feature State:" class="custom-label"/> -->
     <engine:Button name="start-feat-btn" text="Start Feature" class="pull-right"/>
+    <engine:Button name="check-feat-btn" text="Check Feature State" class="pull-right"/>
+
     
     <!-- Merge Options -->
     <engine:DropdownField label="Target Branch" name="target-branch-dd"/>
