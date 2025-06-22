@@ -17,7 +17,7 @@ public class MRManager
         Debug.Log($"GetFeatureInfo() {this}");
         string command = _commandBuilder.GetIsBranchMerged(featureName, GlobalRefs.defaultBranch, checkOnRemote: true);
         string result = _terminal.ExecuteResultToString(command);
-        result = result.StartsWith("*") ? result.Substring(1) : result;
+        result = result.StartsWith("* ") ? result.Substring(1) : result;
         result = result.TrimEnd('\n');
 
         GlobalRefs.isFeatureMerged = featureName == result;
