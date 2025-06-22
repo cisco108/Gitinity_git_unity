@@ -32,6 +32,7 @@ public static class GitUnMain
         GitinityUI.OnSetup += SetupGitinity;
         GitinityUI.GetGitInfo += GetGitData;
         GitinityUI.OnGetFeatureInfo += _mrManager.GetFeatureInfo;
+        GitinityUI.OnStartFeature += _mrManager.StartFeature;
         GitinityUI.OnMerge += Main;
         GitinityUI.OnLockFile += _fileLocking.LockFile;
         GitinityUI.OnUnlockFile += _fileLocking.UnlockFile;

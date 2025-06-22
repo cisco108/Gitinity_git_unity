@@ -48,12 +48,14 @@ public class GitinityUI : EditorWindow
 
     public static event Action OnSetup;
     public static event Action GetGitInfo;
-    public static event Action<string> OnGetFeatureInfo;
+    // public static event Action<string> OnGetFeatureInfo;
+    public static event Action OnGetFeatureInfo;
     public static event Action<bool> OnActivateAssetVCS;
     public static event Action<string, string> OnMerge;
     public static event Action<string> OnLockFile;
     public static event Action<string> OnUnlockFile;
     public static event Action<string> OnStartFeature;
+    // public static event Action OnStartFeature;
 
     private string _sourceBranch;
     private string _targetBranch;
@@ -95,6 +97,7 @@ public class GitinityUI : EditorWindow
         
         // Merge Request Features
         FeatureState.text = GetFeatureInfo();
+        FeatureName.SetValueWithoutNotify(GlobalRefs.currFeatureName);
         FeatureName.RegisterValueChangedCallback(evt => _featureName = evt.newValue);
         StartFeatureBtn.RegisterCallback<ClickEvent>(evt =>
         {
@@ -103,6 +106,9 @@ public class GitinityUI : EditorWindow
                 Debug.Log($"No name for feature provided - return.");
                 return;
             }
+            
+            // GlobalRefs.currFeatureName = _featureName;
+            
             OnStartFeature.Invoke(_featureName);
         });
         
@@ -152,11 +158,11 @@ public class GitinityUI : EditorWindow
 
     private string GetFeatureInfo()
     {
-        if (String.IsNullOrEmpty(_featureName))
+        if (String.IsNullOrEmpty(GlobalRefs.currFeatureName))
         {
-            return "Feature Name field empty.";
+            return "No current feature present.";
         }
-        OnGetFeatureInfo.Invoke(_featureName);
+        OnGetFeatureInfo.Invoke();
         return GlobalRefs.isFeatureMerged.ToString();
     }
 
