@@ -15,17 +15,20 @@ public class MRManager
     {
         string featureName = GlobalRefs.currFeatureName;
         Debug.Log($"GetFeatureInfo() {this}");
-        
-        if (CheckIfMerged(featureName))
-        {
-            ReactIfMerged();
-        }
+
+        GlobalRefs.isFeatureMerged = CheckIfMerged(featureName);
     }
 
     bool CheckIfMerged(string featureName)
     {
         string command = _commandBuilder.GetIsBranchMerged(featureName, GlobalRefs.defaultBranch, checkOnRemote: true);
         string result = _terminal.ExecuteResultToString(command);
+        return !string.IsNullOrEmpty(result);
+
+
+        // All not needed, because when the string contains something,
+        // the featureName was in the list of merged branches and got grep.
+        /*
         if (String.IsNullOrEmpty(result))
         {
             return false;
@@ -33,22 +36,19 @@ public class MRManager
         result = result.StartsWith("*") ? result.Substring(2) : result.Substring(1); // is ether '* branch' or ' branch'
         result = result.TrimEnd('\n');
 
-        bool isMerged = featureName == result;
-        GlobalRefs.isFeatureMerged = isMerged;
-        return isMerged;
-    }
-    
-    private void ReactIfMerged()
-    {
-        Debug.Log($"Is merged so reset.");
+        return featureName == result;*/
     }
 
     public void StartFeature(string featureName)
     {
         Debug.Log($"Updating GlobalRefs.currFeatureName to {featureName}");
         GlobalRefs.currFeatureName = featureName;
+
+        string pullDefaultBranchCmd = _commandBuilder.GetSwitchAndPull(GlobalRefs.defaultBranch); 
+        string createSwitchPushCmd = _commandBuilder.GetCreateSwitchPushBranch(featureName);
+
+        string startFeatureCmd = pullDefaultBranchCmd + " && " + createSwitchPushCmd;
         
-        string command = _commandBuilder.GetCreateSwitchPushBranch(featureName);
-        _terminal.Execute(command);
+        _terminal.Execute(startFeatureCmd);
     }
 }

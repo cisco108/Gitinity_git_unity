@@ -81,6 +81,11 @@ public class GitBashCommandBuilder : ICommandBuilder
         return GitCommands.g_switch + branch;
     }
 
+    public string GetSwitchAndPull(string branch)
+    {
+        return GetSwitch(branch) + " && " + GitCommands.pull;
+    }
+
     /// <summary>
     /// Merges using the -Xours strategy
     /// Uses the --no-edit flag (default commit message)

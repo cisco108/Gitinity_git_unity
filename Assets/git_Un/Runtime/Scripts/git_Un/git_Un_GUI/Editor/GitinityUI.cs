@@ -163,7 +163,7 @@ public class GitinityUI : EditorWindow
             return "No current feature present.";
         }
         OnGetFeatureInfo.Invoke();
-        return GlobalRefs.isFeatureMerged.ToString();
+        return GlobalRefs.isFeatureMerged ? "Merged." : "Not merged yet.";
     }
 
     private void ReactWhenFileIsLocked(string message)
