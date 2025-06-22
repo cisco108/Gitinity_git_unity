@@ -15,6 +15,7 @@
     public string GetPush(string branchName = default);
     public string GetPushAllBranches();
     public string GetCreateBranch(string branchName, bool push=false);
+    public string GetCreateSwitchPushBranch(string branchName);
     public string GetCurrentBranch();
 
     public string GetSwitch(string branch);

@@ -22,6 +22,9 @@ public static class GitCommands
     public static string add_remote = "git remote add origin ";
     public static string cat_file_p = "git cat-file -p ";
     public static string checkout = "git checkout ";
+    public static string check_merged = "git branch --merged ";
+
+
 
 }
 
