@@ -66,6 +66,11 @@ public class GitBashCommandBuilder : ICommandBuilder
         return command;
     }
 
+    public string GetCreateSwitchPushBranch(string branchName)
+    {
+        return $"git switch -c {branchName} && git push --set-upstream origin {branchName}";
+    }
+
     public string GetCurrentBranch()
     {
         return GitCommands.branch + GitFlags.show_current;
@@ -177,7 +182,11 @@ public class GitBashCommandBuilder : ICommandBuilder
     /// Only works for remote called 'origin'.
     public string GetIsBranchMerged(string featureBranch, string mainBranch, bool checkOnRemote)
     {
-        mainBranch = checkOnRemote ? "origin/" + mainBranch : mainBranch;
-        return "git branch --merged " + mainBranch + " | grep " + featureBranch;
+        if (!checkOnRemote)
+        {
+            return GitCommands.check_merged + mainBranch + " | grep " + featureBranch;
+        }
+        mainBranch = "origin/" + mainBranch;
+        return GitCommands.fetch + " && " + GitCommands.check_merged + mainBranch + " | grep " + featureBranch;
     }
 }
