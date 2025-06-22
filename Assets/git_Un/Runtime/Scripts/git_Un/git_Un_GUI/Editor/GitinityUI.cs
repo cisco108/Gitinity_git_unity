@@ -48,6 +48,7 @@ public class GitinityUI : EditorWindow
 
     public static event Action OnSetup;
     public static event Action GetGitInfo;
+    public static event Action OnGetFeatureInfo;
     public static event Action<bool> OnActivateAssetVCS;
     public static event Action<string, string> OnMerge;
     public static event Action<string> OnLockFile;
@@ -58,6 +59,7 @@ public class GitinityUI : EditorWindow
     private string _targetBranch;
 
     private string _fileToLock;
+    private string _featureName;
 
 
     [MenuItem("Tools/GitinityUI")]
@@ -92,14 +94,16 @@ public class GitinityUI : EditorWindow
 
         
         // Merge Request Features
-        FeatureName.RegisterValueChangedCallback(evt =>
+        FeatureState.text = GetFeatureInfo();
+        FeatureName.RegisterValueChangedCallback(evt => _featureName = evt.newValue);
+        StartFeatureBtn.RegisterCallback<ClickEvent>(evt =>
         {
-            if (evt.newValue.Length == 0)
+            if (String.IsNullOrEmpty(_featureName))
             {
                 Debug.Log($"No name for feature provided - return.");
                 return;
             }
-            OnStartFeature.Invoke(evt.newValue);
+            OnStartFeature.Invoke(_featureName);
         });
         
         
@@ -144,6 +148,12 @@ public class GitinityUI : EditorWindow
             GlobalRefs.filePaths.useAssetVCS = evt.newValue;
             OnActivateAssetVCS.Invoke(evt.newValue);
         });
+    }
+
+    private string GetFeatureInfo()
+    {
+        OnGetFeatureInfo.Invoke();
+        return GlobalRefs.isFeatureMerged.ToString();
     }
 
     private void ReactWhenFileIsLocked(string message)
