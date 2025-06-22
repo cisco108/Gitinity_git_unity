@@ -8,6 +8,7 @@ using UnityEngine;
 public static class GlobalRefs
 {
     public static UserConfig filePaths;
+    public static string defaultBranch = "master";
     public static string lockingBranch = "file-locking";
     public static string gitignore = ".gitignore";
     public static StateObj StateObj;

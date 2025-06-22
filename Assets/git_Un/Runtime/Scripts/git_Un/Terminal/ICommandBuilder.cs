@@ -54,5 +54,6 @@
     public string GetWriteLinesToFile(string[] lines, string filePath);
     public string GetLogOfFile(string filePath);
     public string GetCheckout(string hash, string path = default);
+    public string GetIsBranchMerged(string featureBranch, string mainBranch, bool checkOnRemote);
 
 }
