@@ -14,7 +14,7 @@
     public string GetCommit(string contentPath, string commitMessage = null);
     public string GetPush(string branchName = default);
     public string GetPushAllBranches();
-    public string GetCreateBranch(string branchName);
+    public string GetCreateBranch(string branchName, bool push=false);
     public string GetCurrentBranch();
 
     public string GetSwitch(string branch);
