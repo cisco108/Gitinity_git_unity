@@ -19,9 +19,6 @@ public class GitBashCommandBuilder : ICommandBuilder
     /// Shortens the lenght of hashes to 12 characters.
     /// Full 40 character hashes lead to wrong execution.
     /// </summary>
-    /// <param name="mergeBase"></param>
-    /// <param name="revParse"></param>
-    /// <returns></returns>
     public string GetDiff(string mergeBase, string revParse)
     {
         mergeBase = mergeBase.Remove(mergeBase.Length - 28, 28);
@@ -173,5 +170,12 @@ public class GitBashCommandBuilder : ICommandBuilder
         }
 
         return GitCommands.checkout + hash + " " + path;
+    }
+
+    /// Only works for remote called 'origin'.
+    public string GetIsBranchMerged(string featureBranch, string mainBranch, bool checkOnRemote)
+    {
+        mainBranch = checkOnRemote ? "origin/" + mainBranch : mainBranch;
+        return "git branch --merged " + mainBranch + " | grep " + featureBranch;
     }
 }

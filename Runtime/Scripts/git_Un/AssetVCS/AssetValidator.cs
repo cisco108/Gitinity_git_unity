@@ -15,15 +15,15 @@ public class AssetValidator
         _terminal = terminal;
         AssetPostprocListener.OnAssetPosPro += () => ValidateAllControlledAssets(); 
     }
-    private AssetValidationSettings GetRules(string path)
+    private AssetValidationSettings GetRules(string pathToAsset)
     {
-        int index = path.LastIndexOf('/');
-        path = path.Remove(index +1);
+        int index = pathToAsset.LastIndexOf('/');
+        string pathToDir = pathToAsset.Remove(index +1);
         
-        string[] guids = AssetDatabase.FindAssets("t:AssetValidationSettings", new[] { path });
+        string[] guids = AssetDatabase.FindAssets("t:AssetValidationSettings", new[] { pathToDir });
         if (guids.Length == 0)
         {
-            Debug.LogWarning($"No AssetValidationSettings found in folder: {path}");
+            Debug.LogWarning($"No AssetValidationSettings found in folder: {pathToDir}");
             return null;
         }
         

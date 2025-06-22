@@ -6,11 +6,17 @@ public class MRManager
     private ICommandBuilder _commandBuilder;
     public MRManager(ITerminalInterface terminal, ICommandBuilder commandBuilder)
     {
-        
+        _terminal = terminal;
+        _commandBuilder = commandBuilder;
     }
 
-    public void GetFeatureInfo()
+    public void GetFeatureInfo(string featureName)
     {
         Debug.Log($"GetFeatureInfo() {this}");
+        string command = _commandBuilder.GetIsBranchMerged(featureName, GlobalRefs.defaultBranch, checkOnRemote: true);
+        string result = _terminal.ExecuteResultToString(command);
+        result = result.StartsWith("*") ? result.Substring(1) : result;
+
+        GlobalRefs.isFeatureMerged = featureName == result;
     }
 }

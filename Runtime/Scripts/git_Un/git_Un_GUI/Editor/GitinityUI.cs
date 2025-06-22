@@ -48,7 +48,7 @@ public class GitinityUI : EditorWindow
 
     public static event Action OnSetup;
     public static event Action GetGitInfo;
-    public static event Action OnGetFeatureInfo;
+    public static event Action<string> OnGetFeatureInfo;
     public static event Action<bool> OnActivateAssetVCS;
     public static event Action<string, string> OnMerge;
     public static event Action<string> OnLockFile;
@@ -152,7 +152,11 @@ public class GitinityUI : EditorWindow
 
     private string GetFeatureInfo()
     {
-        OnGetFeatureInfo.Invoke();
+        if (String.IsNullOrEmpty(_featureName))
+        {
+            return "Feature Name field empty.";
+        }
+        OnGetFeatureInfo.Invoke(_featureName);
         return GlobalRefs.isFeatureMerged.ToString();
     }
 
