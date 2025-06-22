@@ -9,21 +9,40 @@ using Object = UnityEngine.Object;
 
 public class GitinityUI : EditorWindow
 {
+    // Setup and Settings
     private TextField UserEmail => rootVisualElement.Q<TextField>("user-email");
     private TextField GitExe => rootVisualElement.Q<TextField>("git-exe");
     private TextField RemoteLink => rootVisualElement.Q<TextField>("remote-link");
     private TextField DiffObjPath => rootVisualElement.Q<TextField>("diff-obj-path");
     private Button SetUpBtn => rootVisualElement.Q<Button>("setup-btn");
+    //
+    
+    // Merge Request Features
+    private Label FeatureState => rootVisualElement.Q<Label>("feature-state");
+    private TextField FeatureName => rootVisualElement.Q<TextField>("feature-name");
+    private Button StartFeatureBtn => rootVisualElement.Q<Button>("start-feat-btn");
+    //
+   
+    // Merge Options 
     private Button MergeBtn => rootVisualElement.Q<Button>("merge-btn");
-    private Label WarnLabel => rootVisualElement.Q<Label>("warn-label");
-    private Toggle UseFileLocking => rootVisualElement.Q<Toggle>("use-locking");
-    private Toggle UseAssetVCS => rootVisualElement.Q<Toggle>("use-asset-vcs");
-    private ObjectField LockFile => rootVisualElement.Q<ObjectField>("lock-file");
-    private Button LockBtn => rootVisualElement.Q<Button>("lock-btn");
-    private Button UnlockBtn => rootVisualElement.Q<Button>("unlock-btn");
     private DropdownField SourceBranchDropDown => rootVisualElement.Q<DropdownField>("source-branch-dd");
     private DropdownField TargetBranchDropDown => rootVisualElement.Q<DropdownField>("target-branch-dd");
+    //
+    
+    // File Locking
+    private Label WarnLabel => rootVisualElement.Q<Label>("warn-label");
+    private ObjectField LockFile => rootVisualElement.Q<ObjectField>("lock-file");
+    private Button LockBtn => rootVisualElement.Q<Button>("lock-btn");
+    private Button UnlockBtn => rootVisualElement.Q<Button>("unlock-btn"); 
+    private Toggle UseFileLocking => rootVisualElement.Q<Toggle>("use-locking");
+    //
+    
+    
+    // Asset VCS
+    private Toggle UseAssetVCS => rootVisualElement.Q<Toggle>("use-asset-vcs");
+    //
 
+    
     // private Button RequestAccessBtn => rootVisualElement.Q<Button>("request-btn");
 
 
@@ -33,6 +52,7 @@ public class GitinityUI : EditorWindow
     public static event Action<string, string> OnMerge;
     public static event Action<string> OnLockFile;
     public static event Action<string> OnUnlockFile;
+    public static event Action<string> OnStartFeature;
 
     private string _sourceBranch;
     private string _targetBranch;
@@ -50,14 +70,12 @@ public class GitinityUI : EditorWindow
     public void CreateGUI()
     {
         FileLocking.OnFileIsLocked += ReactWhenFileIsLocked;
+        
         VisualElement root = rootVisualElement;
-        // VisualTreeAsset asset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(
-        // "Assets/git_Un/Runtime/Scripts/git_Un/git_Un_GUI/Editor/GitinityUI.uxml");
-
         VisualTreeAsset asset = Resources.Load<VisualTreeAsset>("GitinityUI");
-
         asset.CloneTree(root);
 
+        // Setup and Settings
         UserEmail.SetValueWithoutNotify(GlobalRefs.filePaths.userEmail);
         UserEmail.RegisterValueChangedCallback(UpdateUser);
 
@@ -72,6 +90,19 @@ public class GitinityUI : EditorWindow
 
         SetUpBtn.RegisterCallback<ClickEvent>(FireSetup);
 
+        
+        // Merge Request Features
+        FeatureName.RegisterValueChangedCallback(evt =>
+        {
+            if (evt.newValue.Length == 0)
+            {
+                Debug.Log($"No name for feature provided - return.");
+                return;
+            }
+            OnStartFeature.Invoke(evt.newValue);
+        });
+        
+        
         MergeBtn.RegisterCallback<ClickEvent>(evt => OnMerge.Invoke(_targetBranch, _sourceBranch));
 
         LockBtn.RegisterCallback<ClickEvent>(evt =>
@@ -170,8 +201,6 @@ public class GitinityUI : EditorWindow
     private void UpdateLockFile(ChangeEvent<Object> evt)
     {
         _fileToLock = evt.newValue.name;
-        // GlobalRefs.filePaths.fileToLockName = evt.newValue.name;
-        // Debug.Log($"Updated file to lock to: {GlobalRefs.filePaths.fileToLockName}");
     }
 
     private void SelectSourceBranch(ChangeEvent<string> evt)

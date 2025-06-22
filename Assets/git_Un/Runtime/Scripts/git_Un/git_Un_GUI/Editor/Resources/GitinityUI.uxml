@@ -6,6 +6,8 @@
     xsi:noNamespaceSchemaLocation="../../../../../../../../UIElementsSchema/UIElements.xsd"
 >
     <Style src="project://database/Assets/git_Un/Runtime/Scripts/git_Un/git_Un_GUI/Editor/GitinityUI.uss?fileID=7433441132597879392&amp;guid=45dc2e453a1151e4081c4deb8344100b&amp;type=3#GitinityUI" />
+    
+    <!-- Setup and Settings -->
     <engine:TextField label="User name:" class="user" name="user-email"/>
     <engine:Label text="User Settings" class="header"/>
     <engine:TextField label="Git Bash Exe" name="git-exe"/>
@@ -13,24 +15,31 @@
     <engine:TextField label="Path for Diff-Prefabs:" name="diff-obj-path"/>
     <engine:Button name="setup-btn" text="git init + setup" class="pull-right"/>
     
+    <!-- Merge Request Features -->
+    <engine:TextField label="Feature Name:" name="feature-name"/>
+    <engine:Label name="feature-state" text="Feature State:" class="custom-label"/>
+    <engine:Button name="start-feat-btn" text="Start Feature" class="pull-right"/>
+    
+    <!-- Merge Options -->
     <engine:DropdownField label="Target Branch" name="target-branch-dd"/>
     <engine:DropdownField label="Source Branch" name="source-branch-dd"/>
     <engine:Button name="merge-btn" text="Merge" class="pull-right"/>
 
+    <!-- File Locking -->
     <engine:Toggle label="Enable File Locking" name="use-locking"/> 
     <editor:ObjectField name="lock-file" label="🔒 File to lock:" type="UnityEngine.Object"/>
     <engine:Button name="lock-btn" text="Lock specified File" class="pull-right"/>
     <engine:Button name="unlock-btn" text="Unlock specified File" class="pull-right"/>
     <!-- when problem with type selection, use ui builder gui -->
     <engine:Label text="Warning: You tried to use a file, that was locked by user-name!" class="warning" name="warn-label"/>
-
-    <engine:Toggle label="Enable Asset VCS" name="use-asset-vcs"/>
     <!-- <engine:VisualElement class="flex-row flex-wrap space-between warning"> -->
-        <!-- <engine:PopupWindow name="warning-popup" text="Warning"></engine:PopupWindow> -->
-        <!-- <engine:Label text="Warning: You tried to use a file, that was locked by user-name!" name="warn-label"/> -->
-        <!-- <engine:Button text="Request Access" name="request-btn" class="pull-right"/>  -->
-        <!-- maybe using discord -->
-        
+    <!-- <engine:PopupWindow name="warning-popup" text="Warning"></engine:PopupWindow> -->
+    <!-- <engine:Label text="Warning: You tried to use a file, that was locked by user-name!" name="warn-label"/> -->
+    <!-- <engine:Button text="Request Access" name="request-btn" class="pull-right"/>  -->
+    <!-- maybe using discord -->
+
+    <!-- Asset VCS -->
+    <engine:Toggle label="Enable Asset VCS" name="use-asset-vcs"/>
     <!-- </engine:VisualElement> -->
     
     
