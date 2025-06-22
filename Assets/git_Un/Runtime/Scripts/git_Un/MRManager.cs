@@ -28,7 +28,7 @@ public class MRManager
         Debug.Log($"Updating GlobalRefs.currFeatureName to {featureName}");
         GlobalRefs.currFeatureName = featureName;
         
-        string command = _commandBuilder.GetCreateBranch(featureName, true);
+        string command = _commandBuilder.GetCreateSwitchPushBranch(featureName);
         _terminal.Execute(command);
     }
 }
