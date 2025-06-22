@@ -15,6 +15,7 @@ public static class GitUnMain
     private static FileLocking _fileLocking;
     private static AssetVCS _assetVCS;
     private static bool _useFileLocking = false;
+    private static MRManager _mrManager;
 
     static GitUnMain()
     {
@@ -23,11 +24,14 @@ public static class GitUnMain
         _terminal = new GitBashInterface();
         _commandBuilder = new GitBashCommandBuilder();
 
+        _mrManager = new MRManager(_terminal, _commandBuilder);
+
         _fileLocking = new FileLocking(_terminal, _commandBuilder);
 
 
         GitinityUI.OnSetup += SetupGitinity;
         GitinityUI.GetGitInfo += GetGitData;
+        GitinityUI.OnGetFeatureInfo += _mrManager.GetFeatureInfo;
         GitinityUI.OnMerge += Main;
         GitinityUI.OnLockFile += _fileLocking.LockFile;
         GitinityUI.OnUnlockFile += _fileLocking.UnlockFile;

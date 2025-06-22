@@ -11,6 +11,7 @@ public static class GlobalRefs
     public static string lockingBranch = "file-locking";
     public static string gitignore = ".gitignore";
     public static StateObj StateObj;
+    public static bool isFeatureMerged;
     
     private static string ShellScript1GUID = "52110bcc73484879893fbbfbb69684b9";
     private static string ShellScript2GUID = "9af826befe274ba68165ff88d2bfa719";
@@ -58,11 +59,10 @@ public enum State
 }
 public class StateObj
 {
-    // take in data in the constructor and initialize accordingly
     private string[] _branchNames;
     public string[] BranchNames => _branchNames;
     public State State;
-
+    
     public StateObj(string[] branchNames)
     {
         if (branchNames == null)
