@@ -9,18 +9,6 @@ public class TheLock
     private JsonSerializer serializer = new JsonSerializer();
     private string path = GlobalRefs.filePaths.lockedProtocolFile;
 
-    /*public void WriteLocking(string file)
-    {
-        var lockInfo = new LockInfo(
-            file,
-            // GlobalRefs.filePaths.fileToLockName,
-            GlobalRefs.filePaths.userEmail);
-
-        using StreamWriter sw = new StreamWriter(path);
-        using JsonWriter writer = new JsonTextWriter(sw);
-        serializer.Serialize(writer, lockInfo);
-    }*/
-
     public void WriteLocking(string fileToLock)
     {
         LockInfo lockInfo;
@@ -46,11 +34,17 @@ public class TheLock
         }
 
         using StreamWriter sw = new StreamWriter(path);
-        using JsonWriter writer = new JsonTextWriter(sw);
-        serializer.Serialize(writer, lockInfo);
+        using (JsonWriter writer = new JsonTextWriter(sw))
+        {
+            writer.Formatting = Formatting.Indented;
+            serializer.Serialize(writer, lockInfo);
+        }
         Debug.Log($"{fileToLock} was just locked by {GlobalRefs.filePaths.userEmail}");
     }
 
+    /// This does not check if it is the same user, who tries to unlock it,
+    /// as the one who locked it. It is assumed, that this is not needed
+    /// due to responsible behaviour of group members XD. 
     public void WriteUnlocking(string fileToUnlock)
     {
         if (!File.Exists(path))
@@ -67,9 +61,12 @@ public class TheLock
             lockInfo.lockedFiles.Remove(hash);
 
             using StreamWriter sw = new StreamWriter(path);
-            using JsonWriter writer = new JsonTextWriter(sw);
-            serializer.Serialize(writer, lockInfo);
-            Debug.Log($"The file {fileToUnlock} has been unlocked (locally).");
+            using (JsonWriter writer = new JsonTextWriter(sw))
+            {
+                writer.Formatting = Formatting.Indented;
+                serializer.Serialize(writer, lockInfo);
+            }
+            Debug.Log($"The file {fileToUnlock} has been unlocked (locally), will be pushed from some where else.");
             return;
         }
         Debug.Log($"{fileToUnlock} was not locked.");
