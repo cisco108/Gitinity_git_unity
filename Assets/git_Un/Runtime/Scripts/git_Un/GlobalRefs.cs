@@ -14,8 +14,12 @@ public static class GlobalRefs
     public static bool isFeatureMerged;
     public static string currFeatureName;
     
+    // Scripts with bash commands that set up things.
     private static string ShellScript1GUID = "52110bcc73484879893fbbfbb69684b9";
     private static string ShellScript2GUID = "9af826befe274ba68165ff88d2bfa719";
+    // End
+
+    private static string SetupGitHookShGUID = "a0172c20623e25e40b23dc43184524b9";
 
     public static string ShellScript(int num)
     {
@@ -27,6 +31,9 @@ public static class GlobalRefs
             break;
             case 2:
             path = AssetDatabase.GUIDToAssetPath(ShellScript2GUID);
+            break;
+            case 3:
+            path = AssetDatabase.GUIDToAssetPath(SetupGitHookShGUID);
             break;
             default:
             path = null;

@@ -8,7 +8,7 @@ public class AssetValidator
 {
     private ITerminalInterface _terminal;
     private Dictionary<string, (string, bool)> _assetValidStates = new();
-    private static int _validationCallCounter;
+    private static int _validationCallCounter; // Just for seeing how often its called
 
     public AssetValidator(ITerminalInterface terminal)
     {
