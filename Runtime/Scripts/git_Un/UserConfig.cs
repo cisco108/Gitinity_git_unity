@@ -31,6 +31,7 @@ public class UserConfig : ScriptableObject
     public string defaultBranchName = "master";
     public string remoteUrl = "Paste the http link for your empty repository.";
     public string allowCommitFile = ".allow_commit";
+    public string setupGitHookFile = "setup_git_hook_asset_validation.sh";
 
     public bool useFileLocking = false;
     public bool useAssetVCS = false;

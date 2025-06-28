@@ -40,7 +40,7 @@ public static class GitUnMain
         GitinityUI.OnActivateAssetVCS += AssetVCSSetActive;
         
         // for testing in development project:
-        // AssetVCSSetActive(true);
+        AssetVCSSetActive(true);
     }
     
     private static void AssetVCSSetActive(bool state)
@@ -56,6 +56,9 @@ public static class GitUnMain
             Directory.CreateDirectory(path);
             AssetDatabase.CreateAsset(ScriptableObject.CreateInstance<AssetValidationSettings>(), path + "Rules.asset");
         }
+
+        string pathToSetupScript = GlobalRefs.ShellScript(3);
+        _terminal.Execute($"cp {pathToSetupScript} . && ./{GlobalRefs.filePaths.setupGitHookFile}");
         _assetVCS.isActive = state;
     }
 

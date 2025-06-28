@@ -34,26 +34,10 @@ public class FileLocking
 
     private (bool isLocked, string whoLockedIt) CheckIfFileIsLocked(string file)
     {
-        /*string fetchCmd = GitCommands.fetch;
-        _terminal.Execute(fetchCmd);
-
-        string revParseFileLockBranchCmd = _commandBuilder.GetRevParse("origin/" + GlobalRefs.lockingBranch);
-        string revParseHash = _terminal.ExecuteResultToString(revParseFileLockBranchCmd);
-
-        string readLockFileCmd = _commandBuilder.GetCatFile(revParseHash, GlobalRefs.filePaths.lockedProtocolFile);
-        string lockedFileContentJson = _terminal.ExecuteResultToString(readLockFileCmd);*/
-
-
         string readLockFileCmd = _commandBuilder.GetReadLockedFile();
         string lockedFileContentJson = _terminal.ExecuteResultToString(readLockFileCmd);
         // git cat-file -p origin/file-locking:locked_files.json
         LogSystem.WriteLog(new[] { readLockFileCmd, "locked file content:", lockedFileContentJson });
-
-        /*LogSystem.WriteLog(new[]
-        {
-            "CheckIfFileIsLocked: ", fetchCmd, revParseFileLockBranchCmd, "hash of rev parse: ",
-            revParseHash, readLockFileCmd, "locked file content: ", lockedFileContentJson
-        });*/
 
         bool isLocked = _theLock.IsFileLocked(lockedFileContentJson, file, out var whoLockedIt);
         return (isLocked, whoLockedIt);
