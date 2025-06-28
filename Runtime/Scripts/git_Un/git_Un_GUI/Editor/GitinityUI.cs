@@ -196,6 +196,7 @@ public class GitinityUI : EditorWindow
             case State.PostInit:
                 var names = GlobalRefs.StateObj.BranchNames;
                 List<string> list = new List<string>(names);
+                list.Remove(GlobalRefs.lockingBranch);
                 return list;
 
             default:

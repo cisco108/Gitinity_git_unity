@@ -86,7 +86,7 @@ public class FileLocking
 
         _theLock.WriteLocking(file);
 
-        string commitCmd = _commandBuilder.GetCommit(" . ");
+        string commitCmd = _commandBuilder.GetCommit(" . ", $"{whoLockedIt} locked: {file}");
         _terminal.Execute(commitCmd);
 
         // string pushCmd = _commandBuilder.GetPush(); 
@@ -117,7 +117,7 @@ public class FileLocking
 
         _theLock.WriteUnlocking(file);
 
-        string commitCmd = _commandBuilder.GetCommit(" . ");
+        string commitCmd = _commandBuilder.GetCommit(" . ", $"{GlobalRefs.filePaths.userEmail} unlocked: {file}");
         _terminal.Execute(commitCmd);
 
         // string pushCmd = _commandBuilder.GetPush(); 
