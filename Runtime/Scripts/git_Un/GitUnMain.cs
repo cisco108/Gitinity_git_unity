@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -39,10 +37,7 @@ public static class GitUnMain
         GitinityUI.OnActivateAssetVCS += AssetVCSSetActive;
         
         // for testing in development project:
-        if (!GitinityUtils.IsExecutingFromPackageCache())
-        {
-            AssetVCSSetActive(true);
-        }
+        // AssetVCSSetActive(true);
     }
     
     private static void AssetVCSSetActive(bool state)
@@ -59,8 +54,7 @@ public static class GitUnMain
             AssetDatabase.CreateAsset(ScriptableObject.CreateInstance<AssetValidationSettings>(), path + "Rules.asset");
         }
 
-        string pathToSetupScript = GlobalRefs.ShellScript(3);
-        _terminal.Execute($"cp {pathToSetupScript} . && ./{GlobalRefs.filePaths.setupGitHookFile}");
+        
         _assetVCS.isActive = state;
     }
 
@@ -94,11 +88,15 @@ public static class GitUnMain
 
         string pushAllCmd = _commandBuilder.GetPushAllBranches();
         _terminal.Execute(pushAllCmd);
-
+        
+        string pathToSetupScript = GlobalRefs.ShellScript(3);
+        string setHooksCmd = $"cp {pathToSetupScript} . && ./{GlobalRefs.filePaths.setupGitHookFile}";
+        _terminal.Execute(setHooksCmd);
+        
         LogSystem.WriteLog(new[]
         {
             sh1, addToGitignoreCmd, sh2, commitCmd,
-            newIgnore, commitCmd, switch2Cmd, commit2Cmd, addRemoteCmd, pushAllCmd
+            newIgnore, commitCmd, switch2Cmd, commit2Cmd, addRemoteCmd, pushAllCmd, setHooksCmd
         });
     }
 

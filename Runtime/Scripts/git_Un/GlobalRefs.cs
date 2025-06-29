@@ -1,9 +1,7 @@
 using System.IO;
-using JetBrains.Annotations;
 using UnityEditor;
 using UnityEngine;
 
-// Is this still needed ?
 
 [InitializeOnLoad]
 public static class GlobalRefs
@@ -35,7 +33,7 @@ public static class GlobalRefs
                 break;
             case 3:
                 string virtualPath = AssetDatabase.GUIDToAssetPath(SetupGitHookShGUID);
-                path = GitinityUtils.IsExecutingFromPackageCache() ? ResolvePackagePath(virtualPath) : virtualPath;
+                path = ResolvePackagePath(virtualPath);
                 break;
             default:
                 path = null;
@@ -60,21 +58,30 @@ public static class GlobalRefs
     /// one, that does work in Unity, but is not an actual path on your file system.
     private static string ResolvePackagePath(string virtualPath)
     {
-        string packageRelative = virtualPath.Substring("Packages/".Length);
-        string packageCacheDir = Path.Combine("Library", "PackageCache");
-        string[] candidates =
-            Directory.GetDirectories(packageCacheDir, packageRelative + "@*", SearchOption.TopDirectoryOnly);
-
-        if (candidates.Length == 0)
+        try
         {
-            Debug.LogError("Could not find matching package in PackageCache for: " + packageRelative);
-            return null;
-        }
 
-        // Use the first match
-        string realPackagePath = candidates[0];
-        string relativeScriptPath = virtualPath.Substring(("Packages/" + packageRelative).Length);
-        return Path.Combine(realPackagePath, relativeScriptPath.TrimStart('/'));
+            string packageRelative = virtualPath.Substring("Packages/".Length);
+            string packageCacheDir = Path.Combine("Library", "PackageCache");
+            string[] candidates =
+                Directory.GetDirectories(packageCacheDir, packageRelative + "@*", SearchOption.TopDirectoryOnly);
+
+            if (candidates.Length == 0)
+            {
+                Debug.LogError("Could not find matching package in PackageCache for: " + packageRelative);
+                return null;
+            }
+
+            // Use the first match
+            string realPackagePath = candidates[0];
+            string relativeScriptPath = virtualPath.Substring(("Packages/" + packageRelative).Length);
+            return Path.Combine(realPackagePath, relativeScriptPath.TrimStart('/'));
+        }
+        catch
+        {
+            Debug.Log($"Probably in development project, where the virtual path {virtualPath} should work.");
+            return virtualPath;
+        }
     }
 
     public static void SetState(string[] branchNames)
