@@ -7,7 +7,7 @@
 - [x] Remove hardcoded master. 
 
 - [ ] Add date to version selection dropdown.
-- [x] Setup git hook automaticly. 
+- [ ] Setup git hook automaticly. 
 - [ ] Write reason for blocking commit to file and display it.
 - [x] locked_files.json use pretty write.
 - [x] Make locking commit messages meaningful.
