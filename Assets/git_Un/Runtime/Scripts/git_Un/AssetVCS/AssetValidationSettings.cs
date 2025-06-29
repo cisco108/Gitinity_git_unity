@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
 
-using UnityEngine;
-
 [CreateAssetMenu(fileName = "AssetValidationSettings", menuName = "Asset VCS/Validation Settings", order = 0)]
 public class AssetValidationSettings : ScriptableObject
 {
