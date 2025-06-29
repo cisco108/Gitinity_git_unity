@@ -39,7 +39,7 @@
     <!-- File Locking -->
     <ui:Foldout text="File Locking" value="false" name="file-locking-foldout">
         <ui:Toggle label="Enable File Locking" name="use-locking" />
-        <ui:ObjectField name="lock-file" label="🔒 File to lock:" type="UnityEngine.Object" />
+        <ui:ObjectField name="lock-file" label="🔒 File to lock:"/>
         <ui:Button name="lock-btn" text="Lock specified File" class="pull-right" />
         <ui:Button name="unlock-btn" text="Unlock specified File" class="pull-right" />
         <!-- when problem with type selection, use ui builder gui -->

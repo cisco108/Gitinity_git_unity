@@ -76,6 +76,7 @@ public class GitinityUI : EditorWindow
 
     public void CreateGUI()
     {
+        LockFile.objectType = typeof(SceneAsset);
         FileLocking.OnFileIsLocked += ReactWhenFileIsLocked;
         
         VisualElement root = rootVisualElement;
