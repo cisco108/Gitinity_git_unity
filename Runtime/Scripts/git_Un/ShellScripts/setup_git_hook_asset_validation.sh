@@ -3,13 +3,15 @@
 cat << 'EOF' > .git/hooks/pre-commit
 #!/bin/sh
 
-echo "hello from pre-commit"
+if [ ! -f .allow_commit ]; then
+    echo ".allow_commit file missing and got created. Asset validation needs to run again before committing." > .allow_commit
+fi
 
 A=$(cat .allow_commit 2>/dev/null)
-echo "allowed: $A"
+echo "allow_commit content: $A"
 
 if [ "$A" != "true" ]; then
-    echo "❌ Commit blocked: Asset validation failed."
+    echo "❌ Commit blocked because: $A"
     exit 1
 fi
 
