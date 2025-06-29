@@ -14,7 +14,6 @@ public static class GitUnMain
     private static ICommandBuilder _commandBuilder;
     private static FileLocking _fileLocking;
     private static AssetVCS _assetVCS;
-    private static bool _useFileLocking = false;
     private static MRManager _mrManager;
 
     static GitUnMain()
@@ -40,7 +39,10 @@ public static class GitUnMain
         GitinityUI.OnActivateAssetVCS += AssetVCSSetActive;
         
         // for testing in development project:
-        AssetVCSSetActive(true);
+        if (!GitinityUtils.IsExecutingFromPackageCache())
+        {
+            AssetVCSSetActive(true);
+        }
     }
     
     private static void AssetVCSSetActive(bool state)
