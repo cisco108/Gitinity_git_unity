@@ -1,58 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<engine:UXML
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<ui:UXML
+    xmlns:ui="UnityEngine.UIElements"
+>
     xmlns:engine="UnityEngine.UIElements"
-    xmlns:editor="UnityEditor.UIElements" xmlns:ui="../../../../../../../../UIElementsSchema/UIElements.xsd"
-    xsi:noNamespaceSchemaLocation="../../../../../../../../UIElementsSchema/UIElements.xsd"
-    xsi:schemaLocation="../../../../../../../../UIElementsSchema/UIElements.xsd file:/C:/Users/cisco/Desktop/2_WiSe2425/EL_DepthsOfUnity/2502_Git_Un/UIElementsSchema/../../../../../../../../UIElementsSchema/UIElements.xsd.xsd">
+    xmlns:ui="UnityEditor.UIElements">
+    
     <Style
         src="project://database/Assets/git_Un/Runtime/Scripts/git_Un/git_Un_GUI/Editor/GitinityUI.uss?fileID=7433441132597879392&amp;guid=45dc2e453a1151e4081c4deb8344100b&amp;type=3#GitinityUI" />
 
     <!-- Setup and Settings -->
     <ui:Foldout text="Setup and Settings" value="true" name="setup-foldout">
-        <engine:TextField label="User name:" class="user" name="user-email" />
-        <engine:Label text="User Settings" class="header" />
-        <engine:TextField label="Git Bash Exe" name="git-exe" />
-        <engine:TextField label="Default branch name" name="default-branch-name" />
-        <engine:TextField label="Http link to Repo: " name="remote-link" value="https://yourrepo.com" />
-        <engine:TextField label="Path for Diff-Prefabs:" name="diff-obj-path" />
-        <engine:Button name="setup-btn" text="git init + setup" class="pull-right" />
+        <ui:TextField label="User name:" class="user" name="user-email" />
+        <ui:Label text="User Settings" class="header" />
+        <ui:TextField label="Git Bash Exe" name="git-exe" />
+        <ui:TextField label="Default branch name" name="default-branch-name" />
+        <ui:TextField label="Http link to Repo: " name="remote-link" value="https://yourrepo.com" />
+        <ui:TextField label="Path for Diff-Prefabs:" name="diff-obj-path" />
+        <ui:Button name="setup-btn" text="git init + setup" class="pull-right" />
     </ui:Foldout>
 
     <!-- Merge Request Features -->
     <ui:Foldout text="Merge Request, Feature Handling" value="false" name="mr-foldout">
-        <engine:TextField label="Feature Name:" name="feature-name" />
-        <engine:TextField label="Feature Status:" name="feature-status" value="if the feature is merged"
-                          isReadOnly="true" />
-        <!-- <engine:Label name="feature-state" text="Feature State:" class="custom-label"/> -->
-        <engine:Button name="start-feat-btn" text="Start Feature" class="pull-right" />
-        <engine:Button name="check-feat-btn" text="Check Feature State" class="pull-right" />
+        <ui:TextField label="Feature Name:" name="feature-name" />
+        <ui:TextField label="Feature Status:" name="feature-status" value="if the feature is merged"
+             isReadOnly="true" />
+        <ui:Button name="start-feat-btn" text="Start Feature" class="pull-right" />
+        <ui:Button name="check-feat-btn" text="Check Feature State" class="pull-right" />
     </ui:Foldout>
 
 
     <!-- Merge Options -->
     <ui:Foldout text="Scene-Merge Tool" value="false" name="scene-merge-foldout">
-        <engine:DropdownField label="Target Branch" name="target-branch-dd" />
-        <engine:DropdownField label="Source Branch" name="source-branch-dd" />
-        <engine:Button name="merge-btn" text="Merge" class="pull-right" />
+        <ui:DropdownField label="Target Branch" name="target-branch-dd" />
+        <ui:DropdownField label="Source Branch" name="source-branch-dd" />
+        <ui:Button name="merge-btn" text="Merge" class="pull-right" />
     </ui:Foldout>
 
     <!-- File Locking -->
     <ui:Foldout text="File Locking" value="false" name="file-locking-foldout">
-        <engine:Toggle label="Enable File Locking" name="use-locking" />
-        <editor:ObjectField name="lock-file" label="🔒 File to lock:" type="UnityEngine.Object" />
-        <engine:Button name="lock-btn" text="Lock specified File" class="pull-right" />
-        <engine:Button name="unlock-btn" text="Unlock specified File" class="pull-right" />
+        <ui:Toggle label="Enable File Locking" name="use-locking" />
+        <ui:ObjectField name="lock-file" label="🔒 File to lock:" type="UnityEngine.Object" />
+        <ui:Button name="lock-btn" text="Lock specified File" class="pull-right" />
+        <ui:Button name="unlock-btn" text="Unlock specified File" class="pull-right" />
         <!-- when problem with type selection, use ui builder gui -->
-        <engine:Label text="Warning: You tried to use a file, that was locked by user-name!" class="warning"
+        <ui:Label text="Warning: You tried to use a file, that was locked by user-name!" class="warning"
                       name="warn-label" />
     </ui:Foldout>
 
     <!-- Asset VCS -->
     <ui:Foldout text="Asset VCS and Validation" value="false" name="asset-features-foldout">
-        <engine:Toggle label="Enable Asset VCS" name="use-asset-vcs" />
+        <ui:Toggle label="Enable Asset VCS" name="use-asset-vcs" />
     </ui:Foldout>
 
 
-</engine:UXML>
+</ui:UXML>
