@@ -35,7 +35,7 @@ public static class GlobalRefs
                 break;
             case 3:
                 string virtualPath = AssetDatabase.GUIDToAssetPath(SetupGitHookShGUID);
-                path = ResolvePackagePath(virtualPath);
+                path = GitinityUtils.IsExecutingFromPackageCache() ? ResolvePackagePath(virtualPath) : virtualPath;
                 break;
             default:
                 path = null;
@@ -76,7 +76,6 @@ public static class GlobalRefs
         string relativeScriptPath = virtualPath.Substring(("Packages/" + packageRelative).Length);
         return Path.Combine(realPackagePath, relativeScriptPath.TrimStart('/'));
     }
-
 
     public static void SetState(string[] branchNames)
     {
