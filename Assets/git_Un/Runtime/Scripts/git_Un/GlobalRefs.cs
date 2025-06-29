@@ -58,32 +58,24 @@ public static class GlobalRefs
     /// one, that does work in Unity, but is not an actual path on your file system.
     private static string ResolvePackagePath(string virtualPath)
     {
-        try
+        string packageCacheDir = "Library/PackageCache/";
+        if (!Directory.Exists(packageCacheDir))
         {
-
-            string packageRelative = virtualPath.Substring("Packages/".Length);
-            string packageCacheDir = Path.Combine("Library", "PackageCache");
-            string[] candidates =
-                Directory.GetDirectories(packageCacheDir, packageRelative + "@*", SearchOption.TopDirectoryOnly);
-
-            if (candidates.Length == 0)
-            {
-                Debug.LogError("Could not find matching package in PackageCache for: " + packageRelative);
-                return null;
-            }
-
-            // Use the first match
-            string realPackagePath = candidates[0];
-            string relativeScriptPath = virtualPath.Substring(("Packages/" + packageRelative).Length);
-            return Path.Combine(realPackagePath, relativeScriptPath.TrimStart('/'));
+            Debug.LogError($"Not found: {packageCacheDir}");
+            return "";
         }
-        catch
-        {
-            Debug.Log($"Probably in development project, where the virtual path {virtualPath} should work.");
-            return virtualPath;
-        }
-    }
-
+        var dirs = Directory.GetDirectories(packageCacheDir, "com.newhere_tools.git_un@*");
+        string dir = dirs[0];
+        
+        dir = dir + virtualPath.Remove(0, "Packages/com.newhere_tools.git_un".Length);
+        
+        Debug.Log($"Real path for {virtualPath} is {dir}");
+        return dir;
+        
+    } 
+    
+    
+    
     public static void SetState(string[] branchNames)
     {
         StateObj = new StateObj(branchNames);
