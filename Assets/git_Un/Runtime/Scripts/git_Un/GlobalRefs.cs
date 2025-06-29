@@ -19,6 +19,7 @@ public static class GlobalRefs
     // End
 
     private static string SetupGitHookShGUID = "a0172c20623e25e40b23dc43184524b9";
+    public static string UIVisualTreeGUID = "6478845427e995d4ca4db5e60aeb14c8";
 
     public static string ShellScript(int num)
     {

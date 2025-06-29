@@ -7,11 +7,12 @@
 - [x] Remove hardcoded master. 
 
 - [ ] Add date to version selection dropdown.
-- [ ] Setup git hook automaticly. 
+- [x] Setup git hook automaticly. 
 - [ ] Write reason for blocking commit to file and display it.
 - [x] locked_files.json use pretty write.
 - [x] Make locking commit messages meaningful.
 - [ ] Make scene readonly when its locked.
-- [ ] Fix case when .allow_commit is deleted/not there.
+- [x] Fix case when .allow_commit is deleted/not there.
+- [ ] Make status line for feature pretty
 
 

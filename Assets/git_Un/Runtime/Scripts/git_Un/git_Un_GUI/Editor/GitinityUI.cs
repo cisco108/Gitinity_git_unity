@@ -80,6 +80,12 @@ public class GitinityUI : EditorWindow
         
         VisualElement root = rootVisualElement;
         VisualTreeAsset asset = Resources.Load<VisualTreeAsset>("GitinityUI");
+
+        if (!asset)
+        {
+            asset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(
+                AssetDatabase.GUIDToAssetPath(GlobalRefs.UIVisualTreeGUID));
+        }
         asset.CloneTree(root);
 
         // Setup and Settings
