@@ -10,7 +10,7 @@ fi
 A=$(cat .allow_commit 2>/dev/null)
 echo "allow_commit content: $A"
 
-if [ "$A" != "true" ]; then
+if [ "$A" != "ok" ]; then
     echo "❌ Commit blocked because: $A"
     exit 1
 fi
