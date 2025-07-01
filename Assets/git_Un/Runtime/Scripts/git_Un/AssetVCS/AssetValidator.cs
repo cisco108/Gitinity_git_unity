@@ -42,19 +42,22 @@ public class AssetValidator
         
         string targetFolder = GlobalRefs.filePaths.versionControlledAssets;
         string[] guids = AssetDatabase.FindAssets("", new[] { targetFolder });
+        string reason = "ok";
 
         foreach (string guid in guids)
         {
             string path = AssetDatabase.GUIDToAssetPath(guid);
-            (string info, bool isValid) = ValidateAsset(path);
+            (string info, string ruleViolation, bool isValid) = ValidateAsset(path);
             if (!isValid)
             {
                 areAllValid = false;
+                reason = ruleViolation;
             }
 
             _assetValidStates[path] = (info, isValid);
         }
-        _terminal.Execute($"echo '{areAllValid.ToString().ToLower()}' > {GlobalRefs.filePaths.allowCommitFile}");
+        // _terminal.Execute($"echo '{areAllValid.ToString().ToLower()}' > {GlobalRefs.filePaths.allowCommitFile}");
+        _terminal.Execute($"echo '{reason}' > {GlobalRefs.filePaths.allowCommitFile}");
         return areAllValid;
     }
 
@@ -69,17 +72,18 @@ public class AssetValidator
     }
     
     /// <summary> Filetypes that are not handles will always return isValid true; </summary>
-    private (string info, bool isValid) ValidateAsset(string path)
+    private (string info, string ruleViolation, bool isValid) ValidateAsset(string path)
     {
         string extension = Path.GetExtension(path).ToLower();
         string metadata = "";
+        string ruleViolation = "\n\u26a0\ufe0f \u26a0\ufe0f \u26a0\ufe0f \nRULE VIOLATED:\n";
         bool isValid = true;
 
         var rules = GetRules(path);
         if (!rules)
         {
             Debug.LogWarning($"There is no Rules object on in the current directory.");
-            return (null, false);
+            return (null, null, false);
         }
 
         if (extension == ".fbx")
@@ -89,7 +93,12 @@ public class AssetValidator
             {
                 var scale = importer.globalScale;
                 metadata += $"Scale Factor: {scale}\n";
-                isValid = Mathf.Approximately(scale, rules.expectedScale);
+                if (!Mathf.Approximately(scale, rules.expectedScale))
+                {
+                    isValid = false;
+                    ruleViolation = $"scale factor: {rules.expectedScale}";
+
+                }
 
                 // Load the asset to extract mesh info
                 var assetObjs = AssetDatabase.LoadAllAssetsAtPath(path);
@@ -106,7 +115,8 @@ public class AssetValidator
                 if (totalVertices > rules.maxVertexCount)
                 {
                     isValid = false;
-                    metadata += "⚠️ Very high vertex count. Consider optimizing.\n";
+                    metadata += "Vertex count to high.\n";
+                    ruleViolation += $"max vertex count: {rules.maxVertexCount}\n";
                 }
             }
         }
@@ -119,16 +129,21 @@ public class AssetValidator
                 float height = texture.height;
                 metadata += $"Resolution: {width} × {height}\n";
                 isValid = Mathf.Approximately(width, rules.expectedImgWidth) && Mathf.Approximately(height, rules.expectedImgHeight);
+                if (!isValid)
+                {
+                    ruleViolation += $" expected texture resolution: {rules.expectedImgWidth}, {rules.expectedImgHeight}\n";
+                }
             }
         }
+        //
+        // var textureImporter = AssetImporter.GetAtPath(path) as TextureImporter;
+        // if (textureImporter != null)
+        // {
+        //     metadata += $"Texture Format: {textureImporter.textureCompression}\n";
+        // }
 
-        var textureImporter = AssetImporter.GetAtPath(path) as TextureImporter;
-        if (textureImporter != null)
-        {
-            metadata += $"Texture Format: {textureImporter.textureCompression}\n";
-        }
-        
-        
-        return (string.IsNullOrWhiteSpace(metadata) ? "No additional metadata found." : metadata, isValid);
+
+        ruleViolation += $"{path} \n\u26a0\ufe0f \u26a0\ufe0f \u26a0\ufe0f";
+        return (string.IsNullOrWhiteSpace(metadata) ? "No additional metadata found." : metadata, ruleViolation, isValid);
     }
 } 
