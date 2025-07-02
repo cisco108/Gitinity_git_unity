@@ -31,16 +31,7 @@ public class GitinityUI : EditorWindow
     private DropdownField SourceBranchDropDown => rootVisualElement.Q<DropdownField>("source-branch-dd");
     private DropdownField TargetBranchDropDown => rootVisualElement.Q<DropdownField>("target-branch-dd");
     //
-    
-    // File Locking
-    private Label WarnLabel => rootVisualElement.Q<Label>("warn-label");
-    private ObjectField LockFile => rootVisualElement.Q<ObjectField>("lock-file");
-    private Button LockBtn => rootVisualElement.Q<Button>("lock-btn");
-    private Button UnlockBtn => rootVisualElement.Q<Button>("unlock-btn"); 
-    private Toggle UseFileLocking => rootVisualElement.Q<Toggle>("use-locking");
-    //
-    
-    
+   
     // Asset VCS
     private Toggle UseAssetVCS => rootVisualElement.Q<Toggle>("use-asset-vcs");
     //
@@ -56,10 +47,14 @@ public class GitinityUI : EditorWindow
     public static event Action<bool> OnActivateAssetVCS;
     public static event Action<string, string> OnMerge;
     public static event Action<string> OnLockFile;
+
+    public static void FireOnLockFile(string fileToLock) => OnLockFile.Invoke(fileToLock);
+    
     public static event Action<string> OnUnlockFile;
+    public static void FireOnUnlockFile(string fileToLock) => OnUnlockFile.Invoke(fileToLock);
     public static event Action<string> OnStartFeature;
     // public static event Action OnStartFeature;
-
+    
     private string _sourceBranch;
     private string _targetBranch;
 
@@ -76,7 +71,6 @@ public class GitinityUI : EditorWindow
 
     public void CreateGUI()
     {
-        FileLocking.OnFileIsLocked += ReactWhenFileIsLocked;
         
         VisualElement root = rootVisualElement;
         VisualTreeAsset asset = Resources.Load<VisualTreeAsset>("GitinityUI");
@@ -118,28 +112,6 @@ public class GitinityUI : EditorWindow
         
         MergeBtn.RegisterCallback<ClickEvent>(evt => OnMerge.Invoke(_targetBranch, _sourceBranch));
 
-        LockBtn.RegisterCallback<ClickEvent>(evt =>
-        {
-            if (!string.IsNullOrEmpty(_fileToLock))
-            {
-                OnLockFile.Invoke(_fileToLock);
-            }
-            else { Debug.LogError("No file provided.");}
-        });
-        UnlockBtn.RegisterCallback<ClickEvent>(evt =>
-        {
-            if (!string.IsNullOrEmpty(_fileToLock))
-            {
-                OnUnlockFile.Invoke(_fileToLock);
-            }
-            else {Debug.LogError("No file provided.");}
-        });
-
-
-        UseFileLocking.SetValueWithoutNotify(GlobalRefs.filePaths.useFileLocking);
-        UseFileLocking.RegisterValueChangedCallback(evt => GlobalRefs.filePaths.useFileLocking = evt.newValue);
-        LockFile.RegisterValueChangedCallback(UpdateLockFile);
-
         var branchNames = GetBranches();
         TargetBranchDropDown.choices = branchNames;
         TargetBranchDropDown.RegisterValueChangedCallback(SelectTargetBranch);
@@ -149,7 +121,6 @@ public class GitinityUI : EditorWindow
 
         // RequestAccessBtn.RegisterCallback<ClickEvent>((evt) => Debug.Log($"This could go out to the coworkers"));
 
-        WarnLabel.AddToClassList("hidden");
         
         UseAssetVCS.SetValueWithoutNotify(GlobalRefs.filePaths.useAssetVCS);
         UseAssetVCS.RegisterValueChangedCallback(evt =>
@@ -167,12 +138,6 @@ public class GitinityUI : EditorWindow
         }
         OnGetFeatureInfo.Invoke();
         return GlobalRefs.isFeatureMerged ? "Merged." : "Not merged yet.";
-    }
-
-    private void ReactWhenFileIsLocked(string message)
-    {
-        WarnLabel.text = message;
-        WarnLabel.RemoveFromClassList("hidden");
     }
 
 
