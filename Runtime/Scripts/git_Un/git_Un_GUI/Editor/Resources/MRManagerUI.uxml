@@ -12,7 +12,16 @@
     <engine:VisualElement style="height: 20px;" />
     
     <engine:TextField label="Feature Name:" name="feature-name"/>
-    <engine:TextField label="Feature Status:" name="feature-status" value="if the feature is merged" isReadOnly="true"/>
+    <engine:VisualElement style="height: 20px;" />
+    
+    <engine:VisualElement class="status-row">
+        <engine:Label text="Feature Status:" class="status-label"/>
+        <engine:Label name="status-value" text="No Info." class="status-value"/>
+    </engine:VisualElement>
+    <engine:VisualElement style="height: 20px;" />
+ 
+    
+    <!-- <engine:Label text="Feature Status: No Info."/> -->
     
     <!-- <engine:Label name="feature-state" text="Feature State:" class="custom-label"/> -->
     <engine:Button name="start-feat-btn" text="Start Feature" class="pull-right"/>

@@ -72,3 +72,28 @@ Label {
     text-decoration: underline;
     align-self: flex-start;
 }
+    
+
+.status-row {
+    flex-direction: row;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 6px;
+    padding: 6px 10px;
+    background-color: #1e1e1e;
+    border-radius: 6px;
+    border: 1px solid #444;
+    gap: 8px; /* gap between label and value */
+}
+
+.status-label {
+    font-size: 13px;
+    color: #cccccc;
+    font-weight: bold;
+}
+
+.status-value {
+    font-size: 13px;
+    color: #bdbdbd; /* light blue, good for status */
+    font-style: italic;
+}
