@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 public class MRManagerUI : EditorWindow
 { 
-    private TextField FeatureState => rootVisualElement.Q<TextField>("feature-status");
+    private Label FeatureState => rootVisualElement.Q<Label>("status-value");
     private TextField FeatureName => rootVisualElement.Q<TextField>("feature-name");
     private Button StartFeatureBtn => rootVisualElement.Q<Button>("start-feat-btn");
     private Button CheckFeatureBtn => rootVisualElement.Q<Button>("check-feat-btn");
@@ -28,11 +28,19 @@ public class MRManagerUI : EditorWindow
         VisualTreeAsset asset = Resources.Load<VisualTreeAsset>("MRManagerUI");
         asset.CloneTree(root);
         
-        // Merge Request Features
-        FeatureState.value = GetFeatureInfo();
+        (string info, Color color) = GetFeatureInfo();
+        FeatureState.text = info;
+        FeatureState.style.color = color;
+        
         FeatureName.SetValueWithoutNotify(GlobalRefs.currFeatureName);
         FeatureName.RegisterValueChangedCallback(evt => _featureName = evt.newValue);
-        CheckFeatureBtn.RegisterCallback<ClickEvent>(evt =>  FeatureState.value = GetFeatureInfo()); 
+        CheckFeatureBtn.RegisterCallback<ClickEvent>(evt =>
+        {
+            (string i, Color c) = GetFeatureInfo();
+            FeatureState.text = i;
+            FeatureState.style.color = c;
+        }); 
+        
         StartFeatureBtn.RegisterCallback<ClickEvent>(evt =>
         {
             if (String.IsNullOrEmpty(_featureName))
@@ -48,14 +56,14 @@ public class MRManagerUI : EditorWindow
        
     }
 
-    private string GetFeatureInfo()
+    private (string state, Color color) GetFeatureInfo()
     {
         if (String.IsNullOrEmpty(GlobalRefs.currFeatureName))
         {
-            return "No current feature present.";
+            return ("No current feature present.", Color.white);
         }
         GitinityUI.FireOnGetFeatureInfo();
-        return GlobalRefs.isFeatureMerged ? "Merged." : "Not merged yet.";
+        return GlobalRefs.isFeatureMerged ? ("Merged.", Color.green) : ("Not merged yet.", Color.orange);
     }
 
 }
