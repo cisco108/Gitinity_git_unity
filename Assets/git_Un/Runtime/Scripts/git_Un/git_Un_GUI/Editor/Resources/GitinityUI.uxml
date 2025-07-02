@@ -29,18 +29,6 @@
     <engine:DropdownField label="Source Branch" name="source-branch-dd"/>
     <engine:Button name="merge-btn" text="Merge" class="pull-right"/>
 
-    <!-- File Locking -->
-    <engine:Toggle label="Enable File Locking" name="use-locking"/> 
-    <editor:ObjectField name="lock-file" label="🔒 File to lock:" type="UnityEngine.Object"/>
-    <engine:Button name="lock-btn" text="Lock specified File" class="pull-right"/>
-    <engine:Button name="unlock-btn" text="Unlock specified File" class="pull-right"/>
-    <!-- when problem with type selection, use ui builder gui -->
-    <engine:Label text="Warning: You tried to use a file, that was locked by user-name!" class="warning" name="warn-label"/>
-    <!-- <engine:VisualElement class="flex-row flex-wrap space-between warning"> -->
-    <!-- <engine:PopupWindow name="warning-popup" text="Warning"></engine:PopupWindow> -->
-    <!-- <engine:Label text="Warning: You tried to use a file, that was locked by user-name!" name="warn-label"/> -->
-    <!-- <engine:Button text="Request Access" name="request-btn" class="pull-right"/>  -->
-    <!-- maybe using discord -->
 
     <!-- Asset VCS -->
     <engine:Toggle label="Enable Asset VCS" name="use-asset-vcs"/>
