@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<engine:UXML
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:engine="UnityEngine.UIElements"
+        xsi:noNamespaceSchemaLocation="../../../../../../../../UIElementsSchema/UIElements.xsd"
+>
+    <Style src="project://database/Assets/git_Un/Runtime/Scripts/git_Un/git_Un_GUI/Editor/GitinityUI.uss?fileID=7433441132597879392&amp;guid=45dc2e453a1151e4081c4deb8344100b&amp;type=3#GitinityUI" />
+
+    <!-- Setup and Settings -->
+    <engine:Label text="Setup and Settings" class="header"/>
+    <engine:VisualElement style="height: 20px;" />
+    
+    <engine:TextField label="User name:" class="user" name="user-email"/>
+    <engine:VisualElement style="height: 10px;" />
+    
+    <engine:TextField label="Git Bash Exe" name="git-exe"/>
+    <engine:VisualElement style="height: 10px;" />
+    
+    <engine:TextField label="Default branch name" name="default-branch-name"/>
+    <engine:VisualElement style="height: 10px;" />
+    
+    <engine:TextField label="Http link to Repo: " name="remote-link" value="https://yourrepo.com"/>
+    <engine:VisualElement style="height: 10px;" />
+    
+    <engine:TextField label="Path for Diff-Prefabs:" name="diff-obj-path"/>
+    <engine:VisualElement style="height: 10px;" />
+    
+    <engine:Button name="setup-btn" text="git init + setup" class="pull-right"/>
+
+
+</engine:UXML>

@@ -9,15 +9,7 @@ using Object = UnityEngine.Object;
 
 public class GitinityUI : EditorWindow
 {
-    // Setup and Settings
-    private TextField UserEmail => rootVisualElement.Q<TextField>("user-email");
-    private TextField GitExe => rootVisualElement.Q<TextField>("git-exe");
-    private TextField DefaultBranch => rootVisualElement.Q<TextField>("default-branch-name");
-    private TextField RemoteLink => rootVisualElement.Q<TextField>("remote-link");
-    private TextField DiffObjPath => rootVisualElement.Q<TextField>("diff-obj-path");
-    private Button SetUpBtn => rootVisualElement.Q<Button>("setup-btn");
-    //
-    
+   
     // Merge Request Features
     // private Label FeatureState => rootVisualElement.Q<Label>("feature-state");
     private TextField FeatureState => rootVisualElement.Q<TextField>("feature-status");
@@ -41,6 +33,7 @@ public class GitinityUI : EditorWindow
 
 
     public static event Action OnSetup;
+    public static void FireOnSetup() => OnSetup.Invoke();
     public static event Action GetGitInfo;
     // public static event Action<string> OnGetFeatureInfo;
     public static event Action OnGetFeatureInfo;
@@ -58,7 +51,6 @@ public class GitinityUI : EditorWindow
     private string _sourceBranch;
     private string _targetBranch;
 
-    private string _fileToLock;
     private string _featureName;
 
 
@@ -75,24 +67,6 @@ public class GitinityUI : EditorWindow
         VisualElement root = rootVisualElement;
         VisualTreeAsset asset = Resources.Load<VisualTreeAsset>("GitinityUI");
         asset.CloneTree(root);
-
-        // Setup and Settings
-        UserEmail.SetValueWithoutNotify(GlobalRefs.filePaths.userEmail);
-        UserEmail.RegisterValueChangedCallback(UpdateUser);
-
-        GitExe.SetValueWithoutNotify(GlobalRefs.filePaths.gitBashExe);
-        DefaultBranch.SetValueWithoutNotify(GlobalRefs.filePaths.defaultBranchName);
-        DefaultBranch.RegisterValueChangedCallback(evt => GlobalRefs.filePaths.defaultBranchName = evt.newValue);
-        RemoteLink.RegisterValueChangedCallback(UpdateRemoteLink);
-
-        RemoteLink.SetValueWithoutNotify(GlobalRefs.filePaths.remoteUrl);
-        RemoteLink.RegisterValueChangedCallback(UpdateRemoteLink);
-
-        DiffObjPath.SetValueWithoutNotify(GlobalRefs.filePaths.diffPrefabsDirName);
-        DiffObjPath.RegisterValueChangedCallback(UpdateDiffPath);
-
-        SetUpBtn.RegisterCallback<ClickEvent>(FireSetup);
-
         
         // Merge Request Features
         FeatureState.value = GetFeatureInfo();
@@ -141,15 +115,6 @@ public class GitinityUI : EditorWindow
     }
 
 
-    private void FireSetup(ClickEvent _)
-    {
-        var state = GlobalRefs.StateObj.State;
-        if (state == State.PostInit)
-        {
-            return;
-        }
-        OnSetup.Invoke();
-    }
 
     private List<string> GetBranches()
     {
@@ -167,29 +132,6 @@ public class GitinityUI : EditorWindow
             default:
                 return new List<string>() { "example1", "example2", "example3" };
         }
-    }
-
-    private void UpdateRemoteLink(ChangeEvent<string> evt)
-    {
-        GlobalRefs.filePaths.remoteUrl = evt.newValue;
-        Debug.Log($"Updated remote url to: {GlobalRefs.filePaths.remoteUrl}");
-    }
-
-    private void UpdateDiffPath(ChangeEvent<string> evt)
-    {
-        GlobalRefs.filePaths.diffPrefabsDirName = evt.newValue;
-        Debug.Log($"Updated Diff Prefabs path to: {GlobalRefs.filePaths.DiffPrefabsDirectory}");
-    }
-
-    private void UpdateUser(ChangeEvent<string> evt)
-    {
-        GlobalRefs.filePaths.userEmail = evt.newValue;
-        Debug.Log($"Updated user email to: {GlobalRefs.filePaths.userEmail}");
-    }
-
-    private void UpdateLockFile(ChangeEvent<Object> evt)
-    {
-        _fileToLock = evt.newValue.name;
     }
 
     private void SelectSourceBranch(ChangeEvent<string> evt)
