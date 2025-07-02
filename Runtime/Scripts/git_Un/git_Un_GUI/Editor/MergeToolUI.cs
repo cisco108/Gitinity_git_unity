@@ -4,14 +4,15 @@ using UnityEngine;
 using UnityEngine.UIElements;
 
 public class MergeToolUI : EditorWindow
-{  
+{
     // Merge Options 
     private Button MergeBtn => rootVisualElement.Q<Button>("merge-btn");
     private DropdownField SourceBranchDropDown => rootVisualElement.Q<DropdownField>("source-branch-dd");
     private DropdownField TargetBranchDropDown => rootVisualElement.Q<DropdownField>("target-branch-dd");
+    private Button DocsButton => rootVisualElement.Q<Button>("doc-link");
     //
 
-    
+
     private string _sourceBranch;
     private string _targetBranch;
 
@@ -26,8 +27,8 @@ public class MergeToolUI : EditorWindow
     {
         VisualElement root = rootVisualElement;
         VisualTreeAsset asset = Resources.Load<VisualTreeAsset>("MergeToolUI");
-        asset.CloneTree(root);  
-        
+        asset.CloneTree(root);
+
         MergeBtn.RegisterCallback<ClickEvent>(evt => GitinityUI.FireOnMerge(_targetBranch, _sourceBranch));
 
         var branchNames = GetBranches();
@@ -36,6 +37,8 @@ public class MergeToolUI : EditorWindow
 
         SourceBranchDropDown.choices = branchNames;
         SourceBranchDropDown.RegisterValueChangedCallback(SelectSourceBranch);
+
+        DocsButton.clicked += () => { Application.OpenURL("https://free-elective-docu-5e29a0.h-da.io/merge_tool/"); };
     }
 
     private List<string> GetBranches()

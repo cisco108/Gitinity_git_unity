@@ -63,3 +63,12 @@ Label {
 .pull-right-field{
     margin-left: 50px;
 }
+
+
+.doc-button {
+    background-color: transparent;
+    color: #337ab7;
+    font-size: 12px;
+    text-decoration: underline;
+    align-self: flex-start;
+}
