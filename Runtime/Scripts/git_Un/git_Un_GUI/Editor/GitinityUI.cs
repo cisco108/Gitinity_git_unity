@@ -1,11 +1,9 @@
 using System;
 using System.Collections.Generic;
 using UnityEditor;
-using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 using ClickEvent = UnityEngine.UIElements.ClickEvent;
-using Object = UnityEngine.Object;
 
 public class GitinityUI : EditorWindow
 {
@@ -17,14 +15,7 @@ public class GitinityUI : EditorWindow
     private Button StartFeatureBtn => rootVisualElement.Q<Button>("start-feat-btn");
     private Button CheckFeatureBtn => rootVisualElement.Q<Button>("check-feat-btn");
     //
-   
-    // Merge Options 
-    private Button MergeBtn => rootVisualElement.Q<Button>("merge-btn");
-    private DropdownField SourceBranchDropDown => rootVisualElement.Q<DropdownField>("source-branch-dd");
-    private DropdownField TargetBranchDropDown => rootVisualElement.Q<DropdownField>("target-branch-dd");
-    //
-   
-    // Asset VCS
+   // Asset VCS
     private Toggle UseAssetVCS => rootVisualElement.Q<Toggle>("use-asset-vcs");
     //
 
@@ -34,11 +25,15 @@ public class GitinityUI : EditorWindow
 
     public static event Action OnSetup;
     public static void FireOnSetup() => OnSetup.Invoke();
-    public static event Action GetGitInfo;
-    // public static event Action<string> OnGetFeatureInfo;
+    public static event Action OnGetGitInfo;
+    public static void FireOnGetGitInfo() => OnGetGitInfo.Invoke();
+    
     public static event Action OnGetFeatureInfo;
     public static event Action<bool> OnActivateAssetVCS;
     public static event Action<string, string> OnMerge;
+
+    public static void FireOnMerge(string sourceBranch, string targetBranch) =>
+        OnMerge.Invoke(sourceBranch, targetBranch);
     public static event Action<string> OnLockFile;
 
     public static void FireOnLockFile(string fileToLock) => OnLockFile.Invoke(fileToLock);
@@ -48,8 +43,6 @@ public class GitinityUI : EditorWindow
     public static event Action<string> OnStartFeature;
     // public static event Action OnStartFeature;
     
-    private string _sourceBranch;
-    private string _targetBranch;
 
     private string _featureName;
 
@@ -83,17 +76,7 @@ public class GitinityUI : EditorWindow
             OnStartFeature.Invoke(_featureName);
         });
         
-        
-        MergeBtn.RegisterCallback<ClickEvent>(evt => OnMerge.Invoke(_targetBranch, _sourceBranch));
-
-        var branchNames = GetBranches();
-        TargetBranchDropDown.choices = branchNames;
-        TargetBranchDropDown.RegisterValueChangedCallback(SelectTargetBranch);
-
-        SourceBranchDropDown.choices = branchNames;
-        SourceBranchDropDown.RegisterValueChangedCallback(SelectSourceBranch);
-
-        // RequestAccessBtn.RegisterCallback<ClickEvent>((evt) => Debug.Log($"This could go out to the coworkers"));
+       // RequestAccessBtn.RegisterCallback<ClickEvent>((evt) => Debug.Log($"This could go out to the coworkers"));
 
         
         UseAssetVCS.SetValueWithoutNotify(GlobalRefs.filePaths.useAssetVCS);
@@ -118,7 +101,7 @@ public class GitinityUI : EditorWindow
 
     private List<string> GetBranches()
     {
-        GetGitInfo.Invoke();
+        OnGetGitInfo.Invoke();
 
         var state = GlobalRefs.StateObj.State;
         switch (state)
@@ -134,15 +117,4 @@ public class GitinityUI : EditorWindow
         }
     }
 
-    private void SelectSourceBranch(ChangeEvent<string> evt)
-    {
-        _sourceBranch = evt.newValue;
-        Debug.Log($"source branch: {_sourceBranch}");
-    }
-
-    private void SelectTargetBranch(ChangeEvent<string> evt)
-    {
-        _targetBranch = evt.newValue;
-        Debug.Log($"target branch: {_targetBranch}");
-    }
 }

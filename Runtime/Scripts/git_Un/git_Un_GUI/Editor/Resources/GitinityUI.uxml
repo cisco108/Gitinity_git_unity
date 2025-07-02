@@ -14,12 +14,6 @@
     <engine:Button name="start-feat-btn" text="Start Feature" class="pull-right"/>
     <engine:Button name="check-feat-btn" text="Check Feature State" class="pull-right"/>
 
-    
-    <!-- Merge Options -->
-    <engine:DropdownField label="Target Branch" name="target-branch-dd"/>
-    <engine:DropdownField label="Source Branch" name="source-branch-dd"/>
-    <engine:Button name="merge-btn" text="Merge" class="pull-right"/>
-
 
     <!-- Asset VCS -->
     <engine:Toggle label="Enable Asset VCS" name="use-asset-vcs"/>
