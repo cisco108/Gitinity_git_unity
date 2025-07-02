@@ -1,21 +1,23 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <engine:UXML
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:engine="UnityEngine.UIElements"
-    xmlns:editor="UnityEditor.UIElements"
-    xsi:noNamespaceSchemaLocation="../../../../../../../../UIElementsSchema/UIElements.xsd"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:engine="UnityEngine.UIElements"
+        xsi:noNamespaceSchemaLocation="../../../../../../../../UIElementsSchema/UIElements.xsd"
 >
     <Style src="project://database/Assets/git_Un/Runtime/Scripts/git_Un/git_Un_GUI/Editor/GitinityUI.uss?fileID=7433441132597879392&amp;guid=45dc2e453a1151e4081c4deb8344100b&amp;type=3#GitinityUI" />
-    
+
     <!-- Merge Request Features -->
+
+    <engine:Label text="Feature Management" class="header"/>
+    <engine:VisualElement style="height: 20px;" />
+    
     <engine:TextField label="Feature Name:" name="feature-name"/>
     <engine:TextField label="Feature Status:" name="feature-status" value="if the feature is merged" isReadOnly="true"/>
+    
     <!-- <engine:Label name="feature-state" text="Feature State:" class="custom-label"/> -->
     <engine:Button name="start-feat-btn" text="Start Feature" class="pull-right"/>
     <engine:Button name="check-feat-btn" text="Check Feature State" class="pull-right"/>
 
 
-    
-    
-	
+
 </engine:UXML>
