@@ -13,6 +13,9 @@
     <engine:DropdownField label="Target Branch" name="target-branch-dd"/>
     <engine:DropdownField label="Source Branch" name="source-branch-dd"/>
     <engine:Button name="merge-btn" text="Merge" class="pull-right"/>
+    
+    <engine:VisualElement style="height: 20px;" />
+    <engine:Button name="doc-link" text="📘 Open Documentation" class="doc-button"/>
 
 
 </engine:UXML>

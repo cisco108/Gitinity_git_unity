@@ -11,6 +11,7 @@ public class FileLockUI : EditorWindow
     private Button LockBtn => rootVisualElement.Q<Button>("lock-btn");
     private Button UnlockBtn => rootVisualElement.Q<Button>("unlock-btn");
     private Toggle UseFileLocking => rootVisualElement.Q<Toggle>("use-locking");
+    private Button DocsButton => rootVisualElement.Q<Button>("doc-link");
 
 
     private string _sourceBranch;
@@ -56,6 +57,8 @@ public class FileLockUI : EditorWindow
         UseFileLocking.SetValueWithoutNotify(GlobalRefs.filePaths.useFileLocking);
         UseFileLocking.RegisterValueChangedCallback(evt => GlobalRefs.filePaths.useFileLocking = evt.newValue);
         LockFile.RegisterValueChangedCallback(UpdateLockFile);
+        
+        DocsButton.clicked += () => { Application.OpenURL("https://free-elective-docu-5e29a0.h-da.io/file_locking/"); };
    }
 
     

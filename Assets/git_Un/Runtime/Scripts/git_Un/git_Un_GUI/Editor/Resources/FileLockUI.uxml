@@ -22,6 +22,8 @@
     
     <engine:Label text="Warning: You tried to use a file, that was locked by user-name!" class="warning" name="warn-label"/>
 
+    <engine:VisualElement style="height: 20px;" />
+    <engine:Button name="doc-link" text="📘 Open Documentation" class="doc-button"/>
 
 </engine:UXML>
 

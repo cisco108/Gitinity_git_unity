@@ -12,6 +12,7 @@ public class SetupUI : EditorWindow
     private TextField DiffObjPath => rootVisualElement.Q<TextField>("diff-obj-path");
     private Button SetUpBtn => rootVisualElement.Q<Button>("setup-btn");
     private Toggle UseAssetVCS => rootVisualElement.Q<Toggle>("use-asset-vcs");
+    private Button DocsButton => rootVisualElement.Q<Button>("doc-link");
     //
 
 
@@ -52,6 +53,8 @@ public class SetupUI : EditorWindow
             GlobalRefs.filePaths.useAssetVCS = evt.newValue;
             GitinityUI.FireOnActivateAssetVCS(evt.newValue);
         });
+
+        DocsButton.clicked += () => Application.OpenURL("https://free-elective-docu-5e29a0.h-da.io/setup/");
     }
     
     private void FireSetup(ClickEvent _)

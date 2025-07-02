@@ -9,8 +9,10 @@ public class MRManagerUI : EditorWindow
     private TextField FeatureName => rootVisualElement.Q<TextField>("feature-name");
     private Button StartFeatureBtn => rootVisualElement.Q<Button>("start-feat-btn");
     private Button CheckFeatureBtn => rootVisualElement.Q<Button>("check-feat-btn");
+    private Button DocsButton => rootVisualElement.Q<Button>("doc-link");
     private string _featureName;
     // private Button RequestAccessBtn => rootVisualElement.Q<Button>("request-btn");
+    
 
     [MenuItem("Tools/Gitinity/Feature Management")]
     public static void ShowWindow()
@@ -41,6 +43,7 @@ public class MRManagerUI : EditorWindow
             GitinityUI.FireOnStartFeature(_featureName);
         });
         
+        DocsButton.clicked += () => { Application.OpenURL("https://free-elective-docu-5e29a0.h-da.io/mr_man/"); };
        // RequestAccessBtn.RegisterCallback<ClickEvent>((evt) => Debug.Log($"This could go out to the coworkers"));
        
     }

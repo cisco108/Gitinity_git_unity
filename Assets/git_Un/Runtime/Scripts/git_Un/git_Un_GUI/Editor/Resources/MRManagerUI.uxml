@@ -18,6 +18,8 @@
     <engine:Button name="start-feat-btn" text="Start Feature" class="pull-right"/>
     <engine:Button name="check-feat-btn" text="Check Feature State" class="pull-right"/>
 
+    <engine:VisualElement style="height: 20px;" />
+    <engine:Button name="doc-link" text="📘 Open Documentation" class="doc-button"/>
 
 
 </engine:UXML>
