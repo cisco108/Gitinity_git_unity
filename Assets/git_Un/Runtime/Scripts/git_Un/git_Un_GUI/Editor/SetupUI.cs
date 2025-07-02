@@ -15,7 +15,7 @@ public class SetupUI : EditorWindow
     //
 
 
-    [MenuItem("Tools/Gitinity/Setup")]
+    [MenuItem("Tools/Gitinity/Setup and Settings")]
     public static void ShowWindow()
     {
         SetupUI wnd = GetWindow<SetupUI>();
