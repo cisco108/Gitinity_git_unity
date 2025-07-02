@@ -9,12 +9,14 @@
 }
 .warning {
     font-size: 18px;
-    background-color: rgb(195, 0, 0);
+    background-color: rgb(142, 34, 34);
     color: black;
     -unity-font-style: bold;
+    height: 50px;
     
 }
-.header {
+
+.header{
     font-size: 18px;
     -unity-font-style: bold;
     color: rgb(68, 138, 255);

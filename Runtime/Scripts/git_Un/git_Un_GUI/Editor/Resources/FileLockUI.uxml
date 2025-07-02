@@ -8,11 +8,21 @@
     <Style src="project://database/Assets/git_Un/Runtime/Scripts/git_Un/git_Un_GUI/Editor/GitinityUI.uss?fileID=7433441132597879392&amp;guid=45dc2e453a1151e4081c4deb8344100b&amp;type=3#GitinityUI" />
 
     <!-- File Locking -->
+    <engine:Label text="File Locking" class="header"/>
+    
+    <engine:VisualElement style="height: 20px;" />
+
     <engine:Toggle label="Enable File Locking" name="use-locking"/>
     <editor:ObjectField name="lock-file" label="🔒 File to lock:" type="UnityEngine.Object"/>
     <engine:Button name="lock-btn" text="Lock specified File" class="pull-right"/>
     <engine:Button name="unlock-btn" text="Unlock specified File" class="pull-right"/>
     <!-- when problem with type selection, use ui builder gui -->
+    
+    <engine:VisualElement style="height: 20px;" />
+    
     <engine:Label text="Warning: You tried to use a file, that was locked by user-name!" class="warning" name="warn-label"/>
 
+
 </engine:UXML>
+
+

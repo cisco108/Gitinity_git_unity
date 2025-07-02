@@ -33,9 +33,9 @@ public static class GitUnMain
         GitinityUI.OnMerge += Main;
         GitinityUI.OnLockFile += _fileLocking.LockFile;
         GitinityUI.OnUnlockFile += _fileLocking.UnlockFile;
-
         GitinityUI.OnActivateAssetVCS += AssetVCSSetActive;
         
+        GetGitData();
         // for testing in development project:
         // AssetVCSSetActive(true);
     }
