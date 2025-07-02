@@ -27,7 +27,7 @@ public static class GitUnMain
 
 
         GitinityUI.OnSetup += SetupGitinity;
-        GitinityUI.GetGitInfo += GetGitData;
+        GitinityUI.OnGetGitInfo += OnGetGitData;
         GitinityUI.OnGetFeatureInfo += _mrManager.GetFeatureInfo;
         GitinityUI.OnStartFeature += _mrManager.StartFeature;
         GitinityUI.OnMerge += Main;
@@ -35,7 +35,7 @@ public static class GitUnMain
         GitinityUI.OnUnlockFile += _fileLocking.UnlockFile;
         GitinityUI.OnActivateAssetVCS += AssetVCSSetActive;
         
-        GetGitData();
+        OnGetGitData();
         // for testing in development project:
         // AssetVCSSetActive(true);
     }
@@ -100,7 +100,7 @@ public static class GitUnMain
         });
     }
 
-    private static void GetGitData()
+    private static void OnGetGitData()
     {
         var branches = _terminal.ExecuteResultToStringArr(GitCommands.branch);
         GlobalRefs.SetState(branches);
