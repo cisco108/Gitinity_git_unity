@@ -11,6 +11,7 @@ public class SetupUI : EditorWindow
     private TextField RemoteLink => rootVisualElement.Q<TextField>("remote-link");
     private TextField DiffObjPath => rootVisualElement.Q<TextField>("diff-obj-path");
     private Button SetUpBtn => rootVisualElement.Q<Button>("setup-btn");
+    private Toggle UseAssetVCS => rootVisualElement.Q<Toggle>("use-asset-vcs");
     //
 
 
@@ -44,7 +45,13 @@ public class SetupUI : EditorWindow
         DiffObjPath.RegisterValueChangedCallback(UpdateDiffPath);
 
         SetUpBtn.RegisterCallback<ClickEvent>(FireSetup);
-
+        
+        UseAssetVCS.SetValueWithoutNotify(GlobalRefs.filePaths.useAssetVCS);
+        UseAssetVCS.RegisterValueChangedCallback(evt =>
+        {
+            GlobalRefs.filePaths.useAssetVCS = evt.newValue;
+            GitinityUI.FireOnActivateAssetVCS(evt.newValue);
+        });
     }
     
     private void FireSetup(ClickEvent _)
