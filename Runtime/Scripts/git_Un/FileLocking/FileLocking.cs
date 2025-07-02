@@ -60,6 +60,7 @@ public class FileLocking
             string message = $"Access Violation!\n{scene.name} was locked by {whoLockedIt}";
             Debug.LogError(message);
             OnFileIsLocked.Invoke(message);
+            FileLockUI.ShowWindow();
         }
         else
         {
@@ -89,9 +90,6 @@ public class FileLocking
         string commitCmd = _commandBuilder.GetCommit(" . ", $"{whoLockedIt} locked: {file}");
         _terminal.Execute(commitCmd);
 
-        // string pushCmd = _commandBuilder.GetPush(); 
-        // _terminal.Execute(pushCmd);
-
         string switchBackCmd = _commandBuilder.GetSwitch(currentBranch);
         _terminal.Execute(switchBackCmd);
 
@@ -107,7 +105,7 @@ public class FileLocking
 
     public void UnlockFile(string file)
     {
-        if (!GlobalRefs.filePaths.useFileLocking) return;
+        if (!GlobalRefs.filePaths.useFileLocking) { return;}
 
         string saveBranchCmd = _commandBuilder.GetCurrentBranch();
         string currentBranch = _terminal.ExecuteResultToString(saveBranchCmd);
@@ -119,9 +117,6 @@ public class FileLocking
 
         string commitCmd = _commandBuilder.GetCommit(" . ", $"{GlobalRefs.filePaths.userEmail} unlocked: {file}");
         _terminal.Execute(commitCmd);
-
-        // string pushCmd = _commandBuilder.GetPush(); 
-        // _terminal.Execute(pushCmd);
 
         string switchBackCmd = _commandBuilder.GetSwitch(currentBranch);
         _terminal.Execute(switchBackCmd);
