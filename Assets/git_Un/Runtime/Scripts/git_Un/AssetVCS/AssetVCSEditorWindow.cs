@@ -17,9 +17,10 @@ public class AssetVCSEditorWindow : EditorWindow
     public event Action<string, string> OnSaveChanges;
 
     public static void ShowWindow(string assetName, string[] versions, string path,
-        Action<string, string> onUpdate, Action<string, string> onSave, string metadataInfo, bool isValid, bool isCommitted=true)
+        Action<string, string> onUpdate, Action<string, string> onSave, string metadataInfo, bool isValid,
+        bool isCommitted = true)
     {
-        AssetVCSEditorWindow window = GetWindow<AssetVCSEditorWindow>("Asset VCS");
+        AssetVCSEditorWindow window = GetWindow<AssetVCSEditorWindow>("Asset VCS & Validation");
         window._assetName = assetName;
         window._versions = versions;
         window._pathOfContainedAsset = path;
@@ -42,7 +43,7 @@ public class AssetVCSEditorWindow : EditorWindow
         {
             GUILayout.Label("Version Control", EditorStyles.boldLabel);
             // DrawCommitStatus();
-            
+
             if (_versions == null || _versions.Length == 0)
             {
                 _versions = new[] { "No version yet" };
@@ -55,8 +56,14 @@ public class AssetVCSEditorWindow : EditorWindow
             EditorGUILayout.Space(10);
         }
 
-        EditorGUILayout.Space(10);
+        DrawValidationState();
 
+        EditorGUILayout.Space(10);
+    }
+
+    /*
+    void DrawValidationState()
+    {
         using (new EditorGUILayout.VerticalScope("box"))
         {
             GUILayout.Label("Asset Metadata", EditorStyles.boldLabel);
@@ -64,6 +71,43 @@ public class AssetVCSEditorWindow : EditorWindow
             EditorGUILayout.HelpBox(_metadataInfo, messageType);
         }
     }
+        */
+
+
+    void DrawValidationState()
+    {
+        GUILayout.Space(20);
+        
+        GUIStyle headerStyle = new GUIStyle(EditorStyles.boldLabel)
+        {
+            fontSize = 15,
+            fontStyle = FontStyle.Bold,
+            alignment = TextAnchor.MiddleCenter,
+            normal = { textColor = _isValid ? new Color(0.2f, 1f, 0.6f) : new Color(1f, 0.3f, 0.3f) }
+        };
+
+        GUIStyle boxStyle = new GUIStyle(GUI.skin.box)
+        {
+            padding = new RectOffset(12, 12, 12, 12),
+            margin = new RectOffset(10, 10, 10, 10),
+            normal = { background = Texture2D.grayTexture }
+        };
+
+        GUILayout.BeginVertical(boxStyle);
+
+        GUILayout.Space(6);
+        string status = _isValid ? "Okay" : "Failed"; 
+        GUILayout.Label($"Asset Validation Status: {status}", headerStyle);
+        GUILayout.Space(6);
+
+        var messageType = _isValid ? MessageType.Info : MessageType.Error;
+
+        EditorGUILayout.HelpBox(_metadataInfo, messageType);
+
+        GUILayout.Space(6);
+        GUILayout.EndVertical();
+    }
+
 
     private void DrawHeader()
     {
@@ -120,7 +164,8 @@ public class AssetVCSEditorWindow : EditorWindow
     {
         GUIStyle statusStyle = new GUIStyle(EditorStyles.boldLabel)
         {
-            normal = {
+            normal =
+            {
                 textColor = _isCommitted ? new Color(0.1f, 0.6f, 0.1f) : new Color(0.8f, 0.2f, 0.2f)
             }
         };
