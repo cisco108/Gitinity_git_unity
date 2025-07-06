@@ -12,6 +12,7 @@ public class AssetVCSEditorWindow : EditorWindow
     private string _metadataInfo;
     private bool _isValid;
     private bool _isCommitted;
+    private bool _showVersionControl = false;
 
     public event Action<string, string> OnUpdateVersion;
     public event Action<string, string> OnSaveChanges;
@@ -38,42 +39,42 @@ public class AssetVCSEditorWindow : EditorWindow
         EditorGUILayout.Space(10);
         DrawHeader();
         EditorGUILayout.Space(10);
-
-        using (new EditorGUILayout.VerticalScope("box"))
-        {
-            GUILayout.Label("Version Control", EditorStyles.boldLabel);
-            // DrawCommitStatus();
-
-            if (_versions == null || _versions.Length == 0)
-            {
-                _versions = new[] { "No version yet" };
-            }
-
-            _selectedIndex = EditorGUILayout.Popup("Select Version", _selectedIndex, _versions);
-
-            EditorGUILayout.Space(5);
-            DrawActionButtons();
-            EditorGUILayout.Space(10);
-        }
-
+        
+        DrawVersionControlSection();
         DrawValidationState();
 
         EditorGUILayout.Space(10);
     }
 
-    /*
-    void DrawValidationState()
+    void DrawVersionControlSection()
     {
-        using (new EditorGUILayout.VerticalScope("box"))
+        _showVersionControl = EditorGUILayout.Foldout(_showVersionControl, "▼ Version Control", true, new GUIStyle(EditorStyles.foldout)
         {
-            GUILayout.Label("Asset Metadata", EditorStyles.boldLabel);
-            var messageType = _isValid ? MessageType.Info : MessageType.Error;
-            EditorGUILayout.HelpBox(_metadataInfo, messageType);
+            fontStyle = FontStyle.Bold,
+            fontSize = 12
+        });
+
+        if (_showVersionControl)
+        {
+            using (new EditorGUILayout.VerticalScope("box"))
+            {
+                GUILayout.Space(5);
+
+                if (_versions == null || _versions.Length == 0)
+                {
+                    _versions = new[] { "No version yet" };
+                }
+
+                _selectedIndex = EditorGUILayout.Popup("Select Version", _selectedIndex, _versions);
+
+                GUILayout.Space(5);
+                DrawActionButtons();
+                GUILayout.Space(5);
+            }
         }
     }
-        */
 
-
+  
     void DrawValidationState()
     {
         GUILayout.Space(20);
