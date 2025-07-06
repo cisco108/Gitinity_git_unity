@@ -56,7 +56,7 @@ public class GitBashCommandBuilder : ICommandBuilder
 
     public string GetPushAllBranches()
     {
-        return GitCommands.push_origin + GitFlags.all;
+        return GitCommands.push_u_origin + GitFlags.all;
     }
 
     public string GetCreateBranch(string branchName, bool push=false)

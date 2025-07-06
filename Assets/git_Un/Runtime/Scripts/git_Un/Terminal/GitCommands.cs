@@ -16,6 +16,7 @@ public static class GitCommands
     public static string diff = "git diff ";
     public static string subtree_split_prefix = "git subtree split --prefix="; //no space intentional
     public static string push_origin = "git push origin ";
+    public static string push_u_origin = "git push -u origin ";
     public static string branch = "git branch ";
     public static string init = "git init ";
     public static string fetch = "git fetch ";
