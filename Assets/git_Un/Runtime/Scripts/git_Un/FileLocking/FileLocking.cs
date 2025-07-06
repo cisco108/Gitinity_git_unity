@@ -9,7 +9,7 @@ public class FileLocking
     private ITerminalInterface _terminal;
     private TheLock _theLock;
 
-    public static event Action<string> OnFileIsLocked;
+    public static event Action<bool, string> OnFileIsOpened;
 
     public void TestEvent()
     {
@@ -59,12 +59,13 @@ public class FileLocking
 
             string message = $"Access Violation!\n{scene.name} was locked by {whoLockedIt}";
             Debug.LogError(message);
-            OnFileIsLocked.Invoke(message);
             FileLockUI.ShowWindow();
+            OnFileIsOpened.Invoke(true, message);
         }
         else
         {
             Debug.Log($"This scene {scene.name} is not locked. Congrats!");
+            OnFileIsOpened.Invoke(false, "");
         }
     }
 
