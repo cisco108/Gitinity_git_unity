@@ -2,11 +2,12 @@
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Label = UnityEngine.UIElements.Label;
 
 public class FileLockUI : EditorWindow
 {
     // File Locking
-    private Label WarnLabel => rootVisualElement.Q<Label>("warn-label");
+    private Label WarnLabel => rootVisualElement.Q<Label>("warn");
     private ObjectField LockFile => rootVisualElement.Q<ObjectField>("lock-file");
     private Button LockBtn => rootVisualElement.Q<Button>("lock-btn");
     private Button UnlockBtn => rootVisualElement.Q<Button>("unlock-btn");
@@ -30,12 +31,15 @@ public class FileLockUI : EditorWindow
     
     public void CreateGUI()
     {
-        FileLocking.OnFileIsLocked += ReactWhenFileIsLocked;
+        FileLocking.OnFileIsOpened += ReactWhenFileIsOpened;
         
         VisualElement root = rootVisualElement;
         VisualTreeAsset asset = Resources.Load<VisualTreeAsset>("FileLockUI");
         asset.CloneTree(root);
 
+        // WarnLabel.AddToClassList("hidden");
+        WarnLabel.style.display = DisplayStyle.None;
+        
         LockBtn.RegisterCallback<ClickEvent>(evt =>
         {
             if (!string.IsNullOrEmpty(_fileToLock))
@@ -63,10 +67,23 @@ public class FileLockUI : EditorWindow
 
     
     
-    private void ReactWhenFileIsLocked(string message)
+    private void ReactWhenFileIsOpened(bool isLocked, string message)
     {
-        WarnLabel.text = message;
-        WarnLabel.RemoveFromClassList("hidden");
+        Debug.Log($"ReactWhenFileIsOpened GUI {message}, {isLocked}");
+        if (isLocked)
+        {
+            WarnLabel.text = message;
+            WarnLabel.style.display = DisplayStyle.Flex;
+            // WarnLabel.RemoveFromClassList("hidden");
+            Debug.Log($"Remove form hidden.");
+        }
+        else
+        {
+            Debug.Log($"Add form hidden.");
+            WarnLabel.style.display = DisplayStyle.None;
+            // WarnLabel.AddToClassList("hidden");
+        }
+        
     }
     
     private void UpdateLockFile(ChangeEvent<Object> evt)
