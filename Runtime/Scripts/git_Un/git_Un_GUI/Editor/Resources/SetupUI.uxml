@@ -29,7 +29,7 @@
     <engine:VisualElement style="height: 10px;" />
 
     <!-- Asset VCS -->
-    <engine:Toggle label="Enable Asset VCS" name="use-asset-vcs"/>
+    <engine:Toggle label="Enable Asset VCS &amp; Validation" name="use-asset-vcs"/>
 
     <engine:VisualElement style="height: 20px;" />
     <engine:Button name="doc-link" text="📘 Open Documentation" class="doc-button"/>
