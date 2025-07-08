@@ -48,7 +48,14 @@ public class MRManagerUI : EditorWindow
                 Debug.Log($"No name for feature provided - return.");
                 return;
             }
+            _featureName = _featureName.Replace(" ", "_");
+            string forbidden = "\"'#~`$&|\\<>^*?{}[]()!;%@=+,:";
+            foreach (char c in forbidden)
+            {
+                _featureName = _featureName.Replace(c.ToString(), "");
+            }
             GitinityUI.FireOnStartFeature(_featureName);
+            FeatureName.SetValueWithoutNotify(_featureName);
         });
         
         DocsButton.clicked += () => { Application.OpenURL("https://free-elective-docu-5e29a0.h-da.io/mr_man/"); };

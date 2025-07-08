@@ -75,11 +75,9 @@ public class FileLockUI : EditorWindow
             WarnLabel.text = message;
             WarnLabel.style.display = DisplayStyle.Flex;
             // WarnLabel.RemoveFromClassList("hidden");
-            Debug.Log($"Remove form hidden.");
         }
         else
         {
-            Debug.Log($"Add form hidden.");
             WarnLabel.style.display = DisplayStyle.None;
             // WarnLabel.AddToClassList("hidden");
         }
